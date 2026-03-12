@@ -326,8 +326,8 @@
     }
 
     .product-icon {
-      width: 104px; height: 104px;
-      border-radius: 18px;
+      width: 128px; height: 128px;
+      border-radius: 20px;
       display: grid; place-items: center;
       margin-bottom: 18px;
       background: rgba(255,255,255,0.10);
@@ -338,11 +338,12 @@
     }
 
     .product-icon img {
-      max-width: 88%;
-      max-height: 88%;
+      max-width: 80%;
+      max-height: 80%;
       width: auto;
       height: auto;
-      object-fit: cover;
+      object-fit: contain;
+      object-position: center;
       border-radius: 14px;
     }
 
@@ -560,14 +561,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 38px;
-      height: 38px;
+      width: 44px;
+      height: 44px;
       gap: 0;
       font-size: 0;
       color: var(--cloud);
       background: rgba(103, 125, 153, 0.12);
       border: 1px solid rgba(103, 125, 153, 0.32);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 0;
       text-decoration: none;
       transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
@@ -594,13 +595,13 @@
 
     .social-button::before {
       content: '';
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 700;
       color: #fff;
     }
