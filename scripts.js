@@ -28,9 +28,30 @@
     });
   });
 
-  // ── Service worker registration ─────────────────────────────────
-  if ('serviceWorker' in navigator) {
+  // ── Service worker registration (with auto-unregister on version bump) ─────────────────────────────────
+  const APP_VERSION = '2'; // bump this when deploying new updates
+
+  function ensureLatestServiceWorker() {
+    if (!('serviceWorker' in navigator)) return;
+
+    const stored = sessionStorage.getItem('crowagentAppVersion');
+    if (stored && stored !== APP_VERSION) {
+      // New version detected: clear the service worker and force reload.
+      sessionStorage.setItem('crowagentAppVersion', APP_VERSION);
+      navigator.serviceWorker.getRegistrations().then(regs => {
+        return Promise.all(regs.map(r => r.unregister()));
+      }).then(() => {
+        console.log('Old service workers unregistered; reloading to get latest assets.');
+        window.location.reload(true);
+      });
+      return;
+    }
+
+    sessionStorage.setItem('crowagentAppVersion', APP_VERSION);
+
     navigator.serviceWorker.register('/service-worker.js')
       .then(reg => console.log('Service Worker registered:', reg.scope))
       .catch(err => console.warn('Service Worker registration failed:', err));
   }
+
+  ensureLatestServiceWorker();
