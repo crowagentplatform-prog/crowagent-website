@@ -15,7 +15,7 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // ── Stagger children of fade-in elements ────────────────────────
-  document.querySelectorAll('.steps-grid .step-card, .products-grid .product-card, .sectors-grid .sector-card').forEach((el, i) => {
+  document.querySelectorAll('.steps-grid .step-card, .products-grid .product-card, .sectors-grid .sector-card, .trust-grid .trust-card').forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.07}s`;
     el.classList.add('fade-in');
     observer.observe(el);
