@@ -5,21 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CrowAgent — Legal</title>
   <meta name="description" content="CrowAgent privacy policy and terms and conditions.">
-  <link rel="stylesheet" href="styles.css">
+  <meta name="theme-color" content="#0A1F3A">
+  <link rel="canonical" href="https://crowagent.ai/legal.html">
+  <link rel="icon" type="image/png" href="Assets/Branding Logo/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="Assets/Branding Logo/favicon.png">
+  <link rel="apple-touch-icon" href="Assets/Branding Logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.min.css?v=6">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
   <nav>
-    <a class="nav-logo" href="index.html"><img src="Assets/Branding Logo/logo.png" alt="CrowAgent logo"></a>
-    <ul class="nav-links">
-      <li><a href="index.html#how">How it works</a></li>
-      <li><a href="index.html#products">Products</a></li>
-      <li><a href="index.html#sectors">Sectors</a></li>
-      <li><a href="index.html#about">About</a></li>
-      <li><a href="index.html" class="nav-cta">Home</a></li>
-    </ul>
+    <div class="container">
+      <a class="nav-logo" href="index.html"><img src="Assets/Branding Logo/logo.png" alt="CrowAgent brand logo" onerror="this.onerror=null; this.src='Assets/Branding Logo/favicon.png';" loading="lazy"></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#sectors">Sectors</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html" class="nav-cta">Home</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
   </nav>
 
-  <section class="section-padding">
+  <section class="section-padding" id="main-content">
     <div class="container">
       <h1>Legal</h1>
       <p>Below are the most recent legal documents for CrowAgent Ltd.</p>
@@ -32,24 +46,39 @@
   </section>
 
   <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="Assets/Branding Logo/logo.png" alt="CrowAgent logo">
-        <p>AI-powered sustainability intelligence for UK organisations.</p>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="Assets/Branding Logo/logo.png" alt="CrowAgent brand logo">
+          <p>Physics-Informed AI for UK building energy, emissions, and sustainability compliance. Digital twins that work.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="https://crowagent-platform-sustainability-digitwin.streamlit.app/" target="_blank" rel="noopener noreferrer">Join Pilot</a>
+          <a href="index.html#products">Products</a>
+          <a href="index.html#how">How It Works</a>
+          <a href="index.html#sectors">Sectors</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="index.html#about">About</a>
+          <a href="mailto:crowagent.platform@gmail.com" target="_blank" rel="noopener noreferrer">Contact</a>
+          <a href="legal.html">Legal</a>
+          <a href="Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+          <a href="Doc/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+        </div>
       </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="index.html#about">About</a>
-        <a href="mailto:crowagent.platform@gmail.com" target="_blank" rel="noopener noreferrer">Contact</a>
-        <a href="legal.html">Legal</a>
+      <div class="footer-bottom">
+        <div class="footer-legal">
+          <p>© 2026 <span>CrowAgent Ltd</span>. All rights reserved.</p>
+          <p>CrowAgent Ltd is a company registered in England and Wales.<br>Company Number: 17076461</p>
+          <p>Registered Office: Reading, England RG1 6SP, United Kingdom<br>Contact: crowagent.platform@gmail.com</p>
+        </div>
+        <p class="site-version">v6</p>
       </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 <span>CrowAgent Ltd</span>. Registered in England &amp; Wales. Reading, RG1 6SP.</p>
-      <p>Sustainability Intelligence · <span>crowagent.ai</span></p>
     </div>
   </footer>
 
-  <script src="scripts.js"></script>
+  <script src="scripts.min.js?v=6"></script>
 </body>
 </html>

@@ -1,0 +1,28 @@
+{
+  "name": "crowagent-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "scripts.js",
+  "scripts": {
+    "build:css": "csso styles.css --output styles.min.css",
+    "build:js": "terser scripts.js --compress --mangle --output scripts.min.js",
+    "build": "npm run build:css && npm run build:js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crowagent/crowagent-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/crowagent/crowagent-website/issues"
+  },
+  "homepage": "https://github.com/crowagent/crowagent-website#readme",
+  "devDependencies": {
+    "csso-cli": "^4.0.2",
+    "terser": "^5.46.1"
+  }
+}

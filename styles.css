@@ -408,7 +408,7 @@ footer { background: #020B16; border-top: 1px solid var(--dim); padding: var(--s
 .icon-producthunt::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23DA552F"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm3.5-10c0-1.933-1.567-3.5-3.5-3.5S8.5 8.067 8.5 10s1.567 3.5 3.5 3.5 3.5-1.567 3.5-3.5z"/></svg>'); }
 .icon-instagram::before { background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23E1306C"><rect x="2.15" y="2.15" width="19.7" height="19.7" rx="4.47" fill="none" stroke="%23E1306C" stroke-width="1.5"/><circle cx="12" cy="12" r="3.56" fill="none" stroke="%23E1306C" stroke-width="1.5"/><circle cx="18.41" cy="5.59" r="0.85" fill="%23E1306C"/></svg>'); }
 .footer-bottom { padding-top: var(--space-4); border-top: 1px solid var(--dim); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-4); }
-.footer-bottom p { font-size: var(--font-size-xs); color: #3A5070; margin: 0; }
+.footer-bottom p { font-size: var(--font-size-xs); color: var(--steel); margin: 0; }
 .footer-bottom span { color: var(--teal); }
 .site-version { font-size: var(--font-size-xs); color: rgba(255,255,255,0.45); text-align: right; }
 
@@ -465,8 +465,41 @@ footer { background: #020B16; border-top: 1px solid var(--dim); padding: var(--s
   }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger:focus-visible { outline: 2px solid var(--teal); border-radius: 4px; }
   .hamburger span { display: block; width: 24px; height: 3px; background: var(--cloud); border-radius: 3px; }
 }
+
+/* ── LEGAL PAGE ─────────────────────────────────────────────────── */
+.section-padding {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-12);
+}
+.section-padding h1 { margin-bottom: var(--space-3); }
+.section-padding > .container > p { font-size: var(--font-size-sm); color: var(--steel); margin-bottom: var(--space-3); }
+.legal-links {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* ── SKIP TO CONTENT ─────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-3);
+  background: var(--teal);
+  color: var(--obsidian);
+  font-family: var(--font-head);
+  font-weight: 700;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 8px;
+  z-index: 9999;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: var(--space-2); }
 
 /* ANIMATIONS */
 .fade-in {

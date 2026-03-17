@@ -1,13 +1,37 @@
 // ── Mobile menu toggle ───────────────────────────────────────────
   function toggleMenu() {
-    document.getElementById('navLinks').classList.toggle('open');
+    const navLinks = document.getElementById('navLinks');
+    const hamburger = document.getElementById('hamburger');
+    const isOpen = navLinks.classList.toggle('open');
+    if (hamburger) hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
+
+  // ── Keyboard activation for hamburger ────────────────────────────
+  const hamburgerEl = document.getElementById('hamburger');
+  if (hamburgerEl) {
+    hamburgerEl.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
+    });
+  }
+
+  // ── Close menu on Escape key ─────────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburger');
+      if (navLinks && navLinks.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
 
   // ── Scroll-triggered fade-in animations ─────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
+        observer.unobserve(e.target);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
@@ -15,7 +39,8 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // ── Stagger children of fade-in elements ────────────────────────
-  document.querySelectorAll('.steps-grid .step-card, .products-grid .product-card, .sectors-grid .sector-card, .trust-grid .trust-card').forEach((el, i) => {
+  const staggerCards = document.querySelectorAll('.steps-grid .step-card, .products-grid .product-card, .sectors-grid .sector-card, .trust-grid .trust-card');
+  staggerCards.forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.07}s`;
     el.classList.add('fade-in');
     observer.observe(el);
@@ -24,12 +49,15 @@
   // ── Smooth nav close on link click (mobile) ──────────────────────
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => {
-      document.getElementById('navLinks').classList.remove('open');
+      const navLinks = document.getElementById('navLinks');
+      const hamburger = document.getElementById('hamburger');
+      if (navLinks) navLinks.classList.remove('open');
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
     });
   });
 
   // ── Service worker registration (with auto-unregister on version bump) ─────────────────────────────────
-  const APP_VERSION = '5'; // bump this when deploying new updates
+  const APP_VERSION = '6'; // bump this when deploying new updates
 
   function ensureLatestServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
