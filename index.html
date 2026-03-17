@@ -84,6 +84,8 @@
       <li><a href="#sectors">Sectors</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#vision">Vision</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
       <li><a href="https://crowagent-platform-sustainability-digitwin.streamlit.app/" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Platform →</a></li>
     </ul>
     <div class="hamburger" id="hamburger" onclick="toggleMenu()" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
@@ -279,8 +281,8 @@
   <div class="container">
     <div class="fade-in text-center">
       <div class="section-label">Available Now</div>
-      <h2 class="mx-auto">CrowAgent Core & CrowMark</h2>
-      <p class="section-sub mx-auto">Active pilot and fundable product — two complementary platforms for UK public sector.</p>
+      <h2 class="mx-auto">CrowAgent Core, CrowMark &amp; Free Tools</h2>
+      <p class="section-sub mx-auto">Active pilot, fundable product, and free compliance tool — three platforms for UK public sector.</p>
     </div>
     <div class="products-grid-featured fade-in">
       <div class="product-card product-card--featured">
@@ -329,11 +331,33 @@
           </a>
         </div>
       </div>
+      <div class="product-card product-card--free">
+        <div class="product-icon mx-auto" data-name="CSRD Checker">
+          <img src="Assets/Branding Logo/favicon.png" alt="CSRD Applicability Checker icon">
+        </div>
+        <div class="product-icon-label text-center">CSRD Checker</div>
+        <div class="product-name product-name--free text-center">CSRD Applicability Checker</div>
+        <span class="product-tag tag-free">🆓 FREE TOOL</span>
+        <div class="product-desc text-center">
+          Instantly check if CSRD applies to your organisation and which ESRS standards you must report against. Results in under 2 minutes.
+        </div>
+        <ul class="product-features">
+          <li>✓ Instant CSRD applicability assessment</li>
+          <li>✓ ESRS standards mapping for your sector</li>
+          <li>✓ No sign-up required to check</li>
+          <li>✓ Full report emailed to you free</li>
+        </ul>
+        <div class="product-cta">
+          <a href="#csrd-checker" class="btn-primary">
+            Check My CSRD Status — Free →
+          </a>
+        </div>
+      </div>
     </div>
 
     <div class="text-center product-pricing-note">
       <p>
-        <strong>Core:</strong> Free during pilot phase. <strong>CrowMark:</strong> Subscription pricing coming Q3 2026.
+        <strong>Core:</strong> Free during pilot phase. <strong>CrowMark:</strong> From £49/mo. <a href="#pricing">See full pricing →</a>
       </p>
     </div>
 
@@ -378,6 +402,65 @@
         <div class="product-name product-name--nest text-center">CrowNest</div>
         <span class="product-tag tag-concept">ROADMAP</span>
         <div class="product-desc text-center">NHS Green Plan tracking. Emission tracking for NHS Trusts including anaesthetic gases and medicines supply chain.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CSRD CHECKER ══════════════════════════════════════════════════ -->
+<section id="csrd-checker">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Free Tool</div>
+      <h2 class="mx-auto">Find Out If CSRD Applies To You — Free</h2>
+      <p class="section-sub mx-auto">Answer 4 quick questions and we'll send you a personalised CSRD applicability report. Results in under 2 minutes.</p>
+    </div>
+    <div class="csrd-form-wrap fade-in">
+      <form id="csrdForm" class="csrd-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="csrd-company">Company name</label>
+            <input type="text" id="csrd-company" name="company" class="form-control" placeholder="e.g. Acme Council" required>
+          </div>
+          <div class="form-group">
+            <label for="csrd-email">Work email</label>
+            <input type="email" id="csrd-email" name="email" class="form-control" placeholder="you@organisation.gov.uk" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="csrd-employees">Employee count</label>
+            <select id="csrd-employees" name="employees" class="form-control" required>
+              <option value="" disabled selected>Select...</option>
+              <option value="under-250">Under 250</option>
+              <option value="250-499">250–499</option>
+              <option value="500-999">500–999</option>
+              <option value="1000+">1,000+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="csrd-turnover">Annual turnover</label>
+            <select id="csrd-turnover" name="turnover" class="form-control" required>
+              <option value="" disabled selected>Select...</option>
+              <option value="under-40m">Under £40m</option>
+              <option value="40m-150m">£40m – £150m</option>
+              <option value="over-150m">Over £150m</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-submit">
+          <button type="submit" class="btn-primary csrd-submit">
+            Get My Free CSRD Assessment →
+          </button>
+        </div>
+      </form>
+      <div id="csrdThankYou" class="csrd-thankyou" hidden>
+        <div class="thankyou-icon">✓</div>
+        <h3>Assessment on its way!</h3>
+        <p>We'll send your personalised CSRD applicability report to your inbox within 24 hours. In the meantime, explore CrowAgent Core.</p>
+        <a href="https://crowagent-platform-sustainability-digitwin.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-primary">Explore CrowAgent Core →</a>
       </div>
     </div>
   </div>
@@ -479,6 +562,117 @@
     <div class="security-footer fade-in">
       <p>Need more details? <a href="mailto:crowagent.platform@gmail.com">Contact our security team</a> for full documentation on certifications, infrastructure, and compliance frameworks.</p>
     </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PRICING ═══════════════════════════════════════════════════════ -->
+<section id="pricing">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Transparent Pricing</div>
+      <h2 class="mx-auto">Simple, Scalable Plans</h2>
+      <p class="section-sub mx-auto">Start free, scale as you grow. No hidden fees. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid fade-in">
+
+      <!-- CrowAgent Core -->
+      <div class="pricing-table">
+        <div class="pricing-table-header">
+          <div class="pricing-product-name" style="color:var(--teal)">CrowAgent Core</div>
+          <div class="pricing-table-sub">Building energy &amp; compliance</div>
+        </div>
+        <div class="pricing-tiers">
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">Starter</div>
+            <div class="pricing-price">£149<span>/mo</span></div>
+            <div class="pricing-scope">1–5 properties</div>
+            <ul class="pricing-features">
+              <li>Digital twin for up to 5 buildings</li>
+              <li>SECR &amp; TCFD reporting</li>
+              <li>Retrofit scenario modelling</li>
+              <li>Email support</li>
+            </ul>
+          </div>
+          <div class="pricing-tier pricing-tier--highlighted">
+            <div class="pricing-tier-badge">Most Popular</div>
+            <div class="pricing-tier-name">Pro</div>
+            <div class="pricing-price">£299<span>/mo</span></div>
+            <div class="pricing-scope">6–25 properties</div>
+            <ul class="pricing-features">
+              <li>Everything in Starter</li>
+              <li>Up to 25 building twins</li>
+              <li>UK SRS &amp; Environment Act reporting</li>
+              <li>Priority support &amp; onboarding</li>
+            </ul>
+          </div>
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">Portfolio</div>
+            <div class="pricing-price">£599<span>/mo</span></div>
+            <div class="pricing-scope">26+ properties</div>
+            <ul class="pricing-features">
+              <li>Everything in Pro</li>
+              <li>Unlimited building twins</li>
+              <li>API access &amp; custom integrations</li>
+              <li>Dedicated account manager</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-cta">
+          <a href="https://crowagent-platform-sustainability-digitwin.streamlit.app/" target="_blank" rel="noopener noreferrer" class="btn-primary">Start Free Pilot →</a>
+        </div>
+      </div>
+
+      <!-- CrowMark -->
+      <div class="pricing-table pricing-table--mark">
+        <div class="pricing-table-header">
+          <div class="pricing-product-name" style="color:var(--lime)">CrowMark</div>
+          <div class="pricing-table-sub">Social value &amp; procurement</div>
+        </div>
+        <div class="pricing-tiers">
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">Solo</div>
+            <div class="pricing-price">£49<span>/mo</span></div>
+            <div class="pricing-scope">3 bids/month</div>
+            <ul class="pricing-features">
+              <li>PPN 02/21 evaluation automation</li>
+              <li>3 bid assessments per month</li>
+              <li>Standard scoring framework</li>
+              <li>PDF report export</li>
+            </ul>
+          </div>
+          <div class="pricing-tier pricing-tier--highlighted pricing-tier--mark">
+            <div class="pricing-tier-badge">Most Popular</div>
+            <div class="pricing-tier-name">Team</div>
+            <div class="pricing-price">£149<span>/mo</span></div>
+            <div class="pricing-scope">10 bids/month</div>
+            <ul class="pricing-features">
+              <li>Everything in Solo</li>
+              <li>10 bid assessments per month</li>
+              <li>Multi-framework social value scoring</li>
+              <li>Team collaboration &amp; audit trail</li>
+            </ul>
+          </div>
+          <div class="pricing-tier">
+            <div class="pricing-tier-name">Agency</div>
+            <div class="pricing-price">£399<span>/mo</span></div>
+            <div class="pricing-scope">Unlimited bids</div>
+            <ul class="pricing-features">
+              <li>Everything in Team</li>
+              <li>Unlimited bid assessments</li>
+              <li>Custom scoring frameworks</li>
+              <li>White-label reporting</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-cta">
+          <a href="mailto:crowagent.platform@gmail.com" class="btn-primary">Request CrowMark Demo →</a>
+        </div>
+      </div>
+
+    </div>
+    <p class="pricing-note fade-in">All prices excl. VAT. Annual billing available at 20% discount. <a href="mailto:crowagent.platform@gmail.com">Contact us</a> for enterprise or multi-year pricing.</p>
   </div>
 </section>
 

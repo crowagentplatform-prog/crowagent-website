@@ -83,3 +83,46 @@
   }
 
   ensureLatestServiceWorker();
+
+  // ── CSRD Checker form submit ──────────────────────────────────────
+  const csrdForm = document.getElementById('csrdForm');
+  const csrdThankYou = document.getElementById('csrdThankYou');
+
+  if (csrdForm) {
+    csrdForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const company   = csrdForm.querySelector('#csrd-company').value.trim();
+      const email     = csrdForm.querySelector('#csrd-email').value.trim();
+      const employees = csrdForm.querySelector('#csrd-employees').value;
+      const turnover  = csrdForm.querySelector('#csrd-turnover').value;
+
+      if (!company || !email || !employees || !turnover) {
+        const firstEmpty = csrdForm.querySelector('.form-control:invalid, .form-control[value=""]');
+        if (firstEmpty) firstEmpty.focus();
+        return;
+      }
+
+      // Build mailto fallback so submissions reach the team even without a backend
+      const subject  = encodeURIComponent('CSRD Assessment Request — ' + company);
+      const body     = encodeURIComponent(
+        'Company: ' + company + '\n' +
+        'Email: ' + email + '\n' +
+        'Employees: ' + employees + '\n' +
+        'Turnover: ' + turnover
+      );
+      const mailtoHref = 'mailto:crowagent.platform@gmail.com?subject=' + subject + '&body=' + body;
+
+      // Fire mailto silently (opens mail client in background)
+      const link = document.createElement('a');
+      link.href = mailtoHref;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Show thank-you state
+      csrdForm.hidden = true;
+      if (csrdThankYou) csrdThankYou.hidden = false;
+    });
+  }
