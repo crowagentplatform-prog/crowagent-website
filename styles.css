@@ -533,6 +533,14 @@ footer { background: #020B16; border-top: 1px solid var(--dim); padding: var(--s
 .pricing-note { text-align: center; margin-top: var(--space-5); font-size: var(--font-size-xs); color: var(--steel); }
 .pricing-note a { color: var(--teal); text-decoration: underline; }
 
+/* ── Social proof bar ────────────────────────────────────────────── */
+#social-proof { padding: var(--space-5) 0; }
+.social-proof-label { text-align: center; font-size: var(--font-size-xs); font-family: var(--font-head); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: var(--space-4); }
+.social-proof-bar { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+.sp-badge { display: inline-flex; align-items: center; gap: 8px; padding: 10px 20px; border: 1px solid var(--dim); border-radius: 999px; font-family: var(--font-head); font-weight: 600; font-size: var(--font-size-sm); color: var(--cloud); background: rgba(228,236,247,0.04); transition: border-color 0.2s, background 0.2s; }
+.sp-badge svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--teal); }
+.sp-badge:hover { border-color: var(--sky); background: rgba(91,200,255,0.06); }
+
 /* ── CSRD form section ───────────────────────────────────────────── */
 #csrd-checker { background: rgba(91,200,255,0.02); }
 .csrd-form-wrap { max-width: 720px; margin: var(--space-8) auto 0; }
