@@ -39,12 +39,57 @@
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
   // ── Stagger children of fade-in elements ────────────────────────
-  const staggerCards = document.querySelectorAll('.steps-grid .step-card, .products-grid .product-card, .sectors-grid .sector-card, .trust-grid .trust-card');
+  const staggerCards = document.querySelectorAll('.trust-grid > *, .products-grid > *, .sectors-grid > *, .steps-grid > *');
   staggerCards.forEach((el, i) => {
     el.style.transitionDelay = `${i * 0.07}s`;
     el.classList.add('fade-in');
     observer.observe(el);
   });
+
+  // ── Scroll-spy nav ──────────────────────────────────────────────
+  const spySections = document.querySelectorAll('section[id]');
+  const spyLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        spyLinks.forEach(a => a.classList.remove('nav-active'));
+        const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('nav-active');
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-72px 0px -40% 0px' });
+  spySections.forEach(s => spyObserver.observe(s));
+
+  // ── Stats count-up ──────────────────────────────────────────────
+  function countUp(el) {
+    if (!el.dataset.count) el.dataset.count = el.textContent.trim();
+    const raw = el.dataset.count;
+    const prefix = raw.match(/^[£]/) ? raw[0] : '';
+    const suffix = raw.replace(/^[£]/, '').replace(/[0-9.]+/, '');
+    const num = parseFloat(raw.replace(/[^0-9.]/g, ''));
+    if (isNaN(num)) return;
+    const duration = 1800;
+    let start = null;
+    function easeOutQuad(t) { return t * (2 - t); }
+    function step(ts) {
+      if (!start) start = ts;
+      const progress = Math.min((ts - start) / duration, 1);
+      const val = easeOutQuad(progress) * num;
+      el.textContent = prefix + (Number.isInteger(num) ? Math.round(val) : val.toFixed(1)) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-val').forEach(countUp);
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  const heroStats = document.querySelector('.hero-stats');
+  if (heroStats) statsObserver.observe(heroStats);
 
   // ── Smooth nav close on link click (mobile) ──────────────────────
   document.querySelectorAll('.nav-links a').forEach(a => {
@@ -57,7 +102,7 @@
   });
 
   // ── Service worker registration (with auto-unregister on version bump) ─────────────────────────────────
-  const APP_VERSION = '8'; // bump this when deploying new updates
+  const APP_VERSION = '9'; // bump this when deploying new updates
 
   function ensureLatestServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
