@@ -2,6 +2,9 @@
   "outputDirectory": ".",
   "rewrites": [
     { "source": "/csrd", "destination": "/csrd.html" },
-    { "source": "/legal", "destination": "/legal.html" }
+    { "source": "/legal", "destination": "/legal.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/cookies", "destination": "/cookies.html" }
   ]
 }
