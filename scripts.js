@@ -11,6 +11,7 @@
   // ── Keyboard activation for hamburger ────────────────────────────
   const hamburgerEl = document.getElementById('hamburger');
   if (hamburgerEl) {
+    hamburgerEl.addEventListener('click', toggleMenu);
     hamburgerEl.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleMenu(); }
     });
@@ -145,7 +146,7 @@
   }
 
   // ── Service worker registration (with auto-unregister on version bump) ─────────────────────────────────
-  const APP_VERSION = '9'; // bump this when deploying new updates
+  const APP_VERSION = '10'; // bump this when deploying new updates
 
   function ensureLatestServiceWorker() {
     if (!('serviceWorker' in navigator)) return;
