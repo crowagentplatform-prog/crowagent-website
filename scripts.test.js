@@ -375,7 +375,7 @@ describe('ensureLatestServiceWorker', () => {
   });
 
   test('registers SW when stored version matches current', () => {
-    sessionStoreMock.setItem('crowagentAppVersion', '10');
+    sessionStoreMock.setItem('crowagentAppVersion', '11');
     require('./scripts.js');
     expect(swMock.register).toHaveBeenCalledWith('/service-worker.js');
   });
@@ -392,7 +392,7 @@ describe('ensureLatestServiceWorker', () => {
 
   test('stores current app version in sessionStorage on load', () => {
     require('./scripts.js');
-    expect(sessionStoreMock.getItem('crowagentAppVersion')).toBe('10');
+    expect(sessionStoreMock.getItem('crowagentAppVersion')).toBe('11');
   });
 });
 
