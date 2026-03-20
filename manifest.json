@@ -1,11 +1,11 @@
 {
-  "name": "CrowAgent — Sustainability Intelligence",
+  "name": "CrowAgent",
   "short_name": "CrowAgent",
-  "description": "Autonomous Sustainability Intelligence",
+  "description": "Autonomous Sustainability Intelligence — AI-powered compliance for MEES, PPN 002 and CSRD.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "background_color": "#0A1F3A",
+  "background_color": "#05101E",
   "theme_color": "#0A1F3A",
   "icons": [
     {
