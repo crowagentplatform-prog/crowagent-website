@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSRD and Omnibus I: What Changed on 18 March 2026 — CrowAgent</title>
+  <meta name="description" content="The EU Omnibus I Directive (2026/470) fundamentally narrowed CSRD scope on 18 March 2026. New thresholds, SME protections, and what UK-connected companies need to do now.">
+  <meta property="og:title" content="CSRD and Omnibus I: What Changed on 18 March 2026 — CrowAgent">
+  <meta property="og:description" content="EU Omnibus I Directive (2026/470) narrowed CSRD scope. New thresholds: 1,000 employees AND €450M turnover. Full breakdown of what changed.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://crowagent.ai/blog/csrd-omnibus-i-2026">
+  <meta property="og:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="theme-color" content="#0A1F3A">
+  <link rel="canonical" href="https://crowagent.ai/blog/csrd-omnibus-i-2026">
+  <link rel="icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="apple-touch-icon" href="../Assets/Branding Logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.min.css?v=11">
+  <style>
+    /* Article layout */
+    .article-wrapper {
+      padding: 120px 20px 80px;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .breadcrumb {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--steel, #8A9DB8);
+      margin-bottom: 24px;
+    }
+    .breadcrumb a {
+      color: var(--teal, #0CC9A8);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+    .breadcrumb span {
+      margin: 0 8px;
+      opacity: 0.5;
+    }
+    .article-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal, #0CC9A8);
+      background: rgba(12, 201, 168, 0.1);
+      border: 1px solid rgba(12, 201, 168, 0.25);
+      border-radius: 6px;
+      padding: 4px 12px;
+      margin-bottom: 20px;
+    }
+    .article-wrapper h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .article-meta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--steel, #8A9DB8);
+      margin-bottom: 48px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(138, 157, 184, 0.15);
+    }
+    .article-body h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      margin: 48px 0 20px;
+    }
+    .article-body p {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: var(--steel, #8A9DB8);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .article-body ul,
+    .article-body ol {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      color: var(--steel, #8A9DB8);
+      line-height: 1.8;
+      margin-bottom: 20px;
+      padding-left: 24px;
+    }
+    .article-body li {
+      margin-bottom: 8px;
+    }
+    .article-body strong {
+      color: var(--cloud, #E4ECF7);
+    }
+
+    /* Callout box */
+    .callout {
+      background: var(--navy2, #0D2847);
+      border-left: 4px solid var(--teal, #0CC9A8);
+      border-radius: 0 10px 10px 0;
+      padding: 24px;
+      margin: 36px 0;
+    }
+    .callout p {
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+    .callout a {
+      color: var(--teal, #0CC9A8);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .callout a:hover {
+      text-decoration: underline;
+    }
+
+    /* Comparison table-like blocks */
+    .scope-block {
+      background: rgba(13, 40, 71, 0.5);
+      border: 1px solid rgba(138, 157, 184, 0.12);
+      border-radius: 10px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .scope-block h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--cloud, #E4ECF7);
+      margin-bottom: 12px;
+    }
+    .scope-block.old h3 {
+      color: var(--steel, #8A9DB8);
+    }
+    .scope-block.new h3 {
+      color: var(--teal, #0CC9A8);
+    }
+
+    /* Citations */
+    .citations {
+      margin-top: 56px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(138, 157, 184, 0.15);
+    }
+    .citations h2 {
+      font-size: 1.1rem !important;
+      margin-top: 0 !important;
+    }
+    .citations ol {
+      font-size: 13px !important;
+      color: rgba(138, 157, 184, 0.7) !important;
+    }
+    .citations li {
+      margin-bottom: 6px !important;
+    }
+
+    /* Footer CTA */
+    .article-footer-cta {
+      text-align: center;
+      padding: 48px 0;
+      margin-top: 48px;
+      border-top: 1px solid rgba(138, 157, 184, 0.15);
+    }
+    .article-footer-cta p {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      margin-bottom: 20px;
+    }
+    .article-footer-cta a.btn-primary {
+      display: inline-flex;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- NAV -->
+<nav role="navigation">
+  <div class="container">
+    <a class="nav-logo" href="/">
+      <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo" onerror="this.onerror=null; this.src='../Assets/Branding Logo/favicon.png';" loading="lazy">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/products">Products</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+      <li><a href="/partners">Partners</a></li>
+      <li><a href="/csrd">CSRD Checker</a></li>
+      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
+      <li><a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Platform <span class="arrow">→</span></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" role="main">
+
+<article class="article-wrapper">
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb">
+    <a href="/blog">Blog</a><span>›</span>CSRD &amp; ESG
+  </div>
+
+  <!-- Header -->
+  <div class="article-badge">CSRD &amp; ESG</div>
+  <h1>CSRD and Omnibus I: What Changed on 18 March 2026</h1>
+  <div class="article-meta">
+    20 March 2026 · CrowAgent Research Team · 8 min read
+  </div>
+
+  <!-- Article body -->
+  <div class="article-body">
+
+    <p>
+      The EU Omnibus I Directive (formally Directive (EU) 2026/470) entered into force on 18 March 2026, and it has fundamentally reshaped the scope and obligations of the Corporate Sustainability Reporting Directive (CSRD). If your organisation was preparing for CSRD compliance based on the original thresholds — 250 employees, €40 million turnover — you need to stop and reassess. The rules have changed in material ways that affect thousands of companies across the EU and, importantly, UK-connected businesses operating within EU value chains.
+    </p>
+    <p>
+      This guide breaks down exactly what changed, who is now in scope, who has been removed, and what practical steps you should take before your next compliance review. We have cross-referenced the final directive text published in the Official Journal of the EU on 26 February 2026 to ensure accuracy.
+    </p>
+
+    <h2>1. What Changed: Old Scope vs. New Scope</h2>
+
+    <p>
+      The original CSRD, adopted as Directive (EU) 2022/2464, was designed to bring sustainability reporting obligations to a much broader range of companies than its predecessor, the Non-Financial Reporting Directive (NFRD). It introduced a phased rollout with progressively widening scope. Omnibus I has now significantly narrowed that ambition.
+    </p>
+
+    <div class="scope-block old">
+      <h3>Old CSRD Scope (Now Superseded)</h3>
+      <ul>
+        <li><strong>Wave 1 (FY 2024):</strong> Large public-interest entities already reporting under NFRD — approximately 11,700 companies.</li>
+        <li><strong>Wave 2 (FY 2025, reporting from 2026):</strong> All large undertakings meeting two of three criteria: &gt;250 employees OR &gt;€40M net turnover OR &gt;€20M total assets. This was estimated to bring an additional 40,000+ companies into scope.</li>
+        <li><strong>Wave 3 (FY 2026, reporting from 2027):</strong> Listed SMEs (excluding micro-undertakings), small and non-complex credit institutions, and captive insurance undertakings.</li>
+        <li><strong>Wave 4 (FY 2028):</strong> Non-EU parent companies with &gt;€150M EU net turnover and at least one EU subsidiary or branch meeting certain thresholds.</li>
+      </ul>
+    </div>
+
+    <div class="scope-block new">
+      <h3>New Scope Under Omnibus I (Directive 2026/470)</h3>
+      <ul>
+        <li><strong>EU large companies:</strong> Must have &gt;1,000 employees <strong>AND</strong> &gt;€450M net turnover. Both criteria must be met simultaneously — this is a critical change from the original "two of three" test.</li>
+        <li><strong>EU-listed companies:</strong> Listed entities with &gt;500 employees remain in scope, irrespective of turnover.</li>
+        <li><strong>Non-EU companies:</strong> Only those generating &gt;€450M net revenue within the EU, provided they also have a qualifying EU subsidiary or branch. The old €150M threshold is superseded.</li>
+        <li><strong>Listed SMEs:</strong> No longer in mandatory CSRD scope. The entire Wave 3 obligation for listed SMEs has been removed.</li>
+      </ul>
+    </div>
+
+    <p>
+      The practical effect is dramatic. The European Commission estimated that the original CSRD would cover approximately 50,000 companies across the EU. Under Omnibus I, that number drops to roughly 10,000 — an 80% reduction. Companies in the 250-to-999 employee range are the most affected cohort: they were preparing for mandatory reporting, and now find themselves outside the scope entirely (unless listed with over 500 employees).
+    </p>
+
+    <h2>2. What It Means for the 250–1,000 Employee Market</h2>
+
+    <p>
+      If your organisation has between 250 and 1,000 employees, the headline is clear: you are no longer subject to mandatory CSRD reporting under EU law. However, that does not mean sustainability data is irrelevant to your operations. Three important factors remain in play.
+    </p>
+
+    <p>
+      <strong>Value chain data requests.</strong> If your company is a supplier to an in-scope company (one with &gt;1,000 employees and &gt;€450M turnover), that company may still request sustainability data from you as part of its own CSRD reporting obligations. However — and this is a crucial protection introduced by Omnibus I — they can only request data up to the level of the Voluntary SME Reporting Standard (VSME). They cannot require you to report against the full European Sustainability Reporting Standards (ESRS). This is a binding limitation, not a recommendation.
+    </p>
+
+    <p>
+      <strong>Wave 1 transitional reporting.</strong> Companies already reporting under Wave 1 (large public-interest entities) will continue their reporting obligations for financial years starting on or after 1 January 2024 through to 31 December 2026. From financial years starting on or after 1 January 2027, these companies will need to reassess their scope under the new Omnibus I thresholds. If they no longer meet the 1,000-employee AND €450M-turnover test, they exit mandatory scope.
+    </p>
+
+    <p>
+      <strong>Member state discretion.</strong> Omnibus I sets the EU-level floor, but individual member states retain the ability to impose broader sustainability reporting requirements through national legislation during the transposition period. The deadline for member state transposition is March 2027. This means that, depending on the jurisdictions you operate in, local requirements may exceed the Omnibus I baseline. Monitor transposition closely in your key markets.
+    </p>
+
+    <h2>3. The SME Protection Clause</h2>
+
+    <p>
+      One of the most significant additions in Omnibus I is the explicit SME protection mechanism. Under Article 19a(8) as amended, companies with 1,000 or fewer employees cannot be required — by any in-scope reporting entity in their value chain — to provide sustainability information beyond the scope of the VSME voluntary standard.
+    </p>
+
+    <p>
+      This is a direct response to concerns raised during the CSRD consultation period, where SMEs reported anxiety about being overwhelmed by data requests from larger companies. The protection clause creates a hard ceiling: no matter how large your customer is, and no matter how complex their ESRS obligations are, they cannot compel you to report beyond the VSME framework if you have 1,000 or fewer employees.
+    </p>
+
+    <p>
+      The VSME standard itself covers basic environmental metrics (scope 1 and 2 greenhouse gas emissions, energy consumption), workforce composition data, and governance basics. It is considerably lighter than the full 12-standard ESRS set. For most SMEs, the VSME disclosure can be prepared with data already available in existing management accounts and HR systems.
+    </p>
+
+    <h2>4. What to Do Now</h2>
+
+    <p>
+      The practical next steps depend on where your organisation falls under the new thresholds:
+    </p>
+
+    <ul>
+      <li><strong>If you have &gt;1,000 employees AND &gt;€450M net turnover:</strong> you are in mandatory scope. If you have not already begun ESRS preparation, start now. The reporting standards are detailed and require substantial data collection across environmental, social, and governance topics. Engage your finance, operations, and sustainability teams immediately.</li>
+      <li><strong>If you have between 250 and 999 employees:</strong> you are out of mandatory scope at EU level, but you should monitor member state transposition carefully. The deadline for national implementation is March 2027. Some jurisdictions may retain broader requirements.</li>
+      <li><strong>If you are a supplier to in-scope companies:</strong> prepare VSME-level reporting capability. Even though you cannot be required to go beyond VSME, having this data ready will strengthen your commercial position and reduce friction in procurement processes.</li>
+      <li><strong>All companies:</strong> use CrowAgent's free <a href="/csrd" style="color:var(--teal);text-decoration:none;font-weight:600;">CSRD Applicability Checker</a> to confirm your current status under the updated Omnibus I thresholds. The tool reflects the new criteria and will give you a clear answer in under two minutes.</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>Updated 18 March 2026</strong> — This article reflects the final text of Directive (EU) 2026/470 as published in the Official Journal. Check your Omnibus I status free <a href="/csrd">using our CSRD Checker →</a></p>
+    </div>
+
+    <p>
+      The Omnibus I changes represent the most significant revision to EU sustainability reporting rules since CSRD was adopted in 2022. Whether you are now in scope, newly out of scope, or operating somewhere in the value chain of an in-scope company, understanding the precise boundaries of the new framework is essential. Misinterpreting these thresholds — in either direction — carries real commercial and regulatory risk.
+    </p>
+
+    <p>
+      CrowAgent will continue to track the member state transposition process and the forthcoming revised ESRS standards (due 18 September 2026) and update this guide accordingly.
+    </p>
+
+    <!-- Citations -->
+    <div class="citations">
+      <h2>Citations &amp; References</h2>
+      <ol>
+        <li>Directive (EU) 2026/470 (Omnibus I) — Official Journal of the European Union, 26 February 2026. Entered into force 18 March 2026.</li>
+        <li>Directive (EU) 2022/2464 (CSRD) — Corporate Sustainability Reporting Directive, amending Regulation (EU) No 537/2014, Directive 2004/109/EC, Directive 2006/43/EC, and Directive 2013/34/EU.</li>
+        <li>European Sustainability Reporting Standards (ESRS) — 12 standards adopted via Commission Delegated Regulation (EU) 2023/2772, July 2023. Revised version due for adoption by 18 September 2026 under Omnibus I timeline.</li>
+      </ol>
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="article-footer-cta">
+      <p>Check your CSRD status free</p>
+      <a href="/csrd" class="btn-primary">Open CSRD Checker <span class="arrow">→</span></a>
+    </div>
+
+  </div>
+</article>
+
+</main>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo">
+        <p>Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full UK and EU sustainability regulatory agenda.</p>
+        <p style="margin-top:12px;font-size:var(--font-size-xs);color:var(--steel);line-height:1.6;">CrowAgent Ltd · Company No. 17076461<br>Registered in England &amp; Wales</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer">Join Pilot</a>
+        <a href="/products">Products</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/csrd">CSRD Checker</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
+        <a href="mailto:hello@crowagent.ai" target="_blank" rel="noopener noreferrer">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">About</a>
+        <a href="/legal.html">Legal</a>
+        <a href="/Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="/Doc/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-links" aria-label="CrowAgent social media links">
+          <a class="social-button icon-youtube" href="https://www.youtube.com/@CrowAgentUK" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent YouTube"><span class="sr-only">YouTube</span></a>
+          <a class="social-button icon-linkedin" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent LinkedIn"><span class="sr-only">LinkedIn</span></a>
+          <a class="social-button icon-x" href="https://x.com/CrowAgentLtd" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent X"><span class="sr-only">X</span></a>
+          <a class="social-button icon-medium" href="https://medium.com/@crowagent.platform" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Medium"><span class="sr-only">Medium</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>&copy; 2026 <span>CrowAgent Ltd</span> · All rights reserved.</p>
+        <p>Company No. 17076461</p>
+        <p>Registered Office: Reading, England RG1 6SP, United Kingdom<br>Contact: hello@crowagent.ai</p>
+      </div>
+      <p class="site-version">v11</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie consent -->
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <strong>We use cookies</strong> to improve your experience and analyse site usage. We never sell your data.
+      <a href="/Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-ghost cookie-decline" id="cookieDecline" type="button">Decline</button>
+      <button class="btn-primary cookie-accept" id="cookieAccept" type="button">Accept Cookies</button>
+    </div>
+  </div>
+</div>
+
+<script src="../scripts.min.js?v=11"></script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrowAgent Insights — UK Sustainability Compliance Guides</title>
+  <meta name="description" content="Expert guides on MEES, PPN 002, CSRD, and UK sustainability compliance. Practical resources for landlords, suppliers, and corporate teams from CrowAgent.">
+  <meta property="og:title" content="CrowAgent Insights — UK Sustainability Compliance Guides">
+  <meta property="og:description" content="Expert guides on MEES, PPN 002, CSRD, and UK sustainability compliance from CrowAgent.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crowagent.ai/blog">
+  <meta property="og:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="theme-color" content="#0A1F3A">
+  <link rel="canonical" href="https://crowagent.ai/blog">
+  <link rel="icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="apple-touch-icon" href="../Assets/Branding Logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.min.css?v=11">
+  <style>
+    /* Blog index styles */
+    .blog-hero {
+      padding: 120px 0 60px;
+      text-align: center;
+    }
+    .blog-hero .section-label {
+      color: var(--teal, #0CC9A8);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .blog-hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      margin: 0 auto 40px;
+    }
+
+    /* Filter pills */
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .filter-pill {
+      background: var(--navy2, #0D2847);
+      color: var(--steel, #8A9DB8);
+      border: 1px solid rgba(138, 157, 184, 0.2);
+      border-radius: 20px;
+      padding: 8px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-pill:hover {
+      border-color: var(--teal, #0CC9A8);
+      color: var(--cloud, #E4ECF7);
+    }
+    .filter-pill.active {
+      background: var(--teal, #0CC9A8);
+      color: var(--obsidian, #05101E);
+      border-color: var(--teal, #0CC9A8);
+      font-weight: 600;
+    }
+
+    /* Article grid */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    @media (max-width: 900px) {
+      .article-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+      }
+    }
+
+    /* Article card */
+    .article-card {
+      background: var(--navy2, #0D2847);
+      border: 1px solid rgba(138, 157, 184, 0.1);
+      border-radius: 14px;
+      padding: 32px 28px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .article-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--teal, #0CC9A8);
+    }
+    .article-card a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .card-badge {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--teal, #0CC9A8);
+      background: rgba(12, 201, 168, 0.1);
+      border: 1px solid rgba(12, 201, 168, 0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .card-preview {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--steel, #8A9DB8);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    .card-meta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: rgba(138, 157, 184, 0.6);
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- NAV -->
+<nav role="navigation">
+  <div class="container">
+    <a class="nav-logo" href="/">
+      <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo" onerror="this.onerror=null; this.src='../Assets/Branding Logo/favicon.png';" loading="lazy">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/products">Products</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/blog" class="active">Blog</a></li>
+      <li><a href="/partners">Partners</a></li>
+      <li><a href="/csrd">CSRD Checker</a></li>
+      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
+      <li><a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Platform <span class="arrow">→</span></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" role="main">
+
+<!-- Blog hero -->
+<section class="blog-hero">
+  <div class="container">
+    <div class="section-label">INSIGHTS</div>
+    <h1>Guides &amp; Resources</h1>
+
+    <!-- Filter pills -->
+    <div class="filter-row">
+      <button class="filter-pill active" data-filter="all" type="button">All</button>
+      <button class="filter-pill" data-filter="mees-epc" type="button">MEES &amp; EPC</button>
+      <button class="filter-pill" data-filter="ppn-002" type="button">PPN 002</button>
+      <button class="filter-pill" data-filter="csrd-esg" type="button">CSRD &amp; ESG</button>
+      <button class="filter-pill" data-filter="regulatory-updates" type="button">Regulatory Updates</button>
+    </div>
+
+    <!-- Article grid -->
+    <div class="article-grid">
+
+      <!-- Card 1: CSRD Omnibus -->
+      <div class="article-card" data-category="csrd-esg">
+        <a href="/blog/csrd-omnibus-i-2026">
+          <span class="card-badge">CSRD &amp; ESG</span>
+          <h2 class="card-title">CSRD and Omnibus I: What Changed on 18 March 2026</h2>
+          <p class="card-preview">EU Omnibus I Directive (2026/470) entered force, fundamentally narrowing CSRD scope. If you were tracking the old thresholds, read this before your next compliance review.</p>
+          <span class="card-meta">8 min read · 20 March 2026</span>
+        </a>
+      </div>
+
+      <!-- Card 2: MEES Band C -->
+      <div class="article-card" data-category="mees-epc">
+        <a href="/blog/mees-band-c-2028">
+          <span class="card-badge">MEES &amp; EPC</span>
+          <h2 class="card-title">MEES Band C 2028: What Commercial Landlords Need to Know</h2>
+          <p class="card-preview">The proposed Band C requirement could affect 400,000+ commercial properties. Here is what you need to understand about the timeline, penalties, and exemptions.</p>
+          <span class="card-meta">5 min read · 15 March 2026</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="divider"></div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo">
+        <p>Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full UK and EU sustainability regulatory agenda.</p>
+        <p style="margin-top:12px;font-size:var(--font-size-xs);color:var(--steel);line-height:1.6;">CrowAgent Ltd · Company No. 17076461<br>Registered in England &amp; Wales</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer">Join Pilot</a>
+        <a href="/products">Products</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/csrd">CSRD Checker</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="/blog">Blog</a>
+        <a href="/partners">Partners</a>
+        <a href="mailto:hello@crowagent.ai" target="_blank" rel="noopener noreferrer">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/">About</a>
+        <a href="/legal.html">Legal</a>
+        <a href="/Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="/Doc/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-links" aria-label="CrowAgent social media links">
+          <a class="social-button icon-youtube" href="https://www.youtube.com/@CrowAgentUK" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent YouTube"><span class="sr-only">YouTube</span></a>
+          <a class="social-button icon-linkedin" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent LinkedIn"><span class="sr-only">LinkedIn</span></a>
+          <a class="social-button icon-x" href="https://x.com/CrowAgentLtd" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent X"><span class="sr-only">X</span></a>
+          <a class="social-button icon-medium" href="https://medium.com/@crowagent.platform" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Medium"><span class="sr-only">Medium</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>&copy; 2026 <span>CrowAgent Ltd</span> · All rights reserved.</p>
+        <p>Company No. 17076461</p>
+        <p>Registered Office: Reading, England RG1 6SP, United Kingdom<br>Contact: hello@crowagent.ai</p>
+      </div>
+      <p class="site-version">v11</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Cookie consent -->
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite" hidden>
+  <div class="cookie-banner-inner">
+    <div class="cookie-text">
+      <strong>We use cookies</strong> to improve your experience and analyse site usage. We never sell your data.
+      <a href="/Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-ghost cookie-decline" id="cookieDecline" type="button">Decline</button>
+      <button class="btn-primary cookie-accept" id="cookieAccept" type="button">Accept Cookies</button>
+    </div>
+  </div>
+</div>
+
+<script src="../scripts.min.js?v=11"></script>
+<script>
+  // Blog category filter
+  (function () {
+    const pills = document.querySelectorAll('.filter-pill');
+    const cards = document.querySelectorAll('.article-card');
+
+    pills.forEach(function (pill) {
+      pill.addEventListener('click', function () {
+        // Update active pill
+        pills.forEach(function (p) { p.classList.remove('active'); });
+        pill.classList.add('active');
+
+        var filter = pill.getAttribute('data-filter');
+
+        cards.forEach(function (card) {
+          if (filter === 'all' || card.getAttribute('data-category') === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>

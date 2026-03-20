@@ -29,6 +29,25 @@
     }
   });
 
+  // ── Products mega-menu toggle (mobile + keyboard) ──────────────
+  (function() {
+    var trigger = document.querySelector('.nav-dropdown-trigger');
+    var menu = document.getElementById('productsMegaMenu');
+    if (trigger && menu) {
+      trigger.addEventListener('click', function(e) {
+        if (window.innerWidth < 900) {
+          e.preventDefault();
+          menu.classList.toggle('mega-menu--open');
+        }
+      });
+      document.addEventListener('click', function(e) {
+        if (menu && !menu.parentElement.contains(e.target)) {
+          menu.classList.remove('mega-menu--open');
+        }
+      });
+    }
+  })();
+
   // ── Scroll-triggered fade-in animations ─────────────────────────
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {

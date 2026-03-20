@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CrowAgent Products — Sustainability Compliance Intelligence</title>
+  <meta name="description" content="Explore CrowAgent's suite of sustainability compliance products: MEES intelligence, PPN 002 automation, CSRD checking, and more. Built for UK organisations.">
+  <meta property="og:title" content="CrowAgent Products — Sustainability Compliance Intelligence">
+  <meta property="og:description" content="MEES compliance, social value automation, CSRD assessment, and more. Purpose-built for UK regulatory requirements.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crowagent.ai/products">
+  <meta property="og:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://crowagent.ai/Assets/Branding%20Logo/logo.png">
+  <meta name="theme-color" content="#0A1F3A">
+  <link rel="canonical" href="https://crowagent.ai/products">
+  <link rel="icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="../Assets/Branding Logo/favicon.png">
+  <link rel="apple-touch-icon" href="../Assets/Branding Logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.min.css?v=11">
+  <style>
+    .product-hub-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 40px;
+    }
+    .product-hub-card {
+      background: var(--navy2, #0D2847);
+      border: 1px solid rgba(92, 200, 255, 0.1);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .product-hub-card:hover {
+      border-color: var(--teal, #0CC9A8);
+      transform: translateY(-2px);
+    }
+    .product-hub-card--disabled {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .product-hub-card--disabled:hover {
+      border-color: rgba(92, 200, 255, 0.1);
+      transform: none;
+    }
+    .product-hub-card h3 {
+      font-family: var(--font-heading, 'Syne', sans-serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      margin: 0;
+    }
+    .product-hub-card p {
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.95rem;
+      color: var(--steel, #8A9DB8);
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+    .product-hub-badge {
+      display: inline-block;
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 4px 10px;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .product-hub-badge--active {
+      background: rgba(12, 201, 168, 0.15);
+      color: var(--teal, #0CC9A8);
+    }
+    .product-hub-badge--coming {
+      background: rgba(194, 255, 87, 0.12);
+      color: var(--lime, #C2FF57);
+    }
+    .product-hub-badge--future {
+      background: rgba(138, 157, 184, 0.15);
+      color: var(--steel, #8A9DB8);
+    }
+    .product-hub-badge--pro {
+      background: rgba(91, 200, 255, 0.12);
+      color: var(--sky, #5BC8FF);
+    }
+    .product-hub-card-link {
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--teal, #0CC9A8);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .product-hub-card-link:hover {
+      color: var(--lime, #C2FF57);
+    }
+    .product-hub-card-link--disabled {
+      color: var(--steel, #8A9DB8);
+      cursor: default;
+    }
+    .product-hub-card-link--disabled:hover {
+      color: var(--steel, #8A9DB8);
+    }
+    .phase-header {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      margin-top: 64px;
+      margin-bottom: 0;
+    }
+    .phase-header h3 {
+      font-family: var(--font-heading, 'Syne', sans-serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cloud, #E4ECF7);
+      margin: 0;
+    }
+    .phase-unlock {
+      font-family: var(--font-body, 'DM Sans', sans-serif);
+      font-size: 0.8rem;
+      color: var(--steel, #8A9DB8);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- ══ NAV ═══════════════════════════════════════════════════════════ -->
+<nav role="navigation">
+  <div class="container">
+    <a class="nav-logo" href="/">
+      <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo" onerror="this.onerror=null; this.src='../Assets/Branding Logo/favicon.png';" loading="lazy">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/products">Products</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/partners">Partners</a></li>
+      <li><a href="/csrd">CSRD Checker</a></li>
+      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
+      <li><a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="nav-cta">Try Platform <span class="arrow">→</span></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" role="main">
+
+<!-- ══ HERO ══════════════════════════════════════════════════════════ -->
+<section id="hero" style="padding-bottom:0;">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content text-center">
+      <div class="section-label">PRODUCT SUITE</div>
+      <h1 class="mx-auto">
+        Sustainability Compliance<br>
+        <span class="accent">Intelligence</span>
+      </h1>
+      <p class="hero-sub mx-auto">
+        Purpose-built products for UK organisations navigating MEES, PPN 002, CSRD, and the full regulatory landscape.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ ACTIVE NOW ═════════════════════════════════════════════════════ -->
+<section id="active">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Available Now</div>
+      <h2 class="mx-auto">Active Products</h2>
+      <p class="section-sub mx-auto">Live tools and platforms you can use today.</p>
+    </div>
+    <div class="product-hub-grid fade-in">
+
+      <div class="product-hub-card">
+        <span class="product-hub-badge product-hub-badge--active">Active Pilot</span>
+        <h3>CrowAgent Core</h3>
+        <p>MEES compliance intelligence for commercial property portfolios. EPC gap analysis, retrofit scenarios, and audit-ready reports.</p>
+        <a href="/products/crowagent-core" class="product-hub-card-link">Learn more →</a>
+      </div>
+
+      <div class="product-hub-card">
+        <span class="product-hub-badge product-hub-badge--coming">Coming Soon</span>
+        <h3>CrowMark</h3>
+        <p>PPN 002 social value automation for public sector bids. Consistent scoring, audit-ready evidence, and measurable impact.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card">
+        <span class="product-hub-badge product-hub-badge--active">Free Tool</span>
+        <h3>CSRD Checker</h3>
+        <p>Free CSRD applicability assessment, updated for Omnibus I. Find out if CSRD applies to your organisation in under 2 minutes.</p>
+        <a href="/csrd" class="product-hub-card-link">Try free →</a>
+      </div>
+
+      <div class="product-hub-card">
+        <span class="product-hub-badge product-hub-badge--pro">Pro+ Only</span>
+        <h3>Command Centre</h3>
+        <p>Unified compliance dashboard across all CrowAgent products. Monitor MEES, social value, and ESG status in one view.</p>
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="product-hub-card-link">Get access →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PHASE 2 ════════════════════════════════════════════════════════ -->
+<section id="phase2">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Phase 2</div>
+      <h2 class="mx-auto">Next Wave</h2>
+      <p class="section-sub mx-auto">Unlocks at £20K MRR. Specialised modules for specific UK compliance challenges.</p>
+    </div>
+    <div class="product-hub-grid fade-in">
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--coming">Coming Soon</span>
+        <h3>CrowSight</h3>
+        <p>Biodiversity Net Gain AI for Environment Act 2021. Automated biodiversity assessments and compliance reporting.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--coming">Coming Soon</span>
+        <h3>CrowBuild</h3>
+        <p>Social housing retrofit intelligence. Triage, funding pathfinding, and compliance for housing associations.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--coming">Coming Soon</span>
+        <h3>CrowNest</h3>
+        <p>NHS Green Plan emission tracking. Scope 1-3 emissions including anaesthetic gases and medicines supply chain.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--coming">Coming Soon</span>
+        <h3>Regulatory Monitor</h3>
+        <p>Real-time UK regulatory change alerts. Track MEES, CSRD, SECR, TCFD, and Environment Act updates as they happen.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ PHASE 3 ════════════════════════════════════════════════════════ -->
+<section id="phase3">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Phase 3</div>
+      <h2 class="mx-auto">Future Roadmap</h2>
+      <p class="section-sub mx-auto">Unlocks with seed funding. Enterprise-grade tools for scale.</p>
+    </div>
+    <div class="product-hub-grid fade-in">
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--future">Future</span>
+        <h3>CrowTrace</h3>
+        <p>ESG reporting automation (SECR, TCFD, UK SRS). Generate disclosure-ready reports directly from operational data.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--future">Future</span>
+        <h3>Enterprise Portal</h3>
+        <p>Multi-org management for enterprise clients. Centralised billing, user management, and cross-portfolio reporting.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+      <div class="product-hub-card product-hub-card--disabled">
+        <span class="product-hub-badge product-hub-badge--future">Future</span>
+        <h3>Developer Portal</h3>
+        <p>API documentation and developer tools. Build integrations with CrowAgent's compliance intelligence engine.</p>
+        <span class="product-hub-card-link product-hub-card-link--disabled">Coming soon</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ CTA ════════════════════════════════════════════════════════════ -->
+<section id="cta">
+  <div class="container">
+    <div class="fade-in text-center">
+      <div class="section-label">Get Started</div>
+      <h2 class="mx-auto">Ready to simplify compliance?</h2>
+      <p class="section-sub mx-auto">Start with CrowAgent Core or try our free CSRD Checker.</p>
+      <div class="cta-actions justify-center">
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          Start free <span class="arrow">→</span>
+        </a>
+        <a href="/csrd" class="btn-ghost">Try CSRD Checker</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="divider"></div>
+
+<!-- ══ FOOTER ═════════════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../Assets/Branding Logo/logo.png" alt="CrowAgent brand logo">
+        <p>Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full UK and EU sustainability regulatory agenda.</p>
+        <p style="margin-top:12px;font-size:var(--font-size-xs);color:var(--steel);line-height:1.6;">CrowAgent Ltd · Company No. 17076461<br>Registered in England &amp; Wales</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer">Join Pilot</a>
+        <a href="/products">Products</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/blog">Blog</a>
+        <a href="/csrd">CSRD Checker</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/#about">About</a>
+        <a href="/partners">Partners</a>
+        <a href="mailto:hello@crowagent.ai" target="_blank" rel="noopener noreferrer">Contact</a>
+        <a href="/legal.html">Legal</a>
+        <a href="/Doc/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        <a href="/Doc/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-links" aria-label="CrowAgent social media links">
+          <a class="social-button icon-youtube" href="https://www.youtube.com/@CrowAgentUK" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent YouTube"><span class="sr-only">YouTube</span></a>
+          <a class="social-button icon-linkedin" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent LinkedIn"><span class="sr-only">LinkedIn</span></a>
+          <a class="social-button icon-x" href="https://x.com/CrowAgentLtd" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent X"><span class="sr-only">X</span></a>
+          <a class="social-button icon-medium" href="https://medium.com/@crowagent.platform" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Medium"><span class="sr-only">Medium</span></a>
+          <a class="social-button icon-producthunt" href="https://www.producthunt.com/@crow_agent" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Product Hunt"><span class="sr-only">Product Hunt</span></a>
+          <a class="social-button icon-instagram" href="https://www.instagram.com/crowagent.ai/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Instagram"><span class="sr-only">Instagram</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>&copy; 2026 <span>CrowAgent Ltd</span> · All rights reserved.</p>
+        <p>Company No. 17076461</p>
+        <p>Registered Office: Reading, England RG1 6SP, United Kingdom<br>Contact: hello@crowagent.ai</p>
+      </div>
+      <p class="site-version">v11</p>
+    </div>
+  </div>
+</footer>
+
+<script src="../scripts.min.js?v=11"></script>
+</body>
+</html>
