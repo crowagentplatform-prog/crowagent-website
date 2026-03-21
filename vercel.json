@@ -1,5 +1,10 @@
 {
   "outputDirectory": ".",
+  "redirects": [
+    { "source": "/dashboard", "destination": "https://app.crowagent.ai/login", "statusCode": 302 },
+    { "source": "/epc-lookup", "destination": "https://app.crowagent.ai/epc-mees", "statusCode": 301 },
+    { "source": "/mees-check", "destination": "https://app.crowagent.ai/epc-mees", "statusCode": 301 }
+  ],
   "rewrites": [
     { "source": "/csrd", "destination": "/csrd.html" },
     { "source": "/legal", "destination": "/legal.html" },
