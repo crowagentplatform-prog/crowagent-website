@@ -1,7 +1,7 @@
 {
   "name": "CrowAgent",
   "short_name": "CrowAgent",
-  "description": "Autonomous Sustainability Intelligence — AI-powered compliance for MEES, PPN 002 and CSRD.",
+  "description": "Autonomous Sustainability Intelligence. UK compliance platform for MEES, social value, biodiversity, and sustainability reporting.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
