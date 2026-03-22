@@ -15,6 +15,7 @@
     { "source": "/partners", "destination": "/partners.html" },
     { "source": "/products", "destination": "/products/index.html" },
     { "source": "/products/crowagent-core", "destination": "/products/crowagent-core.html" },
+    { "source": "/products/crowmark", "destination": "/products/crowmark.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/csrd-omnibus-i-2026", "destination": "/blog/csrd-omnibus-i-2026.html" },
     { "source": "/blog/mees-band-c-2028", "destination": "/blog/mees-band-c-2028.html" }
