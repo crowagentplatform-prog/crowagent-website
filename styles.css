@@ -10,6 +10,15 @@
   --steel:     #8A9DB8;
   --cloud:     #E4ECF7;
   --dim:       rgba(12,201,168,0.12);
+  --text-muted: #C1D2E3;
+
+  /* Product accent colours */
+  --prod-core:  #0CC9A8;
+  --prod-sight: #5BC8FF;
+  --prod-build: #C2FF57;
+  --prod-mark:  #A78BFA;
+  --prod-trace: #FB923C;
+  --prod-nest:  #F472B6;
   --font-head: 'Syne', sans-serif;
   --font-body: 'DM Sans', sans-serif;
 
@@ -103,7 +112,7 @@ h3 { font-size: var(--font-size-h3); line-height: 1.15; font-weight: 700; }
 
 .section-sub {
   font-size: var(--font-size-lg);
-  color: #B9C9DE;
+  color: var(--text-muted);
   max-width: 620px;
   line-height: 1.75;
   margin: 0 auto;
@@ -433,16 +442,16 @@ nav .container {
 .product-icon { width: 128px; height: 128px; border-radius: 20px; display: grid; place-items: center; margin-bottom: var(--space-2); background: rgba(255,255,255,0.10); box-shadow: 0 12px 25px rgba(0,0,0,0.32); border: 1px solid rgba(228,236,247,0.32); }
 .product-icon img { width: 92%; height: auto; object-fit: contain; }
 .product-name { font-family: var(--font-head); font-weight: 800; font-size: 1.2rem; margin-bottom: var(--space-1); }
-.product-name--core { color:#0CC9A8; }
-.product-name--sight { color:#5BC8FF; }
-.product-name--build { color:#C2FF57; }
-.product-name--mark { color:#A78BFA; }
-.product-name--trace { color:#FB923C; }
-.product-name--nest { color:#F472B6; }
+.product-name--core { color: var(--prod-core); }
+.product-name--sight { color: var(--prod-sight); }
+.product-name--build { color: var(--prod-build); }
+.product-name--mark { color: var(--prod-mark); }
+.product-name--trace { color: var(--prod-trace); }
+.product-name--nest { color: var(--prod-nest); }
 .product-tag { display: inline-block; font-size: 10px; font-family: var(--font-head); font-weight: 700; letter-spacing: 0.1em; padding: 4px 10px; border-radius: 100px; margin-top: var(--space-2); margin-bottom: var(--space-2); }
 .tag-live { background: rgba(12,201,168,0.15); color: var(--teal); }
 .tag-concept { background: rgba(138,157,184,0.15); color: var(--steel); }
-.product-desc { font-size: var(--font-size-sm); color: #C1D2E3; line-height: 1.7; }
+.product-desc { font-size: var(--font-size-sm); color: var(--text-muted); line-height: 1.7; }
 .product-features { list-style: none; margin: var(--space-3) 0; font-size: var(--font-size-xs); color: var(--steel); padding: 0; }
 .product-features li { margin-bottom: var(--space-1); }
 .product-cta { margin-top: auto; padding-top: var(--space-3); }
@@ -908,7 +917,7 @@ footer > .container { width: 100%; padding: 64px 24px 32px; max-width: 1280px; m
 /* ── Hero sub improvements ───────────────────────────────────────── */
 .hero-sub {
   font-size: var(--font-size-lg);
-  color: #C1D2E3;
+  color: var(--text-muted);
   max-width: 580px;
   line-height: 1.8;
 }
@@ -970,7 +979,7 @@ h2 { margin-bottom: var(--space-3); }
 section { padding-top: var(--space-14); padding-bottom: var(--space-14); }
 #trust-bar, #trust { padding-top: var(--space-6); padding-bottom: var(--space-6); }
 .product-card { display: flex; flex-direction: column; }
-.product-features li { font-size: var(--font-size-sm); color: #B9C9DE; }
+.product-features li { font-size: var(--font-size-sm); color: var(--text-muted); }
 
 /* ── Keyboard Navigation — Focus Visible Styles ───────────────────── */
 
