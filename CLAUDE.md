@@ -510,6 +510,47 @@ CSRD_TURNOVER_THRESHOLD = 450_000_000  # > €450M turnover (BOTH required)
 
 ---
 
+---
+
+## 17. DOMAIN PROTECTION — NON-NEGOTIABLE (added 24 Mar 2026)
+
+**This incident has occurred 3+ times. Any deviation is a P0 incident.**
+
+NEVER run `vercel --prod` or `vercel deploy --prod` from the `crowagent-platform`
+or `crowagent-internal` repo directories. Those repos must NEVER deploy to crowagent.ai.
+
+**SAFE deploy commands by repo:**
+```
+crowagent-website:   cd "C:\Users\bhave\Crowagent Repo\crowagent-website" && .\deploy.ps1
+crowagent-platform:  Vercel auto-deploys on main push. NEVER run vercel CLI manually.
+crowagent-internal:  Vercel auto-deploys on main push. NEVER run vercel CLI manually.
+```
+
+**Domain ownership (LOCKED — never reassign):**
+```
+crowagent.ai         → Vercel project: crowagent-website        (prj_9gLYGCDjxHjoFeg6nRD5iXAguXfO)
+app.crowagent.ai     → Vercel project: crowagent-platform-web   (prj_vc6pLJ1Fza05yno17iJtOKWerXDI)
+portal.crowagent.ai  → Vercel project: crowagent-internal       (prj_33fwSvlhEWoYZo2qfSegL1MKIKu5)
+```
+
+**Root cause of recurring incident:**
+Running `vercel --prod` from `crowagent-platform` without a locked `.vercel/project.json`
+redeploys the Next.js platform app to crowagent.ai. The platform's root `/` redirects
+to `/dashboard`, which redirects unauthenticated users to `/login`.
+
+**If crowagent.ai redirects to /login — IMMEDIATE FIX:**
+```powershell
+cd "C:\Users\bhave\Crowagent Repo\crowagent-website"
+.\deploy.ps1
+```
+
+**vercel.json WARNING:**
+The `vercel.json` in this repo MUST NOT contain a redirect for `"source": "/"`.
+Any redirect from `/` will break the marketing homepage. Before adding any redirect
+rule here, verify the source path does NOT affect the root URL.
+
+---
+
 *CLAUDE.md · CrowAgent Ltd · Company No. 17076461*
 *Last updated: 21 March 2026 · crowagent.ai · hello@crowagent.ai*
 *Read docs/INFRASTRUCTURE_REGISTRY.md alongside this file*
