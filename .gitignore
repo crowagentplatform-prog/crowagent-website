@@ -1,6 +1,7 @@
 node_modules/
 coverage/
 
-.vercel
+.vercel/*
+!.vercel/project.json
 .claude/
 .env*.local
