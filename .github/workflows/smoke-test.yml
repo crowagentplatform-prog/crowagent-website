@@ -1,0 +1,72 @@
+name: Smoke test — crowagent.ai must never redirect to login
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '*/15 * * * *'  # Every 15 minutes
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check crowagent.ai returns 200 (not redirect)
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" --max-redirs 0 https://crowagent.ai)
+          echo "HTTP status: $STATUS"
+          if [ "$STATUS" != "200" ]; then
+            echo "CRITICAL: crowagent.ai returned $STATUS — expected 200"
+            echo "This means the marketing site is broken or redirecting"
+            exit 1
+          fi
+          echo "PASS: crowagent.ai returns 200"
+
+      - name: Check crowagent.ai serves marketing content (not platform app)
+        run: |
+          BODY=$(curl -s --max-redirs 0 https://crowagent.ai)
+
+          # Must contain marketing content
+          if echo "$BODY" | grep -q "Autonomous Sustainability Intelligence"; then
+            echo "PASS: tagline present"
+          else
+            echo "CRITICAL: tagline 'Autonomous Sustainability Intelligence' missing from crowagent.ai"
+            echo "Marketing site may have been replaced with platform app content"
+            exit 1
+          fi
+
+          # Must NOT contain login redirect
+          if echo "$BODY" | grep -qi "window.location.*login\|meta.*refresh.*login\|redirect.*login"; then
+            echo "CRITICAL: crowagent.ai contains login redirect code"
+            exit 1
+          fi
+          echo "PASS: no login redirect detected"
+
+      - name: Check crowagent.ai does NOT load Supabase client
+        run: |
+          BODY=$(curl -s --max-redirs 0 https://crowagent.ai)
+          if echo "$BODY" | grep -qi "supabase\|createClient\|NEXT_PUBLIC_SUPABASE"; then
+            echo "CRITICAL: crowagent.ai is loading Supabase — platform app deployed to marketing domain"
+            exit 1
+          fi
+          echo "PASS: no Supabase references on marketing site"
+
+      - name: Check app.crowagent.ai is accessible
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://app.crowagent.ai/login)
+          echo "app.crowagent.ai/login HTTP status: $STATUS"
+          if [ "$STATUS" = "000" ]; then
+            echo "CRITICAL: app.crowagent.ai is unreachable"
+            exit 1
+          fi
+          echo "PASS: app.crowagent.ai is reachable (status $STATUS)"
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "SMOKE TEST FAILED — crowagent.ai is broken"
+          echo "Immediate actions:"
+          echo "1. Check Vercel: crowagent-website project must own crowagent.ai domain"
+          echo "2. Run: cd crowagent-website && ./deploy.ps1"
+          echo "3. Check vercel.json in crowagent-website repo for rogue redirects"
