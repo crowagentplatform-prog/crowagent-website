@@ -1,0 +1,8 @@
+#!/bin/sh
+if git diff --cached --name-only | grep -qE '\.env(\.|$)' | grep -vE '\.example$'; then
+  echo "BLOCKED: .env file detected in commit. Remove it first."
+  exit 1
+fi
+
+# Run pre-commit hooks (gitleaks secrets scan + standard checks)
+python -m pre_commit run --hook-stage commit
