@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found — CrowAgent</title>
+  <meta name="description" content="The page you are looking for could not be found.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0A1F3A">
+  <link rel="icon" type="image/png" href="Assets/Branding Logo/favicon.png">
+  <link rel="shortcut icon" type="image/png" href="Assets/Branding Logo/favicon.png">
+  <link rel="apple-touch-icon" href="Assets/Branding Logo/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.min.css?v=12">
+  <style>
+    .error-page {
+      min-height: calc(100vh - 80px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-12) var(--space-4);
+    }
+    .error-code {
+      font-family: var(--font-head);
+      font-size: clamp(6rem, 20vw, 12rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--teal);
+      opacity: 0.15;
+      margin-bottom: var(--space-4);
+    }
+    .error-content {
+      position: relative;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .error-label {
+      font-family: var(--font-head);
+      font-size: var(--font-size-xs);
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: var(--space-3);
+    }
+    .error-heading {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: var(--cloud);
+      margin-bottom: var(--space-4);
+      line-height: 1.2;
+    }
+    .error-body {
+      font-size: var(--font-size-base);
+      color: var(--steel);
+      line-height: 1.7;
+      margin-bottom: var(--space-8);
+    }
+    .error-actions {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  </style>
+</head>
+<body>
+<a href="#main-content" class="skip-to-main">Skip to main content</a>
+
+<!-- ══ NAV ═══════════════════════════════════════════════════════════ -->
+<nav role="navigation">
+  <div class="container">
+    <a class="nav-logo" href="/">
+      <img src="Assets/Branding Logo/logo.png" alt="CrowAgent brand logo" onerror="this.onerror=null; this.src='Assets/Branding Logo/favicon.png';" loading="lazy">
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="/#how">How it works</a></li>
+      <li><a href="/products">Products</a></li>
+      <li><a href="/#sectors">Sectors</a></li>
+      <li><a href="/pricing">Pricing</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/partners">Partners</a></li>
+      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
+      <li><a href="https://app.crowagent.ai/signup" class="nav-cta">Request Access <span class="arrow">→</span></a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main id="main-content" role="main">
+  <div class="error-page">
+    <div class="error-content">
+      <div class="error-code" aria-hidden="true">404</div>
+      <div class="error-label">Page not found</div>
+      <h1 class="error-heading">This page doesn't exist</h1>
+      <p class="error-body">The page you're looking for may have been moved, renamed, or removed. Head back to the homepage to find what you need.</p>
+      <div class="error-actions">
+        <a href="/" class="btn-primary">Back to Homepage <span class="arrow">→</span></a>
+        <a href="/products" class="btn-ghost">View Products</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="Assets/Branding Logo/logo.png" alt="CrowAgent brand logo">
+        <p>Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full UK and EU sustainability regulatory agenda.</p>
+        <p style="margin-top:12px;font-size:var(--font-size-xs);color:var(--steel);line-height:1.6;">CrowAgent Ltd · Company No. 17076461<br>Registered in England &amp; Wales</p>
+      </div>
+      <div class="footer-col">
+        <h4>Platform</h4>
+        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer">Start free</a>
+        <a href="/products">Products</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/csrd">CSRD Checker</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/#about">About</a>
+        <a href="/partners">Partners</a>
+        <a href="mailto:hello@crowagent.ai" target="_blank" rel="noopener noreferrer">Contact</a>
+        <a href="/legal">Legal</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="/cookies">Cookie Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <div class="social-links" aria-label="CrowAgent social media links">
+          <a class="social-button icon-youtube" href="https://www.youtube.com/@CrowAgentUK" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent YouTube"><span class="sr-only">YouTube</span></a>
+          <a class="social-button icon-linkedin" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent LinkedIn"><span class="sr-only">LinkedIn</span></a>
+          <a class="social-button icon-x" href="https://x.com/CrowAgentLtd" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent X"><span class="sr-only">X</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>&copy; 2026 CrowAgent Ltd. Company No. 17076461. Registered in England and Wales.</p>
+        <p><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/cookies">Cookie Policy</a></p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="scripts.min.js?v=12"></script>
+</body>
+</html>
