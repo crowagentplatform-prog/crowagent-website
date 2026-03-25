@@ -1243,3 +1243,48 @@ footer a:focus-visible {
   margin-bottom: -14px;
 }
 
+/* ══ SAFARI / WEBKIT / IOS MOBILE FIXES ══════════════════════════════ */
+
+/* Remove blue tap flash on interactive elements */
+button, a, [role="button"], input[type="submit"], input[type="button"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* iOS momentum scrolling on any overflow container */
+.overflow-y-auto, .overflow-x-auto, [style*="overflow"] {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Sticky positioning — Safari requires webkit prefix */
+.sticky, [style*="position: sticky"] {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
+/* CTA and ghost button touch targets — ensure 44px min-height */
+.btn-primary, .btn-ghost {
+  min-height: 44px;
+}
+
+/* Prevent iOS Safari from auto-zooming on focus (requires ≥16px font-size) */
+@media (max-width: 768px) {
+  input, textarea, select, .form-control {
+    font-size: 16px !important;
+  }
+}
+
+/* Legal page tables: make horizontally scrollable on narrow screens */
+@media (max-width: 767px) {
+  .legal-content table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .legal-content td, .legal-content th {
+    white-space: normal;
+    min-width: 100px;
+  }
+}
+
