@@ -46,6 +46,7 @@
       '#ca-chat-button { width: 52px; height: 52px; border-radius: 50%; background: #0CC9A8; color: #0A1628; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(12,201,168,0.4); transition: transform 0.2s, opacity 0.2s; }' +
       '#ca-chat-button:hover { transform: scale(1.05); opacity: 0.95; }' +
       '#ca-chat-panel { position: absolute; bottom: 64px; right: 0; width: 320px; height: 420px; background: #0A1628; border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; display: flex; flex-direction: column; box-shadow: 0 8px 32px rgba(0,0,0,0.4); overflow: hidden; }' +
+      '#ca-chat-panel[hidden] { display: none !important; }' +
       '#ca-chat-header { padding: 14px 16px; background: #0d1f35; display: flex; justify-content: space-between; align-items: center; color: #E8ECF0; font-weight: 600; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); }' +
       '#ca-chat-close { background: none; border: none; color: #8A9BB0; cursor: pointer; font-size: 16px; padding: 2px 6px; }' +
       '#ca-chat-close:hover { color: #E8ECF0; }' +
@@ -97,9 +98,8 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        message: text,
-        context: 'marketing_website',
-        system: SYSTEM_CONTEXT
+        messages: [{ role: 'user', content: text }],
+        context: 'marketing_website'
       })
     })
     .then(function(response) {
