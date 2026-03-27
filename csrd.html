@@ -2,704 +2,762 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>CSRD Applicability Checker — Free Tool | CrowAgent</title>
-  <meta name="description" content="Check if the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation. Free instant assessment — results in under 2 minutes.">
-  <meta property="og:title" content="CrowAgent — Autonomous Sustainability Intelligence">
-  <meta property="og:description" content="Find out if CSRD applies to your organisation and which ESRS standards you must report against. Free, no sign-up required.">
-  <meta property="og:type" content="website">
-  <meta name="theme-color" content="#0A1F3A">
-  <link rel="manifest" href="/manifest.json">
+  <meta name="description" content="Check if the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation. Free 3-question eligibility tool based on Omnibus I thresholds.">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://client.crisp.chat wss://client.crisp.chat; img-src 'self' data: https://client.crisp.chat https://image.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://client.crisp.chat; script-src 'self' https://client.crisp.chat; frame-src https://game.crisp.chat;">
-  <link rel="icon" href="/brand/crowagent_icon_dark_512.png" type="image/png">
+  <link rel="canonical" href="https://crowagent.ai/csrd">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="CrowAgent">
+  <meta property="og:title" content="CSRD Applicability Checker — Free Tool | CrowAgent">
+  <meta property="og:description" content="Check if the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation. Free 3-question eligibility tool based on Omnibus I thresholds.">
+  <meta property="og:image" content="https://crowagent.ai/brand/crowagent_wordmark_dark_1120x280.png">
+  <meta property="og:url" content="https://crowagent.ai/csrd">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.min.css?v=12">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/brand/crowagent_icon_dark_512.png" type="image/png">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/styles.min.css?v=13">
+
   <style>
-    /* ── CSRD page-specific styles ──────────────────────────────── */
-    #csrd-hero {
-      min-height: 52vh;
+    /* ---- Wizard Layout ---- */
+    .wizard-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .wizard-step {
+      display: none;
+      animation: fadeUp .35s ease both;
+    }
+    .wizard-step.active {
+      display: block;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- Step Indicator ---- */
+    .step-indicator {
       display: flex;
       align-items: center;
-      padding-top: 120px;
-      overflow: hidden;
-    }
-    .hero-badge--sky {
-      background: rgba(91,200,255,0.15);
-      border: 1.5px solid rgba(91,200,255,0.4);
-      color: var(--sky);
-    }
-    .csrd-tool-wrap {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .csrd-form-card {
-      background: var(--navy);
-      border: 2px solid var(--dim);
-      border-radius: 24px;
-      padding: var(--space-6);
-    }
-    /* Result card variants */
-    .csrd-result-card {
-      border-radius: 24px;
-      padding: var(--space-6);
-      margin-top: var(--space-6);
-    }
-    .csrd-result-card--applies {
-      border: 2px solid #F59E0B;
-      background: linear-gradient(135deg, var(--navy) 0%, rgba(245,158,11,0.06) 100%);
-    }
-    .csrd-result-card--clear {
-      border: 2px solid #10B981;
-      background: linear-gradient(135deg, var(--navy) 0%, rgba(16,185,129,0.06) 100%);
-    }
-    .result-verdict {
-      font-family: var(--font-head);
-      font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
-      font-weight: 800;
-      margin-bottom: var(--space-3);
-      line-height: 1.2;
-    }
-    .result-verdict--applies { color: #F59E0B; }
-    .result-verdict--clear   { color: #10B981; }
-    .result-report-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(12,201,168,0.1);
-      border: 1px solid rgba(12,201,168,0.3);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: var(--font-size-sm);
-      color: var(--teal);
-      margin-bottom: var(--space-4);
-    }
-    .result-reason {
-      font-size: var(--font-size-sm);
-      color: var(--steel);
-      line-height: 1.75;
-      margin-bottom: var(--space-4);
-    }
-    .result-sub-heading {
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: var(--font-size-xs);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cloud);
-      margin: var(--space-4) 0 var(--space-2);
-    }
-    .esrs-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 8px;
-      margin-bottom: var(--space-4);
-    }
-    @media (min-width: 560px) { .esrs-grid { grid-template-columns: repeat(3, 1fr); } }
-    .esrs-tag {
-      background: rgba(245,158,11,0.1);
-      border: 1px solid rgba(245,158,11,0.25);
-      border-radius: 8px;
-      padding: 6px 10px;
-      font-size: 0.72rem;
-      font-family: var(--font-head);
-      font-weight: 700;
-      color: #F59E0B;
-      text-align: center;
-      line-height: 1.4;
-    }
-    .next-steps-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .next-steps-list li {
-      font-size: var(--font-size-sm);
-      color: var(--steel);
-      padding-left: var(--space-4);
-      position: relative;
-      margin-bottom: var(--space-2);
-      line-height: 1.65;
-    }
-    .next-steps-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--teal);
-      font-weight: 800;
-    }
-    .result-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(245,158,11,0.3), transparent);
-      margin: var(--space-5) 0;
-    }
-    .result-divider--green {
-      background: linear-gradient(90deg, transparent, rgba(16,185,129,0.3), transparent);
-    }
-    /* Loading + error */
-    .csrd-loading {
-      display: none;
-      align-items: center;
       justify-content: center;
-      gap: var(--space-2);
-      margin-top: var(--space-3);
+      gap: .75rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-mono);
+      font-size: .85rem;
       color: var(--steel);
-      font-size: var(--font-size-sm);
     }
-    .csrd-loading.visible { display: flex; }
-    .spinner {
+    .step-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--border2);
+      transition: background .25s, box-shadow .25s;
+    }
+    .step-dot.done {
+      background: var(--teal);
+    }
+    .step-dot.current {
+      background: var(--teal);
+      box-shadow: 0 0 0 4px var(--teal-dim);
+    }
+    .step-bar {
+      width: 36px;
+      height: 2px;
+      background: var(--border2);
+      transition: background .25s;
+    }
+    .step-bar.done {
+      background: var(--teal);
+    }
+
+    /* ---- Question ---- */
+    .wizard-question {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--cloud);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    /* ---- Radio Cards ---- */
+    .radio-cards {
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+    }
+    .radio-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.15rem 1.5rem;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+      cursor: pointer;
+      transition: border-color .2s, background .2s, box-shadow .2s;
+    }
+    .radio-card:hover {
+      border-color: var(--teal);
+      background: var(--surf2);
+    }
+    .radio-card input[type="radio"] {
+      appearance: none;
+      -webkit-appearance: none;
       width: 20px;
       height: 20px;
-      border: 2px solid var(--dim);
-      border-top-color: var(--sky);
+      border: 2px solid var(--border2);
       border-radius: 50%;
-      animation: spin 0.8s linear infinite;
       flex-shrink: 0;
+      transition: border-color .2s, box-shadow .2s;
+      position: relative;
     }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    .csrd-error {
-      display: none;
-      background: rgba(239,68,68,0.08);
-      border: 1px solid rgba(239,68,68,0.3);
-      border-radius: 12px;
-      padding: var(--space-3) var(--space-4);
-      color: #EF4444;
-      font-size: var(--font-size-sm);
-      margin-top: var(--space-3);
+    .radio-card input[type="radio"]:checked {
+      border-color: var(--teal);
+      box-shadow: inset 0 0 0 4px var(--teal);
     }
-    .csrd-error.visible { display: block; }
-    .csrd-error a { color: #EF4444; text-decoration: underline; }
-    /* Inline field validation errors */
-    .field-error {
-      display: block;
-      font-size: 12px;
-      color: #EF4444;
-      margin-top: 4px;
-      min-height: 16px;
+    .radio-card:has(input:checked) {
+      border-color: var(--teal);
+      background: var(--surf2);
+      box-shadow: 0 0 0 1px var(--teal-dim);
     }
-    .form-control.invalid { border-color: #EF4444; }
-    /* Highlight current page in nav */
-    .nav-current { color: var(--sky) !important; }
-    /* ── Signup gate ─────────────────────────────────────────────── */
-    .results-gate-wrapper { position: relative; }
-    .results-gated {
-      filter: blur(4px);
-      pointer-events: none;
-      user-select: none;
-    }
-    .results-gate-overlay {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(10,31,58,0.72);
-      border-radius: 12px;
-      padding: var(--space-4);
-    }
-    .gate-card {
-      background: var(--navy);
-      border: 1.5px solid rgba(91,200,255,0.35);
-      border-radius: 16px;
-      padding: var(--space-5) var(--space-6);
-      text-align: center;
-      max-width: 420px;
-      width: 100%;
-      box-shadow: 0 24px 48px rgba(0,0,0,0.45);
-    }
-    .gate-card__icon {
-      font-size: 2rem;
-      margin-bottom: var(--space-2);
-    }
-    .gate-card__heading {
-      font-family: var(--font-head);
-      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
-      font-weight: 800;
+    .radio-card span {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
       color: var(--cloud);
-      margin-bottom: var(--space-2);
+      font-weight: 500;
     }
-    .gate-card__sub {
-      font-size: var(--font-size-sm);
-      color: var(--steel);
-      line-height: 1.65;
-      margin-bottom: var(--space-4);
-    }
-    .gate-card__btn {
+
+    /* ---- Back Button ---- */
+    .wizard-back {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 14px 24px;
-      background: var(--sky);
-      color: var(--obsidian);
-      font-family: var(--font-head);
-      font-weight: 700;
-      font-size: var(--font-size-sm);
-      border-radius: 10px;
-      text-decoration: none;
-      margin-bottom: var(--space-3);
-      transition: opacity 0.2s;
-    }
-    .gate-card__btn:hover { opacity: 0.88; }
-    .gate-card__login {
-      font-size: 0.75rem;
+      gap: .4rem;
+      margin-top: 1.5rem;
+      padding: .5rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
       color: var(--steel);
+      font-family: var(--font-body);
+      font-size: .9rem;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
     }
-    .gate-card__login a {
-      color: var(--sky);
-      text-decoration: none;
+    .wizard-back:hover {
+      color: var(--cloud);
+      border-color: var(--border2);
     }
-    .gate-card__login a:hover { text-decoration: underline; }
-    .esrs-count-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(245,158,11,0.1);
-      border: 1px solid rgba(245,158,11,0.3);
-      border-radius: 8px;
-      padding: 8px 16px;
-      font-family: var(--font-head);
+
+    /* ---- Result Card ---- */
+    .result-card {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-radius: var(--r3);
+      background: var(--surf);
+      border: 1px solid var(--border);
+      animation: fadeUp .4s ease both;
+    }
+    .result-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .result-verdict {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
       font-weight: 700;
-      font-size: var(--font-size-sm);
-      color: #F59E0B;
-      margin-bottom: var(--space-4);
+      margin-bottom: .75rem;
     }
-    /* Info strip above form */
-    .info-strip {
+    .result-card.mandatory { border-color: var(--err); }
+    .result-card.mandatory .result-verdict { color: var(--err); }
+    .result-card.voluntary { border-color: var(--gold); }
+    .result-card.voluntary .result-verdict { color: var(--gold); }
+    .result-card.not-applicable { border-color: var(--success); }
+    .result-card.not-applicable .result-verdict { color: var(--success); }
+
+    .result-explanation {
+      color: var(--steel);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ---- Email Capture ---- */
+    .email-capture {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: var(--surf2);
+      border-radius: var(--r2);
+      border: 1px solid var(--border);
+    }
+    .email-capture h3 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cloud);
+      margin-bottom: .75rem;
+    }
+    .email-capture p {
+      color: var(--steel);
+      font-size: .95rem;
+      margin-bottom: 1.25rem;
+    }
+    .email-row {
       display: flex;
-      gap: var(--space-4);
-      flex-wrap: wrap;
-      margin-bottom: var(--space-5);
+      gap: .5rem;
     }
-    .info-chip {
+    .email-row input[type="email"] {
+      flex: 1;
+      padding: .75rem 1rem;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      color: var(--cloud);
+      font-family: var(--font-body);
+      font-size: .95rem;
+    }
+    .email-row input[type="email"]::placeholder {
+      color: var(--dim-c);
+    }
+    .email-row input[type="email"]:focus {
+      outline: none;
+      border-color: var(--teal);
+      box-shadow: 0 0 0 2px var(--teal-dim);
+    }
+    .email-row button {
+      padding: .75rem 1.5rem;
+      background: var(--teal);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--r);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: .95rem;
+      cursor: pointer;
+      transition: background .2s;
+      white-space: nowrap;
+    }
+    .email-row button:hover {
+      background: var(--teal-d);
+    }
+    .email-success {
+      display: none;
+      color: var(--success);
+      font-weight: 500;
+      padding: .75rem 0;
+    }
+    .email-error {
+      display: none;
+      color: var(--err);
+      font-size: .9rem;
+      margin-top: .5rem;
+    }
+
+    /* ---- Start Over ---- */
+    .start-over {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: rgba(228,236,247,0.05);
-      border: 1px solid var(--dim);
-      border-radius: 8px;
-      padding: 6px 12px;
-      font-size: var(--font-size-xs);
+      gap: .4rem;
+      margin-top: 1.5rem;
+      padding: .6rem 1.25rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
       color: var(--steel);
+      font-family: var(--font-body);
+      font-size: .95rem;
+      cursor: pointer;
+      transition: color .2s, border-color .2s;
     }
-    .info-chip strong { color: var(--cloud); }
+    .start-over:hover {
+      color: var(--cloud);
+      border-color: var(--border2);
+    }
+
+    /* ---- Trust Grid ---- */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2.5rem;
+    }
+    .trust-card {
+      padding: 1.5rem;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+    }
+    .trust-card h4 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--cloud);
+      margin-bottom: .5rem;
+      font-size: 1rem;
+    }
+    .trust-card p {
+      color: var(--steel);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    /* ---- About Cards ---- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .about-card {
+      padding: 2rem;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: var(--r2);
+    }
+    .about-card h3 {
+      font-family: var(--font-display);
+      font-weight: 600;
+      color: var(--cloud);
+      margin-bottom: .75rem;
+      font-size: 1.1rem;
+    }
+    .about-card p {
+      color: var(--steel);
+      font-size: .95rem;
+      line-height: 1.7;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 768px) {
+      .trust-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }
+      .email-row { flex-direction: column; }
+      .email-row button { width: 100%; }
+      .wizard-question { font-size: 1.15rem; }
+      .result-verdict { font-size: 1.3rem; }
+    }
   </style>
 </head>
 <body>
-<a href="#csrd-hero" class="skip-link">Skip to content</a>
-
-<!-- ══ NAV ═══════════════════════════════════════════════════════════ -->
-<nav>
-  <div class="container">
-    <a class="nav-logo" href="/">
-      <img src="/brand/crowagent_wordmark_dark_560x140.png" alt="CrowAgent — Sustainability Intelligence" style="height:36px;width:auto;display:block">
-    </a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="/products">Products</a></li>
-      <li><a href="/pricing">Pricing</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/partners">Partners</a></li>
-      <li><a href="/csrd" class="nav-current">CSRD Checker</a></li>
-      <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Log in</a></li>
-      <li><a href="https://app.crowagent.ai/signup" class="nav-cta">Request Access <span class="arrow">→</span></a></li>
-    </ul>
-    <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
-      <span></span><span></span><span></span>
+  <!-- ====== NAV ====== -->
+  <nav role="navigation">
+    <div class="container">
+      <a class="nav-logo" href="/">
+        <img src="/brand/crowagent_wordmark_dark_560x140.png" alt="CrowAgent — Sustainability Intelligence" style="height:36px;width:auto;display:block">
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="/products">Products</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/partners">Partners</a></li>
+        <li><a href="/csrd" class="nav-current">CSRD Checker</a></li>
+        <li><a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login</a></li>
+        <li><a href="https://app.crowagent.ai/signup" class="nav-cta">Request Access <span class="arrow">&rarr;</span></a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ══ HERO ══════════════════════════════════════════════════════════ -->
-<section id="csrd-hero">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-content text-center">
-      <div class="hero-badge hero-badge--sky mx-auto">Free Tool — No Sign-up Required</div>
-      <h1 class="mx-auto">
-        Does CSRD Apply<br>
-        <span class="accent">To Your Organisation?</span>
-      </h1>
-      <p class="hero-sub mx-auto">
-        The EU Corporate Sustainability Reporting Directive affects thousands of UK organisations.
-        Check your applicability and get a full list of required ESRS standards — free, in under 2 minutes.
-      </p>
+  <!-- ====== HERO ====== -->
+  <header class="section" style="padding-top:6rem;padding-bottom:2rem">
+    <div class="container" style="text-align:center;max-width:740px">
+      <span class="badge" style="display:inline-block;padding:.4rem 1rem;background:var(--teal-dim);color:var(--teal);border-radius:var(--rp);font-family:var(--font-mono);font-size:.8rem;font-weight:500;margin-bottom:1.25rem">Free Tool &mdash; No Sign-up Required</span>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:700;color:var(--cloud);line-height:1.15;margin-bottom:1rem">Does CSRD Apply To Your Organisation?</h1>
+      <p style="color:var(--steel);font-size:1.1rem;line-height:1.7;max-width:600px;margin:0 auto">Answer three quick questions to find out whether the EU Corporate Sustainability Reporting Directive applies to you &mdash; based on the latest Omnibus&nbsp;I thresholds.</p>
     </div>
-  </div>
-</section>
+  </header>
 
-<div class="divider"></div>
+  <!-- ====== WIZARD ====== -->
+  <section class="section" style="padding-top:1rem;padding-bottom:4rem">
+    <div class="container">
+      <div class="wizard-wrap" id="csrdWizard">
 
-<!-- ══ TOOL ══════════════════════════════════════════════════════════ -->
-<section id="csrd-tool">
-  <div class="container">
-    <div class="csrd-tool-wrap">
-
-      <!-- Form card -->
-      <div class="csrd-form-card fade-in">
-        <div class="section-label">CSRD Applicability Assessment</div>
-        <h2 style="font-size:clamp(1.4rem,1.2rem + 1vw,1.9rem);margin-bottom:var(--space-2)">Your Organisation Details</h2>
-
-        <div class="info-strip">
-          <div class="info-chip"><strong>2 min</strong> to complete</div>
-          <div class="info-chip"><strong>Free</strong> — no account needed</div>
-          <div class="info-chip"><strong>Private</strong> — data never sold</div>
+        <!-- Step Indicator -->
+        <div class="step-indicator" id="stepIndicator">
+          <div class="step-dot current" data-dot="1"></div>
+          <div class="step-bar" data-bar="1"></div>
+          <div class="step-dot" data-dot="2"></div>
+          <div class="step-bar" data-bar="2"></div>
+          <div class="step-dot" data-dot="3"></div>
+          <span style="margin-left:.75rem" id="stepLabel">Step 1 of 3</span>
         </div>
 
-        <form id="csrdCheckForm" novalidate>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="f-company">Company name</label>
-              <input type="text" id="f-company" class="form-control" placeholder="e.g. Acme Council" required>
-              <span class="field-error" id="err-company"></span>
-            </div>
-            <div class="form-group">
-              <label for="f-email">Work email</label>
-              <input type="email" id="f-email" class="form-control" placeholder="you@organisation.com" required>
-              <span class="field-error" id="err-email"></span>
-            </div>
+        <!-- Q1: Employees -->
+        <div class="wizard-step active" data-step="1">
+          <p class="wizard-question">How many employees does your company have?</p>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="employees" value="lt250">
+              <span>Fewer than 250</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="employees" value="250to999">
+              <span>250 to 999</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="employees" value="gte1000">
+              <span>1,000 or more</span>
+            </label>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="f-employees">Number of employees</label>
-              <input type="number" id="f-employees" class="form-control" placeholder="e.g. 320" min="1" required>
-              <span class="field-error" id="err-employees"></span>
-            </div>
-            <div class="form-group">
-              <label for="f-turnover">Annual turnover (€ EUR)</label>
-              <input type="number" id="f-turnover" class="form-control" placeholder="e.g. 45000000" min="0" step="1" required>
-              <span class="field-error" id="err-turnover"></span>
-            </div>
-          </div>
-          <div class="form-row" style="grid-template-columns:1fr">
-            <div class="form-group">
-              <label for="f-listed">Is your organisation listed on an EU-regulated market?</label>
-              <select id="f-listed" class="form-control" required>
-                <option value="" disabled selected>Select...</option>
-                <option value="no">No — not listed on an EU-regulated market</option>
-                <option value="yes">Yes — listed on an EU-regulated market (e.g. Euronext, Deutsche Börse)</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-submit" style="margin-top:var(--space-5)">
-            <button type="submit" id="csrdSubmitBtn" class="btn-primary" style="width:100%;justify-content:center;background:var(--sky);box-shadow:0 12px 24px rgba(91,200,255,0.2);color:var(--obsidian);">
-              Check My CSRD Status — Free →
-            </button>
-          </div>
-          <div class="csrd-loading" id="csrdLoading">
-            <div class="spinner"></div>
-            <span>Checking applicability...</span>
-          </div>
-          <div class="csrd-error" id="csrdError">
-            Unable to complete the assessment. Please try again or
-            <a href="mailto:hello@crowagent.ai">contact us</a>.
-          </div>
-        </form>
-      </div>
+        </div>
 
-      <!-- Results panel — injected by JS -->
-      <div id="csrdResult"></div>
+        <!-- Q2: Turnover -->
+        <div class="wizard-step" data-step="2">
+          <p class="wizard-question">What is your annual turnover?</p>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="turnover" value="lt40m">
+              <span>Less than &euro;40M</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="turnover" value="40mto450m">
+              <span>&euro;40M to &euro;450M</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="turnover" value="gt450m">
+              <span>More than &euro;450M</span>
+            </label>
+          </div>
+          <button class="wizard-back" onclick="goStep(1)">&larr; Back</button>
+        </div>
 
-    </div>
-  </div>
-</section>
+        <!-- Q3: Assets -->
+        <div class="wizard-step" data-step="3">
+          <p class="wizard-question">What is your total assets value?</p>
+          <div class="radio-cards">
+            <label class="radio-card">
+              <input type="radio" name="assets" value="lt20m">
+              <span>Less than &euro;20M</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="assets" value="20mto25m">
+              <span>&euro;20M to &euro;25M</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="assets" value="gt25m">
+              <span>More than &euro;25M</span>
+            </label>
+          </div>
+          <button class="wizard-back" onclick="goStep(2)">&larr; Back</button>
+        </div>
 
-<div class="divider"></div>
+        <!-- Result -->
+        <div class="wizard-step" data-step="result" id="resultStep">
+          <div class="result-card" id="resultCard">
+            <div class="result-icon" id="resultIcon"></div>
+            <div class="result-verdict" id="resultVerdict"></div>
+            <p class="result-explanation" id="resultExplanation"></p>
+          </div>
 
-<!-- ══ ABOUT CSRD ════════════════════════════════════════════════════ -->
-<section id="csrd-about">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Background</div>
-      <h2 class="mx-auto">What is CSRD?</h2>
-      <p class="section-sub mx-auto">The Corporate Sustainability Reporting Directive requires large and listed companies to disclose ESG performance under the European Sustainability Reporting Standards (ESRS).</p>
-    </div>
-    <div class="trust-grid fade-in" style="margin-top:var(--space-8)">
-      <div class="trust-card">
-        <div class="trust-title">Who is in scope</div>
-        <div class="trust-desc">Large EU and non-EU companies with significant EU operations: more than 500 employees, or €40M+ turnover with 250+ employees, or listed on EU-regulated markets.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-title">12 ESRS standards</div>
-        <div class="trust-desc">Covers climate change, pollution, water, biodiversity, circular economy, own workforce, value chain workers, communities, consumers, and governance.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-title">Mandatory assurance</div>
-        <div class="trust-desc">CSRD reports require limited assurance from a registered auditor. First reports were due in 2025 for Phase 1 large companies (FY2024 data).</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-title">UK applicability</div>
-        <div class="trust-desc">UK organisations with EU subsidiaries, operations, or listed securities may be in scope even post-Brexit. CSRD operates on an entity-by-entity basis.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-title">Double materiality</div>
-        <div class="trust-desc">Unlike TCFD, CSRD requires both financial materiality (impact on the company) and impact materiality (company's impact on the world).</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-title">Supply chain pressure</div>
-        <div class="trust-desc">Even if CSRD doesn't apply directly, in-scope customers and buyers may require ESG data from their suppliers under ESRS S2 and G1 obligations.</div>
+          <div class="email-capture" id="emailCapture">
+            <h3>Get your full CSRD readiness report</h3>
+            <p>We will send a personalised assessment with next steps and timeline recommendations.</p>
+            <form id="emailForm" onsubmit="submitEmail(event)">
+              <div class="email-row">
+                <input type="email" id="emailInput" placeholder="you@company.com" required>
+                <button type="submit" id="emailBtn">Send Report</button>
+              </div>
+              <p class="email-error" id="emailError"></p>
+            </form>
+            <p class="email-success" id="emailSuccess">Thank you! Check your inbox for your CSRD readiness report.</p>
+          </div>
+
+          <div style="text-align:center;margin-top:1.5rem">
+            <button class="start-over" onclick="resetWizard()">&#8634; Start over</button>
+          </div>
+        </div>
+
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<div class="divider"></div>
+  <!-- ====== ABOUT CSRD ====== -->
+  <section class="section" style="padding-top:3rem;padding-bottom:3rem;background:var(--surf)">
+    <div class="container" style="max-width:960px">
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--cloud);text-align:center;margin-bottom:.75rem">What Is CSRD?</h2>
+      <p style="text-align:center;color:var(--steel);max-width:680px;margin:0 auto 2rem;font-size:1.05rem;line-height:1.7">The Corporate Sustainability Reporting Directive is the EU's landmark regulation requiring companies to disclose environmental, social, and governance data using the European Sustainability Reporting Standards (ESRS).</p>
 
-<!-- ══ CTA ════════════════════════════════════════════════════════════ -->
-<section id="csrd-cta">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">If CSRD applies to you</div>
-      <h2 class="mx-auto">Automate Your ESRS E1 Data Collection</h2>
-      <p class="mx-auto" style="font-size:var(--font-size-lg);color:var(--steel);max-width:580px;margin-bottom:var(--space-5)">
-        Climate Change (ESRS E1) is the most data-intensive CSRD disclosure.
-        CrowAgent Core automates energy and emissions data collection using Autonomous Sustainability Intelligence — cutting weeks of manual work.
-      </p>
-      <div class="cta-actions justify-center">
-        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Try CrowAgent Core Free →
-        </a>
-        <a href="mailto:hello@crowagent.ai" class="btn-ghost">Talk to an Expert</a>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Who does it affect?</h3>
+          <p>Under the Omnibus I proposal, mandatory reporting applies to companies with 1,000+ employees and over &euro;450M turnover. Medium-sized companies may opt in voluntarily.</p>
+        </div>
+        <div class="about-card">
+          <h3>When does it start?</h3>
+          <p>Large public-interest entities are already reporting for FY2024. The revised Omnibus I thresholds apply from FY2025, with first reports due in 2026.</p>
+        </div>
+        <div class="about-card">
+          <h3>What must be reported?</h3>
+          <p>Companies report across 12 ESRS standards covering climate, pollution, biodiversity, workforce, communities, and business conduct &mdash; using double materiality assessment.</p>
+        </div>
+        <div class="about-card">
+          <h3>How is it assured?</h3>
+          <p>Reports must be audited by an independent assurance provider. Limited assurance is required initially, moving to reasonable assurance over time.</p>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- ══ FOOTER ═════════════════════════════════════════════════════════ -->
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="/brand/crowagent_wordmark_transparent_560x140.png" alt="CrowAgent" style="height:28px;width:auto;display:block;opacity:0.85">
-        <p>Autonomous Sustainability Intelligence for UK building energy, emissions, and sustainability compliance.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Platform</h4>
-        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer">Start free</a>
-        <a href="/products">Products</a>
-        <a href="/pricing">Pricing</a>
-        <a href="/csrd">CSRD Checker</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="/">About</a>
-        <a href="/blog">Blog</a>
-        <a href="/partners">Partners</a>
-        <a href="mailto:hello@crowagent.ai" target="_blank" rel="noopener noreferrer">Contact</a>
-        <a href="/legal">Legal</a>
-        <a href="/privacy">Privacy Policy</a>
-        <a href="/terms">Terms of Service</a>
-        <a href="/cookies">Cookie Policy</a>
-      </div>
-      <div class="footer-col">
-        <h4>Connect</h4>
-        <div class="social-links" aria-label="CrowAgent social media links">
-          <a class="social-button icon-youtube" href="https://www.youtube.com/@CrowAgentUK" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent YouTube"><span class="sr-only">YouTube</span></a>
-          <a class="social-button icon-linkedin" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent LinkedIn"><span class="sr-only">LinkedIn</span></a>
-          <a class="social-button icon-x" href="https://x.com/CrowAgentLtd" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent X"><span class="sr-only">X</span></a>
-          <a class="social-button icon-medium" href="https://medium.com/@crowagent.platform" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Medium"><span class="sr-only">Medium</span></a>
-          <a class="social-button icon-producthunt" href="https://www.producthunt.com/@crow_agent" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Product Hunt"><span class="sr-only">Product Hunt</span></a>
-          <a class="social-button icon-instagram" href="https://www.instagram.com/crowagent.ai/" target="_blank" rel="noopener noreferrer" aria-label="CrowAgent Instagram"><span class="sr-only">Instagram</span></a>
+      <!-- Trust Cards -->
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h4>Double Materiality</h4>
+          <p>CSRD requires companies to assess both financial impact and impact on people and the environment.</p>
+        </div>
+        <div class="trust-card">
+          <h4>Digital Tagging</h4>
+          <p>All sustainability reports must be digitally tagged in XBRL format for machine readability.</p>
+        </div>
+        <div class="trust-card">
+          <h4>Value Chain Scope</h4>
+          <p>Reporting extends beyond direct operations to cover the full upstream and downstream value chain.</p>
+        </div>
+        <div class="trust-card">
+          <h4>Omnibus I Changes</h4>
+          <p>The 2025 Omnibus I proposal raised thresholds significantly, exempting most SMEs from mandatory reporting.</p>
+        </div>
+        <div class="trust-card">
+          <h4>Penalties</h4>
+          <p>Non-compliance can result in fines determined by member states, plus reputational and financing risks.</p>
+        </div>
+        <div class="trust-card">
+          <h4>Global Alignment</h4>
+          <p>ESRS standards are designed for interoperability with ISSB, GRI, and other international frameworks.</p>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <div class="footer-legal">
-        <p>&copy; 2026 CrowAgent Ltd. Company No. 17076461. Registered in England and Wales.</p>
-        <p><a href="/privacy">Privacy Policy</a> · <a href="/terms">Terms of Service</a> · <a href="/cookies">Cookie Policy</a></p>
-      </div>
-      <p class="site-version">v12</p>
+  </section>
+
+  <!-- ====== CTA ====== -->
+  <section class="section" style="padding-top:4rem;padding-bottom:4rem">
+    <div class="container" style="text-align:center;max-width:680px">
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--cloud);margin-bottom:1rem">Automate Your ESRS E1 Data Collection</h2>
+      <p style="color:var(--steel);font-size:1.05rem;line-height:1.7;margin-bottom:2rem">CrowAgent uses AI agents to collect, validate, and structure your climate data across scopes 1, 2 and 3 &mdash; cutting months of manual work to days.</p>
+      <a href="https://app.crowagent.ai/signup" class="nav-cta" style="display:inline-block;padding:.85rem 2rem;font-size:1.05rem;border-radius:var(--r);text-decoration:none">Request Access <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="section" style="padding-top:3rem;padding-bottom:2rem;border-top:1px solid var(--border)">
+    <div class="container" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">
+      <a href="/">
+        <img src="/brand/crowagent_wordmark_dark_560x140.png" alt="CrowAgent" style="height:28px;width:auto;display:block;opacity:.7">
+      </a>
+      <nav style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        <a href="/products" style="color:var(--steel);text-decoration:none;font-size:.9rem">Products</a>
+        <a href="/pricing" style="color:var(--steel);text-decoration:none;font-size:.9rem">Pricing</a>
+        <a href="/blog" style="color:var(--steel);text-decoration:none;font-size:.9rem">Blog</a>
+        <a href="/partners" style="color:var(--steel);text-decoration:none;font-size:.9rem">Partners</a>
+        <a href="/csrd" style="color:var(--steel);text-decoration:none;font-size:.9rem">CSRD Checker</a>
+      </nav>
+      <p style="color:var(--dim-c);font-size:.8rem;width:100%;text-align:center;margin-top:1rem">&copy; 2026 CrowAgent. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ====== COOKIE BANNER ====== -->
+  <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surf);border-top:1px solid var(--border);padding:1rem 1.5rem;z-index:9999;font-size:.9rem;color:var(--steel)">
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+      <p style="margin:0;flex:1;min-width:200px">We use cookies to improve your experience. By continuing you agree to our <a href="/privacy" style="color:var(--teal);text-decoration:underline">privacy policy</a>.</p>
+      <button onclick="acceptCookies()" style="padding:.5rem 1.25rem;background:var(--teal);color:var(--bg);border:none;border-radius:var(--r);font-weight:600;cursor:pointer;font-size:.85rem">Accept</button>
     </div>
   </div>
-</footer>
 
-<script src="scripts.min.js?v=12"></script>
-<script>
-  // ── API base URL ─────────────────────────────────────────────────
-  const API_BASE = 'https://crowagent-platform-staging-production.up.railway.app';
+  <!-- ====== SCRIPTS ====== -->
+  <script src="/scripts.min.js?v=13"></script>
+  <script src="/chatbot.js" defer></script>
 
-  const form       = document.getElementById('csrdCheckForm');
-  const resultEl   = document.getElementById('csrdResult');
-  const loadingEl  = document.getElementById('csrdLoading');
-  const errorEl    = document.getElementById('csrdError');
-  const submitBtn  = document.getElementById('csrdSubmitBtn');
-  // -- Utility: Escape HTML to prevent XSS --
-  function escapeHtml(text) {
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
-  }
-
-
-  // ── Per-field inline validation ──────────────────────────────────
-  function setFieldError(id, msg) {
-    const el = document.getElementById(id);
-    const input = el && el.previousElementSibling;
-    if (el) el.textContent = msg;
-    if (input) input.classList.toggle('invalid', !!msg);
-  }
-  function clearFieldErrors() {
-    ['err-company','err-email','err-employees','err-turnover'].forEach(id => setFieldError(id, ''));
-  }
-
-  function validateForm(company, email, employeesRaw, turnoverRaw) {
-    let valid = true;
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!company || company.length < 2) { setFieldError('err-company', 'Please enter your company name'); valid = false; }
-    if (!email || !emailRe.test(email)) { setFieldError('err-email', 'Please enter a valid work email'); valid = false; }
-    const employees = Number(employeesRaw);
-    if (!employeesRaw || isNaN(employees) || employees < 1 || employees > 1000000) { setFieldError('err-employees', 'Please enter number of employees'); valid = false; }
-    const turnover = Number(turnoverRaw);
-    if (!turnoverRaw || isNaN(turnover) || turnover < 0) { setFieldError('err-turnover', 'Please enter annual turnover'); valid = false; }
-
-    return valid;
-  }
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    clearFieldErrors();
-    errorEl.classList.remove('visible');
-
-    const company      = document.getElementById('f-company').value.trim();
-    const email        = document.getElementById('f-email').value.trim();
-    const employeesRaw = document.getElementById('f-employees').value.trim();
-    const turnoverRaw  = document.getElementById('f-turnover').value.trim();
-    const listedVal    = document.getElementById('f-listed').value;
-
-    if (!validateForm(company, email, employeesRaw, turnoverRaw)) return;
-
-    if (!listedVal) {
-      errorEl.textContent = 'Please select whether your organisation is listed on an EU-regulated market.';
-      errorEl.classList.add('visible');
-      return;
+  <script>
+    /* ---- Cookie Banner ---- */
+    (function(){
+      if (!localStorage.getItem('cookies_accepted')) {
+        var b = document.getElementById('cookieBanner');
+        if (b) b.style.display = 'block';
+      }
+    })();
+    function acceptCookies() {
+      localStorage.setItem('cookies_accepted', '1');
+      document.getElementById('cookieBanner').style.display = 'none';
     }
 
-    loadingEl.classList.add('visible');
-    submitBtn.disabled = true;
+    /* ---- Wizard State ---- */
+    var currentStep = 1;
+    var answers = { employees: null, turnover: null, assets: null };
 
-    try {
-      const res = await fetch(`${API_BASE}/api/v1/csrd/check`, {
+    function goStep(n) {
+      currentStep = n;
+      document.querySelectorAll('.wizard-step').forEach(function(el) {
+        el.classList.remove('active');
+      });
+      if (n === 'result') {
+        document.querySelector('[data-step="result"]').classList.add('active');
+        updateIndicator(4);
+        return;
+      }
+      document.querySelector('[data-step="' + n + '"]').classList.add('active');
+      updateIndicator(n);
+    }
+
+    function updateIndicator(step) {
+      var dots = document.querySelectorAll('.step-dot');
+      var bars = document.querySelectorAll('.step-bar');
+      var label = document.getElementById('stepLabel');
+
+      dots.forEach(function(d, i) {
+        d.classList.remove('done', 'current');
+        if (i + 1 < step) d.classList.add('done');
+        else if (i + 1 === step) d.classList.add('current');
+      });
+      bars.forEach(function(b, i) {
+        b.classList.remove('done');
+        if (i + 1 < step) b.classList.add('done');
+      });
+
+      if (step <= 3) {
+        label.textContent = 'Step ' + step + ' of 3';
+      } else {
+        label.textContent = 'Result';
+      }
+    }
+
+    /* ---- Auto-advance on selection ---- */
+    document.querySelectorAll('input[name="employees"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        answers.employees = this.value;
+        setTimeout(function() { goStep(2); }, 300);
+      });
+    });
+    document.querySelectorAll('input[name="turnover"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        answers.turnover = this.value;
+        setTimeout(function() { goStep(3); }, 300);
+      });
+    });
+    document.querySelectorAll('input[name="assets"]').forEach(function(r) {
+      r.addEventListener('change', function() {
+        answers.assets = this.value;
+        setTimeout(function() { showResult(); }, 300);
+      });
+    });
+
+    /* ---- Assessment Logic (Omnibus I thresholds) ---- */
+    function assess(a) {
+      var emp = a.employees;
+      var turn = a.turnover;
+      var assets = a.assets;
+
+      // MANDATORY: employees >= 1000 AND turnover > 450M
+      if (emp === 'gte1000' && turn === 'gt450m') {
+        return 'mandatory';
+      }
+
+      // VOLUNTARY: employees >= 1000 but turnover <= 450M
+      if (emp === 'gte1000') {
+        return 'voluntary';
+      }
+
+      // VOLUNTARY: employees 250-999 AND (turnover > 40M OR assets > 20M)
+      if (emp === '250to999') {
+        if (turn !== 'lt40m' || assets !== 'lt20m') {
+          return 'voluntary';
+        }
+        // 250-999 employees but under both thresholds
+        return 'not-applicable';
+      }
+
+      // NOT APPLICABLE: employees < 250 (small company exemption under Omnibus I)
+      return 'not-applicable';
+    }
+
+    function showResult() {
+      var verdict = assess(answers);
+      var card = document.getElementById('resultCard');
+      var icon = document.getElementById('resultIcon');
+      var verdictEl = document.getElementById('resultVerdict');
+      var explanation = document.getElementById('resultExplanation');
+
+      card.className = 'result-card ' + verdict;
+
+      if (verdict === 'mandatory') {
+        icon.textContent = '\u26A0';
+        verdictEl.textContent = 'Mandatory from 2025';
+        explanation.textContent = 'Your organisation meets the CSRD mandatory reporting thresholds under the EU Omnibus I directive. First reports are due for FY2025 data.';
+      } else if (verdict === 'voluntary') {
+        icon.textContent = '\u23F3';
+        verdictEl.textContent = 'Voluntary \u2014 prepare now';
+        explanation.textContent = 'Your organisation falls within the voluntary/phase-in category. We recommend preparing now to stay ahead of evolving requirements.';
+      } else {
+        icon.textContent = '\u2705';
+        verdictEl.textContent = 'Not currently required';
+        explanation.textContent = 'Based on the Omnibus I thresholds, CSRD does not currently apply to your organisation. However, supply chain pressure may still require ESG disclosures.';
+      }
+
+      goStep('result');
+    }
+
+    /* ---- Email Capture ---- */
+    function submitEmail(e) {
+      e.preventDefault();
+      var email = document.getElementById('emailInput').value;
+      var btn = document.getElementById('emailBtn');
+      var errEl = document.getElementById('emailError');
+      var successEl = document.getElementById('emailSuccess');
+      var form = document.getElementById('emailForm');
+
+      errEl.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Sending\u2026';
+
+      fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          company_name:        company,
-          email:               email,
-          employee_count:      parseInt(employeesRaw, 10),
-          annual_turnover_eur: parseFloat(turnoverRaw),
-          is_listed:           listedVal === 'yes',
-        }),
-      });
-
-      if (!res.ok) {
-        throw new Error('non_ok');
-      }
-
-      let data;
-      try {
-        data = await res.json();
-      } catch {
-        throw new Error('parse_error');
-      }
-      renderResult(data);
-      resultEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-    } catch {
-      errorEl.textContent = 'The service is temporarily unavailable. Please try again in a moment.';
-      errorEl.classList.add('visible');
-    } finally {
-      loadingEl.classList.remove('visible');
-      submitBtn.disabled = false;
-    }
-  });
-
-  function renderResult(data) {
-    const applies   = data.applies;
-    const cardClass = applies ? 'csrd-result-card--applies' : 'csrd-result-card--clear';
-    const icon      = applies ? '⚠️' : '✅';
-    const verdict   = applies ? 'CSRD applies to your organisation' : 'CSRD does not currently apply';
-    const vClass    = applies ? 'result-verdict--applies' : 'result-verdict--clear';
-
-    // ── FREE: headline + report date + ESRS count ──────────────────
-    let reportPill = '';
-    if (applies && data.report_year) {
-      reportPill = `<div class="result-report-pill">📅 First report due: ${escapeHtml(String(data.report_year))}</div>`;
-    }
-
-    let esrsCountHtml = '';
-    if (applies && data.applicable_esrs && data.applicable_esrs.length) {
-      esrsCountHtml = `<div class="esrs-count-pill">📋 ${data.applicable_esrs.length} ESRS standard${data.applicable_esrs.length !== 1 ? 's' : ''} apply to your organisation</div>`;
-    }
-
-    // ── GATED: ESRS list + recommendation + next steps ────────────
-    let esrsListHtml = '';
-    if (data.applicable_esrs && data.applicable_esrs.length) {
-      const tags = data.applicable_esrs
-        .map(s => {
-          const tag = String(s).split('—')[0].trim();
-          return `<div class="esrs-tag">${escapeHtml(tag)}</div>`;
+          employees: answers.employees,
+          turnover: answers.turnover,
+          assets: answers.assets,
+          email: email
         })
-        .join('');
-      esrsListHtml = `
-        <div class="result-sub-heading">Applicable ESRS Standards (${data.applicable_esrs.length})</div>
-        <div class="esrs-grid">${tags}</div>`;
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Request failed');
+        form.style.display = 'none';
+        successEl.style.display = 'block';
+      })
+      .catch(function() {
+        errEl.textContent = 'Something went wrong. Please try again.';
+        errEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Send Report';
+      });
     }
 
-    let stepsHtml = '';
-    if (data.next_steps && data.next_steps.length) {
-      const items = data.next_steps
-        .map(s => `<li>${escapeHtml(String(s))}</li>`)
-        .join('');
-      stepsHtml = `
-        <div class="result-sub-heading">Recommended Next Steps</div>
-        <ul class="next-steps-list">
-          ${items}
-        </ul>`;
+    /* ---- Reset ---- */
+    function resetWizard() {
+      answers = { employees: null, turnover: null, assets: null };
+      document.querySelectorAll('.wizard-step input[type="radio"]').forEach(function(r) {
+        r.checked = false;
+      });
+      document.getElementById('emailForm').style.display = 'block';
+      document.getElementById('emailSuccess').style.display = 'none';
+      document.getElementById('emailError').style.display = 'none';
+      document.getElementById('emailInput').value = '';
+      document.getElementById('emailBtn').disabled = false;
+      document.getElementById('emailBtn').textContent = 'Send Report';
+      goStep(1);
     }
-
-    const dividerClass = applies ? 'result-divider' : 'result-divider result-divider--green';
-
-    const reasonText = escapeHtml(String(data.reason || ''));
-
-    const gatedContentHtml = `
-      <p class="result-reason">${reasonText}</p>
-      ${esrsListHtml}
-      ${stepsHtml}
-      <div class="${dividerClass}"></div>
-      <p style="font-size:var(--font-size-sm);color:var(--steel);margin-bottom:var(--space-3)">
-        ${applies
-          ? 'CrowAgent Core automates your ESRS E1 (Climate Change) data collection — the most complex part of CSRD reporting.'
-          : 'Even without a CSRD obligation, proactive ESG reporting strengthens your supply chain relationships and investor confidence.'}
-      </p>`;
-
-    // ── Gate overlay card ──────────────────────────────────────────
-    const gateCard = `
-      <div class="results-gate-overlay">
-        <div class="gate-card">
-          <div class="gate-card__icon">📄</div>
-          <div class="gate-card__heading">Your Full CSRD Report is Ready</div>
-          <p class="gate-card__sub">Create a free account to see your applicable ESRS standards, recommended actions, and save your results.</p>
-          <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="gate-card__btn">
-            See Full Report — Free →
-          </a>
-          <div class="gate-card__login">Already have an account? <a href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Login →</a></div>
-        </div>
-      </div>`;
-
-    resultEl.innerHTML = `
-      <div class="csrd-result-card ${cardClass}">
-        <div class="result-verdict ${vClass}">${icon} ${verdict}</div>
-        ${reportPill}
-        ${esrsCountHtml}
-        <div class="results-gate-wrapper">
-          <div class="results-gated">${gatedContentHtml}</div>
-          ${gateCard}
-        </div>
-      </div>`;
-  }
-</script>
-<script src="chatbot.js" defer></script>
+  </script>
 </body>
 </html>
