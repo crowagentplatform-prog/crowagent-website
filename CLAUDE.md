@@ -341,6 +341,13 @@ CrowNest:        #F472B6 (Pink)
 
 ---
 
+## Brand Tokens
+Canonical CSS brand tokens are at: crowagent-brand-tokens.css (repo root or web/app/)
+Always read this file before any CSS or styling work.
+Never hardcode hex values. Never construct tokens from memory.
+
+---
+
 ## 11. TESTING & QUALITY
 
 ### Running tests
