@@ -1,0 +1,64 @@
+/* ═══════════════════════════════════════════════
+   CrowAgent Brand System v2.0 — March 2026
+   SOURCE OF TRUTH — do not edit without updating all 3 repos
+   crowagent.ai · Company No. 17076461 · Confidential
+═══════════════════════════════════════════════ */
+:root {
+  /* Saturn Navy family */
+  --bg: #040E1A;
+  --surf: #0A1F3A;
+  --surf2: #0D2847;
+  --surf3: #0F2D52;
+  --surf4: #122F55;
+
+  /* Mercury Teal */
+  --teal: #0CC9A8;
+  --teal-d: #0AA88C;
+  --teal-dim: rgba(12, 201, 168, 0.10);
+  --teal-glow: rgba(12, 201, 168, 0.18);
+
+  /* Accent palette */
+  --lime: #C2FF57;
+  --lime-dim: rgba(194, 255, 87, 0.12);
+  --sky: #5BC8FF;
+  --sky-dim: rgba(91, 200, 255, 0.12);
+  --gold: #DAA520;
+  --gold-dim: rgba(218, 165, 32, 0.12);
+  --mark: #A78BFA;
+  --coral: #F87171;
+
+  /* Text scale */
+  --cloud: #E8F0FA;
+  --steel: #B8CCE0;
+  --mist: #8A9DB8;
+  --dim-c: #5A7A8E;
+
+  /* Borders */
+  --border: rgba(12, 201, 168, 0.10);
+  --border2: rgba(12, 201, 168, 0.20);
+  --border3: rgba(12, 201, 168, 0.32);
+
+  /* Semantic */
+  --warn: #F59E0B;
+  --err: #EF4444;
+  --success: #22C55E;
+
+  /* Product colours */
+  --core: #00D4E8;
+  --mark-p: #0CC9A8;
+  --trace: #A78BFA;
+  --nest: #60A5FA;
+  --build: #C2FF57;
+  --sight: #F472B6;
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Radius */
+  --r: 12px;
+  --r2: 16px;
+  --r3: 20px;
+  --rp: 100px;
+}
