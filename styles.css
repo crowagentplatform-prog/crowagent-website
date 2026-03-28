@@ -283,7 +283,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .pgc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;background:var(--teal);color:var(--bg);padding:3px 12px;border-radius:100px;white-space:nowrap}
 .pgc-name{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:700;color:var(--cloud);margin-bottom:8px}
 .pgc-price{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;color:var(--cloud);line-height:1;margin-bottom:4px}
-.pgc-price span{font-size:.9rem;font-weight:500;color:var(--steel)}
+.pgc-price .pp{font-size:.9rem;font-weight:500;color:var(--steel)}
 .pgc-scope{font-size:12px;color:var(--mist);margin-bottom:16px}
 .pgc-features{list-style:none;padding:0;margin:0 0 20px;flex:1}
 .pgc-features li{font-size:13px;color:var(--steel);padding:6px 0;border-bottom:1px solid var(--border);padding-left:18px;position:relative;line-height:1.4}
@@ -334,3 +334,32 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 /* PERFORMANCE */
 @font-face{font-display:swap}
+
+/* ACCESSIBILITY */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* FORM ERROR (Fix 10) */
+.form-error{color:var(--err,#F04438);font-size:12px;margin-top:4px}
+
+/* NOTIFY-ME INLINE CAPTURE (Fix 13) */
+.notify-me-wrapper{display:inline-block}
+.notify-me-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.notify-email-input{padding:8px 12px;border:1px solid var(--border,rgba(255,255,255,.15));border-radius:6px;background:var(--surf,rgba(255,255,255,.05));color:var(--cloud,#E4ECF7);font-size:14px;min-width:200px;outline:none;transition:border-color .2s}
+.notify-email-input:focus{border-color:var(--teal)}
+.notify-submit-btn{padding:8px 16px;background:var(--teal,#0CC9A8);color:#000;border:none;border-radius:6px;cursor:pointer;font-size:14px;font-weight:600;transition:background .2s}
+.notify-submit-btn:hover{background:var(--teal-d)}
+.notify-error{color:var(--err,#F04438);font-size:12px}
+.notify-success{color:var(--teal,#0CC9A8);font-size:14px}
+
+/* COOKIE BANNER (Fix 11) */
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;z-index:9998;background:rgba(10,31,58,.97);border-top:1px solid var(--border);padding:1rem 1.5rem;backdrop-filter:blur(16px);box-shadow:0 -8px 40px rgba(0,0,0,.4)}
+.cookie-banner-inner{max-width:1140px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.cookie-text{font-size:.875rem;color:var(--steel);line-height:1.6}
+.cookie-text strong{color:var(--cloud)}
+.cookie-text a{color:var(--teal);text-decoration:underline;margin-left:6px}
+.cookie-actions{display:flex;gap:8px;flex-shrink:0}
+.cookie-accept,.cookie-decline{padding:10px 22px;font-size:.875rem;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;border-radius:8px;cursor:pointer;transition:all .2s}
+.cookie-accept{background:var(--teal);color:var(--bg);border:none}
+.cookie-accept:hover{background:var(--teal-d)}
+.cookie-decline{background:transparent;color:var(--steel);border:1px solid var(--border2)}
+.cookie-decline:hover{border-color:var(--teal);color:var(--cloud)}

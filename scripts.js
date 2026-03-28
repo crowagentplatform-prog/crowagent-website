@@ -20,8 +20,8 @@ function toggleMob() {
 function switchPTab(product, btn) {
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('on'); });
   btn.classList.add('on');
-  document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
-  document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
+  document.getElementById('core-p').style.display = product === 'core' ? 'grid' : 'none';
+  document.getElementById('mark-p').style.display = product === 'mark' ? 'grid' : 'none';
 }
 
 // ── BILLING TOGGLE (monthly/annual) ──
@@ -130,14 +130,25 @@ async function submitCSRD(e) {
   var form = e.target;
   var btn = form.querySelector('.btn-form');
   var orig = btn.innerHTML;
+
+  // Client-side email validation (Fix 10)
+  var inputs = form.querySelectorAll('input');
+  var emailInput = inputs[1];
+  var errorEl = form.querySelector('.form-error');
+  var emailVal = emailInput ? emailInput.value.trim() : '';
+  if (!emailVal || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal)) {
+    if (errorEl) { errorEl.style.display = 'block'; errorEl.textContent = 'Please enter a valid email address'; }
+    return;
+  }
+  if (errorEl) errorEl.style.display = 'none';
+
   btn.innerHTML = 'Sending\u2026 <span>\u27F3</span>';
   btn.disabled = true;
 
-  var inputs = form.querySelectorAll('input');
   var selects = form.querySelectorAll('select');
   var data = {
     company: inputs[0] ? inputs[0].value : '',
-    email: inputs[1] ? inputs[1].value : '',
+    email: emailVal,
     employees: selects[0] ? selects[0].value : '',
     turnover: selects[1] ? selects[1].value : ''
   };
@@ -201,3 +212,63 @@ document.addEventListener('click', function(e) {
     menu.classList.remove('open');
   }
 });
+
+// ── COOKIE CONSENT BANNER (Fix 11) ──
+(function() {
+  var e = document.getElementById('cookieBanner');
+  if (!e) return;
+  if (!localStorage.getItem('ca_cookie_consent')) {
+    setTimeout(function() { e.hidden = false; }, 1500);
+  }
+  var accept = document.getElementById('cookieAccept');
+  var decline = document.getElementById('cookieDecline');
+  if (accept) accept.addEventListener('click', function() {
+    localStorage.setItem('ca_cookie_consent', 'accepted');
+    e.hidden = true;
+  });
+  if (decline) decline.addEventListener('click', function() {
+    localStorage.setItem('ca_cookie_consent', 'declined');
+    e.hidden = true;
+  });
+})();
+
+// ── NOTIFY-ME INLINE EMAIL CAPTURE (Fix 13) ──
+function toggleNotifyMe(btn) {
+  var wrapper = btn.closest('.notify-me-wrapper');
+  btn.style.display = 'none';
+  wrapper.querySelector('.notify-me-form').style.display = 'flex';
+  wrapper.querySelector('.notify-email-input').focus();
+}
+
+async function submitNotify(btn) {
+  var wrapper = btn.closest('.notify-me-wrapper');
+  var emailInput = wrapper.querySelector('.notify-email-input');
+  var email = emailInput.value.trim();
+  var product = wrapper.dataset.product;
+  var errorEl = wrapper.querySelector('.notify-error');
+  var successEl = wrapper.querySelector('.notify-success');
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.style.display = 'block';
+    return;
+  }
+  errorEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    await fetch(
+      'https://crowagent-platform-production' +
+      '.up.railway.app/api/v1/waitlist/notify',
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ product: product, email: email })
+      }
+    );
+  } catch (e) {
+    // Fail silently — show success anyway to avoid frustrating users
+  }
+  wrapper.querySelector('.notify-me-form').style.display = 'none';
+  successEl.style.display = 'block';
+}
