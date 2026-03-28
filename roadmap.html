@@ -2,16 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CSRD Applicability Checker — Free Tool | CrowAgent</title>
-<meta name="description" content="Check whether the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation under the Omnibus I thresholds. Free, instant, regulation-cited result.">
-<meta property="og:title" content="CSRD Applicability Checker — Free Tool | CrowAgent">
-<meta property="og:description" content="Check your CSRD applicability under Omnibus I thresholds in under 2 minutes. No account required.">
-<meta property="og:url" content="https://crowagent.ai/csrd">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Roadmap — CrowAgent · Product Roadmap</title>
+<meta name="description" content="See what we're building next. CrowAgent's product roadmap covers live tools, upcoming launches, and long-term research across sustainability compliance.">
+<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="CrowAgent">
+<meta property="og:title" content="Roadmap — CrowAgent · Product Roadmap">
+<meta property="og:description" content="See what we're building next. CrowAgent's product roadmap covers live tools, upcoming launches, and long-term research.">
+<meta property="og:image" content="https://crowagent.ai/brand/crowagent_wordmark_dark_1120x280.png">
+<meta property="og:url" content="https://crowagent.ai/roadmap">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://crowagent.ai/csrd">
+<meta name="twitter:title" content="Roadmap — CrowAgent · Product Roadmap">
+<meta name="twitter:description" content="See what we're building next. CrowAgent's product roadmap covers live tools, upcoming launches, and long-term research.">
+<link rel="canonical" href="https://crowagent.ai/roadmap">
 <link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/brand/crowagent_app_icon_1024.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,12 +43,11 @@
       <a href="/#how">How it works</a>
       <a href="/#products">Products</a>
       <a href="/#sectors">Sectors</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/csrd" class="active">CSRD Checker</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/csrd">CSRD Checker</a>
       <a href="/blog">Blog</a>
     </div>
     <div class="nav-actions">
-      <span class="nav-price-hint">From £149/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login">Sign in</a>
       <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
     </div>
@@ -56,108 +61,121 @@
   <a href="/#how">How it works</a>
   <a href="/#products">Products</a>
   <a href="/#sectors">Sectors</a>
-  <a href="/#pricing">Pricing</a>
+  <a href="/pricing">Pricing</a>
   <a href="/csrd">CSRD Checker</a>
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login">Sign in</a>
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
 </div>
 
-<section class="hero" style="padding-bottom:40px">
-  <div class="hero-glow"></div>
+<!-- HERO -->
+<section class="hero" style="padding-bottom:2rem">
   <div class="wrap" style="text-align:center;position:relative;z-index:1">
-    <div class="hero-eyebrow"><span class="hw-dot"></span>Free tool · No account required</div>
-    <h1>Check your CSRD applicability</h1>
-    <p class="hero-sub">Updated for Omnibus I — Directive (EU) 2026/470. New thresholds require <strong>both</strong> &gt;1,000 employees <strong>and</strong> &gt;&#8364;450M turnover. Answer three questions for an instant, regulation-cited result.</p>
+    <h1>Product roadmap</h1>
+    <p class="hero-sub">Where we are today and where we're heading. Live products, upcoming launches, and long-term research across sustainability compliance.</p>
   </div>
 </section>
 
-<section style="padding:0 0 80px">
-  <div class="wrap" style="max-width:640px">
-    <div class="csrd-wizard">
-
-      <!-- Step indicator dots -->
-      <div style="display:flex;justify-content:center;gap:10px;margin-bottom:32px">
-        <span class="csrd-dot active" id="dot-1"></span>
-        <span class="csrd-dot" id="dot-2"></span>
-        <span class="csrd-dot" id="dot-3"></span>
-        <span class="csrd-dot" id="dot-4"></span>
+<!-- PHASE 1 — LIVE NOW -->
+<section class="wrap" style="padding-bottom:48px">
+  <div class="ca-roadmap-phase">
+    <h2><span class="ca-status-badge ca-status-live">Live</span> Phase 1 — Live now</h2>
+    <div class="ca-roadmap-grid">
+      <div class="ca-roadmap-card">
+        <h3>CrowAgent Core <span class="ca-status-badge ca-status-live">Live</span></h3>
+        <p>MEES compliance intelligence for commercial property. EPC gap analysis, penalty exposure, retrofit scenarios, and audit-ready PDF reports.</p>
+        <a class="btn-teal-sm" href="/products/crowagent-core">Learn more</a>
       </div>
-
-      <!-- Step 1: Employees -->
-      <div class="csrd-step" id="csrd-step-1" style="display:block">
-        <h2 style="text-align:center;margin-bottom:8px">How many employees?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Full-time equivalent headcount across the group</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('employees','<250')">&lt; 250</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','250-999')">250 – 999</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','1000+')">1,000+</button>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:24px">
-          <button class="btn-teal-sm" onclick="csrdShowStep(2)" id="csrd-next-1" disabled>Next</button>
-        </div>
+      <div class="ca-roadmap-card">
+        <h3>CrowMark <span class="ca-status-badge ca-status-live">Live</span></h3>
+        <p>PPN 002 social value platform for public sector bids. Mission mapping, TOMs measures, AI narratives, and evidence tracking.</p>
+        <a class="btn-teal-sm" href="/products/crowmark">Learn more</a>
       </div>
-
-      <!-- Step 2: Turnover -->
-      <div class="csrd-step" id="csrd-step-2" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">What is your annual turnover?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Consolidated group revenue in the most recent financial year</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('turnover','<40m')">&lt; &#8364;40M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','40m-450m')">&#8364;40M – &#8364;450M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">&#8364;450M+</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(1)">Back</button>
-          <button class="btn-teal-sm" onclick="csrdShowStep(3)" id="csrd-next-2" disabled>Next</button>
-        </div>
+      <div class="ca-roadmap-card">
+        <h3>CSRD Checker <span class="ca-status-badge ca-status-live">Free</span></h3>
+        <p>Applicability assessment under Omnibus I (Directive EU 2026/470). Three-layer engine covering mandatory scope, forward risk, and value chain exposure.</p>
+        <a class="btn-teal-sm" href="/csrd">Try free</a>
       </div>
+    </div>
+  </div>
 
-      <!-- Step 3: Sector -->
-      <div class="csrd-step" id="csrd-step-3" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">What sector?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Certain sectors have additional reporting obligations</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('sector','financial')">Financial services</button>
-          <button class="csrd-option" onclick="csrdSelect('sector','listed')">Listed on EU-regulated market</button>
-          <button class="csrd-option" onclick="csrdSelect('sector','other')">Other</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(2)">Back</button>
-          <button class="btn-teal-sm" onclick="csrdShowStep(4)" id="csrd-next-3" disabled>Next</button>
+  <!-- PHASE 2 — COMING SOON -->
+  <div class="ca-roadmap-phase">
+    <h2><span class="ca-status-badge ca-status-dev">In development</span> Phase 2 — Coming soon</h2>
+    <div class="ca-roadmap-grid">
+      <div class="ca-roadmap-card">
+        <h3>CrowSight</h3>
+        <p>BNG (Biodiversity Net Gain) compliance. Habitat assessment, metric calculations, and monitoring dashboards for developers and landowners.</p>
+        <span style="font-size:12px;color:var(--warn);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Q3 2026</span>
+        <div class="ca-notify-wrap">
+          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowsight">Notify me</button>
+          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
+            <input type="email" placeholder="you@company.com" required>
+            <input type="hidden" name="product" value="crowsight">
+            <button class="btn-teal-sm" type="submit">Subscribe</button>
+          </form>
         </div>
       </div>
-
-      <!-- Step 4: Email capture + Result -->
-      <div class="csrd-step" id="csrd-step-4" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a detailed, regulation-cited assessment</p>
-        <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
-          <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--navy);color:var(--cloud);font-size:15px">
-          <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
-        </form>
-        <div id="csrd-result" style="margin-top:24px"></div>
-        <div style="display:flex;justify-content:flex-start;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(3)">Back</button>
+      <div class="ca-roadmap-card">
+        <h3>CrowBuild</h3>
+        <p>Housing retrofit planning and cost modelling. Energy efficiency upgrades, whole-house assessments, and funding pathway analysis.</p>
+        <span style="font-size:12px;color:var(--warn);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Q4 2026</span>
+        <div class="ca-notify-wrap">
+          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowbuild">Notify me</button>
+          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
+            <input type="email" placeholder="you@company.com" required>
+            <input type="hidden" name="product" value="crowbuild">
+            <button class="btn-teal-sm" type="submit">Subscribe</button>
+          </form>
         </div>
-        <p style="text-align:center;color:var(--steel);font-size:12px;margin-top:16px">Thresholds per Directive (EU) 2026/470 (Omnibus I). This tool provides indicative guidance only and does not constitute legal advice.</p>
       </div>
+      <div class="ca-roadmap-card">
+        <h3>CrowNest</h3>
+        <p>NHS Green Plan compliance. Carbon reduction targets, sustainability reporting, and action planning for NHS trusts and ICBs.</p>
+        <span style="font-size:12px;color:var(--warn);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">Q4 2026</span>
+        <div class="ca-notify-wrap">
+          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crownest">Notify me</button>
+          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
+            <input type="email" placeholder="you@company.com" required>
+            <input type="hidden" name="product" value="crownest">
+            <button class="btn-teal-sm" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <!-- PHASE 3 — RESEARCH -->
+  <div class="ca-roadmap-phase">
+    <h2><span class="ca-status-badge ca-status-research">Research</span> Phase 3 — Research</h2>
+    <div class="ca-roadmap-grid">
+      <div class="ca-roadmap-card">
+        <h3>CrowTrace</h3>
+        <p>Scope 3 supply chain carbon tracking. Automated data collection, emission factor mapping, and audit-ready disclosure reports.</p>
+        <span style="font-size:12px;color:var(--mist);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">2027</span>
+      </div>
+      <div class="ca-roadmap-card">
+        <h3>Regulatory Monitor</h3>
+        <p>Live UK/EU regulatory change feed. Real-time alerts on MEES, CSRD, BNG, and emerging sustainability legislation affecting your portfolio.</p>
+        <span style="font-size:12px;color:var(--mist);font-weight:600;font-family:'Plus Jakarta Sans',sans-serif">2027</span>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- CTA BAND -->
 <section class="cta-band">
   <div class="wrap" style="text-align:center">
     <h2>Start your 14-day free trial</h2>
     <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Full compliance reports, retrofit scenarios, and audit-ready PDFs — no credit card required.</p>
     <div class="hero-btns" style="justify-content:center">
       <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
-      <a class="btn-hero-out" href="/pricing">View pricing</a>
+      <a class="btn-hero-out" href="mailto:hello@crowagent.ai?subject=Enterprise%20Enquiry">Enterprise enquiry</a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="ca-footer">
   <div class="wrap">
     <div class="ca-footer-grid">
@@ -228,5 +246,6 @@
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
 <script src="scripts.js"></script>
+<script src="chatbot.js" defer></script>
 </body>
 </html>

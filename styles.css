@@ -9,7 +9,8 @@
   --cloud:#E8F0FA;--steel:#B8CCE0;--mist:#8A9DB8;--dim-c:#5A7A8E;
   --border:rgba(12,201,168,.10);--border2:rgba(12,201,168,.20);--border3:rgba(12,201,168,.32);
   --warn:#F59E0B;--err:#EF4444;--success:#22C55E;
-  --r:12px;--r2:16px;--r3:20px;--rp:100px
+  --r:12px;--r2:16px;--r3:20px;--rp:100px;
+  --bar1:#0A1F3A;--bar2:#0D3558;--bar3:#0AA88C;--bar4:#0CC9A8
 }
 
 html,body{background:var(--bg)!important;background-color:#040E1A!important;color:var(--cloud);min-height:100vh}
@@ -334,3 +335,138 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 /* PERFORMANCE */
 @font-face{font-display:swap}
+
+/* CA-LOGO (brand spec v2) */
+.ca-logo{display:flex;align-items:center;gap:11px;text-decoration:none}
+.ca-logo-mark{background:#fff;border-radius:8px;padding:5px 7px 7px;display:flex;align-items:flex-end;gap:2.5px;position:relative;flex-shrink:0}
+.ca-logo-mark::after{content:'';position:absolute;bottom:4px;left:7px;right:7px;height:1.5px;background:var(--teal);border-radius:1px}
+.ca-b{border-radius:3px 3px 0 0;flex-shrink:0}
+.ca-b1{width:7px;height:13px;background:var(--bar1)}
+.ca-b2{width:7px;height:17px;background:var(--bar2)}
+.ca-b3{width:7px;height:22px;background:var(--bar3)}
+.ca-b4{width:7px;height:27px;background:var(--bar4)}
+.ca-logo-wordmark{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16px;color:var(--cloud);letter-spacing:-0.3px;line-height:1}
+.ca-logo-wordmark span{color:var(--teal)}
+.ca-logo-tag{font-size:8px;font-weight:500;color:var(--mist);letter-spacing:1.8px;text-transform:uppercase;margin-top:2px;line-height:1;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* NOTIFY-ME */
+.ca-notify-wrap{display:inline-block}
+.ca-notify-form{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.ca-notify-input{padding:8px 12px;border:1px solid var(--border2);border-radius:8px;background:var(--surf);color:var(--cloud);font-family:'Inter',sans-serif;font-size:14px;min-width:200px}
+.ca-notify-btn{padding:8px 16px;background:var(--teal);color:var(--bg);border:none;border-radius:8px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13px;transition:background 0.2s}
+.ca-notify-btn:hover{background:var(--teal-d)}
+.ca-notify-success{color:var(--teal);font-size:13px;font-family:'Inter',sans-serif}
+.ca-notify-error{color:var(--err);font-size:12px;font-family:'Inter',sans-serif}
+.ca-form-error{color:var(--err);font-size:12px;margin-top:4px;font-family:'Inter',sans-serif}
+
+/* PRICING TEASER */
+.ca-pricing-teaser{text-align:center;padding:80px 24px}
+.ca-pricing-teaser h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--cloud);margin-bottom:12px}
+.ca-pricing-teaser>p{color:var(--steel);font-family:'Inter',sans-serif;font-size:16px;margin-bottom:40px}
+.ca-price-row{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.ca-price-item{background:var(--surf);border:1px solid var(--border2);border-radius:14px;padding:24px 28px;text-align:left;min-width:220px}
+.ca-price-product{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--cloud);margin-bottom:6px}
+.ca-price-from{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:24px;color:var(--teal);margin-bottom:6px}
+.ca-price-desc{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--mist)}
+.ca-btn-primary{display:inline-block;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;background:var(--teal);color:var(--bg);padding:14px 32px;border-radius:10px;transition:all .2s;text-decoration:none}
+.ca-btn-primary:hover{background:var(--teal-d)}
+.ca-price-note{color:var(--mist);font-size:12px;margin-top:16px;font-family:'Inter',sans-serif}
+.ca-price-note a{color:var(--teal)}
+.ca-section-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+
+/* 4-COL FOOTER */
+.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:80px}
+.ca-footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1200px;margin:0 auto;padding:0 24px}
+.ca-footer-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mist);margin-bottom:14px}
+.ca-footer-col a{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
+.ca-footer-col a:hover{color:var(--teal)}
+.ca-footer-social{display:flex;flex-wrap:wrap;gap:10px}
+.ca-footer-social a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:var(--surf2);border:1px solid var(--border);color:var(--steel);text-decoration:none;transition:all 0.2s;margin-bottom:0}
+.ca-footer-social a:hover{background:var(--teal-dim);border-color:var(--teal);color:var(--teal)}
+.ca-footer-social a svg{width:16px;height:16px}
+.ca-footer-bottom{border-top:1px solid var(--border);max-width:1200px;margin:32px auto 0;padding:20px 24px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--mist)}
+@media(max-width:768px){.ca-footer-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.ca-footer-grid{grid-template-columns:1fr}}
+
+/* CSRD WIZARD (csrd.html page) */
+.csrd-wizard{max-width:640px;margin:0 auto;background:var(--surf);border:1px solid var(--border2);border-radius:14px;padding:40px}
+.csrd-step{display:none}
+.csrd-step.active{display:block}
+.csrd-progress{font-family:'Inter',sans-serif;font-size:12px;color:var(--mist);margin-bottom:20px;text-align:center}
+.csrd-question{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.35rem;font-weight:700;color:var(--cloud);text-align:center;margin-bottom:8px}
+.csrd-subtext{font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);text-align:center;margin-bottom:24px}
+.csrd-options{display:flex;flex-direction:column;gap:10px}
+.csrd-option{display:block;width:100%;padding:16px 20px;background:var(--bg);border:1px solid var(--border2);border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:600;color:var(--cloud);cursor:pointer;transition:all .2s;text-align:left}
+.csrd-option:hover{border-color:var(--teal);background:var(--teal-dim)}
+.csrd-option.selected{border-color:var(--teal);background:rgba(12,201,168,0.08)}
+.csrd-sector-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:480px){.csrd-sector-grid{grid-template-columns:1fr}}
+.csrd-form-field{margin-bottom:16px}
+.csrd-form-field label{display:block;font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--steel);margin-bottom:6px}
+.csrd-form-field input{width:100%;padding:10px 14px;background:var(--bg);border:1px solid var(--border2);border-radius:8px;color:var(--cloud);font-family:'Inter',sans-serif;font-size:14px}
+.csrd-form-field input:focus{border-color:var(--teal);outline:none}
+.csrd-submit-btn{width:100%;padding:14px;background:var(--teal);color:var(--bg);border:none;border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:background .2s}
+.csrd-submit-btn:hover{background:var(--teal-d)}
+.csrd-reassure{font-size:11px;color:var(--mist);text-align:center;margin-top:8px;font-family:'Inter',sans-serif}
+.csrd-citation{font-size:11px;color:var(--mist);text-align:center;margin-top:16px;font-family:'Inter',sans-serif;padding-top:16px;border-top:1px solid var(--border)}
+.csrd-success-card{text-align:center;padding:40px 20px}
+.csrd-success-icon{font-size:3rem;color:var(--teal);margin-bottom:16px}
+.csrd-trust-bar{display:flex;flex-wrap:wrap;gap:16px;justify-content:center;margin-top:48px;padding:24px;max-width:800px;margin-left:auto;margin-right:auto}
+.csrd-trust-item{font-family:'Inter',sans-serif;font-size:12px;color:var(--steel);display:flex;align-items:center;gap:6px}
+
+/* ABOUT PAGE */
+.ca-about-section{padding:clamp(48px,6vw,80px) 0}
+.ca-about-section h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--cloud);margin-bottom:16px}
+.ca-about-section p{font-family:'Inter',sans-serif;font-size:15px;color:var(--steel);line-height:1.7;margin-bottom:14px}
+.ca-values-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.ca-value-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:28px 24px}
+.ca-value-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:var(--cloud);margin-bottom:8px}
+.ca-value-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.6;margin-bottom:0}
+.ca-trust-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.ca-trust-pill{font-family:'Inter',sans-serif;font-size:12px;color:var(--teal);border:1px solid var(--teal);border-radius:100px;padding:6px 16px}
+@media(max-width:768px){.ca-values-grid{grid-template-columns:1fr}}
+
+/* ROADMAP PAGE */
+.ca-roadmap-phase{margin-bottom:48px}
+.ca-roadmap-phase h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.3rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:16px;display:flex;align-items:center;gap:12px}
+.ca-status-badge{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px}
+.ca-status-live{background:var(--teal-dim);color:var(--teal)}
+.ca-status-dev{background:rgba(245,158,11,0.12);color:var(--warn)}
+.ca-status-research{background:rgba(138,157,184,0.12);color:var(--mist)}
+.ca-roadmap-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+.ca-roadmap-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:24px 20px}
+.ca-roadmap-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:var(--cloud);margin-bottom:6px}
+.ca-roadmap-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.5;margin-bottom:12px}
+
+/* SECURITY PAGE */
+.ca-security-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:32px}
+.ca-security-card{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:28px 24px}
+.ca-security-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:var(--cloud);margin-bottom:8px}
+.ca-security-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.6;margin-bottom:0}
+@media(max-width:768px){.ca-security-grid{grid-template-columns:1fr}}
+
+/* FAQ */
+.ca-faq{max-width:760px;margin:0 auto;padding:0 24px 48px}
+.ca-faq h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.75rem;font-weight:800;color:var(--cloud);text-align:center;margin-bottom:24px}
+.ca-faq details{border:1px solid var(--border);border-radius:10px;margin-bottom:10px;background:var(--surf);transition:border-color .2s}
+.ca-faq details[open]{border-color:var(--teal)}
+.ca-faq summary{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:600;color:var(--cloud);padding:16px 20px;cursor:pointer;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ca-faq summary::-webkit-details-marker{display:none}
+.ca-faq summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:1.2rem;color:var(--teal);flex-shrink:0}
+.ca-faq details[open] summary::after{content:'\2212'}
+.ca-faq .faq-answer{font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);padding:0 20px 20px;line-height:1.65}
+.ca-faq .faq-answer a{color:var(--teal)}
+
+/* COMPARISON TABLE */
+.ca-comparison{max-width:960px;margin:0 auto;padding:0 24px 48px}
+.ca-comparison h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cloud);text-align:center;margin-bottom:24px}
+.ca-comparison-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px}
+.ca-comparison table{width:100%;border-collapse:collapse;min-width:500px}
+.ca-comparison thead th{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--cloud);background:var(--surf);padding:14px;text-align:center;border-bottom:1px solid var(--border)}
+.ca-comparison thead th:first-child{text-align:left}
+.ca-comparison tbody td{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);padding:12px 14px;border-bottom:1px solid var(--border);text-align:center}
+.ca-comparison tbody td:first-child{text-align:left;color:var(--cloud);font-weight:500}
+.ca-comparison tbody tr:last-child td{border-bottom:none}
+.ca-comparison tbody tr:hover td{background:var(--surf2)}
+.ca-check{color:var(--teal);font-weight:700}
+.ca-cross{color:var(--mist)}

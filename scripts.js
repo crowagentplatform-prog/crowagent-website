@@ -201,3 +201,127 @@ document.addEventListener('click', function(e) {
     menu.classList.remove('open');
   }
 });
+
+// ── CSRD INLINE FORM (homepage) ──
+function submitCSRDInline() {
+  var email = document.getElementById('csrd-email-inline');
+  var err = document.getElementById('csrd-email-err');
+  if (!email) return;
+  var val = email.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+    if (err) err.style.display = 'block';
+    return;
+  }
+  if (err) err.style.display = 'none';
+  var employees = document.getElementById('csrd-employees-inline');
+  var turnover = document.getElementById('csrd-turnover-inline');
+  var btn = document.getElementById('csrd-submit-inline');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+  fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      email: val,
+      employees: employees ? employees.value : '',
+      turnover: turnover ? turnover.value : '',
+      source: 'homepage_inline'
+    })
+  }).catch(function(){}).finally(function(){
+    var form = document.getElementById('csrd-inline-form');
+    var success = document.getElementById('csrd-inline-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+  });
+}
+
+// ── PHASE 2 NOTIFY-ME ──
+function caToggleNotify(btn) {
+  var wrap = btn.closest('.ca-notify-wrap');
+  btn.style.display = 'none';
+  wrap.querySelector('.ca-notify-form').style.display = 'flex';
+  wrap.querySelector('.ca-notify-input').focus();
+}
+async function caSubmitNotify(btn) {
+  var wrap = btn.closest('.ca-notify-wrap');
+  var input = wrap.querySelector('.ca-notify-input');
+  var email = input.value.trim();
+  var product = wrap.dataset.product || 'unknown';
+  var errEl = wrap.querySelector('.ca-notify-error');
+  var successEl = wrap.querySelector('.ca-notify-success');
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (errEl) errEl.style.display = 'block';
+    return;
+  }
+  if (errEl) errEl.style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    await fetch('https://crowagent-platform-production.up.railway.app/api/v1/waitlist/notify', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ product: product, email: email })
+    });
+  } catch(e) {}
+  wrap.querySelector('.ca-notify-form').style.display = 'none';
+  if (successEl) successEl.style.display = 'block';
+}
+
+// ── CSRD FULL WIZARD (csrd.html) ──
+var csrdState = { employees: null, turnover: null, sector: null, step: 1 };
+function csrdSelect(field, value) {
+  csrdState[field] = value;
+  document.querySelectorAll('[data-csrd-step="' + csrdState.step + '"] .csrd-option').forEach(function(el) {
+    el.classList.remove('selected');
+  });
+  if (event && event.currentTarget) event.currentTarget.classList.add('selected');
+  var nextStep = csrdState.step + 1;
+  setTimeout(function() { csrdShowStep(nextStep); }, 280);
+  csrdState.step = nextStep;
+}
+function csrdShowStep(n) {
+  document.querySelectorAll('.csrd-step').forEach(function(el) {
+    el.style.display = 'none';
+    el.classList.remove('active');
+  });
+  var target = document.querySelector('[data-csrd-step="' + n + '"]');
+  if (target) { target.style.display = 'block'; target.classList.add('active'); }
+}
+function csrdGetResult() {
+  var mandatory = csrdState.employees === 'over_1000' && csrdState.turnover === 'over_450m';
+  var voluntary = csrdState.employees === 'over_1000' || csrdState.turnover === 'over_450m';
+  return mandatory ? 'mandatory' : voluntary ? 'voluntary' : 'not_required';
+}
+async function csrdSubmit() {
+  var name = document.getElementById('csrd-name');
+  var email = document.getElementById('csrd-email');
+  if (!name || !email) return;
+  var nameErr = document.getElementById('csrd-name-err');
+  var emailErr = document.getElementById('csrd-email-err');
+  var valid = true;
+  if (!name.value.trim()) {
+    if (nameErr) nameErr.style.display = 'block'; valid = false;
+  } else { if (nameErr) nameErr.style.display = 'none'; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+    if (emailErr) emailErr.style.display = 'block'; valid = false;
+  } else { if (emailErr) emailErr.style.display = 'none'; }
+  if (!valid) return;
+  var btn = document.getElementById('csrd-submit');
+  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+  try {
+    await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        name: name.value.trim(),
+        email: email.value.trim(),
+        employees: csrdState.employees,
+        turnover: csrdState.turnover,
+        sector: csrdState.sector,
+        result: csrdGetResult()
+      })
+    });
+  } catch(e) {}
+  var formSec = document.getElementById('csrd-form-section');
+  var successSec = document.getElementById('csrd-success');
+  if (formSec) formSec.style.display = 'none';
+  if (successSec) successSec.style.display = 'block';
+}

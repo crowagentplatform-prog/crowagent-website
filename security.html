@@ -2,16 +2,22 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CSRD Applicability Checker — Free Tool | CrowAgent</title>
-<meta name="description" content="Check whether the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation under the Omnibus I thresholds. Free, instant, regulation-cited result.">
-<meta property="og:title" content="CSRD Applicability Checker — Free Tool | CrowAgent">
-<meta property="og:description" content="Check your CSRD applicability under Omnibus I thresholds in under 2 minutes. No account required.">
-<meta property="og:url" content="https://crowagent.ai/csrd">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Security — CrowAgent · Enterprise-Grade Security</title>
+<meta name="description" content="Enterprise-grade security at CrowAgent. AES-256 encryption, GDPR compliant, ISO 27001 aligned controls, 99.9% uptime SLA, and responsible AI practices.">
+<meta name="robots" content="index,follow">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="CrowAgent">
+<meta property="og:title" content="Security — CrowAgent · Enterprise-Grade Security">
+<meta property="og:description" content="Enterprise-grade security at CrowAgent. AES-256 encryption, GDPR compliant, ISO 27001 aligned, 99.9% uptime SLA.">
+<meta property="og:image" content="https://crowagent.ai/brand/crowagent_wordmark_dark_1120x280.png">
+<meta property="og:url" content="https://crowagent.ai/security">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://crowagent.ai/csrd">
+<meta name="twitter:title" content="Security — CrowAgent · Enterprise-Grade Security">
+<meta name="twitter:description" content="Enterprise-grade security at CrowAgent. AES-256 encryption, GDPR compliant, ISO 27001 aligned, 99.9% uptime SLA.">
+<link rel="canonical" href="https://crowagent.ai/security">
 <link rel="icon" href="/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/brand/crowagent_app_icon_1024.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -37,12 +43,11 @@
       <a href="/#how">How it works</a>
       <a href="/#products">Products</a>
       <a href="/#sectors">Sectors</a>
-      <a href="/#pricing">Pricing</a>
-      <a href="/csrd" class="active">CSRD Checker</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/csrd">CSRD Checker</a>
       <a href="/blog">Blog</a>
     </div>
     <div class="nav-actions">
-      <span class="nav-price-hint">From £149/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login">Sign in</a>
       <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
     </div>
@@ -56,108 +61,105 @@
   <a href="/#how">How it works</a>
   <a href="/#products">Products</a>
   <a href="/#sectors">Sectors</a>
-  <a href="/#pricing">Pricing</a>
+  <a href="/pricing">Pricing</a>
   <a href="/csrd">CSRD Checker</a>
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login">Sign in</a>
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
 </div>
 
-<section class="hero" style="padding-bottom:40px">
-  <div class="hero-glow"></div>
+<!-- HERO -->
+<section class="hero" style="padding-bottom:2rem">
   <div class="wrap" style="text-align:center;position:relative;z-index:1">
-    <div class="hero-eyebrow"><span class="hw-dot"></span>Free tool · No account required</div>
-    <h1>Check your CSRD applicability</h1>
-    <p class="hero-sub">Updated for Omnibus I — Directive (EU) 2026/470. New thresholds require <strong>both</strong> &gt;1,000 employees <strong>and</strong> &gt;&#8364;450M turnover. Answer three questions for an instant, regulation-cited result.</p>
+    <div class="hero-eyebrow"><span class="hw-dot"></span>Enterprise-grade security</div>
+    <h1>Security at CrowAgent</h1>
+    <p class="hero-sub">Your compliance data deserves enterprise-grade protection. CrowAgent is built with security, privacy, and resilience at its core — so you can trust every report, every time.</p>
   </div>
 </section>
 
-<section style="padding:0 0 80px">
-  <div class="wrap" style="max-width:640px">
-    <div class="csrd-wizard">
-
-      <!-- Step indicator dots -->
-      <div style="display:flex;justify-content:center;gap:10px;margin-bottom:32px">
-        <span class="csrd-dot active" id="dot-1"></span>
-        <span class="csrd-dot" id="dot-2"></span>
-        <span class="csrd-dot" id="dot-3"></span>
-        <span class="csrd-dot" id="dot-4"></span>
-      </div>
-
-      <!-- Step 1: Employees -->
-      <div class="csrd-step" id="csrd-step-1" style="display:block">
-        <h2 style="text-align:center;margin-bottom:8px">How many employees?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Full-time equivalent headcount across the group</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('employees','<250')">&lt; 250</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','250-999')">250 – 999</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','1000+')">1,000+</button>
-        </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:24px">
-          <button class="btn-teal-sm" onclick="csrdShowStep(2)" id="csrd-next-1" disabled>Next</button>
-        </div>
-      </div>
-
-      <!-- Step 2: Turnover -->
-      <div class="csrd-step" id="csrd-step-2" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">What is your annual turnover?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Consolidated group revenue in the most recent financial year</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('turnover','<40m')">&lt; &#8364;40M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','40m-450m')">&#8364;40M – &#8364;450M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">&#8364;450M+</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(1)">Back</button>
-          <button class="btn-teal-sm" onclick="csrdShowStep(3)" id="csrd-next-2" disabled>Next</button>
-        </div>
-      </div>
-
-      <!-- Step 3: Sector -->
-      <div class="csrd-step" id="csrd-step-3" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">What sector?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Certain sectors have additional reporting obligations</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('sector','financial')">Financial services</button>
-          <button class="csrd-option" onclick="csrdSelect('sector','listed')">Listed on EU-regulated market</button>
-          <button class="csrd-option" onclick="csrdSelect('sector','other')">Other</button>
-        </div>
-        <div style="display:flex;justify-content:space-between;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(2)">Back</button>
-          <button class="btn-teal-sm" onclick="csrdShowStep(4)" id="csrd-next-3" disabled>Next</button>
-        </div>
-      </div>
-
-      <!-- Step 4: Email capture + Result -->
-      <div class="csrd-step" id="csrd-step-4" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a detailed, regulation-cited assessment</p>
-        <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
-          <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--navy);color:var(--cloud);font-size:15px">
-          <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
-        </form>
-        <div id="csrd-result" style="margin-top:24px"></div>
-        <div style="display:flex;justify-content:flex-start;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(3)">Back</button>
-        </div>
-        <p style="text-align:center;color:var(--steel);font-size:12px;margin-top:16px">Thresholds per Directive (EU) 2026/470 (Omnibus I). This tool provides indicative guidance only and does not constitute legal advice.</p>
-      </div>
-
+<!-- SECURITY CARDS -->
+<section class="wrap" style="padding-bottom:48px">
+  <div class="ca-security-grid">
+    <div class="ca-security-card">
+      <h3>AES-256 encryption</h3>
+      <p>All data encrypted at rest and in transit using AES-256 encryption. UK data residency by default — your data never leaves UK-hosted infrastructure.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>GDPR compliant</h3>
+      <p>Full data processing agreements, right to erasure, and data portability. ICO registered. Privacy-first architecture with data minimisation at every layer.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>ISO 27001 aligned</h3>
+      <p>Security controls aligned to ISO 27001 Annex A. Our information security management practices follow the ISO 27001 framework to protect your data systematically.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>99.9% uptime SLA</h3>
+      <p>Enterprise-grade infrastructure on UK cloud. Redundant architecture with automated failover ensures your compliance tools are available when you need them.</p>
     </div>
   </div>
 </section>
 
+<!-- RESPONSIBLE AI -->
+<section class="wrap" style="padding-bottom:48px">
+  <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:700;color:var(--cloud);margin-bottom:8px">Responsible AI</h2>
+  <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);line-height:1.7;max-width:680px;margin-bottom:24px">CrowAgent uses AI responsibly and transparently. Here is how we handle AI in our platform:</p>
+  <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px">
+    <li style="font-family:'Inter',sans-serif;font-size:14px;color:var(--cloud);line-height:1.6;display:flex;align-items:flex-start;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      Gemini AI is used server-side only for narrative generation — never in the browser
+    </li>
+    <li style="font-family:'Inter',sans-serif;font-size:14px;color:var(--cloud);line-height:1.6;display:flex;align-items:flex-start;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      No client-side AI processing — all inference runs on secured backend infrastructure
+    </li>
+    <li style="font-family:'Inter',sans-serif;font-size:14px;color:var(--cloud);line-height:1.6;display:flex;align-items:flex-start;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      All AI outputs are auditable and traceable to their source inputs
+    </li>
+    <li style="font-family:'Inter',sans-serif;font-size:14px;color:var(--cloud);line-height:1.6;display:flex;align-items:flex-start;gap:10px">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" style="flex-shrink:0;margin-top:2px"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      No training on customer data — your data is never used to improve AI models
+    </li>
+  </ul>
+</section>
+
+<!-- ADDITIONAL TRUST INFO -->
+<section class="wrap" style="padding-bottom:48px">
+  <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:700;color:var(--cloud);margin-bottom:8px">Infrastructure &amp; trust</h2>
+  <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);line-height:1.7;max-width:680px;margin-bottom:24px">Multiple layers of protection safeguard your data and ensure platform reliability.</p>
+  <div class="ca-security-grid">
+    <div class="ca-security-card">
+      <h3>Cloudflare protection</h3>
+      <p>DDoS protection, Bot Fight Mode, and SSL Full Strict mode on all endpoints. Every request is inspected and filtered before reaching our servers.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>Row Level Security</h3>
+      <p>Supabase Row Level Security enforced on all database tables. Every query is scoped to the authenticated user — no cross-tenant data leakage is possible.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>Regular security assessments</h3>
+      <p>Ongoing security assessments and vulnerability monitoring across our infrastructure. Dependencies are audited and patched on a continuous basis.</p>
+    </div>
+    <div class="ca-security-card">
+      <h3>Responsible disclosure</h3>
+      <p>Found a vulnerability? We welcome responsible disclosure. Contact us at <a href="mailto:security@crowagent.ai" style="color:var(--teal)">security@crowagent.ai</a> and we will respond within 48 hours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
 <section class="cta-band">
   <div class="wrap" style="text-align:center">
     <h2>Start your 14-day free trial</h2>
-    <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Full compliance reports, retrofit scenarios, and audit-ready PDFs — no credit card required.</p>
+    <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Enterprise-grade security included on every plan. No credit card required.</p>
     <div class="hero-btns" style="justify-content:center">
       <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
-      <a class="btn-hero-out" href="/pricing">View pricing</a>
+      <a class="btn-hero-out" href="mailto:hello@crowagent.ai?subject=Enterprise%20Security%20Enquiry">Enterprise enquiry</a>
     </div>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="ca-footer">
   <div class="wrap">
     <div class="ca-footer-grid">
@@ -228,5 +230,6 @@
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
 <script src="scripts.js"></script>
+<script src="chatbot.js" defer></script>
 </body>
 </html>
