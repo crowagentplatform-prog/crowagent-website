@@ -1,3 +1,19 @@
 {
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/roadmap", "destination": "/roadmap.html" },
+    { "source": "/security", "destination": "/security.html" },
+    { "source": "/privacy", "destination": "/privacy.html" },
+    { "source": "/terms", "destination": "/terms.html" },
+    { "source": "/cookies", "destination": "/cookies.html" },
+    { "source": "/partners", "destination": "/partners.html" },
+    { "source": "/pricing", "destination": "/pricing.html" },
+    { "source": "/csrd", "destination": "/csrd.html" },
+    { "source": "/legal", "destination": "/legal.html" },
+    { "source": "/blog", "destination": "/blog/index.html" },
+    { "source": "/products", "destination": "/products/index.html" },
+    { "source": "/products/crowagent-core", "destination": "/products/crowagent-core.html" },
+    { "source": "/products/crowmark", "destination": "/products/crowmark.html" }
+  ]
 }

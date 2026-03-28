@@ -479,3 +479,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
   margin: 80px auto 0;
   padding: 2rem 1.5rem;
 }
+
+/* Legal content width constraint */
+.legal-content {
+  max-width: 800px;
+  margin: 100px auto 4rem;
+  padding: 0 1.5rem;
+}
