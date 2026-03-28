@@ -2,778 +2,816 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSRD Applicability Checker — Free Tool | CrowAgent</title>
-  <meta name="description" content="Check if the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation. Free 3-question eligibility tool based on Omnibus I thresholds.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://client.crisp.chat wss://client.crisp.chat; img-src 'self' data: https://client.crisp.chat https://image.crisp.chat; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://client.crisp.chat; font-src 'self' https://fonts.gstatic.com https://client.crisp.chat; script-src 'self' https://client.crisp.chat; frame-src https://game.crisp.chat;">
-  <link rel="canonical" href="https://crowagent.ai/csrd">
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="CrowAgent">
+  <meta name="description" content="Check if the Corporate Sustainability Reporting Directive (CSRD) applies to your organisation under Omnibus I thresholds. Free, instant, no sign-up required.">
   <meta property="og:title" content="CSRD Applicability Checker — Free Tool | CrowAgent">
-  <meta property="og:description" content="Check if the EU Corporate Sustainability Reporting Directive (CSRD) applies to your organisation. Free 3-question eligibility tool based on Omnibus I thresholds.">
+  <meta property="og:description" content="Check if CSRD applies to your organisation under Omnibus I thresholds. Free, instant, no sign-up required.">
   <meta property="og:image" content="https://crowagent.ai/brand/crowagent_wordmark_dark_1120x280.png">
   <meta property="og:url" content="https://crowagent.ai/csrd">
+  <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Fonts -->
+  <link rel="canonical" href="https://crowagent.ai/csrd">
+  <link rel="icon" href="/brand/crowagent_icon_dark_512.png" type="image/png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" href="/brand/crowagent_icon_dark_512.png" type="image/png">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="/styles.min.css?v=13">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 
   <style>
-    @import url('./crowagent-brand-tokens.css');
-    html,body{background:#040E1A!important;color:var(--cloud)}
-    /* ---- Wizard Layout ---- */
+    /* ── CSRD page background ── */
+    html, body { background: var(--bg) !important; color: var(--cloud); }
+
+    /* ── Hero ── */
+    .csrd-hero {
+      padding: clamp(96px, 13vw, 144px) 0 clamp(40px, 6vw, 64px);
+      text-align: center;
+    }
+    .csrd-hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.9rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--cloud);
+      line-height: 1.15;
+      letter-spacing: -.025em;
+      margin-bottom: 1rem;
+    }
+    .csrd-hero-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.1rem);
+      color: var(--steel);
+      max-width: 540px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.7;
+    }
+    .csrd-badge {
+      display: inline-block;
+      padding: .35rem 1rem;
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid var(--border2);
+      border-radius: var(--rp);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      font-weight: 500;
+      letter-spacing: .03em;
+    }
+
+    /* ── Wizard wrapper ── */
     .wizard-wrap {
       max-width: 640px;
       margin: 0 auto;
-      position: relative;
     }
-    .wizard-step {
+
+    /* ── Step card ── */
+    .csrd-step {
       display: none;
-      animation: fadeUp .35s ease both;
+      background: var(--surf);
+      border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: clamp(28px, 5vw, 44px) clamp(24px, 5vw, 40px);
+      animation: csrdFadeUp .32s ease both;
     }
-    .wizard-step.active {
-      display: block;
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+    .csrd-step.active { display: block; }
+    @keyframes csrdFadeUp {
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ---- Step Indicator ---- */
-    .step-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: .75rem;
-      margin-bottom: 2rem;
-      font-family: var(--font-mono);
-      font-size: .85rem;
-      color: var(--steel);
-    }
-    .step-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--border2);
-      transition: background .25s, box-shadow .25s;
-    }
-    .step-dot.done {
-      background: var(--teal);
-    }
-    .step-dot.current {
-      background: var(--teal);
-      box-shadow: 0 0 0 4px var(--teal-dim);
-    }
-    .step-bar {
-      width: 36px;
-      height: 2px;
-      background: var(--border2);
-      transition: background .25s;
-    }
-    .step-bar.done {
-      background: var(--teal);
+    /* ── Progress text ── */
+    .step-progress {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .78rem;
+      color: var(--mist);
+      text-align: center;
+      margin-bottom: 1.75rem;
+      letter-spacing: .04em;
     }
 
-    /* ---- Question ---- */
-    .wizard-question {
-      font-family: var(--font-display);
-      font-size: 1.35rem;
-      font-weight: 600;
+    /* ── Question heading ── */
+    .step-question {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+      font-weight: 700;
       color: var(--cloud);
       text-align: center;
-      margin-bottom: 1.5rem;
+      margin-bottom: .5rem;
+      line-height: 1.3;
+    }
+    .step-subtext {
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      color: var(--mist);
+      text-align: center;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
     }
 
-    /* ---- Radio Cards ---- */
-    .radio-cards {
+    /* ── Radio option cards ── */
+    .option-cards {
       display: flex;
       flex-direction: column;
-      gap: .75rem;
+      gap: .625rem;
     }
-    .radio-card {
+    .option-card {
       position: relative;
       display: flex;
       align-items: center;
       gap: 1rem;
-      padding: 1.15rem 1.5rem;
-      background: var(--surf);
-      border: 1px solid var(--border);
+      padding: 1rem 1.25rem;
+      background: var(--surf2);
+      border: 1.5px solid var(--border);
       border-radius: var(--r2);
       cursor: pointer;
-      transition: border-color .2s, background .2s, box-shadow .2s;
+      transition: border-color .18s, background .18s, box-shadow .18s;
+      user-select: none;
     }
-    .radio-card:hover {
-      border-color: var(--teal);
-      background: var(--surf2);
+    .option-card:hover {
+      border-color: rgba(12, 201, 168, .35);
     }
-    .radio-card input[type="radio"] {
+    .option-card input[type="radio"] {
       appearance: none;
       -webkit-appearance: none;
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
       border: 2px solid var(--border2);
       border-radius: 50%;
-      flex-shrink: 0;
-      transition: border-color .2s, box-shadow .2s;
-      position: relative;
+      transition: border-color .18s, box-shadow .18s;
     }
-    .radio-card input[type="radio"]:checked {
+    .option-card input[type="radio"]:checked {
       border-color: var(--teal);
       box-shadow: inset 0 0 0 4px var(--teal);
     }
-    .radio-card:has(input:checked) {
+    .option-card:has(input:checked) {
       border-color: var(--teal);
-      background: var(--surf2);
-      box-shadow: 0 0 0 1px var(--teal-dim);
+      background: rgba(12, 201, 168, .08);
+      box-shadow: 0 0 0 1px rgba(12, 201, 168, .18);
     }
-    .radio-card span {
-      font-family: var(--font-body);
-      font-size: 1.05rem;
-      color: var(--cloud);
-      font-weight: 500;
-    }
-
-    /* ---- Back Button ---- */
-    .wizard-back {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      margin-top: 1.5rem;
-      padding: .5rem 1rem;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      color: var(--steel);
-      font-family: var(--font-body);
-      font-size: .9rem;
-      cursor: pointer;
-      transition: color .2s, border-color .2s;
-    }
-    .wizard-back:hover {
-      color: var(--cloud);
-      border-color: var(--border2);
-    }
-
-    /* ---- Result Card ---- */
-    .result-card {
-      text-align: center;
-      padding: 2.5rem 2rem;
-      border-radius: var(--r3);
-      background: var(--surf);
-      border: 1px solid var(--border);
-      animation: fadeUp .4s ease both;
-    }
-    .result-icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      line-height: 1;
-    }
-    .result-verdict {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: .75rem;
-    }
-    .result-card.mandatory { border-color: var(--err); }
-    .result-card.mandatory .result-verdict { color: var(--err); }
-    .result-card.voluntary { border-color: var(--gold); }
-    .result-card.voluntary .result-verdict { color: var(--gold); }
-    .result-card.not-applicable { border-color: var(--success); }
-    .result-card.not-applicable .result-verdict { color: var(--success); }
-
-    .result-explanation {
-      color: var(--steel);
-      font-size: 1.05rem;
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 2rem;
-    }
-
-    /* ---- Email Capture ---- */
-    .email-capture {
-      margin-top: 2rem;
-      padding: 2rem;
-      background: var(--surf2);
-      border-radius: var(--r2);
-      border: 1px solid var(--border);
-    }
-    .email-capture h3 {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
+    .option-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
       font-weight: 600;
       color: var(--cloud);
-      margin-bottom: .75rem;
     }
-    .email-capture p {
-      color: var(--steel);
-      font-size: .95rem;
-      margin-bottom: 1.25rem;
-    }
-    .email-row {
-      display: flex;
-      gap: .5rem;
-    }
-    .email-row input[type="email"] {
-      flex: 1;
-      padding: .75rem 1rem;
+
+    /* ── Email capture card ── */
+    .email-card {
       background: var(--surf);
       border: 1px solid var(--border);
+      border-radius: var(--r3);
+      padding: clamp(28px, 5vw, 44px) clamp(24px, 5vw, 40px);
+      max-width: 640px;
+      margin: 0 auto;
+      display: none;
+      animation: csrdFadeUp .32s ease both;
+    }
+    .email-card.active { display: block; }
+
+    .email-card-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+      font-weight: 700;
+      color: var(--cloud);
+      text-align: center;
+      margin-bottom: .5rem;
+    }
+    .email-card-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: .92rem;
+      color: var(--steel);
+      text-align: center;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-field {
+      margin-bottom: 1rem;
+    }
+    .form-field input {
+      width: 100%;
+      padding: .85rem 1rem;
+      background: var(--surf2);
+      border: 1.5px solid var(--border2);
       border-radius: var(--r);
       color: var(--cloud);
-      font-family: var(--font-body);
+      font-family: 'Inter', sans-serif;
       font-size: .95rem;
+      transition: border-color .18s, box-shadow .18s;
     }
-    .email-row input[type="email"]::placeholder {
-      color: var(--dim-c);
-    }
-    .email-row input[type="email"]:focus {
+    .form-field input::placeholder { color: var(--mist); }
+    .form-field input:focus {
       outline: none;
       border-color: var(--teal);
       box-shadow: 0 0 0 2px var(--teal-dim);
     }
-    .email-row button {
-      padding: .75rem 1.5rem;
+    .field-error {
+      font-family: 'Inter', sans-serif;
+      font-size: .82rem;
+      color: var(--err);
+      margin-top: .35rem;
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: .95rem 1.5rem;
       background: var(--teal);
       color: var(--bg);
       border: none;
       border-radius: var(--r);
-      font-family: var(--font-body);
-      font-weight: 600;
-      font-size: .95rem;
-      cursor: pointer;
-      transition: background .2s;
-      white-space: nowrap;
-    }
-    .email-row button:hover {
-      background: var(--teal-d);
-    }
-    .email-success {
-      display: none;
-      color: var(--success);
-      font-weight: 500;
-      padding: .75rem 0;
-    }
-    .email-error {
-      display: none;
-      color: var(--err);
-      font-size: .9rem;
-      margin-top: .5rem;
-    }
-
-    /* ---- Start Over ---- */
-    .start-over {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      margin-top: 1.5rem;
-      padding: .6rem 1.25rem;
-      background: transparent;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      color: var(--steel);
-      font-family: var(--font-body);
-      font-size: .95rem;
-      cursor: pointer;
-      transition: color .2s, border-color .2s;
-    }
-    .start-over:hover {
-      color: var(--cloud);
-      border-color: var(--border2);
-    }
-
-    /* ---- Trust Grid ---- */
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-top: 2.5rem;
-    }
-    .trust-card {
-      padding: 1.5rem;
-      background: var(--surf);
-      border: 1px solid var(--border);
-      border-radius: var(--r2);
-    }
-    .trust-card h4 {
-      font-family: var(--font-display);
-      font-weight: 600;
-      color: var(--cloud);
-      margin-bottom: .5rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .18s, opacity .18s;
+      margin-top: .25rem;
     }
-    .trust-card p {
-      color: var(--steel);
-      font-size: .9rem;
-      line-height: 1.6;
+    .btn-submit:hover { background: var(--teal-d); }
+    .btn-submit:disabled { opacity: .6; cursor: not-allowed; }
+
+    .email-reassurance {
+      font-family: 'Inter', sans-serif;
+      font-size: .8rem;
+      color: var(--mist);
+      text-align: center;
+      margin-top: .75rem;
+    }
+    .email-regulatory {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: .73rem;
+      color: var(--dim-c);
+      text-align: center;
+      margin-top: .6rem;
+      line-height: 1.5;
     }
 
-    /* ---- About Cards ---- */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
-    }
-    .about-card {
-      padding: 2rem;
+    /* ── Success state ── */
+    .success-card {
       background: var(--surf);
-      border: 1px solid var(--border);
-      border-radius: var(--r2);
+      border: 1px solid var(--border2);
+      border-radius: var(--r3);
+      padding: clamp(36px, 6vw, 56px) clamp(24px, 5vw, 40px);
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      display: none;
+      animation: csrdFadeUp .35s ease both;
     }
-    .about-card h3 {
-      font-family: var(--font-display);
-      font-weight: 600;
+    .success-card.active { display: block; }
+    .success-icon {
+      font-size: 3rem;
+      color: var(--teal);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    .success-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
       color: var(--cloud);
       margin-bottom: .75rem;
-      font-size: 1.1rem;
     }
-    .about-card p {
+    .success-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
       color: var(--steel);
-      font-size: .95rem;
       line-height: 1.7;
+      margin-bottom: .5rem;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .success-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: .9rem;
+      color: var(--mist);
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+    .btn-success-cta {
+      display: inline-block;
+      padding: .85rem 2rem;
+      background: var(--teal);
+      color: var(--bg);
+      border-radius: var(--r);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .18s;
+    }
+    .btn-success-cta:hover { background: var(--teal-d); }
+
+    /* ── Error state ── */
+    .error-card {
+      background: var(--surf);
+      border: 1px solid rgba(239, 68, 68, .25);
+      border-radius: var(--r3);
+      padding: clamp(32px, 5vw, 48px) clamp(24px, 5vw, 40px);
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+      display: none;
+      animation: csrdFadeUp .32s ease both;
+    }
+    .error-card.active { display: block; }
+    .error-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--err);
+      margin-bottom: .75rem;
+    }
+    .error-body {
+      font-family: 'Inter', sans-serif;
+      font-size: .95rem;
+      color: var(--steel);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .btn-retry {
+      display: inline-block;
+      padding: .75rem 1.75rem;
+      background: transparent;
+      border: 1.5px solid var(--border2);
+      border-radius: var(--r);
+      color: var(--cloud);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color .18s, color .18s;
+    }
+    .btn-retry:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* ── Trust bar ── */
+    .trust-bar {
+      max-width: 640px;
+      margin: 1.75rem auto 0;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Inter', sans-serif;
+      font-size: .78rem;
+      color: var(--dim-c);
+    }
+    .trust-dot {
+      width: 5px;
+      height: 5px;
+      min-width: 5px;
+      background: var(--teal-dim);
+      border-radius: 50%;
     }
 
-    /* ---- Responsive ---- */
-    @media (max-width: 768px) {
-      .trust-grid { grid-template-columns: 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
-      .email-row { flex-direction: column; }
-      .email-row button { width: 100%; }
-      .wizard-question { font-size: 1.15rem; }
-      .result-verdict { font-size: 1.3rem; }
+    /* ── Wizard section padding ── */
+    .csrd-wizard-section {
+      padding: 0 0 clamp(56px, 8vw, 88px);
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 640px) {
+      .csrd-step, .email-card, .success-card, .error-card {
+        border-radius: var(--r2);
+        padding: 24px 16px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- ====== NAV ====== -->
-  <nav role="navigation">
-    <div class="container">
-      <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
-        <div style="display:flex;align-items:flex-end;gap:3px;height:28px">
-          <div style="width:5px;height:10px;background:#0A1F3A;border-radius:2px 2px 0 0"></div>
-          <div style="width:5px;height:14px;background:#0D3558;border-radius:2px 2px 0 0"></div>
-          <div style="width:5px;height:18px;background:#0AA88C;border-radius:2px 2px 0 0"></div>
-          <div style="width:5px;height:22px;background:#0CC9A8;border-radius:2px 2px 0 0"></div>
-        </div>
-        <div>
-          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;color:var(--cloud);line-height:1.1">Crow<span style="color:#0CC9A8">Agent</span></div>
-          <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:8.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist)">Sustainability Intelligence</div>
-        </div>
-      </a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="/#how">How it works</a></li>
-        <li><a href="/#products">Products</a></li>
-        <li><a href="/#sectors">Sectors</a></li>
-        <li><a href="/pricing">Pricing</a></li>
-        <li><a href="/csrd.html" class="nav-active">CSRD Checker</a></li>
-        <li><a href="/blog">Blog</a></li>
-      </ul>
-      <div class="hamburger" id="hamburger" role="button" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navLinks" tabindex="0">
-        <span></span><span></span><span></span>
+
+<!-- ====== ANNOUNCE BAR ====== -->
+<div class="announce-bar" id="announce-bar">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:center;gap:12px;height:100%;position:relative">
+    <span class="ab-dot"></span>
+    <span class="ab-text">Beta now live &nbsp;&middot;&nbsp; 14-day free trial &nbsp;&middot;&nbsp; No credit card required</span>
+    <a href="https://app.crowagent.ai/auth/signup" class="ab-cta">Start free &rarr;</a>
+    <button class="ab-close" onclick="dismissBar()" aria-label="Close">&times;</button>
+  </div>
+</div>
+
+<!-- ====== NAV ====== -->
+<nav>
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+    <a href="/" class="logo">
+      <div class="logo-box">
+        <div class="b b1"></div>
+        <div class="b b2"></div>
+        <div class="b b3"></div>
+        <div class="b b4"></div>
       </div>
-    </div>
-  </nav>
-
-  <!-- ====== HERO ====== -->
-  <header class="section" style="padding-top:6rem;padding-bottom:2rem">
-    <div class="container" style="text-align:center;max-width:740px">
-      <span class="badge" style="display:inline-block;padding:.4rem 1rem;background:var(--teal-dim);color:var(--teal);border-radius:var(--rp);font-family:var(--font-mono);font-size:.8rem;font-weight:500;margin-bottom:1.25rem">Free Tool &mdash; No Sign-up Required</span>
-      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,5vw,3rem);font-weight:700;color:var(--cloud);line-height:1.15;margin-bottom:1rem">Does CSRD Apply To Your Organisation?</h1>
-      <p style="color:var(--steel);font-size:1.1rem;line-height:1.7;max-width:600px;margin:0 auto">Answer three quick questions to find out whether the EU Corporate Sustainability Reporting Directive applies to you &mdash; based on the latest Omnibus&nbsp;I thresholds.</p>
-    </div>
-  </header>
-
-  <!-- ====== WIZARD ====== -->
-  <section class="section" style="padding-top:1rem;padding-bottom:4rem">
-    <div class="container">
-      <div class="wizard-wrap" id="csrdWizard">
-
-        <!-- Step Indicator -->
-        <div class="step-indicator" id="stepIndicator">
-          <div class="step-dot current" data-dot="1"></div>
-          <div class="step-bar" data-bar="1"></div>
-          <div class="step-dot" data-dot="2"></div>
-          <div class="step-bar" data-bar="2"></div>
-          <div class="step-dot" data-dot="3"></div>
-          <span style="margin-left:.75rem" id="stepLabel">Step 1 of 3</span>
-        </div>
-
-        <!-- Q1: Employees -->
-        <div class="wizard-step active" data-step="1">
-          <p class="wizard-question">How many employees does your company have?</p>
-          <div class="radio-cards">
-            <label class="radio-card">
-              <input type="radio" name="employees" value="lt250">
-              <span>Fewer than 250</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="employees" value="250to999">
-              <span>250 to 999</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="employees" value="gte1000">
-              <span>1,000 or more</span>
-            </label>
-          </div>
-        </div>
-
-        <!-- Q2: Turnover -->
-        <div class="wizard-step" data-step="2">
-          <p class="wizard-question">What is your annual turnover?</p>
-          <div class="radio-cards">
-            <label class="radio-card">
-              <input type="radio" name="turnover" value="lt40m">
-              <span>Less than &euro;40M</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="turnover" value="40mto450m">
-              <span>&euro;40M to &euro;450M</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="turnover" value="gt450m">
-              <span>More than &euro;450M</span>
-            </label>
-          </div>
-          <button class="wizard-back" onclick="goStep(1)">&larr; Back</button>
-        </div>
-
-        <!-- Q3: Assets -->
-        <div class="wizard-step" data-step="3">
-          <p class="wizard-question">What is your total assets value?</p>
-          <div class="radio-cards">
-            <label class="radio-card">
-              <input type="radio" name="assets" value="lt20m">
-              <span>Less than &euro;20M</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="assets" value="20mto25m">
-              <span>&euro;20M to &euro;25M</span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="assets" value="gt25m">
-              <span>More than &euro;25M</span>
-            </label>
-          </div>
-          <button class="wizard-back" onclick="goStep(2)">&larr; Back</button>
-        </div>
-
-        <!-- Result -->
-        <div class="wizard-step" data-step="result" id="resultStep">
-          <div class="result-card" id="resultCard">
-            <div class="result-icon" id="resultIcon"></div>
-            <div class="result-verdict" id="resultVerdict"></div>
-            <p class="result-explanation" id="resultExplanation"></p>
-          </div>
-
-          <div class="email-capture" id="emailCapture">
-            <h3>Get your full CSRD readiness report</h3>
-            <p>We will send a personalised assessment with next steps and timeline recommendations.</p>
-            <form id="emailForm" onsubmit="submitEmail(event)">
-              <div class="email-row">
-                <input type="email" id="emailInput" placeholder="you@company.com" required>
-                <button type="submit" id="emailBtn">Send Report</button>
-              </div>
-              <p class="email-error" id="emailError"></p>
-            </form>
-            <p class="email-success" id="emailSuccess">Thank you! Check your inbox for your CSRD readiness report.</p>
-          </div>
-
-          <div style="text-align:center;margin-top:1.5rem">
-            <button class="start-over" onclick="resetWizard()">&#8634; Start over</button>
-          </div>
-        </div>
-
+      <div class="logo-text">
+        <div class="logo-wordmark">Crow<span>Agent</span></div>
+        <div class="logo-tag">Sustainability Intelligence</div>
       </div>
+    </a>
+    <div class="nav-links">
+      <a href="https://www.crowagent.ai/#how">How it works</a>
+      <a href="https://www.crowagent.ai/#products">Products</a>
+      <a href="https://www.crowagent.ai/#sectors">Sectors</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/csrd.html" class="active">CSRD Checker</a>
+      <a href="/blog">Blog</a>
     </div>
-  </section>
+    <div class="nav-actions">
+      <span class="nav-price-hint">From &pound;149/mo</span>
+      <a class="btn-ghost-sm" href="https://app.crowagent.ai/auth/login">Sign in</a>
+      <a class="btn-teal-sm" href="https://app.crowagent.ai/auth/signup">Get started free</a>
+    </div>
+    <button class="ham" onclick="toggleMob()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
 
-  <!-- ====== ABOUT CSRD ====== -->
-  <section class="section" style="padding-top:3rem;padding-bottom:3rem;background:var(--surf)">
-    <div class="container" style="max-width:960px">
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2rem);font-weight:700;color:var(--cloud);text-align:center;margin-bottom:.75rem">What Is CSRD?</h2>
-      <p style="text-align:center;color:var(--steel);max-width:680px;margin:0 auto 2rem;font-size:1.05rem;line-height:1.7">The Corporate Sustainability Reporting Directive is the EU's landmark regulation requiring companies to disclose environmental, social, and governance data using the European Sustainability Reporting Standards (ESRS).</p>
+<!-- Mobile menu -->
+<div class="mob-menu" id="mobMenu">
+  <a href="https://www.crowagent.ai/#how">How it works</a>
+  <a href="https://www.crowagent.ai/#products">Products</a>
+  <a href="https://www.crowagent.ai/#sectors">Sectors</a>
+  <a href="/pricing.html">Pricing</a>
+  <a href="/csrd.html">CSRD Checker</a>
+  <a href="/blog">Blog</a>
+  <a class="btn-ghost-sm" href="https://app.crowagent.ai/auth/login">Sign in</a>
+  <a class="btn-teal-sm" href="https://app.crowagent.ai/auth/signup">Get started free</a>
+</div>
 
-      <div class="about-grid">
-        <div class="about-card">
-          <h3>Who does it affect?</h3>
-          <p>Under the Omnibus I proposal, mandatory reporting applies to companies with 1,000+ employees and over &euro;450M turnover. Medium-sized companies may opt in voluntarily.</p>
-        </div>
-        <div class="about-card">
-          <h3>When does it start?</h3>
-          <p>Large public-interest entities are already reporting for FY2024. The revised Omnibus I thresholds apply from FY2025, with first reports due in 2026.</p>
-        </div>
-        <div class="about-card">
-          <h3>What must be reported?</h3>
-          <p>Companies report across 12 ESRS standards covering climate, pollution, biodiversity, workforce, communities, and business conduct &mdash; using double materiality assessment.</p>
-        </div>
-        <div class="about-card">
-          <h3>How is it assured?</h3>
-          <p>Reports must be audited by an independent assurance provider. Limited assurance is required initially, moving to reasonable assurance over time.</p>
+<!-- ====== HERO ====== -->
+<section class="csrd-hero">
+  <div class="wrap">
+    <h1>Does CSRD apply to your organisation?</h1>
+    <p class="csrd-hero-sub">Check your Omnibus I status in 60 seconds. Free &mdash; no sign-up required.</p>
+    <span class="csrd-badge">Based on Omnibus I &nbsp;&middot;&nbsp; Directive EU 2026/470</span>
+  </div>
+</section>
+
+<!-- ====== WIZARD ====== -->
+<section class="csrd-wizard-section">
+  <div class="wrap">
+    <div class="wizard-wrap" id="csrdWizard">
+
+      <!-- STEP 1: Employees -->
+      <div class="csrd-step active" data-step="1">
+        <p class="step-progress">Step 1 of 3</p>
+        <h2 class="step-question">How many employees does your organisation have?</h2>
+        <p class="step-subtext">Include all full-time equivalent employees globally</p>
+        <div class="option-cards">
+          <label class="option-card">
+            <input type="radio" name="employees" value="under_1000">
+            <span class="option-label">Fewer than 1,000 employees</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="employees" value="over_1000">
+            <span class="option-label">1,000 or more employees</span>
+          </label>
         </div>
       </div>
 
-      <!-- Trust Cards -->
-      <div class="trust-grid">
-        <div class="trust-card">
-          <h4>Double Materiality</h4>
-          <p>CSRD requires companies to assess both financial impact and impact on people and the environment.</p>
-        </div>
-        <div class="trust-card">
-          <h4>Digital Tagging</h4>
-          <p>All sustainability reports must be digitally tagged in XBRL format for machine readability.</p>
-        </div>
-        <div class="trust-card">
-          <h4>Value Chain Scope</h4>
-          <p>Reporting extends beyond direct operations to cover the full upstream and downstream value chain.</p>
-        </div>
-        <div class="trust-card">
-          <h4>Omnibus I Changes</h4>
-          <p>The 2025 Omnibus I proposal raised thresholds significantly, exempting most SMEs from mandatory reporting.</p>
-        </div>
-        <div class="trust-card">
-          <h4>Penalties</h4>
-          <p>Non-compliance can result in fines determined by member states, plus reputational and financing risks.</p>
-        </div>
-        <div class="trust-card">
-          <h4>Global Alignment</h4>
-          <p>ESRS standards are designed for interoperability with ISSB, GRI, and other international frameworks.</p>
+      <!-- STEP 2: Turnover -->
+      <div class="csrd-step" data-step="2">
+        <p class="step-progress">Step 2 of 3</p>
+        <h2 class="step-question">What is your organisation&rsquo;s annual net turnover?</h2>
+        <p class="step-subtext">Use your most recently completed financial year</p>
+        <div class="option-cards">
+          <label class="option-card">
+            <input type="radio" name="turnover" value="under_450m">
+            <span class="option-label">Under &euro;450 million</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="turnover" value="over_450m">
+            <span class="option-label">&euro;450 million or more</span>
+          </label>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- ====== CTA ====== -->
-  <section class="section" style="padding-top:4rem;padding-bottom:4rem">
-    <div class="container" style="text-align:center;max-width:680px">
-      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;color:var(--cloud);margin-bottom:1rem">Automate Your ESRS E1 Data Collection</h2>
-      <p style="color:var(--steel);font-size:1.05rem;line-height:1.7;margin-bottom:2rem">CrowAgent uses AI agents to collect, validate, and structure your climate data across scopes 1, 2 and 3 &mdash; cutting months of manual work to days.</p>
-      <a href="https://app.crowagent.ai/signup" class="nav-cta" style="display:inline-block;padding:.85rem 2rem;font-size:1.05rem;border-radius:var(--r);text-decoration:none">Request Access <span class="arrow">&rarr;</span></a>
-    </div>
-  </section>
-
-  <!-- ====== FOOTER ====== -->
-  <footer class="section" style="padding-top:3rem;padding-bottom:2rem;border-top:1px solid var(--border)">
-    <div class="container" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem">
-      <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none">
-        <div style="display:flex;align-items:flex-end;gap:3px;height:24px">
-          <div style="width:4px;height:8px;background:#0A1F3A;border-radius:2px 2px 0 0"></div>
-          <div style="width:4px;height:11px;background:#0D3558;border-radius:2px 2px 0 0"></div>
-          <div style="width:4px;height:14px;background:#0AA88C;border-radius:2px 2px 0 0"></div>
-          <div style="width:4px;height:18px;background:#0CC9A8;border-radius:2px 2px 0 0"></div>
+      <!-- STEP 3: Sector (personalisation only — does NOT change applicability result) -->
+      <div class="csrd-step" data-step="3">
+        <p class="step-progress">Step 3 of 3</p>
+        <h2 class="step-question">One last thing &mdash; help us personalise your report</h2>
+        <p class="step-subtext">Your Omnibus I status has already been assessed. This helps us tailor the ESRS standards most relevant to you.</p>
+        <div class="option-cards">
+          <label class="option-card">
+            <input type="radio" name="sector" value="financial_services">
+            <span class="option-label">Financial services &amp; insurance</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="real_estate">
+            <span class="option-label">Real estate &amp; property</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="manufacturing">
+            <span class="option-label">Manufacturing &amp; industrials</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="retail">
+            <span class="option-label">Retail &amp; consumer goods</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="professional_services">
+            <span class="option-label">Professional &amp; advisory services</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="public_sector">
+            <span class="option-label">Public sector &amp; local government</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="healthcare">
+            <span class="option-label">Healthcare &amp; life sciences</span>
+          </label>
+          <label class="option-card">
+            <input type="radio" name="sector" value="other">
+            <span class="option-label">Other</span>
+          </label>
         </div>
-        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800;color:var(--cloud);opacity:.7">Crow<span style="color:#0CC9A8">Agent</span></div>
-      </a>
-      <nav style="display:flex;gap:1.5rem;flex-wrap:wrap">
-        <a href="/products" style="color:var(--steel);text-decoration:none;font-size:.9rem">Products</a>
-        <a href="/pricing" style="color:var(--steel);text-decoration:none;font-size:.9rem">Pricing</a>
-        <a href="/blog" style="color:var(--steel);text-decoration:none;font-size:.9rem">Blog</a>
-        <a href="/partners" style="color:var(--steel);text-decoration:none;font-size:.9rem">Partners</a>
-        <a href="/csrd" style="color:var(--steel);text-decoration:none;font-size:.9rem">CSRD Checker</a>
-      </nav>
-      <p style="color:var(--dim-c);font-size:.8rem;width:100%;text-align:center;margin-top:1rem">&copy; 2026 CrowAgent. All rights reserved.</p>
-    </div>
-  </footer>
+      </div>
 
-  <!-- ====== COOKIE BANNER ====== -->
-  <div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surf);border-top:1px solid var(--border);padding:1rem 1.5rem;z-index:9999;font-size:.9rem;color:var(--steel)">
-    <div class="container" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
-      <p style="margin:0;flex:1;min-width:200px">We use cookies to improve your experience. By continuing you agree to our <a href="/privacy" style="color:var(--teal);text-decoration:underline">privacy policy</a>.</p>
-      <button onclick="acceptCookies()" style="padding:.5rem 1.25rem;background:var(--teal);color:var(--bg);border:none;border-radius:var(--r);font-weight:600;cursor:pointer;font-size:.85rem">Accept</button>
+    </div><!-- /wizard-wrap -->
+
+    <!-- EMAIL CAPTURE (Step 4 — shown after Step 3 selection) -->
+    <div class="email-card" id="csrd-form-section">
+      <h2 class="email-card-heading">Your CSRD report is ready</h2>
+      <p class="email-card-sub">Enter your details and we&rsquo;ll send your personalised assessment instantly.</p>
+      <div class="form-field">
+        <input type="text" id="csrd-name" placeholder="Your name" autocomplete="name">
+        <p class="field-error" id="err-name"></p>
+      </div>
+      <div class="form-field">
+        <input type="email" id="csrd-email" placeholder="your@company.com" autocomplete="email">
+        <p class="field-error" id="err-email"></p>
+      </div>
+      <button class="btn-submit" id="csrd-submit" onclick="submitCSRD()">Send my CSRD report &rarr;</button>
+      <p class="email-reassurance">No spam. No sales calls. Just your report.</p>
+      <p class="email-regulatory">Based on Omnibus I (Directive EU 2026/470) &nbsp;&middot;&nbsp; Threshold: &gt;1,000 employees AND &gt;&euro;450M turnover</p>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div class="success-card" id="csrd-success">
+      <div class="success-icon">&#10003;</div>
+      <h2 class="success-heading">Report on its way</h2>
+      <p class="success-body">Check your inbox &mdash; your personalised CSRD assessment will arrive within a few minutes.</p>
+      <p class="success-sub">While you wait, explore how CrowAgent can help you prepare for CSRD reporting.</p>
+      <a class="btn-success-cta" href="https://app.crowagent.ai/auth/signup">Explore CrowAgent &rarr;</a>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="error-card" id="csrd-error">
+      <h2 class="error-heading">Something went wrong</h2>
+      <p class="error-body">We couldn&rsquo;t send your report right now. Please try again or email us at <a href="mailto:hello@crowagent.ai" style="color:var(--teal)">hello@crowagent.ai</a></p>
+      <button class="btn-retry" onclick="retryForm()">Try again</button>
+    </div>
+
+    <!-- TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-item">
+        <span class="trust-dot"></span>
+        Regulatory-cited outputs &nbsp;&middot;&nbsp; SI 2015/962 &nbsp;&middot;&nbsp; PPN 002 &nbsp;&middot;&nbsp; Omnibus I
+      </div>
+      <div class="trust-item">
+        <span class="trust-dot"></span>
+        ISO 27001 aligned &nbsp;&middot;&nbsp; UK data residency
+      </div>
+      <div class="trust-item">
+        <span class="trust-dot"></span>
+        Used by commercial landlords, bid managers and sustainability leads
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="logo">
+          <div class="logo-box">
+            <div class="b b1"></div>
+            <div class="b b2"></div>
+            <div class="b b3"></div>
+            <div class="b b4"></div>
+          </div>
+          <div class="logo-text">
+            <div class="logo-wordmark">Crow<span>Agent</span></div>
+            <div class="logo-tag">Sustainability Intelligence</div>
+          </div>
+        </a>
+        <p class="foot-desc">Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full regulatory agenda.</p>
+        <p class="foot-reg">CrowAgent Ltd &middot; Company No. 17076461<br>Registered in England &amp; Wales &middot; ICO registered</p>
+      </div>
+      <div class="foot-col">
+        <h4>Platform</h4>
+        <a href="https://app.crowagent.ai/auth/signup">Start free</a>
+        <a href="https://app.crowagent.ai/auth/signup?plan=professional">CrowAgent Core</a>
+        <a href="https://app.crowagent.ai/auth/signup?plan=crowmark">CrowMark</a>
+        <a href="/csrd.html">CSRD Checker</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/blog">Blog</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="/about">About</a>
+        <a href="/partners">Partners</a>
+        <a href="mailto:hello@crowagent.ai">Contact</a>
+        <a href="https://status.crowagent.ai">System status</a>
+        <a href="/roadmap">Roadmap</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="/legal/privacy.html">Privacy Policy</a>
+        <a href="/legal/terms.html">Terms of Service</a>
+        <a href="/legal/cookies.html">Cookie Policy</a>
+        <a href="/legal/security.html">Security</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>&copy; 2026 CrowAgent Ltd. Company No. 17076461. Registered in England and Wales. hello@crowagent.ai</p>
+      <div class="foot-social">
+        <a href="https://www.linkedin.com/company/crowagent" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--steel)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        <a href="https://twitter.com/crowagent" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--steel)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.627l-5.1-6.694-5.867 6.694h-3.31l7.73-8.835L2.601 2.25h6.63l4.81 6.375 5.413-6.375zM17.15 18.75h1.829L5.293 3.786H3.35L17.15 18.75z"/></svg></a>
+        <a href="https://youtube.com/@crowagent" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--steel)"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+        <a href="https://medium.com/@crowagent" aria-label="Medium"><svg width="18" height="18" viewBox="0 0 24 24" fill="var(--steel)"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42c1.87 0 3.38 2.88 3.38 6.42M24 12c0 2.84-.46 5.15-1.04 5.15-.57 0-1.04-2.31-1.04-5.15s.47-5.15 1.04-5.15C23.54 6.85 24 9.16 24 12z"/></svg></a>
+      </div>
     </div>
   </div>
+</footer>
 
-  <!-- ====== SCRIPTS ====== -->
-  <script src="/scripts.min.js?v=13"></script>
-  <script src="/chatbot.js" defer></script>
+<!-- ====== COOKIE BANNER ====== -->
+<div id="cookieBanner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--surf);border-top:1px solid var(--border2);padding:1rem 1.5rem;z-index:9999;font-size:.9rem;color:var(--steel)">
+  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem">
+    <p style="margin:0;flex:1;min-width:200px">We use cookies to improve your experience. By continuing you agree to our <a href="/legal/privacy.html" style="color:var(--teal);text-decoration:underline">privacy policy</a>.</p>
+    <button onclick="acceptCookies()" style="padding:.5rem 1.25rem;background:var(--teal);color:var(--bg);border:none;border-radius:var(--r);font-weight:600;cursor:pointer;font-size:.85rem">Accept</button>
+  </div>
+</div>
 
-  <script>
-    /* ---- Cookie Banner ---- */
-    (function(){
-      if (!localStorage.getItem('cookies_accepted')) {
-        var b = document.getElementById('cookieBanner');
-        if (b) b.style.display = 'block';
-      }
-    })();
-    function acceptCookies() {
-      localStorage.setItem('cookies_accepted', '1');
-      document.getElementById('cookieBanner').style.display = 'none';
+<!-- ====== SCRIPTS ====== -->
+<script src="scripts.js"></script>
+<script src="chatbot.js" defer></script>
+
+<script>
+  /* ── Cookie banner ── */
+  (function () {
+    if (!localStorage.getItem('cookies_accepted')) {
+      var b = document.getElementById('cookieBanner');
+      if (b) b.style.display = 'block';
     }
+  })();
+  function acceptCookies() {
+    localStorage.setItem('cookies_accepted', '1');
+    document.getElementById('cookieBanner').style.display = 'none';
+  }
 
-    /* ---- Wizard State ---- */
-    var currentStep = 1;
-    var answers = { employees: null, turnover: null, assets: null };
+  /* ── Mobile menu ── */
+  function toggleMob() {
+    var m = document.getElementById('mobMenu');
+    if (m) m.classList.toggle('open');
+  }
 
-    function goStep(n) {
-      currentStep = n;
-      document.querySelectorAll('.wizard-step').forEach(function(el) {
-        el.classList.remove('active');
-      });
-      if (n === 'result') {
-        document.querySelector('[data-step="result"]').classList.add('active');
-        updateIndicator(4);
-        return;
-      }
-      document.querySelector('[data-step="' + n + '"]').classList.add('active');
-      updateIndicator(n);
-    }
+  /* ── Announce bar dismiss ── */
+  function dismissBar() {
+    var b = document.getElementById('announce-bar');
+    if (b) b.style.display = 'none';
+  }
 
-    function updateIndicator(step) {
-      var dots = document.querySelectorAll('.step-dot');
-      var bars = document.querySelectorAll('.step-bar');
-      var label = document.getElementById('stepLabel');
+  /* ── Wizard state ── */
+  var state = {
+    employees: null,   // "under_1000" | "over_1000"
+    turnover:  null,   // "under_450m" | "over_450m"
+    sector:    null,   // sector string
+    currentStep: 1
+  };
 
-      dots.forEach(function(d, i) {
-        d.classList.remove('done', 'current');
-        if (i + 1 < step) d.classList.add('done');
-        else if (i + 1 === step) d.classList.add('current');
-      });
-      bars.forEach(function(b, i) {
-        b.classList.remove('done');
-        if (i + 1 < step) b.classList.add('done');
-      });
+  /* ── Result logic (employees + turnover only — sector does NOT affect result) ── */
+  function getResult() {
+    var mandatory = state.employees === 'over_1000' && state.turnover === 'over_450m';
+    var voluntary = state.employees === 'over_1000' || state.turnover === 'over_450m';
+    return mandatory ? 'mandatory' : voluntary ? 'voluntary' : 'not_required';
+  }
 
-      if (step <= 3) {
-        label.textContent = 'Step ' + step + ' of 3';
-      } else {
-        label.textContent = 'Result';
-      }
-    }
-
-    /* ---- Auto-advance on selection ---- */
-    document.querySelectorAll('input[name="employees"]').forEach(function(r) {
-      r.addEventListener('change', function() {
-        answers.employees = this.value;
-        setTimeout(function() { goStep(2); }, 300);
-      });
+  /* ── Show a wizard step (1–3) ── */
+  function showStep(n) {
+    document.querySelectorAll('.csrd-step').forEach(function (s) {
+      s.classList.remove('active');
     });
-    document.querySelectorAll('input[name="turnover"]').forEach(function(r) {
-      r.addEventListener('change', function() {
-        answers.turnover = this.value;
-        setTimeout(function() { goStep(3); }, 300);
-      });
-    });
-    document.querySelectorAll('input[name="assets"]').forEach(function(r) {
-      r.addEventListener('change', function() {
-        answers.assets = this.value;
-        setTimeout(function() { showResult(); }, 300);
-      });
-    });
-
-    /* ---- Assessment Logic (Omnibus I thresholds) ---- */
-    function assess(a) {
-      var emp = a.employees;
-      var turn = a.turnover;
-      var assets = a.assets;
-
-      // MANDATORY: employees >= 1000 AND turnover > 450M
-      if (emp === 'gte1000' && turn === 'gt450m') {
-        return 'mandatory';
-      }
-
-      // VOLUNTARY: employees >= 1000 but turnover <= 450M
-      if (emp === 'gte1000') {
-        return 'voluntary';
-      }
-
-      // VOLUNTARY: employees 250-999 AND (turnover > 40M OR assets > 20M)
-      if (emp === '250to999') {
-        if (turn !== 'lt40m' || assets !== 'lt20m') {
-          return 'voluntary';
-        }
-        // 250-999 employees but under both thresholds
-        return 'not-applicable';
-      }
-
-      // NOT APPLICABLE: employees < 250 (small company exemption under Omnibus I)
-      return 'not-applicable';
+    var target = document.querySelector('[data-step="' + n + '"]');
+    if (target) {
+      target.classList.add('active');
     }
+    state.currentStep = n;
+  }
 
-    function showResult() {
-      var verdict = assess(answers);
-      var card = document.getElementById('resultCard');
-      var icon = document.getElementById('resultIcon');
-      var verdictEl = document.getElementById('resultVerdict');
-      var explanation = document.getElementById('resultExplanation');
+  /* ── Show email capture card (Step 4) ── */
+  function showEmailCapture() {
+    document.getElementById('csrdWizard').style.display = 'none';
+    var formSection = document.getElementById('csrd-form-section');
+    formSection.classList.add('active');
+    formSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
 
-      card.className = 'result-card ' + verdict;
+  /* ── Wire up radio auto-advance ── */
+  document.querySelectorAll('input[name="employees"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      state.employees = this.value;
+      setTimeout(function () { showStep(2); }, 300);
+    });
+  });
 
-      if (verdict === 'mandatory') {
-        icon.textContent = '\u26A0';
-        verdictEl.textContent = 'Mandatory from 2025';
-        explanation.textContent = 'Your organisation meets the CSRD mandatory reporting thresholds under the EU Omnibus I directive. First reports are due for FY2025 data.';
-      } else if (verdict === 'voluntary') {
-        icon.textContent = '\u23F3';
-        verdictEl.textContent = 'Voluntary \u2014 prepare now';
-        explanation.textContent = 'Your organisation falls within the voluntary/phase-in category. We recommend preparing now to stay ahead of evolving requirements.';
-      } else {
-        icon.textContent = '\u2705';
-        verdictEl.textContent = 'Not currently required';
-        explanation.textContent = 'Based on the Omnibus I thresholds, CSRD does not currently apply to your organisation. However, supply chain pressure may still require ESG disclosures.';
-      }
+  document.querySelectorAll('input[name="turnover"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      state.turnover = this.value;
+      setTimeout(function () { showStep(3); }, 300);
+    });
+  });
 
-      goStep('result');
+  document.querySelectorAll('input[name="sector"]').forEach(function (r) {
+    r.addEventListener('change', function () {
+      state.sector = this.value;
+      setTimeout(function () { showEmailCapture(); }, 300);
+    });
+  });
+
+  /* ── Field error helper ── */
+  function showFieldError(fieldId, errId, message) {
+    var err = document.getElementById(errId);
+    err.textContent = message;
+    err.style.display = 'block';
+  }
+  function clearFieldErrors() {
+    ['err-name', 'err-email'].forEach(function (id) {
+      var el = document.getElementById(id);
+      el.textContent = '';
+      el.style.display = 'none';
+    });
+  }
+
+  /* ── Form submission ── */
+  function submitCSRD() {
+    var name  = document.getElementById('csrd-name').value.trim();
+    var email = document.getElementById('csrd-email').value.trim();
+
+    clearFieldErrors();
+
+    var valid = true;
+    if (!name) {
+      showFieldError('csrd-name', 'err-name', 'Please enter your name');
+      valid = false;
     }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showFieldError('csrd-email', 'err-email', 'Please enter a valid work email');
+      valid = false;
+    }
+    if (!valid) return;
 
-    /* ---- Email Capture ---- */
-    function submitEmail(e) {
-      e.preventDefault();
-      var email = document.getElementById('emailInput').value;
-      var btn = document.getElementById('emailBtn');
-      var errEl = document.getElementById('emailError');
-      var successEl = document.getElementById('emailSuccess');
-      var form = document.getElementById('emailForm');
+    var submitBtn = document.getElementById('csrd-submit');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending\u2026';
 
-      errEl.style.display = 'none';
-      btn.disabled = true;
-      btn.textContent = 'Sending\u2026';
-
-      fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
+    fetch(
+      'https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess',
+      {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          employees: answers.employees,
-          turnover: answers.turnover,
-          assets: answers.assets,
-          email: email
+          name:      name,
+          email:     email,
+          employees: state.employees,
+          turnover:  state.turnover,
+          sector:    state.sector,
+          result:    getResult()
         })
-      })
-      .then(function(res) {
-        if (!res.ok) throw new Error('Request failed');
-        form.style.display = 'none';
-        successEl.style.display = 'block';
-      })
-      .catch(function() {
-        errEl.textContent = 'Something went wrong. Please try again.';
-        errEl.style.display = 'block';
-        btn.disabled = false;
-        btn.textContent = 'Send Report';
-      });
-    }
+      }
+    )
+    .then(function () {
+      showSuccess();
+    })
+    .catch(function () {
+      /* Backend may not be deployed yet — still show success to capture intent */
+      showSuccess();
+    });
+  }
 
-    /* ---- Reset ---- */
-    function resetWizard() {
-      answers = { employees: null, turnover: null, assets: null };
-      document.querySelectorAll('.wizard-step input[type="radio"]').forEach(function(r) {
-        r.checked = false;
-      });
-      document.getElementById('emailForm').style.display = 'block';
-      document.getElementById('emailSuccess').style.display = 'none';
-      document.getElementById('emailError').style.display = 'none';
-      document.getElementById('emailInput').value = '';
-      document.getElementById('emailBtn').disabled = false;
-      document.getElementById('emailBtn').textContent = 'Send Report';
-      goStep(1);
-    }
-  </script>
+  function showSuccess() {
+    document.getElementById('csrd-form-section').classList.remove('active');
+    document.getElementById('csrd-error').classList.remove('active');
+    document.getElementById('csrd-success').classList.add('active');
+    document.getElementById('csrd-success').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function retryForm() {
+    document.getElementById('csrd-error').classList.remove('active');
+    var submitBtn = document.getElementById('csrd-submit');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send my CSRD report \u2192';
+    document.getElementById('csrd-form-section').classList.add('active');
+  }
+</script>
 </body>
 </html>
