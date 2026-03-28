@@ -323,12 +323,12 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .foot{background:#020B16;border-top:1px solid var(--border);padding:clamp(48px,6vw,72px) 0 32px}
 .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:clamp(24px,3vw,48px);margin-bottom:40px}
 .foot-desc{font-size:13px;color:var(--steel);line-height:1.6;margin-top:14px;max-width:300px}
-.foot-reg{font-size:11px;color:var(--dim-c);margin-top:12px;line-height:1.5}
+.foot-reg{font-size:11px;color:var(--steel);margin-top:12px;line-height:1.5}
 .foot-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
 .foot-col a{display:block;font-size:13px;color:var(--steel);margin-bottom:10px;transition:color .2s}
 .foot-col a:hover{color:var(--teal)}
 .foot-bottom{border-top:1px solid var(--border);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.foot-bottom p{font-size:11px;color:var(--dim-c)}
+.foot-bottom p{font-size:11px;color:var(--steel)}
 .foot-social{display:flex;gap:16px}
 .foot-social a{transition:opacity .2s}
 .foot-social a:hover{opacity:.7}
