@@ -30,18 +30,23 @@
   "url": "https://crowagent.ai",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "offers": {"@type": "Offer", "price": "149", "priceCurrency": "GBP"},
+  "offers": [
+    {"@type": "Offer", "name": "Starter", "price": "149", "priceCurrency": "GBP"},
+    {"@type": "Offer", "name": "Pro", "price": "299", "priceCurrency": "GBP"},
+    {"@type": "Offer", "name": "Portfolio", "price": "599", "priceCurrency": "GBP"}
+  ],
   "provider": {
     "@type": "Organization",
     "name": "CrowAgent Ltd",
     "url": "https://crowagent.ai",
     "foundingLocation": "Reading, England",
-    "vatID": "GB-17076461"
+    "identifier": {"@type": "PropertyValue", "name": "Companies House Number", "value": "17076461"}
   }
 }
 </script>
 </head>
 <body>
+<a href="#main-content" class="skip-link sr-only">Skip to main content</a>
 
 <div class="announce-bar" id="announce-bar">
   <div class="wrap" style="display:flex;align-items:center;justify-content:center;gap:12px;height:100%;position:relative">
@@ -193,9 +198,9 @@
             </div>
             <div class="ds-arrow">→</div>
             <div class="ds-band-box">
-              <div class="ds-band-label">Required by 2028</div>
+              <div class="ds-band-label">Proposed requirement by 2028</div>
               <div class="ds-band ds-band-c">C</div>
-              <div class="ds-band-sub">Band C minimum</div>
+              <div class="ds-band-sub">Proposed Band C minimum</div>
             </div>
             <div class="ds-penalty-box">
               <div class="ds-penalty-label">Penalty exposure</div>
@@ -297,8 +302,8 @@
         <div class="sc-lbl">UK commercial property market</div>
       </div>
       <div class="sc">
-        <div class="sc-num" id="days-counter" style="color:var(--warn)">735</div>
-        <div class="sc-lbl">Days until MEES Band C enforcement<br>(1 April 2028)</div>
+        <div class="sc-num" id="days-counter" style="color:var(--warn)">733</div>
+        <div class="sc-lbl">Days until proposed MEES Band C deadline<br>(1 April 2028)</div>
       </div>
     </div>
   </div>
@@ -392,7 +397,7 @@
           <p class="pc-sub">Applicability assessment under Omnibus I</p>
         </div>
         <ul class="pc-dots">
-          <li>3-question eligibility wizard</li>
+          <li>2-question eligibility check</li>
           <li>Omnibus I thresholds (>1,000 employees AND >€450M)</li>
           <li>Instant result with regulatory citation</li>
           <li>Email report option</li>
@@ -414,7 +419,7 @@
         <div class="ca-notify-wrap">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowsight">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" placeholder="you@company.com" required>
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required>
             <input type="hidden" name="product" value="crowsight">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
@@ -429,7 +434,7 @@
         <div class="ca-notify-wrap">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowbuild">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" placeholder="you@company.com" required>
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required>
             <input type="hidden" name="product" value="crowbuild">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
@@ -444,7 +449,7 @@
         <div class="ca-notify-wrap">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crownest">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" placeholder="you@company.com" required>
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required>
             <input type="hidden" name="product" value="crownest">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
@@ -555,7 +560,7 @@
     <div class="ca-pricing-teaser" style="text-align:center">
       <div class="sh-label" style="justify-content:center">Pricing</div>
       <h2>Plans from £149/mo</h2>
-      <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">No free tier — every plan includes full compliance reports, retrofit scenarios, and audit-ready PDFs. Annual billing saves 20%.</p>
+      <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">No credit card required — every plan includes full compliance reports, retrofit scenarios, and audit-ready PDFs. Annual billing saves 20%.</p>
       <div class="hero-btns" style="justify-content:center">
         <a class="btn-hero" href="/pricing">View pricing</a>
         <a class="btn-hero-out" href="mailto:hello@crowagent.ai?subject=Enterprise%20Pricing">Enterprise enquiry</a>
