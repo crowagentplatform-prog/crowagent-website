@@ -347,6 +347,7 @@
         messages = messages.filter(function (m) { return m.type !== 'loading'; });
 
         var reply =
+          (data && data.reply) ||
           (data && data.message) ||
           (data && data.content) ||
           (data && data.response) ||
