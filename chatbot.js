@@ -334,7 +334,7 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        messages: apiMessages,
+        message: apiMessages[apiMessages.length - 1].content,
         context: 'marketing_website',
       }),
     })
