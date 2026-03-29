@@ -146,7 +146,7 @@ async function submitCSRD(e) {
 
   try {
     var res = await fetch(
-      'https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess',
+      'https://crowagent-platform-production.up.railway.app/api/v1/csrd/check',
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
     );
     if (res.ok) {
@@ -219,7 +219,7 @@ function submitCSRDInline() {
   var turnover = document.getElementById('csrd-turnover-inline');
   var btn = document.getElementById('csrd-submit-inline');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-  fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
+  fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
@@ -309,7 +309,7 @@ async function csrdSubmit() {
   var btn = document.getElementById('csrd-submit');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
   try {
-    await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/assess', {
+    await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
