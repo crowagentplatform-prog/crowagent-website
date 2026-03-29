@@ -1,20 +1,13 @@
-const CACHE_NAME = 'crowagent-v13';
+const CACHE_NAME = 'crowagent-v14';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/styles.min.css?v=13',
   '/scripts.min.js?v=13',
   '/manifest.json',
-  '/Assets/Branding Logo/logo.png',
   '/Assets/Branding Logo/favicon.png',
-  '/Assets/Product logo/Crowagentcore-128.png',
-  '/Assets/Product logo/Crowsight-128.png',
-  '/Assets/Product logo/Crowbuild-128.png',
-  '/Assets/Product logo/CrowMark-128.png',
-  '/Assets/Product logo/CrowTrace-128.png',
-  '/Assets/Product logo/CrowNest-128.png',
-  '/Doc/privacy-policy.pdf',
-  '/Doc/terms-and-conditions.pdf',
+  '/Doc/privacy-policy-2026-03.pdf',
+  '/Doc/terms-and-conditions-2026-03.pdf',
   '/legal.html',
   '/privacy.html',
   '/terms.html',
