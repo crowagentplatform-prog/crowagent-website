@@ -74,11 +74,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
   .ham{display:flex}
 }
 /* HERO */
-.hero{padding:clamp(100px,14vw,160px) 0 clamp(56px,8vw,88px);position:relative;overflow:hidden}
+.hero{padding:clamp(100px,14vw,160px) 0 clamp(56px,8vw,88px);position:relative;overflow:visible}
 .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(12,201,168,.12) 0%,rgba(91,200,255,.04) 40%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none;filter:blur(40px);z-index:0}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.08);border:1px solid var(--border2);border-radius:100px;padding:6px 18px;margin-bottom:28px}
 .hw-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2.2s infinite}
-.hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:break-word;overflow-wrap:break-word;hyphens:auto;white-space:normal}
+.hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:keep-all;overflow-wrap:break-word;hyphens:none;white-space:normal}
 .hero h1 em{font-style:normal;color:var(--teal)}
 .hero-sub{font-family:'Inter',sans-serif;font-size:clamp(1rem,1.8vw,1.15rem);color:var(--steel);max-width:620px;margin:0 auto 32px;line-height:1.7}
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
@@ -111,7 +111,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 @media(max-width:768px){.hero h1,.hero-headline{font-size:clamp(1.75rem,5vw,3rem);line-height:1.2}}
 @media(max-width:480px){
-  .hero h1,.hero-headline{font-size:clamp(1.8rem,8vw,2.6rem);word-break:break-word;overflow-wrap:break-word}
+  .hero h1,.hero-headline{font-size:clamp(1.8rem,8vw,2.6rem);word-break:keep-all;overflow-wrap:break-word}
   .hero h1 br{display:inline;content:' '}
   .announce-bar{overflow:hidden}.ab-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 }
@@ -458,7 +458,13 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ca-faq summary::after{content:'+';font-family:'JetBrains Mono',monospace;font-size:1.2rem;color:var(--teal);flex-shrink:0}
 .ca-faq details[open] summary::after{content:'\2212'}
 .ca-faq .faq-answer{font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);padding:0 20px 20px;line-height:1.65}
-.ca-faq .faq-answer a{color:var(--teal)}
+.ca-faq .faq-answer a{color:var(--teal);text-decoration:underline}
+
+/* A11Y — inline link distinction (WCAG 1.4.1) */
+main a,.content a,p a{text-decoration:underline}
+nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.pgc-cta,.foot-col a,.ca-footer-col a,.ab-cta,.logo{text-decoration:none}
+/* A11Y — keyboard-accessible scrollable regions (WCAG 2.1.1) */
+[tabindex="0"]:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 
 /* COMPARISON TABLE */
 .ca-comparison{max-width:960px;margin:0 auto;padding:0 24px 48px}
