@@ -206,7 +206,7 @@ document.addEventListener('click', function(e) {
 
 // ── CSRD INLINE FORM (homepage) ──
 function submitCSRDInline() {
-  var email = document.getElementById('csrd-email-inline');
+  var email = document.getElementById('csrd-i-email');
   var err = document.getElementById('csrd-email-err');
   if (!email) return;
   var val = email.value.trim();
@@ -215,9 +215,9 @@ function submitCSRDInline() {
     return;
   }
   if (err) err.style.display = 'none';
-  var employees = document.getElementById('csrd-employees-inline');
-  var turnover = document.getElementById('csrd-turnover-inline');
-  var btn = document.getElementById('csrd-submit-inline');
+  var employees = document.getElementById('csrd-i-employees');
+  var turnover = document.getElementById('csrd-i-turnover');
+  var btn = document.querySelector('#csrd-inline-form .btn-form');
   if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
   fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
     method: 'POST',
@@ -241,7 +241,8 @@ function caToggleNotify(btn) {
   var wrap = btn.closest('.ca-notify-wrap');
   btn.style.display = 'none';
   wrap.querySelector('.ca-notify-form').style.display = 'flex';
-  wrap.querySelector('.ca-notify-input').focus();
+  var input = wrap.querySelector('.ca-notify-input');
+  if (input) input.focus();
 }
 async function caSubmitNotify(btn) {
   var wrap = btn.closest('.ca-notify-wrap');
@@ -286,22 +287,20 @@ function csrdShowStep(n) {
   });
   var target = document.querySelector('[data-csrd-step="' + n + '"]');
   if (target) { target.style.display = 'block'; target.classList.add('active'); }
+  csrdState.step = n;
+  if (n === 1) { csrdState.employees = null; }
+  if (n <= 2) { csrdState.turnover = null; }
 }
 function csrdGetResult() {
-  var mandatory = csrdState.employees === 'over_1000' && csrdState.turnover === 'over_450m';
-  var voluntary = csrdState.employees === 'over_1000' || csrdState.turnover === 'over_450m';
+  var mandatory = csrdState.employees === '1000+' && csrdState.turnover === '450m+';
+  var voluntary = csrdState.employees === '1000+' || csrdState.turnover === '450m+';
   return mandatory ? 'mandatory' : voluntary ? 'voluntary' : 'not_required';
 }
 async function csrdSubmit() {
-  var name = document.getElementById('csrd-name');
   var email = document.getElementById('csrd-email');
-  if (!name || !email) return;
-  var nameErr = document.getElementById('csrd-name-err');
+  if (!email) return;
   var emailErr = document.getElementById('csrd-email-err');
   var valid = true;
-  if (!name.value.trim()) {
-    if (nameErr) nameErr.style.display = 'block'; valid = false;
-  } else { if (nameErr) nameErr.style.display = 'none'; }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
     if (emailErr) emailErr.style.display = 'block'; valid = false;
   } else { if (emailErr) emailErr.style.display = 'none'; }
@@ -313,7 +312,6 @@ async function csrdSubmit() {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        name: name.value.trim(),
         email: email.value.trim(),
         employees: csrdState.employees,
         turnover: csrdState.turnover,

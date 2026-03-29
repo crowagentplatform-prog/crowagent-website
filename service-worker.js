@@ -2,8 +2,8 @@ const CACHE_NAME = 'crowagent-v12';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.min.css?v=9',
-  '/scripts.min.js?v=9',
+  '/styles.min.css?v=12',
+  '/scripts.min.js?v=12',
   '/manifest.json',
   '/Assets/Branding Logo/logo.png',
   '/Assets/Branding Logo/favicon.png',
