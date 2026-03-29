@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=12">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<nav>
+<nav role="navigation" aria-label="Main navigation">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
@@ -96,6 +96,7 @@
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
 </div>
 
+<main id="main-content" role="main">
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="wrap" style="text-align:center;position:relative;z-index:1">
@@ -619,8 +620,9 @@
     </div>
   </div>
 </section>
+</main>
 
-<footer class="ca-footer">
+<footer class="ca-footer" role="contentinfo">
   <div class="wrap">
     <div class="ca-footer-grid">
       <div class="foot-brand">
@@ -689,7 +691,7 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="scripts.js"></script>
+<script src="scripts.js?v=12"></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>

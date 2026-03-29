@@ -1,3 +1,5 @@
+var APP_VERSION = '12';
+
 // ── ANNOUNCE BAR DISMISS ──
 function dismissBar() {
   var bar = document.getElementById('announce-bar');
