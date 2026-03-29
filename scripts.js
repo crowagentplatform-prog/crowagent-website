@@ -223,10 +223,11 @@ function submitCSRDInline() {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({
+      company_name: 'Website visitor (homepage)',
       email: val,
-      employees: employees ? employees.value : '',
-      turnover: turnover ? turnover.value : '',
-      source: 'homepage_inline'
+      employee_count: csrdMapEmployees(employees ? employees.value : '<250'),
+      annual_turnover_eur: csrdMapTurnover(turnover ? turnover.value : '<150m'),
+      is_listed: false
     })
   }).catch(function(){}).finally(function(){
     var form = document.getElementById('csrd-inline-form');
@@ -296,37 +297,57 @@ function csrdShowStep(n) {
   if (n === 1) { csrdState.employees = null; }
   if (n <= 2) { csrdState.turnover = null; }
 }
+function csrdMapEmployees(val) {
+  if (val === '1000+') return 1001;
+  if (val === '250-999') return 500;
+  return 100;
+}
+function csrdMapTurnover(val) {
+  if (val === '450m+') return 451000000;
+  if (val === '150m-450m') return 200000000;
+  return 10000000;
+}
 function csrdGetResult() {
   var mandatory = csrdState.employees === '1000+' && csrdState.turnover === '450m+';
-  var voluntary = csrdState.employees === '1000+' || csrdState.turnover === '450m+';
-  return mandatory ? 'mandatory' : voluntary ? 'voluntary' : 'not_required';
+  var watchlist = csrdState.employees === '1000+' || csrdState.turnover === '450m+';
+  return mandatory ? 'mandatory' : watchlist ? 'watchlist' : 'not_required';
 }
 async function csrdSubmit() {
   var email = document.getElementById('csrd-email');
   if (!email) return;
-  var emailErr = document.getElementById('csrd-email-err');
-  var valid = true;
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
-    if (emailErr) emailErr.style.display = 'block'; valid = false;
-  } else { if (emailErr) emailErr.style.display = 'none'; }
-  if (!valid) return;
-  var btn = document.getElementById('csrd-submit');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
+  var val = email.value.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return;
+  var resultDiv = document.getElementById('csrd-result');
+  var submitBtn = document.querySelector('[data-csrd-step="3"] .btn-teal-sm[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Checking...'; }
   try {
-    await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
+    var res = await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        email: email.value.trim(),
-        employees: csrdState.employees,
-        turnover: csrdState.turnover,
-        sector: csrdState.sector,
-        result: csrdGetResult()
+        company_name: 'Website visitor',
+        email: val,
+        employee_count: csrdMapEmployees(csrdState.employees),
+        annual_turnover_eur: csrdMapTurnover(csrdState.turnover),
+        is_listed: false
       })
     });
-  } catch(e) {}
-  var formSec = document.getElementById('csrd-form-section');
-  var successSec = document.getElementById('csrd-success');
-  if (formSec) formSec.style.display = 'none';
-  if (successSec) successSec.style.display = 'block';
+    if (!res.ok) throw new Error('API error ' + res.status);
+    var data = await res.json();
+    var scope = csrdGetResult();
+    var html = '';
+    if (scope === 'mandatory') {
+      html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
+    } else if (scope === 'watchlist') {
+      html = '<div style="background:rgba(245,158,11,.1);border:1px solid #F59E0B;border-radius:10px;padding:20px;text-align:center"><strong style="color:#F59E0B;font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
+    } else {
+      html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
+    }
+    if (resultDiv) resultDiv.innerHTML = html;
+    if (submitBtn) { submitBtn.textContent = 'Result ready'; submitBtn.style.background = 'var(--teal)'; }
+  } catch(e) {
+    console.error('CSRD form error:', e);
+    if (resultDiv) resultDiv.innerHTML = '<div style="background:rgba(240,68,56,.1);border:1px solid var(--err);border-radius:10px;padding:16px;text-align:center;color:var(--err)">Unable to get result. Please try again.</div>';
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get my result'; }
+  }
 }
