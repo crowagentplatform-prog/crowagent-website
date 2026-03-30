@@ -158,6 +158,84 @@
     </div>
   </div>
 </section>
+<!-- ── LIVE DEMO WIDGET ── -->
+<section id="live-demo" style="padding:60px 0; border-bottom:1px solid var(--border);">
+  <div class="wrap" style="max-width:640px; margin:0 auto; text-align:center;">
+
+    <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                font-size:10px; font-weight:700; letter-spacing:.2em;
+                text-transform:uppercase; color:var(--teal); margin-bottom:10px;">
+      Try it now — no account required
+    </div>
+
+    <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+               font-size:clamp(1.4rem,2.5vw,1.9rem); font-weight:800;
+               color:var(--cloud); letter-spacing:-.02em; margin-bottom:10px;">
+      Check any UK commercial property in 10 seconds
+    </h2>
+
+    <p style="font-family:var(--font-body,'Inter',sans-serif);
+               font-size:15px; color:var(--steel); line-height:1.7;
+               margin-bottom:28px;">
+      Enter a postcode to see the EPC band and MEES compliance status — free, no signup.
+    </p>
+
+    <div style="background:var(--surf); border:1px solid var(--border);
+                border-radius:20px; padding:28px 32px; text-align:left;">
+
+      <div style="display:flex; gap:12px; margin-bottom:16px;
+                  flex-wrap:wrap;">
+        <input type="text"
+               id="demo-postcode"
+               placeholder="e.g. EC1A 1BB"
+               maxlength="8"
+               style="flex:1; min-width:180px; height:48px;
+                      background:var(--surf2); border:1px solid var(--border);
+                      border-radius:10px; padding:0 16px;
+                      font-family:var(--font-body,'Inter',sans-serif);
+                      font-size:15px; color:var(--cloud);
+                      outline:none; text-transform:uppercase;"
+               oninput="this.value=this.value.toUpperCase()">
+        <button id="demo-submit"
+                onclick="runLiveDemo()"
+                style="height:48px; padding:0 24px; background:var(--teal);
+                       color:var(--bg); border:none; border-radius:10px;
+                       font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                       font-weight:700; font-size:14px; cursor:pointer;
+                       white-space:nowrap;">
+          Check compliance →
+        </button>
+      </div>
+
+      <div id="demo-result" style="display:none;">
+      </div>
+
+      <div id="demo-loading" style="display:none; text-align:center;
+           padding:20px; color:var(--mist);
+           font-family:var(--font-body,'Inter',sans-serif); font-size:14px;">
+        Checking EPC register…
+      </div>
+
+      <div id="demo-error" style="display:none; padding:14px 18px;
+           background:rgba(239,68,68,0.08); border:1px solid rgba(239,68,68,0.2);
+           border-radius:10px; color:var(--err);
+           font-family:var(--font-body,'Inter',sans-serif); font-size:14px;">
+      </div>
+
+    </div>
+
+    <p style="font-size:12px; color:var(--mist); margin-top:14px;
+               font-family:var(--font-body,'Inter',sans-serif);">
+      Data from MHCLG Energy Performance of Buildings register ·
+      <a href="https://app.crowagent.ai/signup?plan=starter"
+         style="color:var(--teal); text-decoration:none;">
+        Get full report — start free trial →
+      </a>
+    </p>
+
+  </div>
+</section>
+
 <!-- ── ANIMATED DEMO ── -->
 <section class="demo-section">
   <div class="wrap">
@@ -701,6 +779,79 @@
   updateCountdown();
   setInterval(updateCountdown, 60000);
 })();
+</script>
+<script>
+function runLiveDemo() {
+  var postcode = (document.getElementById('demo-postcode').value || '').trim();
+  if (!postcode || postcode.length < 5) {
+    showDemoError('Please enter a valid UK postcode (e.g. EC1A 1BB)');
+    return;
+  }
+
+  document.getElementById('demo-loading').style.display = 'block';
+  document.getElementById('demo-result').style.display = 'none';
+  document.getElementById('demo-error').style.display = 'none';
+  document.getElementById('demo-submit').disabled = true;
+
+  fetch('https://app.crowagent.ai/api/chat/public', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: 'Check MEES compliance for postcode ' + postcode
+    })
+  })
+  .then(function(r) {
+    if (!r.ok) throw new Error('status ' + r.status);
+    return r.json();
+  })
+  .then(function(data) {
+    document.getElementById('demo-loading').style.display = 'none';
+    document.getElementById('demo-submit').disabled = false;
+
+    var reply = data.reply || data.message || data.response || '';
+    if (!reply) throw new Error('empty response');
+
+    var resultEl = document.getElementById('demo-result');
+    resultEl.style.display = 'block';
+    resultEl.innerHTML =
+      '<div style="padding:16px; background:var(--surf2); border-radius:10px;">' +
+        '<div style="font-family:var(--font-display,\'Plus Jakarta Sans\',sans-serif);' +
+              'font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;' +
+              'color:var(--mist); margin-bottom:8px;">Compliance check result</div>' +
+        '<div style="font-family:var(--font-body,\'Inter\',sans-serif);' +
+              'font-size:14px; color:var(--steel); line-height:1.7; margin-bottom:16px;">' +
+          reply.replace(/\n/g, '<br>') +
+        '</div>' +
+        '<a href="https://app.crowagent.ai/signup?plan=starter"' +
+           ' style="display:inline-block; background:var(--teal); color:var(--bg);' +
+                   'font-family:var(--font-display,\'Plus Jakarta Sans\',sans-serif);' +
+                   'font-weight:700; font-size:13px; padding:10px 20px;' +
+                   'border-radius:10px; text-decoration:none;">' +
+          'Get your full report — start free trial →' +
+        '</a>' +
+      '</div>';
+  })
+  .catch(function(err) {
+    document.getElementById('demo-loading').style.display = 'none';
+    document.getElementById('demo-submit').disabled = false;
+    showDemoError(
+      'Unable to check this postcode right now. ' +
+      '<a href="https://app.crowagent.ai/signup?plan=starter" ' +
+      'style="color:var(--teal)">Start a free trial</a> to get the full analysis.'
+    );
+  });
+}
+
+function showDemoError(msg) {
+  var el = document.getElementById('demo-error');
+  el.innerHTML = msg;
+  el.style.display = 'block';
+  document.getElementById('demo-loading').style.display = 'none';
+}
+
+document.getElementById('demo-postcode').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') runLiveDemo();
+});
 </script>
 </body>
 </html>

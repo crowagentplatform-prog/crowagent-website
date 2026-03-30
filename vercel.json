@@ -19,6 +19,7 @@
     { "source": "/blog/mees-band-c-2028", "destination": "/blog/mees-band-c-2028.html" },
     { "source": "/products", "destination": "/products/index.html" },
     { "source": "/products/crowagent-core", "destination": "/products/crowagent-core.html" },
-    { "source": "/products/crowmark", "destination": "/products/crowmark.html" }
+    { "source": "/products/crowmark", "destination": "/products/crowmark.html" },
+    { "source": "/blog/ppn-002-guide", "destination": "/blog/ppn-002-guide.html" }
   ]
 }

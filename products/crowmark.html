@@ -21,7 +21,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/crowagent-brand-tokens.css">
   <link rel="stylesheet" href="/styles.css?v=13">
+  <style>
+    @media(max-width:768px){
+      .cm-hero-pills{flex-wrap:wrap;justify-content:center;}
+      .cm-features-grid{grid-template-columns:1fr !important;}
+      .cm-steps-grid{grid-template-columns:1fr !important;}
+      .cm-pricing-grid{grid-template-columns:1fr !important;}
+      .cm-hero-actions{flex-direction:column;align-items:center;}
+      .cm-final-cta-wrap{padding:32px 20px !important;}
+      .cm-problem-card{padding:20px 20px !important;}
+      .cm-pricing-card{padding:28px 20px !important;}
+    }
+    @media(max-width:480px){
+      .cm-hero h1{font-size:1.8rem !important;}
+    }
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
@@ -55,233 +71,230 @@
 <main id="main-content" role="main">
 <div style="height:80px;"></div>
 
-<!-- ══ HERO ══════════════════════════════════════════════════════════ -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-content text-center">
-      <div class="section-label">PPN 002 SOCIAL VALUE PLATFORM</div>
-      <h1 class="mx-auto">
-        Win more public sector tenders with<br>
-        <span class="accent">PPN 002 social value</span>
-      </h1>
-      <p class="hero-sub mx-auto">
-        CrowMark maps your contract profile to the right PPN 002 missions, calculates your social value score using Oxford Social Value Bank proxy values, and generates a compliant narrative ready to submit.
-      </p>
-      <div class="hero-stats justify-center">
-        <div class="stat">
-          <div class="stat-val">10 min</div>
-          <div class="stat-label">Contract to narrative</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">From £49/mo</div>
-          <div class="stat-label">Solo plan</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">PPN 002</div>
-          <div class="stat-label">Fully aligned</div>
-        </div>
-      </div>
-      <div class="hero-actions justify-center">
-        <a href="https://app.crowagent.ai/signup" class="btn-primary">
-          Start free <span class="arrow">→</span>
-        </a>
-        <a href="#pricing" class="btn-ghost">See pricing <span class="arrow">→</span></a>
-      </div>
+<!-- ══ SECTION 1 — HERO ═════════════════════════════════════════════ -->
+<section class="cm-hero" style="padding:64px 0 48px;text-align:center;">
+  <div class="container" style="max-width:860px;margin:0 auto;padding:0 24px;">
+    <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:16px;">CrowMark — PPN 002 Social Value Platform</div>
+    <h1 style="font-family:var(--font-display);font-size:2.6rem;font-weight:800;color:var(--cloud);line-height:1.15;margin:0 0 20px;">Win more public sector contracts with AI social value scoring</h1>
+    <p style="font-family:var(--font-body);font-size:1.1rem;color:var(--steel);line-height:1.7;max-width:720px;margin:0 auto 32px;">CrowMark maps your tender against PPN 002 missions, calculates Oxford Social Value Bank proxy values, and generates an audit-ready social value narrative — in under 10 minutes.</p>
+    <div class="cm-hero-actions" style="display:flex;gap:14px;justify-content:center;margin-bottom:32px;">
+      <a href="https://app.crowagent.ai/signup?plan=solo" style="display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:0.95rem;font-weight:700;padding:13px 28px;border-radius:var(--r);text-decoration:none;transition:opacity .2s;">Start scoring bids →</a>
+      <a href="/pricing" style="display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--cloud);font-family:var(--font-display);font-size:0.95rem;font-weight:600;padding:13px 28px;border-radius:var(--r);border:1px solid var(--border2);text-decoration:none;transition:border-color .2s;">See pricing</a>
+    </div>
+    <div class="cm-hero-pills" style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+      <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;">Cited to PPN 002 (2021)</span>
+      <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;">Oxford SVB 2023-24</span>
+      <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;">TOMs aligned</span>
+      <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;">14-day free trial</span>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ HOW IT WORKS ═══════════════════════════════════════════════════ -->
-<section id="how">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Simple Process</div>
-      <h2 class="mx-auto">How It Works</h2>
-      <p class="section-sub mx-auto">From contract profile to submission-ready narrative in four steps.</p>
-    </div>
-    <div class="steps-grid-3 fade-in" style="grid-template-columns: repeat(4, 1fr);">
-      <div class="step-card-new">
-        <div class="step-num-new">01</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="9" y="2" width="6" height="4" rx="1"/><path d="M9 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2h-3"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="15" y2="14"/></svg>
-        </div>
-        <div class="step-title-new">Enter Contract Details</div>
-        <div class="step-desc-new">Input your contract value, sector, and geography. CrowMark matches your profile automatically.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">02</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="12" x2="15" y2="14"/><path d="M12 2a10 10 0 0 1 7.07 17.07"/></svg>
-        </div>
-        <div class="step-title-new">PPN 002 Mission Mapping</div>
-        <div class="step-desc-new">We map the top 3 PPN 002 missions for your contract. Aligned to Cabinet Office guidance.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">03</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-        </div>
-        <div class="step-title-new">Score &amp; Quantify</div>
-        <div class="step-desc-new">Select your social value measures. Proxy values from Oxford Social Value Bank calculated automatically.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">04</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </div>
-        <div class="step-title-new">Generate &amp; Submit</div>
-        <div class="step-desc-new">AI generates your 500–800 word PPN 002 narrative. Export audit-ready PDF in one click.</div>
-      </div>
+<!-- ══ SECTION 2 — PROBLEM STATEMENT ════════════════════════════════ -->
+<section style="padding:48px 0;">
+  <div class="container" style="max-width:860px;margin:0 auto;padding:0 24px;">
+    <div class="cm-problem-card" style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:14px;padding:28px 32px;">
+      <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">The problem</div>
+      <h2 style="font-family:var(--font-display);font-size:1.5rem;font-weight:700;color:var(--cloud);margin:0 0 16px;line-height:1.3;">Public sector buyers score social value on every tender</h2>
+      <p style="font-family:var(--font-body);font-size:0.95rem;color:var(--steel);line-height:1.75;margin:0;">PPN 002 (Procurement Policy Note 002) requires all central government contracts above £5 million to evaluate social value as a minimum 10% of the bid score. Local authorities and NHS trusts increasingly apply the same standard. Most suppliers score this manually in Word documents — and leave significant value on the table. CrowMark automates the entire process.</p>
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ FEATURES ═══════════════════════════════════════════════════════ -->
-<section id="features">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Platform Features</div>
-      <h2 class="mx-auto">Everything You Need for<br><span class="accent">PPN 002 Compliance</span></h2>
-      <p class="section-sub mx-auto">Purpose-built tools for public sector suppliers navigating PPN 002 social value requirements.</p>
+<!-- ══ SECTION 3 — FEATURE GRID ═════════════════════════════════════ -->
+<section style="padding:48px 0;">
+  <div class="container" style="max-width:1060px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Platform Features</div>
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--cloud);margin:0;">Everything you need for PPN 002 compliance</h2>
     </div>
-    <div class="trust-grid fade-in">
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="layers"></div>
-        <div class="trust-title">PPN 002 Mission Mapping</div>
-        <div class="trust-desc">Automatic mapping to the correct themes for your sector, geography, and contract value.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="trending-up"></div>
-        <div class="trust-title">Oxford Proxy Values</div>
-        <div class="trust-desc">Every measure quantified using Oxford Social Value Bank published benchmarks. Cited inline.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="zap"></div>
-        <div class="trust-title">AI Narrative Generation</div>
-        <div class="trust-desc">500–800 word PPN 002 section generated in under 60 seconds. AI-powered, compliance-focused.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="clipboard"></div>
-        <div class="trust-title">Evidence Tracker</div>
-        <div class="trust-desc">Track delivery against every commitment. Monthly progress reports generated automatically.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="code"></div>
-        <div class="trust-title">PDF Export</div>
-        <div class="trust-desc">Complete social value section with narrative, measures, proxy values, and evidence plan.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="lock"></div>
-        <div class="trust-title">Team Collaboration</div>
-        <div class="trust-desc">Multiple users on one account. Consistent social value across all bids.</div>
-      </div>
-    </div>
-  </div>
-</section>
+    <div class="cm-features-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
 
-<div class="divider"></div>
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">PPN 002 Mission Mapping</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">CrowMark automatically maps your contract profile to the relevant PPN 002 missions based on contract value, sector, and geography.</p>
+      </div>
 
-<!-- ══ REGULATORY CALLOUT ════════════════════════════════════════════ -->
-<section id="regulation">
-  <div class="container">
-    <div class="fade-in" style="max-width:840px;margin:0 auto;background:var(--navy2);border-left:4px solid var(--teal);border-radius:8px;padding:32px 36px;">
-      <p style="font-family:var(--font-heading);font-size:1.15rem;color:var(--cloud);line-height:1.7;margin:0 0 16px 0;">
-        Procurement Policy Note 002 (PPN 002) requires all central government contracting authorities to evaluate social value with a minimum 10% weighting on all contracts above the procurement threshold. Failure to demonstrate social value costs you contracts.
-      </p>
-      <p style="font-family:var(--font-body);font-size:0.8rem;color:var(--steel);margin:0;line-height:1.5;font-style:italic;">
-        PPN 002 applies to central government. Devolved administrations and local authorities may apply the Social Value Act 2012 differently.
-      </p>
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Oxford SVB Proxy Values</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">Every measure is valued using Oxford Social Value Bank 2023-24 proxy values — the most widely accepted social value methodology in UK procurement.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">TOMs Alignment</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">All measures are mapped to the National TOMs Framework — the standard scoring methodology used by most UK public sector buyers.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">AI Narrative Generation</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">CrowMark generates a compliant social value narrative from your measure selections — server-side, cited, and ready for submission.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Evidence Tracker</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">Track delivery against committed social value measures month-by-month. CrowMark sends monthly reminders and generates evidence reports.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;">
+        <div style="font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">PDF Export</div>
+        <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.7;margin:0;">Download a branded social value statement PDF — suitable for bid submission, contract monitoring, and annual reporting.</p>
+      </div>
+
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ PRICING ═══════════════════════════════════════════════════════ -->
-<section id="pricing">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Transparent Pricing</div>
-      <h2 class="mx-auto">Simple, Scalable Plans</h2>
-      <p class="section-sub mx-auto">Start free, scale as you grow. No hidden fees. Cancel anytime.</p>
+<!-- ══ SECTION 4 — HOW IT WORKS ═════════════════════════════════════ -->
+<section style="padding:48px 0;">
+  <div class="container" style="max-width:1060px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">How It Works</div>
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--cloud);margin:0;">From contract details to submission-ready narrative</h2>
     </div>
-    <div class="pricing-grid fade-in">
-      <div class="pricing-table">
-        <div class="pricing-table-header">
-          <div class="pricing-product-name" style="color:var(--teal)">CrowMark</div>
-          <div class="pricing-table-sub">PPN 002 social value automation</div>
-        </div>
-        <div class="pricing-tiers">
-          <div class="pricing-tier">
-            <div class="pricing-tier-name">Solo</div>
-            <div class="pricing-price">£49<span>/mo</span></div>
-            <div class="pricing-scope">1 user</div>
-            <ul class="pricing-features">
-              <li>Up to 5 active bids/month</li>
-              <li>PPN 002 mission mapping</li>
-              <li>Oxford proxy value scoring</li>
-              <li>PDF export</li>
-              <li>Email support</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-          <div class="pricing-tier pricing-tier--highlighted">
-            <div class="pricing-tier-badge">Most Popular</div>
-            <div class="pricing-tier-name">Team</div>
-            <div class="pricing-price">£149<span>/mo</span></div>
-            <div class="pricing-scope">Up to 5 users</div>
-            <ul class="pricing-features">
-              <li>Everything in Solo</li>
-              <li>AI narrative generation</li>
-              <li>Evidence tracker</li>
-              <li>Team collaboration</li>
-              <li>Priority support</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-          <div class="pricing-tier">
-            <div class="pricing-tier-name">Agency</div>
-            <div class="pricing-price">£399<span>/mo</span></div>
-            <div class="pricing-scope">Unlimited users</div>
-            <ul class="pricing-features">
-              <li>Everything in Team</li>
-              <li>White-label exports</li>
-              <li>Custom branding</li>
-              <li>API access</li>
-              <li>Dedicated account manager</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-        </div>
+    <div class="cm-steps-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;">
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;text-align:center;">
+        <div style="font-family:var(--font-mono);font-size:0.8rem;font-weight:500;color:var(--teal);margin-bottom:14px;">01</div>
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Enter your contract details</div>
+        <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);line-height:1.7;margin:0;">Contract value, sector, geography, and contracting authority type. CrowMark uses this to identify relevant PPN 002 missions automatically.</p>
       </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;text-align:center;">
+        <div style="font-family:var(--font-mono);font-size:0.8rem;font-weight:500;color:var(--teal);margin-bottom:14px;">02</div>
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Review mission mapping</div>
+        <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);line-height:1.7;margin:0;">CrowMark shows the 3 most relevant PPN 002 missions for your contract, with plain-English explanations of what each mission requires.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;text-align:center;">
+        <div style="font-family:var(--font-mono);font-size:0.8rem;font-weight:500;color:var(--teal);margin-bottom:14px;">03</div>
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Select social value measures</div>
+        <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);line-height:1.7;margin:0;">Choose from the TOMs-aligned measure library. CrowMark shows Oxford SVB proxy values and live social value score as you select.</p>
+      </div>
+
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;text-align:center;">
+        <div style="font-family:var(--font-mono);font-size:0.8rem;font-weight:500;color:var(--teal);margin-bottom:14px;">04</div>
+        <div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--cloud);margin-bottom:10px;">Generate and export</div>
+        <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);line-height:1.7;margin:0;">AI generates your social value narrative. Download your PDF statement — cited to PPN 002, TOMs, and Oxford SVB 2023-24.</p>
+      </div>
+
     </div>
-    <p class="pricing-note fade-in">All prices excl. VAT. Annual billing available at 20% discount. <a href="/contact">Contact us</a> for enterprise pricing.</p>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ══ FOOTER CTA ════════════════════════════════════════════════════ -->
-<section id="cta">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Get Started</div>
-      <h2 class="mx-auto">Ready to win more public sector work?</h2>
-      <div class="cta-actions justify-center">
-        <a href="https://app.crowagent.ai/signup" class="btn-primary">
-          Start free <span class="arrow">→</span>
-        </a>
+<!-- ══ SECTION 5 — PRICING ══════════════════════════════════════════ -->
+<section id="pricing" style="padding:48px 0;">
+  <div class="container" style="max-width:1060px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">Pricing</div>
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--cloud);margin:0;">Simple, transparent plans</h2>
+    </div>
+    <div class="cm-pricing-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
+
+      <!-- Solo -->
+      <div class="cm-pricing-card" style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;">
+        <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--cloud);margin-bottom:4px;">Solo</div>
+        <div style="font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--cloud);margin-bottom:4px;">£49<span style="font-size:0.9rem;font-weight:500;color:var(--steel);">/mo</span></div>
+        <div style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);margin-bottom:20px;">1 user · 3 bids/month</div>
+        <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>PPN 002 mission mapping</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Oxford SVB values</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>AI narrative</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>PDF export</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Evidence tracker</li>
+        </ul>
+        <a href="https://app.crowagent.ai/signup?plan=solo" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:0.9rem;font-weight:700;padding:12px 24px;border-radius:var(--r);text-decoration:none;transition:opacity .2s;">Start Solo trial →</a>
+      </div>
+
+      <!-- Team -->
+      <div class="cm-pricing-card" style="background:var(--surf);border:2px solid var(--teal);border-radius:var(--r2);padding:32px 28px;position:relative;">
+        <div style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:11px;font-weight:700;padding:4px 14px;border-radius:100px;white-space:nowrap;">MOST POPULAR</div>
+        <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--cloud);margin-bottom:4px;">Team</div>
+        <div style="font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--cloud);margin-bottom:4px;">£149<span style="font-size:0.9rem;font-weight:500;color:var(--steel);">/mo</span></div>
+        <div style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);margin-bottom:20px;">Up to 5 users · Unlimited bids</div>
+        <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Everything in Solo</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Team collaboration</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Audit trail</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Priority support</li>
+        </ul>
+        <a href="https://app.crowagent.ai/signup?plan=team" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:0.9rem;font-weight:700;padding:12px 24px;border-radius:var(--r);text-decoration:none;transition:opacity .2s;">Start Team trial →</a>
+      </div>
+
+      <!-- Agency -->
+      <div class="cm-pricing-card" style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;">
+        <div style="font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--cloud);margin-bottom:4px;">Agency</div>
+        <div style="font-family:var(--font-display);font-size:2.2rem;font-weight:800;color:var(--cloud);margin-bottom:4px;">£399<span style="font-size:0.9rem;font-weight:500;color:var(--steel);">/mo</span></div>
+        <div style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);margin-bottom:20px;">Unlimited users · Unlimited bids</div>
+        <ul style="list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px;">
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Everything in Team</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>White-label</li>
+          <li style="font-family:var(--font-body);font-size:0.85rem;color:var(--steel);padding-left:18px;position:relative;line-height:1.5;"><span style="position:absolute;left:0;color:var(--teal);">&#10003;</span>Client management dashboard</li>
+        </ul>
+        <a href="https://app.crowagent.ai/signup?plan=agency" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:0.9rem;font-weight:700;padding:12px 24px;border-radius:var(--r);text-decoration:none;transition:opacity .2s;">Start Agency trial →</a>
+      </div>
+
+    </div>
+    <p style="font-family:var(--font-body);font-size:0.8rem;color:var(--mist);text-align:center;margin-top:24px;">All prices excl. VAT. 14-day free trial on all plans. Cancel anytime.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ SECTION 6 — FAQ ══════════════════════════════════════════════ -->
+<section style="padding:48px 0;">
+  <div class="container" style="max-width:760px;margin:0 auto;padding:0 24px;">
+    <div style="text-align:center;margin-bottom:40px;">
+      <div style="font-family:var(--font-display);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;">FAQ</div>
+      <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--cloud);margin:0;">Frequently asked questions</h2>
+    </div>
+
+    <details style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:12px;">
+      <summary style="font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--cloud);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">What is PPN 002?</summary>
+      <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.75;margin:14px 0 0;">Procurement Policy Note 002 (PPN 002) is a UK government policy that requires all central government contracts above £5 million to include a minimum 10% weighting for social value in the evaluation criteria. Many local authorities and NHS trusts apply the same standard voluntarily.</p>
+    </details>
+
+    <details style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:12px;">
+      <summary style="font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--cloud);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">What are Oxford SVB proxy values?</summary>
+      <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.75;margin:14px 0 0;">The Oxford Social Value Bank provides monetised proxy values for social outcomes — for example, the value of one person gaining employment, or one apprenticeship being created. CrowMark uses the 2023-24 proxy values, the most current version.</p>
+    </details>
+
+    <details style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:12px;">
+      <summary style="font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--cloud);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">What is the TOMs framework?</summary>
+      <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.75;margin:14px 0 0;">The National TOMs (Themes, Outcomes and Measures) Framework is the most widely used social value measurement methodology in UK public procurement. CrowMark aligns all measures to the TOMs framework automatically.</p>
+    </details>
+
+    <details style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:12px;">
+      <summary style="font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--cloud);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">How does the 3 bids/month limit work on Solo?</summary>
+      <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.75;margin:14px 0 0;">Each new contract wizard submission counts as one bid. The limit resets at the start of each calendar month. Upgrade to Team for unlimited bids.</p>
+    </details>
+
+    <details style="background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;margin-bottom:12px;">
+      <summary style="font-family:var(--font-display);font-size:0.95rem;font-weight:600;color:var(--cloud);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">Can I use CrowMark for frameworks and call-offs?</summary>
+      <p style="font-family:var(--font-body);font-size:0.88rem;color:var(--steel);line-height:1.75;margin:14px 0 0;">Yes. CrowMark works for any PPN 002-relevant procurement — single contracts, framework agreements, and call-offs. Enter the relevant contract value and contracting authority type and CrowMark maps the appropriate missions.</p>
+    </details>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══ SECTION 7 — FINAL CTA ════════════════════════════════════════ -->
+<section style="padding:48px 0;">
+  <div class="container" style="max-width:860px;margin:0 auto;padding:0 24px;">
+    <div class="cm-final-cta-wrap" style="background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:48px;text-align:center;margin:48px 0;">
+      <h2 style="font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--cloud);margin:0 0 12px;">Start scoring your social value today</h2>
+      <p style="font-family:var(--font-body);font-size:1rem;color:var(--steel);margin:0 0 28px;line-height:1.6;">14-day free trial. No credit card required. Cancel anytime.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="https://app.crowagent.ai/signup?plan=solo" style="display:inline-flex;align-items:center;gap:6px;background:var(--teal);color:var(--bg);font-family:var(--font-display);font-size:0.95rem;font-weight:700;padding:13px 28px;border-radius:var(--r);text-decoration:none;transition:opacity .2s;">Start free trial →</a>
+        <a href="/demo" style="display:inline-flex;align-items:center;gap:6px;background:transparent;color:var(--cloud);font-family:var(--font-display);font-size:0.95rem;font-weight:600;padding:13px 28px;border-radius:var(--r);border:1px solid var(--border2);text-decoration:none;transition:border-color .2s;">Book a demo</a>
       </div>
     </div>
   </div>

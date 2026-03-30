@@ -21,7 +21,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/crowagent-brand-tokens.css">
   <link rel="stylesheet" href="/styles.css?v=13">
+  <style>
+    .core-feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .core-steps { display:flex; gap:24px; }
+    .core-pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .core-faq details summary::-webkit-details-marker { display:none; }
+    .core-faq details summary::marker { display:none; }
+    @media(max-width:768px) {
+      .core-feature-grid { grid-template-columns:1fr; }
+      .core-steps { flex-direction:column; }
+      .core-pricing-grid { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
@@ -52,234 +65,184 @@
   </div>
 </nav>
 
-<main id="main-content" role="main">
-<div style="height:80px;"></div>
-
 <!-- ══ HERO ══════════════════════════════════════════════════════════ -->
-<section id="hero">
-  <div class="hero-glow"></div>
-  <div class="container">
-    <div class="hero-content text-center">
-      <div class="section-label">MEES COMPLIANCE PLATFORM</div>
-      <h1 class="mx-auto">
-        MEES compliance for your<br>
-        <span class="accent">commercial portfolio</span>
-      </h1>
-      <p class="hero-sub mx-auto">
-        Check any UK commercial property's MEES status, model retrofit scenarios, and generate an audit-ready PDF report in under 10 minutes.
-      </p>
-      <div class="hero-stats justify-center">
-        <div class="stat">
-          <div class="stat-val">10 min</div>
-          <div class="stat-label">Per property analysis</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">From £149/mo</div>
-          <div class="stat-label">Starter plan</div>
-        </div>
-        <div class="stat">
-          <div class="stat-val">Band C 2028</div>
-          <div class="stat-label">Proposed target</div>
-        </div>
-      </div>
-      <div class="hero-actions justify-center">
-        <a href="https://app.crowagent.ai/signup" class="btn-primary">
-          Request Access <span class="arrow">→</span>
-        </a>
-        <a href="/pricing" class="btn-ghost">See pricing <span class="arrow">→</span></a>
-      </div>
+<main id="main-content">
+<section style="max-width:900px;margin:0 auto;padding:80px clamp(20px,4vw,56px) 40px;">
+  <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">CrowAgent Core — MEES Compliance Intelligence</div>
+  <h1 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--cloud);letter-spacing:-.025em;margin-bottom:16px;">Know your MEES 2028 exposure before it costs you</h1>
+  <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:17px;color:var(--steel);line-height:1.75;margin-bottom:24px;">Commercial landlords face penalties under SI 2015/962 for letting non-compliant properties after the proposed 2028 deadline. CrowAgent Core gives you your compliance verdict, penalty exposure, and retrofit pathway — in 10 minutes.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+    <a href="https://app.crowagent.ai/signup?plan=starter" style="display:inline-block;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;">Start free MEES analysis →</a>
+    <a href="/pricing" style="display:inline-block;background:transparent;color:var(--steel);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;border:1px solid var(--border2);">See pricing</a>
+  </div>
+  <div style="display:inline-flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+    <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);">Cited to SI 2015/962</span>
+    <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);">EPC data from MHCLG</span>
+    <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);">14-day free trial</span>
+    <span style="background:var(--teal-dim);border:1px solid var(--border2);border-radius:100px;padding:4px 14px;font-size:11px;font-weight:700;color:var(--teal);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);">No surveyor needed</span>
+  </div>
+</section>
+
+<!-- ══ PROBLEM STATEMENT ═════════════════════════════════════════════ -->
+<section style="max-width:900px;margin:0 auto;padding:0 clamp(20px,4vw,56px) 40px;">
+  <div style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:14px;padding:28px 32px;">
+    <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">The problem</div>
+    <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:20px;font-weight:700;color:var(--cloud);margin-bottom:12px;">733 days to the proposed MEES Band C deadline</h2>
+    <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:15px;color:var(--steel);line-height:1.75;">Under the Minimum Energy Efficiency Standards (MEES), commercial landlords face penalties under SI 2015/962 Regulation 39 for letting non-compliant properties. The proposed Band C target for 2028 means thousands of D, E, F, and G-rated properties need retrofit action now — not in 2027. Most landlords do not know their current exposure. CrowAgent Core fixes that.</p>
+  </div>
+</section>
+
+<!-- ══ FEATURE GRID ══════════════════════════════════════════════════ -->
+<section style="max-width:900px;margin:0 auto;padding:40px clamp(20px,4vw,56px);">
+  <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">What you get</div>
+  <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:24px;">Six compliance tools in one platform</h2>
+  <div class="core-feature-grid">
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>EPC Gap Analysis</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">Enter any UK commercial postcode. CrowAgent fetches live EPC data from the MHCLG register and calculates your compliance gap against the proposed Band C target.</p>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>Penalty Exposure</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">Understand your regulatory risk under SI 2015/962 Regulation 39. Penalty exposure is calculated based on rateable value — not a flat figure.</p>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>3 Retrofit Scenarios</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">Compare cavity wall insulation, heating upgrades, and lighting improvements. Each scenario includes estimated cost, EPC improvement, and compliance outcome.</p>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>NPV Financial Modelling</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">All retrofit costs are discounted using HM Treasury Green Book NPV methodology at 3.5% — the standard for UK public sector investment appraisal.</p>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>Portfolio Dashboard</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">Manage up to 100 properties from a single dashboard. Filter by compliance status, EPC band, or deadline urgency. Pro and Portfolio plans only.</p>
+    </div>
+    <div style="background:var(--surf2);border:1px solid var(--border);border-radius:14px;padding:20px 24px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--teal);margin-right:8px;vertical-align:middle;"></span>Regulation-Cited PDF Report</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">Download a branded PDF report with every claim cited to its statutory source — SI 2015/962, MHCLG EPC data, HM Treasury Green Book. Audit-ready from day one.</p>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══ HOW IT WORKS ═══════════════════════════════════════════════════ -->
-<section id="how">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Simple Process</div>
-      <h2 class="mx-auto">How It Works</h2>
-      <p class="section-sub mx-auto">From postcode to audit-ready report in four steps.</p>
+<!-- ══ HOW IT WORKS ══════════════════════════════════════════════════ -->
+<section style="max-width:900px;margin:0 auto;padding:40px clamp(20px,4vw,56px);">
+  <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">How it works</div>
+  <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:24px;">Three steps to compliance clarity</h2>
+  <div class="core-steps">
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:24px;flex:1;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">1</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">Enter your property postcode</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">CrowAgent looks up your EPC record from the MHCLG register. For properties without an EPC, you can enter details manually.</p>
     </div>
-    <div class="steps-grid-3 fade-in" style="grid-template-columns: repeat(4, 1fr);">
-      <div class="step-card-new">
-        <div class="step-num-new">01</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div class="step-title-new">Enter Postcode</div>
-        <div class="step-desc-new">EPC auto-lookup from the MHCLG register. No manual data entry required.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">02</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-        </div>
-        <div class="step-title-new">See Compliance Position</div>
-        <div class="step-desc-new">View your current MEES status against existing law and the 2028 Band C trajectory.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">03</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-        </div>
-        <div class="step-title-new">Model Retrofit</div>
-        <div class="step-desc-new">Explore 3 retrofit scenarios with NPV financial modelling to find your optimal path.</div>
-      </div>
-      <div class="step-card-new">
-        <div class="step-num-new">04</div>
-        <div class="step-icon-wrap">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </div>
-        <div class="step-title-new">Download Report</div>
-        <div class="step-desc-new">Export an audit-ready 6-page PDF report for your records and stakeholders.</div>
-      </div>
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:24px;flex:1;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">2</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">AI analyses your compliance gap</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">The compliance engine calculates your current EPC band, the gap to Band C, and your penalty exposure under SI 2015/962 — in under 10 seconds.</p>
+    </div>
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:24px;flex:1;">
+      <div style="width:28px;height:28px;border-radius:50%;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;">3</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">Download your regulation-cited report</div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.6;margin:0;">A branded PDF report with retrofit scenarios, financial modelling, and full regulatory citations — ready to share with clients, lenders, or auditors.</p>
     </div>
   </div>
 </section>
-
-<div class="divider"></div>
-
-<!-- ══ FEATURES ═══════════════════════════════════════════════════════ -->
-<section id="features">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Platform Features</div>
-      <h2 class="mx-auto">Everything You Need for<br><span class="accent">MEES Compliance</span></h2>
-      <p class="section-sub mx-auto">Purpose-built tools for commercial landlords and property managers navigating UK energy regulations.</p>
-    </div>
-    <div class="trust-grid fade-in">
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="zap"></div>
-        <div class="trust-title">Instant EPC Lookup</div>
-        <div class="trust-desc">Enter a postcode and instantly pull the latest EPC data from the MHCLG register. No manual searching or data entry.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="clipboard"></div>
-        <div class="trust-title">MEES Gap Analysis</div>
-        <div class="trust-desc">See exactly where each property stands against current MEES law and the proposed 2028 Band C requirement.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="layers"></div>
-        <div class="trust-title">3 Retrofit Scenarios</div>
-        <div class="trust-desc">Model light, medium, and deep retrofit options with specific interventions tailored to each property's characteristics.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="trending-up"></div>
-        <div class="trust-title">HM Treasury Financial Model</div>
-        <div class="trust-desc">NPV analysis using HM Treasury Green Book discount rates. Cost-benefit modelling that meets public sector standards.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="lock"></div>
-        <div class="trust-title">Portfolio Monitoring</div>
-        <div class="trust-desc">Track compliance status across your entire portfolio. Get alerts when EPC ratings change or regulations update.</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-icon" data-icon="code"></div>
-        <div class="trust-title">Audit-Ready PDF Reports</div>
-        <div class="trust-desc">Generate professional 6-page compliance reports with methodology citations, ready for auditors and stakeholders.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══ REGULATORY CALLOUT ════════════════════════════════════════════ -->
-<section id="regulation">
-  <div class="container">
-    <div class="fade-in" style="max-width:840px;margin:0 auto;background:var(--navy2);border-left:4px solid var(--teal);border-radius:8px;padding:32px 36px;">
-      <p style="font-family:var(--font-heading);font-size:1.15rem;color:var(--cloud);line-height:1.7;margin:0 0 16px 0;">
-        Since 1 April 2023, it is unlawful to continue letting commercial property with EPC rating F or G (SI 2015/962). Proposed Band C target by April 2028 affects 400,000+ commercial properties. Penalties: £5,000–£150,000 per property (rateable-value based, SI 2015/962 regulation 39).
-      </p>
-      <p style="font-family:var(--font-body);font-size:0.8rem;color:var(--steel);margin:0;line-height:1.5;font-style:italic;">
-        Band C 2028 is a proposed regulatory target subject to legislative confirmation. Not yet enacted law.
-      </p>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
 
 <!-- ══ PRICING ═══════════════════════════════════════════════════════ -->
-<section id="pricing">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Transparent Pricing</div>
-      <h2 class="mx-auto">Simple, Scalable Plans</h2>
-      <p class="section-sub mx-auto">Start free, scale as you grow. No hidden fees. Cancel anytime.</p>
+<section style="max-width:900px;margin:0 auto;padding:40px clamp(20px,4vw,56px);">
+  <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Pricing</div>
+  <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:24px;">Simple, transparent plans</h2>
+  <div class="core-pricing-grid">
+    <!-- Starter -->
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">Starter</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:32px;font-weight:800;color:var(--cloud);margin-bottom:4px;">£149<span style="font-size:16px;font-weight:600;color:var(--steel);">/mo</span></div>
+      <div style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);margin-bottom:20px;">Up to 5 properties</div>
+      <ul style="list-style:none;padding:0;margin:0 0 24px 0;flex:1;">
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>MEES compliance analysis</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>3 retrofit scenarios per property</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>NPV financial modelling</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Regulation-cited PDF reports</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Email support</li>
+      </ul>
+      <a href="https://app.crowagent.ai/signup?plan=starter" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;">Start Starter trial →</a>
     </div>
-    <div class="pricing-grid fade-in">
-      <div class="pricing-table">
-        <div class="pricing-table-header">
-          <div class="pricing-product-name" style="color:var(--teal)">CrowAgent Core</div>
-          <div class="pricing-table-sub">MEES compliance intelligence</div>
-        </div>
-        <div class="pricing-tiers">
-          <div class="pricing-tier">
-            <div class="pricing-tier-name">Starter</div>
-            <div class="pricing-price">£149<span>/mo</span></div>
-            <div class="pricing-scope">Up to 5 properties</div>
-            <ul class="pricing-features">
-              <li>MEES compliance analysis</li>
-              <li>Audit-ready PDF reports</li>
-              <li>Portfolio monitoring dashboard</li>
-              <li>Email support</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-          <div class="pricing-tier pricing-tier--highlighted">
-            <div class="pricing-tier-badge">Most Popular</div>
-            <div class="pricing-tier-name">Pro</div>
-            <div class="pricing-price">£299<span>/mo</span></div>
-            <div class="pricing-scope">6–25 properties</div>
-            <ul class="pricing-features">
-              <li>Everything in Starter</li>
-              <li>EPC change alerts</li>
-              <li>Regulatory update notifications</li>
-              <li>Priority support &amp; onboarding</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-          <div class="pricing-tier">
-            <div class="pricing-tier-name">Portfolio</div>
-            <div class="pricing-price">£599<span>/mo</span></div>
-            <div class="pricing-scope">26–100 properties</div>
-            <ul class="pricing-features">
-              <li>Everything in Pro</li>
-              <li>Bulk CSV import/export</li>
-              <li>API access</li>
-              <li>Dedicated account manager</li>
-            </ul>
-            <div class="pricing-cta">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary">Start free <span class="arrow">→</span></a>
-            </div>
-          </div>
-        </div>
-      </div>
+    <!-- Pro -->
+    <div style="background:var(--surf);border:2px solid var(--teal);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;position:relative;">
+      <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:11px;font-weight:700;padding:4px 16px;border-radius:100px;text-transform:uppercase;letter-spacing:.05em;">Most popular</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">Pro</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:32px;font-weight:800;color:var(--cloud);margin-bottom:4px;">£299<span style="font-size:16px;font-weight:600;color:var(--steel);">/mo</span></div>
+      <div style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);margin-bottom:20px;">Up to 25 properties</div>
+      <ul style="list-style:none;padding:0;margin:0 0 24px 0;flex:1;">
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Everything in Starter</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Portfolio dashboard</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>EPC change alerts</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Regulatory update notifications</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Priority support &amp; onboarding</li>
+      </ul>
+      <a href="https://app.crowagent.ai/signup?plan=pro" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;">Start Pro trial →</a>
     </div>
-    <p class="pricing-note fade-in">All prices excl. VAT. Annual billing available at 20% discount. <a href="/contact">Contact us</a> for enterprise or multi-year pricing.</p>
+    <!-- Portfolio -->
+    <div style="background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:28px 24px;display:flex;flex-direction:column;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:13px;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px;">Portfolio</div>
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:32px;font-weight:800;color:var(--cloud);margin-bottom:4px;">£599<span style="font-size:16px;font-weight:600;color:var(--steel);">/mo</span></div>
+      <div style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);margin-bottom:20px;">Up to 100 properties</div>
+      <ul style="list-style:none;padding:0;margin:0 0 24px 0;flex:1;">
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Everything in Pro</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Bulk CSV import/export</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>API access</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>Dedicated account manager</li>
+        <li style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.6;padding:4px 0;"><span style="color:var(--teal);margin-right:8px;">&#10003;</span>White-label reports</li>
+      </ul>
+      <a href="https://app.crowagent.ai/signup?plan=portfolio" style="display:block;text-align:center;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;">Start Portfolio trial →</a>
+    </div>
   </div>
+  <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);text-align:center;margin-top:20px;line-height:1.6;">Annual billing saves 10%. Enterprise pricing available for 100+ properties — contact us at <a href="mailto:hello@crowagent.ai" style="color:var(--teal);text-decoration:none;">hello@crowagent.ai</a></p>
 </section>
 
-<div class="divider"></div>
+<!-- ══ FAQ ═══════════════════════════════════════════════════════════ -->
+<section style="max-width:900px;margin:0 auto;padding:40px clamp(20px,4vw,56px);" class="core-faq">
+  <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">FAQ</div>
+  <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:24px;">Frequently asked questions</h2>
 
-<!-- ══ FOOTER CTA ════════════════════════════════════════════════════ -->
-<section id="cta">
-  <div class="container">
-    <div class="fade-in text-center">
-      <div class="section-label">Get Started</div>
-      <h2 class="mx-auto">Ready to check your first property?</h2>
-      <div class="cta-actions justify-center">
-        <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="btn-primary">
-          Start free <span class="arrow">→</span>
-        </a>
-      </div>
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">What is MEES and when does it apply?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">The Minimum Energy Efficiency Standards (MEES) require commercial landlords to ensure their properties meet minimum EPC requirements before letting. The proposed Band C target for 2028 is not yet confirmed law — it is a government proposal. Current regulations (SI 2015/962) already require Band E as a minimum. CrowAgent Core helps you understand your position under both current rules and the proposed 2028 target.</div>
+  </details>
+
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">How is the penalty calculated?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">Penalties under SI 2015/962 Regulation 39 are based on the rateable value of the property, not a flat fee. CrowAgent Core shows you your exposure range based on your property's rateable value.</div>
+  </details>
+
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">Where does the EPC data come from?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">EPC data is fetched in real time from the MHCLG (Ministry of Housing, Communities and Local Government) Energy Performance of Buildings register. This is the official UK government data source.</div>
+  </details>
+
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">What if my property doesn't have an EPC?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">You can enter your property details manually — floor area, property type, construction date, and heating system. CrowAgent Core will estimate your likely EPC band and compliance position.</div>
+  </details>
+
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">Can I use CrowAgent Core for residential properties?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">CrowAgent Core is designed for commercial properties. Domestic EPC data is on a separate register and domestic MEES rules differ. Contact us if you have a mixed-use portfolio.</div>
+  </details>
+
+  <details>
+    <summary style="cursor:pointer;padding:16px 20px;background:var(--surf);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:600;color:var(--cloud);list-style:none;">How long does a report take?</summary>
+    <div style="padding:12px 20px 20px;font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--steel);line-height:1.7;">The compliance analysis runs in under 10 seconds. PDF report generation typically takes 20-30 seconds. The entire workflow from postcode to downloaded report is under 10 minutes.</div>
+  </details>
+</section>
+
+<!-- ══ FINAL CTA ═════════════════════════════════════════════════════ -->
+<section style="max-width:900px;margin:48px auto;padding:0 clamp(20px,4vw,56px);">
+  <div style="background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:48px;text-align:center;">
+    <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-weight:800;color:var(--cloud);margin-bottom:12px;">Start your free MEES analysis today</h2>
+    <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:15px;color:var(--steel);line-height:1.6;margin-bottom:24px;">14-day free trial. No credit card required. Cancel anytime.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="https://app.crowagent.ai/signup?plan=starter" style="display:inline-block;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;">Start free trial →</a>
+      <a href="/demo" style="display:inline-block;background:transparent;color:var(--steel);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-weight:700;font-size:14px;padding:13px 28px;border-radius:10px;text-decoration:none;border:1px solid var(--border2);">Book a demo</a>
     </div>
   </div>
 </section>
