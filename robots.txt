@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
 User-agent: GPTBot
 Disallow: /
@@ -19,4 +20,4 @@ Disallow: /
 User-agent: PerplexityBot
 Disallow: /
 
-Sitemap: https://crowagent.ai/sitemap.xml
+Sitemap: https://www.crowagent.ai/sitemap.xml

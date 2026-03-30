@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>CrowAgent — Autonomous Sustainability Intelligence</title>
-<meta name="description" content="MEES compliance gap analysis, PPN 002 social value scoring, and CSRD applicability for UK organisations. Audit-ready reports cited to regulation in under 10 minutes.">
+<title>CrowAgent — MEES, PPN 002 & CSRD Compliance Intelligence | From £49/mo</title>
+<meta name="description" content="AI-powered compliance platform for UK commercial landlords, public sector suppliers, and CSRD-scope companies. Audit-ready reports in under 10 minutes. No consultants needed.">
 <meta property="og:title" content="CrowAgent — Autonomous Sustainability Intelligence">
 <meta property="og:description" content="Know exactly where your organisation stands on UK & EU compliance — in 10 minutes. No consultants. No guesswork.">
 <meta property="og:image" content="https://crowagent.ai/og-image.png">
@@ -106,12 +106,12 @@
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="wrap" style="text-align:center;position:relative;z-index:1">
-    <div class="hero-eyebrow"><span class="hw-dot"></span>Now live · UK AI-native · March 2026</div>
+    <div class="hero-eyebrow" aria-label="Countdown to MEES Band C deadline on 1 April 2028"><span class="hw-dot"></span><span id="mees-countdown">733</span> days to MEES Band C deadline</div>
     <h1>Know exactly where your organisation<br>stands on <em>UK &amp; EU compliance</em><br>in 10 minutes</h1>
     <p class="hero-sub">EPC gap analysis for landlords. Social value scoring for public sector suppliers. CSRD applicability for corporates. Regulation-cited reports, audit-ready in under 10 minutes. No consultants. No guesswork.</p>
     <div class="hero-btns">
       <a class="btn-hero" href="https://app.crowagent.ai/signup">Start your trial</a>
-      <a class="btn-hero-out" href="mailto:hello@crowagent.ai?subject=Enterprise%20Demo%20Request">Book a demo</a>
+      <a class="btn-hero-out" href="/demo">Book a demo</a>
     </div>
     <div class="hero-trust">
       <div class="ht-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>AES-256 encrypted</div>
@@ -369,7 +369,7 @@
           <li>Portfolio dashboard for multi-property</li>
         </ul>
         <div class="pc-price">From £149/mo</div>
-        <a class="pc-cta" href="https://app.crowagent.ai/signup?plan=professional">Explore Core →</a>
+        <a class="pc-cta" href="https://app.crowagent.ai/signup?plan=starter&product=core">Explore Core →</a>
       </div>
 
       <!-- CrowMark -->
@@ -387,7 +387,7 @@
           <li>PDF export for bid submissions</li>
         </ul>
         <div class="pc-price" style="color:var(--lime)">From £49/mo</div>
-        <a class="pc-cta pc-cta-fund" href="https://app.crowagent.ai/signup?plan=crowmark">Explore CrowMark →</a>
+        <a class="pc-cta pc-cta-fund" href="https://app.crowagent.ai/signup?plan=solo&product=crowmark">Explore CrowMark →</a>
       </div>
 
       <!-- CSRD Checker -->
@@ -564,7 +564,7 @@
       <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">No credit card required — every plan includes full compliance reports, retrofit scenarios, and audit-ready PDFs. Annual billing saves 10%.</p>
       <div class="hero-btns" style="justify-content:center">
         <a class="btn-hero" href="/pricing">View pricing</a>
-        <a class="btn-hero-out" href="mailto:hello@crowagent.ai?subject=Enterprise%20Pricing">Enterprise enquiry</a>
+        <a class="btn-hero-out" href="/contact">Enterprise enquiry</a>
       </div>
       <p style="font-size:12px;color:var(--steel);margin-top:16px">All prices excl. VAT. 14-day free trial on every plan.</p>
     </div>
@@ -573,45 +573,31 @@
 
 <section class="csrd-band" id="csrd">
   <div class="wrap">
-    <div class="csrd-inner">
-      <div class="csrd-copy">
-        <div class="sh-label">Free tool</div>
-        <h2>Check your CSRD<br>applicability in 2 minutes</h2>
-        <p>The EU Corporate Sustainability Reporting Directive (CSRD) has been amended by Omnibus I (Directive EU 2026/470). New thresholds: &gt;1,000 employees AND &gt;€450M turnover — both required simultaneously.</p>
-        <p>Our free checker gives you an instant, regulation-cited result with no account required.</p>
+    <div style="text-align:center; padding:48px 0;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                  font-size:10px; font-weight:700; letter-spacing:.2em;
+                  text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+        Free tool
       </div>
-      <div class="csrd-form-col">
-        <form id="csrd-inline-form" onsubmit="submitCSRDInline();return false">
-          <div class="csrd-field">
-            <label for="csrd-i-company">Company name</label>
-            <input id="csrd-i-company" type="text" placeholder="Your company name" required>
-          </div>
-          <div class="csrd-field">
-            <label for="csrd-i-email">Email</label>
-            <input id="csrd-i-email" type="email" placeholder="you@company.com" required>
-          </div>
-          <div class="csrd-field">
-            <label for="csrd-i-employees">Number of employees</label>
-            <select id="csrd-i-employees" required>
-              <option value="">Select…</option>
-              <option value="<250">&lt; 250</option>
-              <option value="250-999">250 – 999</option>
-              <option value="1000+">1,000+</option>
-            </select>
-          </div>
-          <div class="csrd-field">
-            <label for="csrd-i-turnover">Annual turnover</label>
-            <select id="csrd-i-turnover" required>
-              <option value="">Select…</option>
-              <option value="<40m">&lt; €40M</option>
-              <option value="40m-450m">€40M – €450M</option>
-              <option value="450m+">€450M+</option>
-            </select>
-          </div>
-          <button class="btn-form" type="submit">Get my free CSRD assessment <span>→</span></button>
-        </form>
-        <p class="csrd-reassure">Results by email · No advisors needed · Takes 2 minutes</p>
-      </div>
+      <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                 font-size:clamp(1.4rem,2.5vw,1.9rem); font-weight:800;
+                 color:var(--cloud); margin-bottom:12px; letter-spacing:-.02em;">
+        Check your CSRD applicability in 2 minutes
+      </h2>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);
+                 font-size:16px; color:var(--steel); max-width:520px;
+                 margin:0 auto 28px; line-height:1.7;">
+        Our free checker applies Omnibus I thresholds
+        (&gt;1,000 employees AND &gt;€450M turnover) and gives you
+        an instant, regulation-cited verdict. No account required.
+      </p>
+      <a href="/csrd"
+         style="display:inline-block; background:var(--teal); color:var(--bg);
+                font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                font-weight:700; font-size:14px; padding:14px 32px;
+                border-radius:10px; text-decoration:none;">
+        Check CSRD status → Free, no account required
+      </a>
     </div>
   </div>
 </section>
@@ -658,10 +644,11 @@
       <div class="foot-col">
         <h4>Company</h4>
         <a href="/about">About</a>
+        <a href="/demo">Book a demo</a>
         <a href="/roadmap">Roadmap</a>
         <a href="/partners">Partners</a>
         <a href="/security">Security</a>
-        <a href="mailto:hello@crowagent.ai">Contact</a>
+        <a href="/contact">Contact</a>
         <a href="mailto:hello@crowagent.ai?subject=Status%20Enquiry">System status</a>
       </div>
       <div class="foot-col">
@@ -699,5 +686,21 @@
 
 <script src="scripts.js?v=13"></script>
 <script src="chatbot.js" defer></script>
+<script>
+(function() {
+  var deadline = new Date('2028-04-01T00:00:00Z');
+  function updateCountdown() {
+    var now = new Date();
+    var diff = deadline - now;
+    if (diff > 0) {
+      var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      var el = document.getElementById('mees-countdown');
+      if (el) el.textContent = days.toLocaleString();
+    }
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+})();
+</script>
 </body>
 </html>

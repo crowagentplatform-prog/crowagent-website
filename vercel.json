@@ -3,6 +3,8 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/demo", "destination": "/demo.html" },
+    { "source": "/contact", "destination": "/contact.html" },
     { "source": "/roadmap", "destination": "/roadmap.html" },
     { "source": "/security", "destination": "/security.html" },
     { "source": "/privacy", "destination": "/privacy.html" },
