@@ -1,4 +1,4 @@
-var APP_VERSION = '13';
+var APP_VERSION = '15';
 
 // ── ANNOUNCE BAR DISMISS ──
 function dismissBar() {

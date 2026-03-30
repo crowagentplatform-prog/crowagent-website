@@ -1,17 +1,22 @@
-const CACHE_NAME = 'crowagent-v14';
+const CACHE_NAME = 'crowagent-v15';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.min.css?v=13',
-  '/scripts.min.js?v=13',
+  '/styles.min.css?v=15',
+  '/scripts.min.js?v=15',
   '/manifest.json',
-  '/Assets/Branding Logo/favicon.png',
-  '/Doc/privacy-policy-2026-03.pdf',
-  '/Doc/terms-and-conditions-2026-03.pdf',
+  '/favicon.ico',
   '/legal.html',
   '/privacy.html',
   '/terms.html',
   '/cookies.html',
+  '/demo',
+  '/contact',
+  '/about',
+  '/security',
+  '/products/crowagent-core',
+  '/products/crowmark',
+  '/blog/ppn-002-guide',
   'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
 ];
 
