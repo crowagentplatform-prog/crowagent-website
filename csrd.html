@@ -95,7 +95,7 @@
   <div class="wrap" style="text-align:center;position:relative;z-index:1">
     <div class="hero-eyebrow"><span class="hw-dot"></span>Free tool · No account required</div>
     <h1>Check your CSRD applicability</h1>
-    <p class="hero-sub">Updated for Omnibus I — Directive (EU) 2026/470. New thresholds require <strong>both</strong> &gt;1,000 employees <strong>and</strong> &gt;&#8364;450M turnover. Answer two questions for an instant, regulation-cited result.</p>
+    <p class="hero-sub">Updated for Omnibus I and designed for a fast first pass. Answer two questions to see whether your group appears to meet the new threshold test of more than 1,000 employees and more than &#8364;450M in turnover.</p>
     <div class="theme-toggle-row" style="justify-content:center;margin-top:22px">
       <button class="theme-opt active" data-theme-choice="dark">Dark theme</button>
       <button class="theme-opt" data-theme-choice="light">Light theme</button>
@@ -124,7 +124,7 @@
             <span class="csrd-option-note">Well below the new headcount threshold.</span>
           </button>
           <button class="csrd-option" onclick="csrdSelect('employees','250-999')">
-            <span>250 – 999</span>
+            <span>250 to 999</span>
             <span class="csrd-option-note">Still below scope unless your group exceeds 1,000 employees.</span>
           </button>
           <button class="csrd-option" onclick="csrdSelect('employees','1000+')">
@@ -147,7 +147,7 @@
             <span class="csrd-option-note">Below the Omnibus I revenue threshold.</span>
           </button>
           <button class="csrd-option" onclick="csrdSelect('turnover','150m-450m')">
-            <span>&#8364;150M – &#8364;450M</span>
+            <span>&#8364;150M to &#8364;450M</span>
             <span class="csrd-option-note">Still below scope unless turnover exceeds &#8364;450M.</span>
           </button>
           <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">
@@ -164,7 +164,7 @@
       <!-- Step 3: Email capture + Result -->
       <div class="csrd-step" id="csrd-step-3" data-csrd-step="3" style="display:none">
         <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a detailed, regulation-cited assessment</p>
+        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a more detailed assessment and a record you can share internally</p>
         <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
           <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--bg);color:var(--cloud);font-size:15px">
           <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
@@ -182,8 +182,8 @@
 
 <section class="cta-band">
   <div class="wrap" style="text-align:center">
-    <h2>Start your 14-day free trial</h2>
-    <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Full compliance reports, retrofit scenarios, and audit-ready PDFs — no credit card required.</p>
+    <h2>Move from scope check to full workflow</h2>
+    <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Once you know whether reporting may apply, you can use the wider platform to handle property compliance and bid work in the same environment.</p>
     <div class="hero-btns" style="justify-content:center">
       <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
       <a class="btn-hero-out" href="/pricing">View pricing</a>
@@ -208,7 +208,7 @@
             <div class="logo-tag">Sustainability Intelligence</div>
           </div>
         </a>
-        <p class="foot-desc">Autonomous Sustainability Intelligence for UK organisations navigating MEES, PPN 002, CSRD, and the full regulatory agenda.</p>
+        <p class="foot-desc">Software for UK teams working through MEES, PPN 002, CSRD, and related compliance demands.</p>
         <p class="foot-reg">CrowAgent Ltd &middot; Company No. 17076461<br>Registered in England &amp; Wales &middot; ICO registered</p>
       </div>
       <div class="foot-col">
@@ -265,3 +265,4 @@
 <script src="scripts.js?v=13"></script>
 </body>
 </html>
+

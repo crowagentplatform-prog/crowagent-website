@@ -24,6 +24,26 @@
   --warn:#B45309;--err:#DC2626;--success:#15803D;
 }
 
+@media(prefers-color-scheme:light){
+  html:not([data-theme="dark"]){
+    --bg:#F4F8FF;--surf:#FFFFFF;--surf2:#ECF4FF;--surf3:#E2EEFC;--surf4:#D7E7F7;
+    --teal:#0AA88C;--teal-d:#087A66;--teal-dim:rgba(10,168,140,.10);--teal-glow:rgba(10,168,140,.12);
+    --lime:#5C8C00;--lime-dim:rgba(92,140,0,.12);--sky:#1A8FC5;--sky-dim:rgba(26,143,197,.12);
+    --gold:#9A7200;--gold-dim:rgba(154,114,0,.12);--mark:#7C3AED;--coral:#DC2626;
+    --cloud:#081321;--steel:#34506B;--mist:#5D7892;--dim-c:#7B93AB;
+    --border:rgba(10,168,140,.14);--border2:rgba(10,168,140,.24);--border3:rgba(10,168,140,.38);
+    --warn:#B45309;--err:#DC2626;--success:#15803D;
+  }
+}
+
+/* Light-mode card shadows and logo border for better visual definition */
+[data-theme="light"] .uc,[data-theme="light"] .hw,[data-theme="light"] .sector,[data-theme="light"] .pc,[data-theme="light"] .tc{
+  box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+}
+[data-theme="light"] .logo-mark-wrap{
+  border:1.5px solid #D8E8F5;
+}
+
 html,body{background:var(--bg)!important;background-color:var(--bg)!important;color:var(--cloud);min-height:100vh}
 html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
