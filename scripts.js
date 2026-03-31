@@ -1,5 +1,163 @@
 var APP_VERSION = '15';
 
+// ── LOCALE SELECTOR (Language & Currency) ──
+(function() {
+  var RATES = { GBP: 1, EUR: 1.17, USD: 1.27 };
+  var SYMBOLS = { GBP: '\u00A3', EUR: '\u20AC', USD: '$' };
+  var LANG_LABELS = { en: 'EN', fr: 'FR', de: 'DE', es: 'ES', cy: 'CY' };
+
+  var currentLang = 'en';
+  var currentCurrency = 'GBP';
+
+  function loadPrefs() {
+    try {
+      var lang = localStorage.getItem('ca_lang');
+      var curr = localStorage.getItem('ca_currency');
+      if (lang && LANG_LABELS[lang]) currentLang = lang;
+      if (curr && RATES[curr] !== undefined) currentCurrency = curr;
+    } catch(e) {}
+  }
+
+  function savePrefs() {
+    try {
+      localStorage.setItem('ca_lang', currentLang);
+      localStorage.setItem('ca_currency', currentCurrency);
+    } catch(e) {}
+  }
+
+  function updateTriggerDisplay() {
+    var flagEl = document.getElementById('locale-flag');
+    var langEl = document.getElementById('locale-lang');
+    var currEl = document.getElementById('locale-curr');
+    if (!flagEl || !langEl || !currEl) return;
+
+    // Find the active language option to get the flag
+    var langOpts = document.querySelectorAll('.locale-opt[data-lang]');
+    langOpts.forEach(function(opt) {
+      if (opt.getAttribute('data-lang') === currentLang) {
+        flagEl.textContent = opt.getAttribute('data-flag');
+      }
+      opt.classList.toggle('active', opt.getAttribute('data-lang') === currentLang);
+    });
+    langEl.textContent = LANG_LABELS[currentLang] || 'EN';
+
+    var currOpts = document.querySelectorAll('.locale-opt[data-currency]');
+    currOpts.forEach(function(opt) {
+      opt.classList.toggle('active', opt.getAttribute('data-currency') === currentCurrency);
+    });
+    currEl.textContent = SYMBOLS[currentCurrency] + ' ' + currentCurrency;
+
+    // Show/hide translation note
+    var note = document.getElementById('locale-note');
+    if (note) note.style.display = currentLang !== 'en' ? 'block' : 'none';
+  }
+
+  function convertPrices() {
+    var rate = RATES[currentCurrency] || 1;
+    var symbol = SYMBOLS[currentCurrency] || '\u00A3';
+
+    // Convert .pv elements (pricing page price values with data-m and data-a)
+    document.querySelectorAll('.pv').forEach(function(el) {
+      var baseM = parseFloat(el.getAttribute('data-m'));
+      var baseA = parseFloat(el.getAttribute('data-a'));
+      if (isNaN(baseM)) return;
+      var convertedM = Math.round(baseM * rate);
+      var convertedA = Math.round(baseA * rate);
+      // Store original GBP values if not already stored
+      if (!el.getAttribute('data-m-gbp')) {
+        el.setAttribute('data-m-gbp', baseM);
+        el.setAttribute('data-a-gbp', baseA);
+      }
+      el.setAttribute('data-m', convertedM);
+      el.setAttribute('data-a', convertedA);
+      // Update displayed value based on billing toggle state
+      var isAnnual = document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann');
+      el.textContent = isAnnual ? convertedA : convertedM;
+    });
+
+    // Update currency symbol before price
+    document.querySelectorAll('.pgc-price').forEach(function(el) {
+      var first = el.firstChild;
+      if (first && first.nodeType === 3) {
+        first.textContent = symbol;
+      }
+    });
+
+    // Update nav price hint
+    var hint = document.querySelector('.nav-price-hint');
+    if (hint) {
+      var basePrice = Math.round(149 * rate);
+      hint.textContent = 'From ' + symbol + basePrice + '/mo';
+    }
+  }
+
+  function resetPricesToGBP() {
+    // Restore original GBP values before converting
+    document.querySelectorAll('.pv').forEach(function(el) {
+      var gbpM = el.getAttribute('data-m-gbp');
+      var gbpA = el.getAttribute('data-a-gbp');
+      if (gbpM) el.setAttribute('data-m', gbpM);
+      if (gbpA) el.setAttribute('data-a', gbpA);
+    });
+  }
+
+  function applyLocale() {
+    updateTriggerDisplay();
+    resetPricesToGBP();
+    convertPrices();
+    savePrefs();
+  }
+
+  function initLocale() {
+    loadPrefs();
+
+    var trigger = document.getElementById('locale-trigger');
+    var dropdown = document.getElementById('locale-dropdown');
+    if (!trigger || !dropdown) return;
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = dropdown.classList.contains('open');
+      dropdown.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', !isOpen);
+    });
+
+    document.addEventListener('click', function(e) {
+      var selector = document.getElementById('locale-selector');
+      if (selector && !selector.contains(e.target)) {
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Language options
+    document.querySelectorAll('.locale-opt[data-lang]').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        currentLang = opt.getAttribute('data-lang');
+        applyLocale();
+      });
+    });
+
+    // Currency options
+    document.querySelectorAll('.locale-opt[data-currency]').forEach(function(opt) {
+      opt.addEventListener('click', function() {
+        currentCurrency = opt.getAttribute('data-currency');
+        applyLocale();
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    applyLocale();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLocale);
+  } else {
+    initLocale();
+  }
+})();
+
 // ── ANNOUNCE BAR DISMISS ──
 function dismissBar() {
   var bar = document.getElementById('announce-bar');
