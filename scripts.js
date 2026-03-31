@@ -5,16 +5,28 @@ var APP_VERSION = '15';
   var RATES = { GBP: 1, EUR: 1.16, USD: 1.27 };
   var SYMBOLS = { GBP: '\u00A3', EUR: '\u20AC', USD: '$' };
   var LANG_LABELS = { en: 'EN', fr: 'FR', de: 'DE', es: 'ES', cy: 'CY' };
+  var MIN_PLAN_PRICE_GBP = 49;
+  var PLAN_LINKS = {
+    starter: { monthly: 'starter', annual: 'starter_annual' },
+    pro: { monthly: 'pro', annual: 'pro_annual' },
+    portfolio: { monthly: 'portfolio', annual: 'portfolio_annual' },
+    solo: { monthly: 'crowmark_solo', annual: 'crowmark_solo_annual' },
+    team: { monthly: 'crowmark_team', annual: 'crowmark_team_annual' },
+    agency: { monthly: 'crowmark_agency', annual: 'crowmark_agency_annual' }
+  };
 
   var currentLang = 'en';
   var currentCurrency = 'GBP';
+  var currentTheme = 'dark';
 
   function loadPrefs() {
     try {
       var lang = localStorage.getItem('ca_lang');
       var curr = localStorage.getItem('ca_currency');
+      var theme = localStorage.getItem('ca_theme') || localStorage.getItem('ca-theme');
       if (lang && LANG_LABELS[lang]) currentLang = lang;
       if (curr && RATES[curr] !== undefined) currentCurrency = curr;
+      if (theme === 'light' || theme === 'dark') currentTheme = theme;
     } catch(e) {}
   }
 
@@ -22,7 +34,20 @@ var APP_VERSION = '15';
     try {
       localStorage.setItem('ca_lang', currentLang);
       localStorage.setItem('ca_currency', currentCurrency);
+      localStorage.setItem('ca_theme', currentTheme);
+      localStorage.setItem('ca-theme', currentTheme);
     } catch(e) {}
+  }
+
+  function setTheme(theme) {
+    currentTheme = theme === 'light' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  }
+
+  function updateThemeButtons() {
+    document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === currentTheme);
+    });
   }
 
   function updateTriggerDisplay() {
@@ -50,6 +75,19 @@ var APP_VERSION = '15';
     // Show/hide translation note
     var note = document.getElementById('locale-note');
     if (note) note.style.display = currentLang !== 'en' ? 'block' : 'none';
+    updateThemeButtons();
+  }
+
+  function updatePlanLinks() {
+    var isAnnual = !!(document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann'));
+    document.querySelectorAll('[data-plan-tier]').forEach(function(el) {
+      var tier = el.getAttribute('data-plan-tier');
+      var config = PLAN_LINKS[tier];
+      if (!config || !el.href) return;
+      var url = new URL(el.href, window.location.origin);
+      url.searchParams.set('plan', isAnnual ? config.annual : config.monthly);
+      el.href = url.toString();
+    });
   }
 
   function convertPrices() {
@@ -86,8 +124,7 @@ var APP_VERSION = '15';
     // Update nav price hint — uses first .pv element's monthly price (Starter base price)
     var hint = document.querySelector('.nav-price-hint');
     if (hint) {
-      var firstPv = document.querySelector('.pv[data-m]');
-      var basePrice = firstPv ? Math.round(parseInt(firstPv.getAttribute('data-m'), 10) * rate) : Math.round(49 * rate);
+      var basePrice = Math.round(MIN_PLAN_PRICE_GBP * rate);
       hint.textContent = 'From ' + symbol + basePrice + '/mo';
     }
   }
@@ -103,33 +140,36 @@ var APP_VERSION = '15';
   }
 
   function applyLocale() {
+    setTheme(currentTheme);
     updateTriggerDisplay();
     resetPricesToGBP();
     convertPrices();
+    updatePlanLinks();
     savePrefs();
   }
 
   function initLocale() {
     loadPrefs();
+    window.caUpdatePlanLinks = updatePlanLinks;
 
     var trigger = document.getElementById('locale-trigger');
     var dropdown = document.getElementById('locale-dropdown');
-    if (!trigger || !dropdown) return;
+    if (trigger && dropdown) {
+      trigger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var isOpen = dropdown.classList.contains('open');
+        dropdown.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', !isOpen);
+      });
 
-    trigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dropdown.classList.contains('open');
-      dropdown.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', !isOpen);
-    });
-
-    document.addEventListener('click', function(e) {
-      var selector = document.getElementById('locale-selector');
-      if (selector && !selector.contains(e.target)) {
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
+      document.addEventListener('click', function(e) {
+        var selector = document.getElementById('locale-selector');
+        if (selector && !selector.contains(e.target)) {
+          dropdown.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
 
     // Language options
     document.querySelectorAll('.locale-opt[data-lang]').forEach(function(opt) {
@@ -150,21 +190,23 @@ var APP_VERSION = '15';
     });
 
     // Keyboard navigation for locale dropdown
-    dropdown.addEventListener('keydown', function(e) {
-      var opts = Array.from(dropdown.querySelectorAll('.locale-opt'));
-      var idx = opts.indexOf(document.activeElement);
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        opts[(idx + 1) % opts.length].focus();
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        opts[(idx - 1 + opts.length) % opts.length].focus();
-      } else if (e.key === 'Escape') {
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-        trigger.focus();
-      }
-    });
+    if (dropdown && trigger) {
+      dropdown.addEventListener('keydown', function(e) {
+        var opts = Array.from(dropdown.querySelectorAll('.locale-opt'));
+        var idx = opts.indexOf(document.activeElement);
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          opts[(idx + 1) % opts.length].focus();
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          opts[(idx - 1 + opts.length) % opts.length].focus();
+        } else if (e.key === 'Escape') {
+          dropdown.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+          trigger.focus();
+        }
+      });
+    }
 
     // Mobile locale picker (inside mob-menu)
     document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(btn) {
@@ -180,6 +222,13 @@ var APP_VERSION = '15';
         currentCurrency = btn.getAttribute('data-currency');
         document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
         btn.classList.add('active');
+        applyLocale();
+      });
+    });
+
+    document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentTheme = btn.getAttribute('data-theme-choice') === 'light' ? 'light' : 'dark';
         applyLocale();
       });
     });
@@ -258,6 +307,7 @@ function toggleBilling() {
   document.querySelectorAll('.pp').forEach(function(el) {
     el.textContent = isAnn ? '/mo (billed annually)' : '/mo';
   });
+  if (typeof window.caUpdatePlanLinks === 'function') window.caUpdatePlanLinks();
 }
 
 // ── MEES COUNTDOWN ──

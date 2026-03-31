@@ -3,7 +3,7 @@
 
   // ── Config ──────────────────────────────────────────────────────────
   var API_URL =
-    'https://crowagent-platform-production.up.railway.app/api/v1/chat/public';
+    'https://app.crowagent.ai/api/chat/public';
   var AUTO_OPEN_DELAY = 30000; // 30 seconds
   var LS_KEY = 'ca_chatbot_opened';
 
@@ -48,7 +48,7 @@
       /* Panel */
       '#ca-chatbot-panel{' +
         'position:fixed;bottom:92px;right:24px;z-index:9999;' +
-        'width:380px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 120px);' +
+        'width:340px;max-width:calc(100vw - 24px);height:480px;max-height:calc(100vh - 120px);' +
         'background:var(--ca-panel-bg);border-radius:16px;' +
         'display:flex;flex-direction:column;overflow:hidden;' +
         'box-shadow:0 8px 32px rgba(0,0,0,.45);' +
@@ -340,13 +340,21 @@
     })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
+        return res.text();
       })
-      .then(function (data) {
+      .then(function (body) {
         // Remove loading indicator
         messages = messages.filter(function (m) { return m.type !== 'loading'; });
 
-        var reply =
+        var data = null;
+        var reply = '';
+        try {
+          data = JSON.parse(body);
+        } catch (e) {
+          reply = body;
+        }
+
+        reply = reply ||
           (data && data.reply) ||
           (data && data.message) ||
           (data && data.content) ||
@@ -368,6 +376,7 @@
   // ── Auto-open logic ─────────────────────────────────────────────────
   function scheduleAutoOpen(els) {
     if (localStorage.getItem(LS_KEY) === 'true') return;
+    if (window.innerWidth < 1280) return;
 
     autoOpenTimer = setTimeout(function () {
       if (!userInteracted && !isOpen) {

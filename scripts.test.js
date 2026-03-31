@@ -81,6 +81,8 @@ function setupFullDOM() {
               <button class="locale-opt" role="menuitem" data-lang="fr" data-flag="FR">FR</button>
               <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="£">£ GBP</button>
               <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="€">€ EUR</button>
+              <button class="theme-opt active" role="menuitem" data-theme-choice="dark">Dark</button>
+              <button class="theme-opt" role="menuitem" data-theme-choice="light">Light</button>
               <div class="locale-note" id="locale-note" style="display:none">Translation coming soon</div>
             </div>
           </div>
@@ -88,6 +90,10 @@ function setupFullDOM() {
         </div>
         <div class="ham hamburger" id="hamburger" role="button" aria-expanded="false" tabindex="0">
           <span></span><span></span><span></span>
+        </div>
+        <div class="mob-theme-row">
+          <button class="mob-theme-btn active" data-theme-choice="dark">Dark</button>
+          <button class="mob-theme-btn" data-theme-choice="light">Light</button>
         </div>
       </div>
     </nav>
@@ -124,6 +130,8 @@ function setupFullDOM() {
       <div class="pp">/mo</div>
       <div id="core-p" style="display:block">Core</div>
       <div id="mark-p" style="display:none">Mark</div>
+      <a id="starter-link" data-plan-tier="starter" href="https://app.crowagent.ai/signup?plan=starter">Starter</a>
+      <a id="solo-link" data-plan-tier="solo" href="https://app.crowagent.ai/signup?plan=crowmark_solo">Solo</a>
       <button class="ptab on">Core</button>
       <button class="ptab">Mark</button>
       <div class="ds-1" style="display:block"><span class="ds-typed"></span></div>
@@ -268,6 +276,16 @@ describe('toggleBilling', () => {
     expect(pv.textContent).toBe('149');
     expect(document.querySelector('.pp').textContent).toBe('/mo');
   });
+
+  test('updates signup plan params when billing cadence changes', () => {
+    mod.toggleBilling();
+    expect(document.getElementById('starter-link').href).toContain('plan=starter_annual');
+    expect(document.getElementById('solo-link').href).toContain('plan=crowmark_solo_annual');
+
+    mod.toggleBilling();
+    expect(document.getElementById('starter-link').href).toContain('plan=starter');
+    expect(document.getElementById('solo-link').href).toContain('plan=crowmark_solo');
+  });
 });
 
 // ── Locale selector ─────────────────────────────────────────────────────────
@@ -296,6 +314,15 @@ describe('locale selector', () => {
     trigger.click();
     trigger.click();
     expect(trigger.getAttribute('aria-expanded')).toBe('false');
+  });
+
+  test('theme buttons persist and apply the selected theme', () => {
+    const lightBtn = document.querySelector('.theme-opt[data-theme-choice="light"]');
+    lightBtn.click();
+    expect(localStoreMock.getItem('ca_theme')).toBe('light');
+    expect(localStoreMock.getItem('ca-theme')).toBe('light');
+    expect(document.documentElement.getAttribute('data-theme')).toBe('light');
+    expect(lightBtn.classList.contains('active')).toBe(true);
   });
 });
 

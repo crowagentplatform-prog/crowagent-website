@@ -87,10 +87,15 @@
           <button class="locale-opt" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
           <button class="locale-opt" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
           <button class="locale-opt" data-currency="USD" data-symbol="$">$ USD</button>
-          <div class="locale-note" id="locale-note" style="display:none">Translation coming soon</div>
+          <div class="locale-note" id="locale-note" style="display:none">English content is still shown site-wide while translation support is being rolled out.</div>
+          <div class="locale-section-label" style="margin-top:6px">Theme</div>
+          <div class="theme-toggle-row">
+            <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>
+            <button class="theme-opt" type="button" data-theme-choice="light">Light</button>
+          </div>
         </div>
       </div>
-      <span class="nav-price-hint">From £149/mo</span>
+      <span class="nav-price-hint">From £49/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
       <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
     </div>
@@ -123,6 +128,11 @@
       <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
       <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
       <button class="mob-locale-btn" data-currency="USD">$ USD</button>
+    </div>
+    <div class="mob-locale-label" style="margin-top:10px">Theme</div>
+    <div class="mob-theme-row">
+      <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>
+      <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>
     </div>
   </div>
 </div>
@@ -161,7 +171,7 @@
       <li>PDF reports</li>
       <li>Email support</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" href="https://app.crowagent.ai/signup?plan=starter">Start Starter trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="starter" href="https://app.crowagent.ai/signup?plan=starter">Start Starter trial →</a>
   </div>
   <div class="pgc pgc-pop">
     <div class="pgc-badge">Most popular</div>
@@ -176,7 +186,7 @@
       <li>Command Centre</li>
       <li>Priority support</li>
     </ul>
-    <a class="pgc-cta" href="https://app.crowagent.ai/signup?plan=pro">Start Pro trial →</a>
+    <a class="pgc-cta" data-plan-tier="pro" href="https://app.crowagent.ai/signup?plan=pro">Start Pro trial →</a>
   </div>
   <div class="pgc">
     <div class="pgc-name">Portfolio</div>
@@ -189,7 +199,7 @@
       <li>Custom integrations</li>
       <li>Command Centre</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" href="https://app.crowagent.ai/signup?plan=portfolio">Start Portfolio trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="portfolio" href="https://app.crowagent.ai/signup?plan=portfolio">Start Portfolio trial →</a>
   </div>
 </div>
 
@@ -205,7 +215,7 @@
       <li>PDF export</li>
       <li>Email support</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" href="https://app.crowagent.ai/signup?plan=solo">Start Solo trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="solo" href="https://app.crowagent.ai/signup?plan=crowmark_solo">Start Solo trial →</a>
   </div>
   <div class="pgc pgc-pop">
     <div class="pgc-badge">Most popular</div>
@@ -219,7 +229,7 @@
       <li>Monthly reminders</li>
       <li>Priority support</li>
     </ul>
-    <a class="pgc-cta" href="https://app.crowagent.ai/signup?plan=team">Start Team trial →</a>
+    <a class="pgc-cta" data-plan-tier="team" href="https://app.crowagent.ai/signup?plan=crowmark_team">Start Team trial →</a>
   </div>
   <div class="pgc">
     <div class="pgc-name">Agency</div>
@@ -232,7 +242,7 @@
       <li>API access</li>
       <li>Custom missions</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" href="https://app.crowagent.ai/signup?plan=agency">Start Agency trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="agency" href="https://app.crowagent.ai/signup?plan=crowmark_agency">Start Agency trial →</a>
   </div>
 </div>
 
