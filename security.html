@@ -24,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 
@@ -69,29 +69,13 @@
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
-  <div class="mob-locale">
-    <div class="mob-locale-label">Language</div>
-    <div class="mob-locale-row" id="mob-lang-row">
-      <button class="mob-locale-btn active" data-lang="en">&#x1F1EC;&#x1F1E7; EN</button>
-      <button class="mob-locale-btn" data-lang="fr">&#x1F1EB;&#x1F1F7; FR</button>
-      <button class="mob-locale-btn" data-lang="de">&#x1F1E9;&#x1F1EA; DE</button>
-      <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>
-      <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>
-    </div>
-    <div class="mob-locale-label" style="margin-top:10px">Currency</div>
-    <div class="mob-locale-row" id="mob-curr-row">
-      <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
-      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
-      <button class="mob-locale-btn" data-currency="USD">$ USD</button>
-    </div>
-  </div>
 </div>
 
 <main id="main-content">
   <section style="max-width:900px; margin:0 auto; padding:80px clamp(20px,4vw,56px);">
 
     <!-- Eyebrow -->
-    <p style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 12px">Security &amp; Trust</p>
+    <p style="font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin:0 0 12px">Security &amp; Trust</p>
 
     <!-- H1 -->
     <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--cloud);letter-spacing:-.025em;margin:0 0 16px;line-height:1.15">Enterprise-grade security from day one</h1>
@@ -110,7 +94,7 @@
       .security-grid .sec-card {
         background: var(--surf);
         border: 1px solid var(--border);
-        border-radius: 16px;
+        border-radius: 14px;
         padding: 24px 28px;
       }
       .security-grid .sec-card h3 {
@@ -249,7 +233,7 @@
 </footer>
 
 <!-- Cookie consent -->
-<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
+<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <p style="margin:0;flex:1;min-width:200px">We use essential cookies to run the site and analytics cookies to improve your experience. See our <a href="/cookies" style="color:var(--teal)">cookie policy</a>.</p>
     <div style="display:flex;gap:8px">
@@ -260,7 +244,7 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="scripts.js?v=13"></script>
+<script src="scripts.js?v=15" defer></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>

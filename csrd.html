@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
@@ -66,22 +66,6 @@
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
-  <div class="mob-locale">
-    <div class="mob-locale-label">Language</div>
-    <div class="mob-locale-row" id="mob-lang-row">
-      <button class="mob-locale-btn active" data-lang="en">&#x1F1EC;&#x1F1E7; EN</button>
-      <button class="mob-locale-btn" data-lang="fr">&#x1F1EB;&#x1F1F7; FR</button>
-      <button class="mob-locale-btn" data-lang="de">&#x1F1E9;&#x1F1EA; DE</button>
-      <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>
-      <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>
-    </div>
-    <div class="mob-locale-label" style="margin-top:10px">Currency</div>
-    <div class="mob-locale-row" id="mob-curr-row">
-      <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
-      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
-      <button class="mob-locale-btn" data-currency="USD">$ USD</button>
-    </div>
-  </div>
 </div>
 
 <main id="main-content" role="main">
@@ -110,9 +94,9 @@
         <h2 style="text-align:center;margin-bottom:8px">How many employees?</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Full-time equivalent headcount across the group</p>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('employees','<250')">&lt; 250</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','250-999')">250 – 999</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','1000+')">1,000+</button>
+          <button class="csrd-option" onclick="csrdSelect('employees','<250', event)">&lt; 250</button>
+          <button class="csrd-option" onclick="csrdSelect('employees','250-999', event)">250 – 999</button>
+          <button class="csrd-option" onclick="csrdSelect('employees','1000+', event)">1,000+</button>
         </div>
         <div style="display:flex;justify-content:flex-end;margin-top:24px">
           <button class="btn-teal-sm" onclick="csrdShowStep(2)" id="csrd-next-1" disabled>Next</button>
@@ -124,9 +108,9 @@
         <h2 style="text-align:center;margin-bottom:8px">What is your annual turnover?</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Consolidated group revenue in the most recent financial year</p>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('turnover','<150m')">&lt; &#8364;150M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','150m-450m')">&#8364;150M – &#8364;450M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">&#8364;450M+</button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','<150m', event)">&lt; &#8364;150M</button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','150m-450m', event)">&#8364;150M – &#8364;450M</button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','450m+', event)">&#8364;450M+</button>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:24px">
           <button class="btn-ghost-sm" onclick="csrdShowStep(1)" style="background:transparent;border:1px solid var(--border);color:var(--mist)">Back</button>
@@ -139,7 +123,7 @@
         <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a detailed, regulation-cited assessment</p>
         <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
-          <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--bg);color:var(--cloud);font-size:15px">
+          <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--navy);color:var(--cloud);font-size:15px">
           <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
         </form>
         <div id="csrd-result" style="margin-top:24px"></div>
@@ -224,7 +208,7 @@
 </footer>
 
 <!-- Cookie consent -->
-<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
+<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <p style="margin:0;flex:1;min-width:200px">We use essential cookies to run the site and analytics cookies to improve your experience. See our <a href="/cookies" style="color:var(--teal)">cookie policy</a>.</p>
     <div style="display:flex;gap:8px">
@@ -235,6 +219,6 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="scripts.js?v=13"></script>
+<script src="scripts.js?v=15" defer></script>
 </body>
 </html>

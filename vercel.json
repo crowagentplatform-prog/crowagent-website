@@ -13,7 +13,7 @@
     { "source": "/partners", "destination": "/partners.html" },
     { "source": "/pricing", "destination": "/pricing.html" },
     { "source": "/csrd", "destination": "/csrd.html" },
-    { "source": "/legal", "destination": "/legal.html" },
+    { "source": "/legal", "destination": "/privacy.html" },
     { "source": "/blog", "destination": "/blog/index.html" },
     { "source": "/blog/csrd-omnibus-i-2026", "destination": "/blog/csrd-omnibus-i-2026.html" },
     { "source": "/blog/mees-band-c-2028", "destination": "/blog/mees-band-c-2028.html" },
@@ -21,5 +21,40 @@
     { "source": "/products/crowagent-core", "destination": "/products/crowagent-core.html" },
     { "source": "/products/crowmark", "destination": "/products/crowmark.html" },
     { "source": "/blog/ppn-002-guide", "destination": "/blog/ppn-002-guide.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.railway.app; frame-ancestors 'none';"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
+      ]
+    }
   ]
 }

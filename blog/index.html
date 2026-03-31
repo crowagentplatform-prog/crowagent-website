@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-  <link rel="stylesheet" href="/styles.css?v=13">
+  <link rel="stylesheet" href="/styles.css?v=15">
   <style>
     /* Blog index styles */
     .blog-hero {
@@ -99,7 +99,7 @@
     .article-card {
       background: var(--navy2, #0D2847);
       border: 1px solid rgba(138, 157, 184, 0.1);
-      border-radius: 16px;
+      border-radius: 14px;
       padding: 32px 28px;
       transition: transform 0.2s ease, border-color 0.2s ease;
       display: flex;
@@ -159,7 +159,7 @@
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="container">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -278,7 +278,7 @@
   </div>
 </footer>
 
-<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
+<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--navy);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
   <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
     <p style="margin:0;flex:1;min-width:200px">We use essential cookies to run the site and analytics cookies to improve your experience. See our <a href="/cookies" style="color:var(--teal)">cookie policy</a>.</p>
     <div style="display:flex;gap:8px">
@@ -289,7 +289,7 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="/scripts.js?v=13"></script>
+<script src="/scripts.js?v=15" defer></script>
 <script>
   // Blog category filter
   (function () {

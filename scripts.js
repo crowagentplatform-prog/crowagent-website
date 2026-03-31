@@ -1,241 +1,133 @@
 var APP_VERSION = '15';
 
-// ── LOCALE SELECTOR (Language & Currency) ──
-(function() {
-  var RATES = { GBP: 1, EUR: 1.16, USD: 1.27 };
-  var SYMBOLS = { GBP: '\u00A3', EUR: '\u20AC', USD: '$' };
-  var LANG_LABELS = { en: 'EN', fr: 'FR', de: 'DE', es: 'ES', cy: 'CY' };
-
-  var currentLang = 'en';
-  var currentCurrency = 'GBP';
-
-  function loadPrefs() {
-    try {
-      var lang = localStorage.getItem('ca_lang');
-      var curr = localStorage.getItem('ca_currency');
-      if (lang && LANG_LABELS[lang]) currentLang = lang;
-      if (curr && RATES[curr] !== undefined) currentCurrency = curr;
-    } catch(e) {}
-  }
-
-  function savePrefs() {
-    try {
-      localStorage.setItem('ca_lang', currentLang);
-      localStorage.setItem('ca_currency', currentCurrency);
-    } catch(e) {}
-  }
-
-  function updateTriggerDisplay() {
-    var flagEl = document.getElementById('locale-flag');
-    var langEl = document.getElementById('locale-lang');
-    var currEl = document.getElementById('locale-curr');
-    if (!flagEl || !langEl || !currEl) return;
-
-    // Find the active language option to get the flag
-    var langOpts = document.querySelectorAll('.locale-opt[data-lang]');
-    langOpts.forEach(function(opt) {
-      if (opt.getAttribute('data-lang') === currentLang) {
-        flagEl.textContent = opt.getAttribute('data-flag');
-      }
-      opt.classList.toggle('active', opt.getAttribute('data-lang') === currentLang);
-    });
-    langEl.textContent = LANG_LABELS[currentLang] || 'EN';
-
-    var currOpts = document.querySelectorAll('.locale-opt[data-currency]');
-    currOpts.forEach(function(opt) {
-      opt.classList.toggle('active', opt.getAttribute('data-currency') === currentCurrency);
-    });
-    currEl.textContent = SYMBOLS[currentCurrency] + ' ' + currentCurrency;
-
-    // Show/hide translation note
-    var note = document.getElementById('locale-note');
-    if (note) note.style.display = currentLang !== 'en' ? 'block' : 'none';
-  }
-
-  function convertPrices() {
-    var rate = RATES[currentCurrency] || 1;
-    var symbol = SYMBOLS[currentCurrency] || '\u00A3';
-
-    // Convert .pv elements (pricing page price values with data-m and data-a)
-    document.querySelectorAll('.pv').forEach(function(el) {
-      var baseM = parseFloat(el.getAttribute('data-m'));
-      var baseA = parseFloat(el.getAttribute('data-a'));
-      if (isNaN(baseM)) return;
-      var convertedM = Math.round(baseM * rate);
-      var convertedA = Math.round(baseA * rate);
-      // Store original GBP values if not already stored
-      if (!el.getAttribute('data-m-gbp')) {
-        el.setAttribute('data-m-gbp', baseM);
-        el.setAttribute('data-a-gbp', baseA);
-      }
-      el.setAttribute('data-m', convertedM);
-      el.setAttribute('data-a', convertedA);
-      // Update displayed value based on billing toggle state
-      var isAnnual = document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann');
-      el.textContent = isAnnual ? convertedA : convertedM;
-    });
-
-    // Update currency symbol before price
-    document.querySelectorAll('.pgc-price').forEach(function(el) {
-      var first = el.firstChild;
-      if (first && first.nodeType === 3) {
-        first.textContent = symbol;
-      }
-    });
-
-    // Update nav price hint — uses first .pv element's monthly price (Starter base price)
-    var hint = document.querySelector('.nav-price-hint');
-    if (hint) {
-      var firstPv = document.querySelector('.pv[data-m]');
-      var basePrice = firstPv ? Math.round(parseInt(firstPv.getAttribute('data-m'), 10) * rate) : Math.round(49 * rate);
-      hint.textContent = 'From ' + symbol + basePrice + '/mo';
-    }
-  }
-
-  function resetPricesToGBP() {
-    // Restore original GBP values before converting
-    document.querySelectorAll('.pv').forEach(function(el) {
-      var gbpM = el.getAttribute('data-m-gbp');
-      var gbpA = el.getAttribute('data-a-gbp');
-      if (gbpM) el.setAttribute('data-m', gbpM);
-      if (gbpA) el.setAttribute('data-a', gbpA);
-    });
-  }
-
-  function applyLocale() {
-    updateTriggerDisplay();
-    resetPricesToGBP();
-    convertPrices();
-    savePrefs();
-  }
-
-  function initLocale() {
-    loadPrefs();
-
-    var trigger = document.getElementById('locale-trigger');
-    var dropdown = document.getElementById('locale-dropdown');
-    if (!trigger || !dropdown) return;
-
-    trigger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      var isOpen = dropdown.classList.contains('open');
-      dropdown.classList.toggle('open');
-      trigger.setAttribute('aria-expanded', !isOpen);
-    });
-
-    document.addEventListener('click', function(e) {
-      var selector = document.getElementById('locale-selector');
-      if (selector && !selector.contains(e.target)) {
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // Language options
-    document.querySelectorAll('.locale-opt[data-lang]').forEach(function(opt) {
-      opt.addEventListener('click', function() {
-        currentLang = opt.getAttribute('data-lang');
-        applyLocale();
-      });
-    });
-
-    // Currency options
-    document.querySelectorAll('.locale-opt[data-currency]').forEach(function(opt) {
-      opt.addEventListener('click', function() {
-        currentCurrency = opt.getAttribute('data-currency');
-        applyLocale();
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Keyboard navigation for locale dropdown
-    dropdown.addEventListener('keydown', function(e) {
-      var opts = Array.from(dropdown.querySelectorAll('.locale-opt'));
-      var idx = opts.indexOf(document.activeElement);
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        opts[(idx + 1) % opts.length].focus();
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        opts[(idx - 1 + opts.length) % opts.length].focus();
-      } else if (e.key === 'Escape') {
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-        trigger.focus();
-      }
-    });
-
-    // Mobile locale picker (inside mob-menu)
-    document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        currentLang = btn.getAttribute('data-lang');
-        document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        applyLocale();
-      });
-    });
-    document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        currentCurrency = btn.getAttribute('data-currency');
-        document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        applyLocale();
-      });
-    });
-
-    applyLocale();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLocale);
-  } else {
-    initLocale();
-  }
-})();
-
-// ── TOUCH SWIPE: Close mobile menu on swipe-left ──
-(function() {
-  var menu = document.querySelector('.mob-menu');
-  if (!menu) return;
-  var startX = 0;
-  menu.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-  }, { passive: true });
-  menu.addEventListener('touchend', function(e) {
-    var dx = e.changedTouches[0].clientX - startX;
-    if (dx < -80) menu.classList.remove('open');
-  }, { passive: true });
-})();
-
 // ── ANNOUNCE BAR DISMISS ──
 function dismissBar() {
   var bar = document.getElementById('announce-bar');
   if (bar) bar.style.display = 'none';
-  try { localStorage.setItem('ca_bar_dismissed', '1'); } catch(e) {}
+  try { localStorage.setItem('ca_bar_dismissed', '1'); } catch(e) { console.warn('localStorage unavailable:', e); }
 }
 (function() {
   try { if (localStorage.getItem('ca_bar_dismissed')) {
     var b = document.getElementById('announce-bar');
     if (b) b.style.display = 'none';
-  }} catch(e) {}
+  }} catch(e) { console.warn('localStorage unavailable:', e); }
 })();
 
-// ── MOBILE HAMBURGER ──
-function toggleMob() {
-  var menu = document.querySelector('.mob-menu');
-  menu.classList.toggle('open');
-  if (menu.classList.contains('open')) {
-    var firstLink = menu.querySelector('a');
-    if (firstLink) firstLink.focus();
-  }
+// ── NAVIGATION MENU TOGGLE ──
+function toggleMenu() {
+  var nav = document.getElementById('navLinks');
+  var btn = document.getElementById('hamburger');
+  if (nav) nav.classList.toggle('open');
+  if (btn) btn.setAttribute('aria-expanded', nav && nav.classList.contains('open') ? 'true' : 'false');
 }
-// Auto-close mobile menu on internal link click
-document.querySelectorAll('.mob-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    document.querySelector('.mob-menu').classList.remove('open');
-  });
+
+// ── MOBILE HAMBURGER (legacy name, uses toggleMenu) ──
+function toggleMob() {
+  toggleMenu();
+}
+
+// ── NAV MENU KEYBOARD SUPPORT ──
+(function() {
+  function setupMenuHandlers() {
+    var btn = document.getElementById('hamburger');
+    if (btn && !btn._menuHandlersAdded) {
+      btn._menuHandlersAdded = true;
+      btn.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+      btn.addEventListener('click', toggleMenu);
+    }
+
+    // Close menu when nav link is clicked
+    var navLinks = document.getElementById('navLinks');
+    if (navLinks && !navLinks._linkHandlersAdded) {
+      navLinks._linkHandlersAdded = true;
+      navLinks.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('open');
+          var btn = document.getElementById('hamburger');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  }
+
+  setupMenuHandlers();
+
+  // Listen for DOM changes to set up handlers on dynamically added content
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMenuHandlers);
+  }
+})();
+
+// Close menu on Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var nav = document.getElementById('navLinks');
+    var btn = document.getElementById('hamburger');
+    if (nav && nav.classList.contains('open')) {
+      nav.classList.remove('open');
+      if (btn) btn.setAttribute('aria-expanded', 'false');
+    }
+  }
 });
+
+// ── HERO SEGMENT TOGGLE ──
+(function() {
+  function setupSegments() {
+    var segments = document.querySelectorAll('.segment-pill');
+    if (segments.length === 0) return;
+
+    function setHeroSegment(segment) {
+      segments.forEach(function(s) {
+        s.classList.remove('segment-pill--selected');
+        s.setAttribute('aria-pressed', 'false');
+      });
+      var pill = document.querySelector('[data-segment="' + segment + '"]');
+      if (pill) {
+        pill.classList.add('segment-pill--selected');
+        pill.setAttribute('aria-pressed', 'true');
+        var textEl = document.getElementById('heroSubText');
+        if (textEl) {
+          if (segment === 'supplier') {
+            textEl.textContent = 'PPN 002 Compliance Check';
+          } else {
+            textEl.textContent = 'MEES Regulation Compliance';
+          }
+        }
+      }
+    }
+
+    // Initialize with landlord
+    setHeroSegment('landlord');
+
+    // Add click handlers
+    segments.forEach(function(pill) {
+      if (!pill._segmentHandlersAdded) {
+        pill._segmentHandlersAdded = true;
+        pill.addEventListener('click', function() {
+          setHeroSegment(this.getAttribute('data-segment'));
+        });
+        // Keyboard support
+        pill.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            setHeroSegment(this.getAttribute('data-segment'));
+          }
+        });
+      }
+    });
+  }
+
+  setupSegments();
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupSegments);
+  }
+})();
 
 // ── PRICING PRODUCT TAB SWITCHER ──
 function switchPTab(product, btn) {
@@ -244,6 +136,40 @@ function switchPTab(product, btn) {
   document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
   document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
 }
+
+// ── COOKIE CONSENT BANNER ──
+(function() {
+  var banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+
+  var consentKey = 'ca_cookie_consent';
+  var hasConsent = localStorage.getItem(consentKey);
+
+  if (hasConsent) {
+    banner.hidden = true;
+  } else {
+    setTimeout(function() {
+      banner.hidden = false;
+    }, 1500);
+  }
+
+  var acceptBtn = document.getElementById('cookieAccept');
+  var declineBtn = document.getElementById('cookieDecline');
+
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', function() {
+      localStorage.setItem(consentKey, 'accepted');
+      banner.hidden = true;
+    });
+  }
+
+  if (declineBtn) {
+    declineBtn.addEventListener('click', function() {
+      localStorage.setItem(consentKey, 'declined');
+      banner.hidden = true;
+    });
+  }
+})();
 
 // ── BILLING TOGGLE (monthly/annual) ──
 var isAnn = false;
@@ -272,10 +198,15 @@ function toggleBilling() {
 
 // ── ANIMATED PRODUCT DEMO ──
 (function() {
+  // Check if demo elements exist
+  var demoEls = document.querySelectorAll('.ds-1, .ds-2, .ds-3');
+  if (demoEls.length === 0) return;
+
   var screens = ['.ds-1', '.ds-2', '.ds-3'];
   var dots = ['#dd0', '#dd1', '#dd2'];
   var current = 0;
   var interval;
+  var initialized = false;
 
   var postcode = 'SW1A 2AA';
   var typed = document.querySelector('.ds-typed');
@@ -331,38 +262,52 @@ function toggleBilling() {
     showScreen(current);
   }
 
-  showScreen(0);
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (!initialized) {
+    initialized = true;
+    showScreen(0);
     interval = setInterval(advance, 7000);
-  }
 
-  dots.forEach(function(d, i) {
-    var el = document.querySelector(d);
-    if (el) el.addEventListener('click', function() {
-      clearInterval(interval);
-      current = i;
-      showScreen(current);
-      interval = setInterval(advance, 7000);
+    dots.forEach(function(d, i) {
+      var el = document.querySelector(d);
+      if (el) el.addEventListener('click', function() {
+        clearInterval(interval);
+        current = i;
+        showScreen(current);
+        interval = setInterval(advance, 7000);
+      });
     });
-  });
+  }
 })();
 
 // ── CSRD FORM SUBMISSION ──
 async function submitCSRD(e) {
   e.preventDefault();
   var form = e.target;
-  var btn = form.querySelector('.btn-form');
-  var orig = btn.innerHTML;
-  btn.innerHTML = 'Sending\u2026 <span>\u27F3</span>';
-  btn.disabled = true;
 
-  var inputs = form.querySelectorAll('input');
-  var selects = form.querySelectorAll('select');
+  // Check if all required fields are filled
+  var company = document.getElementById('csrd-company');
+  var email = document.getElementById('csrd-email');
+  var employees = document.getElementById('csrd-employees');
+  var turnover = document.getElementById('csrd-turnover');
+
+  if (!company || !email || !employees || !turnover ||
+      !company.value.trim() || !email.value.trim() ||
+      !employees.value || !turnover.value) {
+    return;
+  }
+
+  var btn = form.querySelector('button[type="submit"]') || form.querySelector('.btn-form');
+  var orig = btn ? btn.innerHTML : '';
+  if (btn) {
+    btn.innerHTML = 'Sending\u2026 <span>\u27F3</span>';
+    btn.disabled = true;
+  }
+
   var data = {
-    company: inputs[0] ? inputs[0].value : '',
-    email: inputs[1] ? inputs[1].value : '',
-    employees: selects[0] ? selects[0].value : '',
-    turnover: selects[1] ? selects[1].value : ''
+    company: company.value,
+    email: email.value,
+    employees: employees.value,
+    turnover: turnover.value
   };
 
   try {
@@ -371,8 +316,9 @@ async function submitCSRD(e) {
       { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) }
     );
     if (res.ok) {
-      btn.innerHTML = '\u2713 Report sent \u2014 check your email';
-      btn.style.background = 'var(--success)';
+      form.hidden = true;
+      var thankYou = document.getElementById('csrdThankYou');
+      if (thankYou) thankYou.hidden = false;
     } else {
       throw new Error('API error ' + res.status);
     }
@@ -381,19 +327,17 @@ async function submitCSRD(e) {
     btn.disabled = false;
     btn.style.borderColor = 'var(--err)';
     console.error('CSRD form error:', err);
-    var errBox = form.querySelector('.csrd-form-error');
-    if (!errBox) {
-      errBox = document.createElement('div');
-      errBox.className = 'csrd-form-error';
-      errBox.setAttribute('role', 'alert');
-      errBox.className = 'csrd-form-error ca-alert ca-alert-error';
-      errBox.style.marginTop = '12px';
-      form.appendChild(errBox);
-    }
-    errBox.textContent = 'Something went wrong. Please email hello@crowagent.ai with your company details.';
-    errBox.style.display = 'block';
+    alert('Sorry \u2014 please email hello@crowagent.ai directly with your company details.');
   }
 }
+
+// ── CSRD FORM EVENT LISTENER ──
+(function() {
+  var form = document.getElementById('csrdForm');
+  if (form) {
+    form.addEventListener('submit', submitCSRD);
+  }
+})();
 
 // ── INTERSECTION OBSERVER: Stagger animations ──
 var observer = new IntersectionObserver(function(entries) {
@@ -415,15 +359,55 @@ document.querySelectorAll('.sc, .hw, .pc, .sector, .tc, .uc').forEach(function(e
   observer.observe(el);
 });
 
+// ── FADE-IN OBSERVER ──
+var fadeObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(function(el) {
+  fadeObserver.observe(el);
+});
+
+// ── COUNT-UP ANIMATION ──
+var countObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var statVals = entry.target.querySelectorAll('.stat-val');
+      statVals.forEach(function(el) {
+        var text = el.textContent;
+        var num = parseInt(text.replace(/[^\d]/g, ''));
+        if (!isNaN(num)) {
+          var step = Math.ceil(num / 50);
+          var current = 0;
+          var interval = setInterval(function() {
+            current = Math.min(current + step, num);
+            el.textContent = current.toLocaleString('en-GB');
+            if (current >= num) clearInterval(interval);
+          }, 50);
+        }
+      });
+      countObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+var heroStats = document.querySelector('.hero-stats');
+if (heroStats) {
+  countObserver.observe(heroStats);
+}
+
 // ── SMOOTH SCROLL for anchor links ──
 document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   a.addEventListener('click', function(e) {
     var target = document.querySelector(a.getAttribute('href'));
-    if (target) {
+    if (target && target.scrollIntoView) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
     }
   });
 });
@@ -462,7 +446,9 @@ function submitCSRDInline() {
       annual_turnover_eur: csrdMapTurnover(turnover ? turnover.value : '<150m'),
       is_listed: false
     })
-  }).catch(function(){}).finally(function(){
+  }).catch(function(err){
+    console.error('CSRD inline form submission error:', err);
+  }).finally(function(){
     var form = document.getElementById('csrd-inline-form');
     var success = document.getElementById('csrd-inline-success');
     if (form) form.style.display = 'none';
@@ -501,39 +487,22 @@ async function caSubmitNotify(btn) {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ product: product, email: email })
     });
-  } catch(e) {}
+  } catch(e) {
+    console.error('Waitlist form error:', e);
+  }
   var notifyForm = wrap.querySelector('.ca-notify-form');
   if (notifyForm) notifyForm.style.display = 'none';
   if (successEl) successEl.style.display = 'block';
 }
 
-// ── CSRD INLINE EMAIL BLUR VALIDATION ──
-(function() {
-  var el = document.getElementById('csrd-i-email');
-  if (!el) return;
-  el.addEventListener('blur', function() {
-    var err = document.getElementById('csrd-email-err');
-    var val = el.value.trim();
-    if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      if (err) err.style.display = 'block';
-    } else {
-      if (err) err.style.display = 'none';
-    }
-  });
-  el.addEventListener('input', function() {
-    var err = document.getElementById('csrd-email-err');
-    if (err) err.style.display = 'none';
-  });
-})();
-
 // ── CSRD FULL WIZARD (csrd.html) ──
 var csrdState = { employees: null, turnover: null, sector: null, step: 1 };
-function csrdSelect(field, value) {
+function csrdSelect(field, value, evt) {
   csrdState[field] = value;
   document.querySelectorAll('[data-csrd-step="' + csrdState.step + '"] .csrd-option').forEach(function(el) {
     el.classList.remove('selected');
   });
-  if (event && event.currentTarget) event.currentTarget.classList.add('selected');
+  if (evt && evt.currentTarget) evt.currentTarget.classList.add('selected');
   var nextStep = csrdState.step + 1;
   setTimeout(function() { csrdShowStep(nextStep); }, 280);
   csrdState.step = nextStep;
@@ -591,15 +560,64 @@ async function csrdSubmit() {
     if (scope === 'mandatory') {
       html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
     } else if (scope === 'watchlist') {
-      html = '<div style="background:rgba(245,158,11,.1);border:1px solid var(--warn);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--warn);font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
+      html = '<div style="background:rgba(245,158,11,.1);border:1px solid #F59E0B;border-radius:10px;padding:20px;text-align:center"><strong style="color:#F59E0B;font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
     } else {
       html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
     }
+    // SAFE: HTML is fully template-controlled, no user input is included
     if (resultDiv) resultDiv.innerHTML = html;
     if (submitBtn) { submitBtn.textContent = 'Result ready'; submitBtn.style.background = 'var(--teal)'; }
   } catch(e) {
     console.error('CSRD form error:', e);
+    // SAFE: HTML is fully template-controlled error message, no user input is included
     if (resultDiv) resultDiv.innerHTML = '<div style="background:rgba(240,68,56,.1);border:1px solid var(--err);border-radius:10px;padding:16px;text-align:center;color:var(--err)">Unable to get result. Please try again.</div>';
     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get my result'; }
   }
+}
+
+// ── SERVICE WORKER REGISTRATION ──
+(function() {
+  if ('serviceWorker' in navigator) {
+    var currentVersion = APP_VERSION;
+    var storedVersion = sessionStorage.getItem('crowagentAppVersion');
+
+    // Always register the new service worker
+    navigator.serviceWorker.register('/service-worker.js').catch(function(err) {
+      console.warn('Service worker registration failed:', err);
+    });
+
+    // If version differs, unregister old ones
+    if (storedVersion && storedVersion !== currentVersion) {
+      navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        registrations.forEach(function(reg) {
+          reg.unregister();
+        });
+      });
+    }
+
+    sessionStorage.setItem('crowagentAppVersion', currentVersion);
+  }
+})();
+
+// ── Expose functions for testing (CommonJS) ──
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    dismissBar: dismissBar,
+    toggleMenu: toggleMenu,
+    toggleMob: toggleMob,
+    switchPTab: switchPTab,
+    toggleBilling: toggleBilling,
+    submitCSRD: submitCSRD,
+    submitCSRDInline: submitCSRDInline,
+    caToggleNotify: caToggleNotify,
+    caSubmitNotify: caSubmitNotify,
+    csrdSelect: csrdSelect,
+    csrdShowStep: csrdShowStep,
+    csrdMapEmployees: csrdMapEmployees,
+    csrdMapTurnover: csrdMapTurnover,
+    csrdGetResult: csrdGetResult,
+    csrdSubmit: csrdSubmit,
+    get csrdState() { return csrdState; },
+    set csrdState(v) { csrdState = v; }
+  };
 }
