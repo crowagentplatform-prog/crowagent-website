@@ -386,7 +386,8 @@ async function submitCSRD(e) {
       errBox = document.createElement('div');
       errBox.className = 'csrd-form-error';
       errBox.setAttribute('role', 'alert');
-      errBox.style.cssText = 'background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:10px 14px;margin-top:12px;color:var(--err);font-size:13px;font-family:Inter,sans-serif';
+      errBox.className = 'csrd-form-error ca-alert ca-alert-error';
+      errBox.style.marginTop = '12px';
       form.appendChild(errBox);
     }
     errBox.textContent = 'Something went wrong. Please email hello@crowagent.ai with your company details.';
