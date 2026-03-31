@@ -149,6 +149,23 @@ var APP_VERSION = '15';
       });
     });
 
+    // Keyboard navigation for locale dropdown
+    dropdown.addEventListener('keydown', function(e) {
+      var opts = Array.from(dropdown.querySelectorAll('.locale-opt'));
+      var idx = opts.indexOf(document.activeElement);
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        opts[(idx + 1) % opts.length].focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        opts[(idx - 1 + opts.length) % opts.length].focus();
+      } else if (e.key === 'Escape') {
+        dropdown.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+        trigger.focus();
+      }
+    });
+
     applyLocale();
   }
 
@@ -174,8 +191,19 @@ function dismissBar() {
 
 // ── MOBILE HAMBURGER ──
 function toggleMob() {
-  document.querySelector('.mob-menu').classList.toggle('open');
+  var menu = document.querySelector('.mob-menu');
+  menu.classList.toggle('open');
+  if (menu.classList.contains('open')) {
+    var firstLink = menu.querySelector('a');
+    if (firstLink) firstLink.focus();
+  }
 }
+// Auto-close mobile menu on internal link click
+document.querySelectorAll('.mob-menu a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    document.querySelector('.mob-menu').classList.remove('open');
+  });
+});
 
 // ── PRICING PRODUCT TAB SWITCHER ──
 function switchPTab(product, btn) {
@@ -272,7 +300,9 @@ function toggleBilling() {
   }
 
   showScreen(0);
-  interval = setInterval(advance, 7000);
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    interval = setInterval(advance, 7000);
+  }
 
   dots.forEach(function(d, i) {
     var el = document.querySelector(d);
@@ -319,7 +349,16 @@ async function submitCSRD(e) {
     btn.disabled = false;
     btn.style.borderColor = 'var(--err)';
     console.error('CSRD form error:', err);
-    alert('Sorry \u2014 please email hello@crowagent.ai directly with your company details.');
+    var errBox = form.querySelector('.csrd-form-error');
+    if (!errBox) {
+      errBox = document.createElement('div');
+      errBox.className = 'csrd-form-error';
+      errBox.setAttribute('role', 'alert');
+      errBox.style.cssText = 'background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);border-radius:8px;padding:10px 14px;margin-top:12px;color:var(--err);font-size:13px;font-family:Inter,sans-serif';
+      form.appendChild(errBox);
+    }
+    errBox.textContent = 'Something went wrong. Please email hello@crowagent.ai with your company details.';
+    errBox.style.display = 'block';
   }
 }
 
@@ -350,6 +389,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
     }
   });
 });
@@ -432,6 +473,25 @@ async function caSubmitNotify(btn) {
   if (notifyForm) notifyForm.style.display = 'none';
   if (successEl) successEl.style.display = 'block';
 }
+
+// ── CSRD INLINE EMAIL BLUR VALIDATION ──
+(function() {
+  var el = document.getElementById('csrd-i-email');
+  if (!el) return;
+  el.addEventListener('blur', function() {
+    var err = document.getElementById('csrd-email-err');
+    var val = el.value.trim();
+    if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      if (err) err.style.display = 'block';
+    } else {
+      if (err) err.style.display = 'none';
+    }
+  });
+  el.addEventListener('input', function() {
+    var err = document.getElementById('csrd-email-err');
+    if (err) err.style.display = 'none';
+  });
+})();
 
 // ── CSRD FULL WIZARD (csrd.html) ──
 var csrdState = { employees: null, turnover: null, sector: null, step: 1 };

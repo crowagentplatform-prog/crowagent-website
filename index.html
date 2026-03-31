@@ -92,17 +92,17 @@
           <span id="locale-curr">&pound; GBP</span>
           <span class="locale-chevron">&#x25BE;</span>
         </button>
-        <div class="locale-dropdown" id="locale-dropdown">
+        <div class="locale-dropdown" id="locale-dropdown" role="menu">
           <div class="locale-section-label">Language</div>
-          <button class="locale-opt" data-lang="en" data-flag="&#x1F1EC;&#x1F1E7;">&#x1F1EC;&#x1F1E7; English</button>
-          <button class="locale-opt" data-lang="fr" data-flag="&#x1F1EB;&#x1F1F7;">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</button>
-          <button class="locale-opt" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>
-          <button class="locale-opt" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>
-          <button class="locale-opt" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>
+          <button class="locale-opt" role="menuitem" data-lang="en" data-flag="&#x1F1EC;&#x1F1E7;">&#x1F1EC;&#x1F1E7; English</button>
+          <button class="locale-opt" role="menuitem" data-lang="fr" data-flag="&#x1F1EB;&#x1F1F7;">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</button>
+          <button class="locale-opt" role="menuitem" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>
+          <button class="locale-opt" role="menuitem" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>
+          <button class="locale-opt" role="menuitem" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>
           <div class="locale-section-label" style="margin-top:6px">Currency</div>
-          <button class="locale-opt" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
-          <button class="locale-opt" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
-          <button class="locale-opt" data-currency="USD" data-symbol="$">$ USD</button>
+          <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
+          <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
+          <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>
           <div class="locale-note" id="locale-note" style="display:none">Translation coming soon</div>
         </div>
       </div>
@@ -212,6 +212,7 @@
                   flex-wrap:wrap;">
         <input type="text"
                id="demo-postcode"
+               aria-label="Postcode"
                placeholder="e.g. EC1A 1BB"
                maxlength="8"
                style="flex:1; min-width:180px; height:48px;
@@ -876,6 +877,10 @@ function showDemoError(msg) {
 
 document.getElementById('demo-postcode').addEventListener('keydown', function(e) {
   if (e.key === 'Enter') runLiveDemo();
+});
+document.getElementById('demo-postcode').addEventListener('input', function() {
+  var err = document.getElementById('demo-error');
+  if (err) err.style.display = 'none';
 });
 </script>
 </body>
