@@ -103,10 +103,15 @@
           <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
           <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
           <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>
-          <div class="locale-note" id="locale-note" style="display:none">Translation coming soon</div>
+          <div class="locale-note" id="locale-note" style="display:none">English content is still shown site-wide while translation support is being rolled out.</div>
+          <div class="locale-section-label" style="margin-top:6px">Theme</div>
+          <div class="theme-toggle-row">
+            <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>
+            <button class="theme-opt" type="button" data-theme-choice="light">Light</button>
+          </div>
         </div>
       </div>
-      <span class="nav-price-hint">From £149/mo</span>
+      <span class="nav-price-hint">From £49/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
       <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
     </div>
@@ -139,6 +144,11 @@
       <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
       <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
       <button class="mob-locale-btn" data-currency="USD">$ USD</button>
+    </div>
+    <div class="mob-locale-label" style="margin-top:10px">Theme</div>
+    <div class="mob-theme-row">
+      <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>
+      <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>
     </div>
   </div>
 </div>
@@ -201,7 +211,7 @@
 </section>
 <!-- ── LIVE DEMO WIDGET ── -->
 <section id="live-demo" style="padding:60px 0; border-bottom:1px solid var(--border);">
-  <div class="wrap" style="max-width:640px; margin:0 auto; text-align:center;">
+  <div class="wrap" style="max-width:760px; margin:0 auto; text-align:center;">
 
     <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
                 font-size:12px; font-weight:700; letter-spacing:.14em;
@@ -841,13 +851,20 @@ function runLiveDemo() {
   })
   .then(function(r) {
     if (!r.ok) throw new Error('status ' + r.status);
-    return r.json();
+    return r.text();
   })
-  .then(function(data) {
+  .then(function(body) {
     document.getElementById('demo-loading').style.display = 'none';
     document.getElementById('demo-submit').disabled = false;
 
-    var reply = data.reply || data.message || data.response || '';
+    var data = null;
+    var reply = '';
+    try {
+      data = JSON.parse(body);
+    } catch (e) {
+      reply = body;
+    }
+    reply = reply || data.reply || data.message || data.response || data.content || '';
     if (!reply) throw new Error('empty response');
 
     var resultEl = document.getElementById('demo-result');

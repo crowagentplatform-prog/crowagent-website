@@ -47,7 +47,7 @@
       <a href="/blog">Blog</a>
     </div>
     <div class="nav-actions">
-      <span class="nav-price-hint">From £149/mo</span>
+      <span class="nav-price-hint">From £49/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
       <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
     </div>
@@ -61,7 +61,7 @@
   <a href="/#how">How it works</a>
   <a href="/#products">Products</a>
   <a href="/#sectors">Sectors</a>
-  <a href="/#pricing">Pricing</a>
+  <a href="/pricing">Pricing</a>
   <a href="/csrd">CSRD Checker</a>
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
@@ -81,6 +81,11 @@
       <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
       <button class="mob-locale-btn" data-currency="USD">$ USD</button>
     </div>
+    <div class="mob-locale-label" style="margin-top:10px">Theme</div>
+    <div class="mob-theme-row">
+      <button class="mob-theme-btn active" data-theme-choice="dark">Dark</button>
+      <button class="mob-theme-btn" data-theme-choice="light">Light</button>
+    </div>
   </div>
 </div>
 
@@ -91,6 +96,10 @@
     <div class="hero-eyebrow"><span class="hw-dot"></span>Free tool · No account required</div>
     <h1>Check your CSRD applicability</h1>
     <p class="hero-sub">Updated for Omnibus I — Directive (EU) 2026/470. New thresholds require <strong>both</strong> &gt;1,000 employees <strong>and</strong> &gt;&#8364;450M turnover. Answer two questions for an instant, regulation-cited result.</p>
+    <div class="theme-toggle-row" style="justify-content:center;margin-top:22px">
+      <button class="theme-opt active" data-theme-choice="dark">Dark theme</button>
+      <button class="theme-opt" data-theme-choice="light">Light theme</button>
+    </div>
   </div>
 </section>
 
@@ -110,9 +119,18 @@
         <h2 style="text-align:center;margin-bottom:8px">How many employees?</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Full-time equivalent headcount across the group</p>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('employees','<250')">&lt; 250</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','250-999')">250 – 999</button>
-          <button class="csrd-option" onclick="csrdSelect('employees','1000+')">1,000+</button>
+          <button class="csrd-option" onclick="csrdSelect('employees','<250')">
+            <span>&lt; 250</span>
+            <span class="csrd-option-note">Well below the new headcount threshold.</span>
+          </button>
+          <button class="csrd-option" onclick="csrdSelect('employees','250-999')">
+            <span>250 – 999</span>
+            <span class="csrd-option-note">Still below scope unless your group exceeds 1,000 employees.</span>
+          </button>
+          <button class="csrd-option" onclick="csrdSelect('employees','1000+')">
+            <span>1,000+</span>
+            <span class="csrd-option-note">Meets the headcount threshold if turnover also exceeds &#8364;450M.</span>
+          </button>
         </div>
         <div style="display:flex;justify-content:flex-end;margin-top:24px">
           <button class="btn-teal-sm" onclick="csrdShowStep(2)" id="csrd-next-1" disabled>Next</button>
@@ -124,9 +142,18 @@
         <h2 style="text-align:center;margin-bottom:8px">What is your annual turnover?</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Consolidated group revenue in the most recent financial year</p>
         <div style="display:flex;flex-direction:column;gap:12px">
-          <button class="csrd-option" onclick="csrdSelect('turnover','<150m')">&lt; &#8364;150M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','150m-450m')">&#8364;150M – &#8364;450M</button>
-          <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">&#8364;450M+</button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','<150m')">
+            <span>&lt; &#8364;150M</span>
+            <span class="csrd-option-note">Below the Omnibus I revenue threshold.</span>
+          </button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','150m-450m')">
+            <span>&#8364;150M – &#8364;450M</span>
+            <span class="csrd-option-note">Still below scope unless turnover exceeds &#8364;450M.</span>
+          </button>
+          <button class="csrd-option" onclick="csrdSelect('turnover','450m+')">
+            <span>&#8364;450M+</span>
+            <span class="csrd-option-note">Meets the revenue threshold if headcount is also 1,000+.</span>
+          </button>
         </div>
         <div style="display:flex;justify-content:space-between;margin-top:24px">
           <button class="btn-ghost-sm" onclick="csrdShowStep(1)" style="background:transparent;border:1px solid var(--border);color:var(--mist)">Back</button>
