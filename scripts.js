@@ -166,6 +166,24 @@ var APP_VERSION = '15';
       }
     });
 
+    // Mobile locale picker (inside mob-menu)
+    document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentLang = btn.getAttribute('data-lang');
+        document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        applyLocale();
+      });
+    });
+    document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        currentCurrency = btn.getAttribute('data-currency');
+        document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        applyLocale();
+      });
+    });
+
     applyLocale();
   }
 
@@ -174,6 +192,20 @@ var APP_VERSION = '15';
   } else {
     initLocale();
   }
+})();
+
+// ── TOUCH SWIPE: Close mobile menu on swipe-left ──
+(function() {
+  var menu = document.querySelector('.mob-menu');
+  if (!menu) return;
+  var startX = 0;
+  menu.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  menu.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (dx < -80) menu.classList.remove('open');
+  }, { passive: true });
 })();
 
 // ── ANNOUNCE BAR DISMISS ──

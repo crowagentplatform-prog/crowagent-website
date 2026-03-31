@@ -69,6 +69,22 @@
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
   <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
+  <div class="mob-locale">
+    <div class="mob-locale-label">Language</div>
+    <div class="mob-locale-row" id="mob-lang-row">
+      <button class="mob-locale-btn active" data-lang="en">&#x1F1EC;&#x1F1E7; EN</button>
+      <button class="mob-locale-btn" data-lang="fr">&#x1F1EB;&#x1F1F7; FR</button>
+      <button class="mob-locale-btn" data-lang="de">&#x1F1E9;&#x1F1EA; DE</button>
+      <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>
+      <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>
+    </div>
+    <div class="mob-locale-label" style="margin-top:10px">Currency</div>
+    <div class="mob-locale-row" id="mob-curr-row">
+      <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
+      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
+      <button class="mob-locale-btn" data-currency="USD">$ USD</button>
+    </div>
+  </div>
 </div>
 
 <main id="main-content">
@@ -132,7 +148,7 @@
       <!-- Calendly inline widget -->
       <div class="calendly-inline-widget"
            data-url="https://calendly.com/crowagent-platform/new-meeting?hide_gdpr_banner=1&background_color=0A1F3A&text_color=E8F0FA&primary_color=0CC9A8"
-           style="min-width:320px; height:700px;">
+           style="min-width:280px; height:clamp(450px,80vh,700px);">
       </div>
       <script type="text/javascript"
               src="https://assets.calendly.com/assets/external/widget.js"

@@ -30,7 +30,7 @@ a{color:inherit;text-decoration:none}
 .ab-cta:hover{background:var(--teal);color:var(--bg)}
 .ab-close{background:none;border:none;color:var(--mist);font-size:18px;line-height:1;cursor:pointer;padding:0 4px;position:absolute;right:16px;top:50%;transform:translateY(-50%);transition:color .2s}
 .ab-close:hover{color:var(--cloud)}
-@media(max-width:640px){.ab-text{display:none}}
+@media(max-width:640px){.ab-text{display:none}.announce-bar{justify-content:center}}
 
 /* NAV */
 nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:64px}
@@ -119,7 +119,18 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
   .announce-bar{overflow:hidden}.ab-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   #live-demo input,#live-demo button{width:100%}
 }
-@media(max-width:375px){.hero h1,.hero-headline{font-size:1.75rem;line-height:1.15}}
+@media(max-width:375px){
+  .hero h1,.hero-headline{font-size:1.75rem;line-height:1.15}
+  .btn-hero,.btn-hero-out{padding:12px 20px;font-size:14px}
+  .reg-strip-label{font-size:10px;letter-spacing:.14em}
+  .reg-name{font-size:11px}
+  .reg-code{font-size:11px}
+  .reg-strip-company{font-size:11px}
+  nav{height:56px}
+  .mob-menu{top:96px}
+  .ds-report-badge{font-size:10px}
+  .foot-bottom p{font-size:10px}
+}
 
 /* DEMO SECTION */
 .demo-section{padding:clamp(56px,8vw,88px) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -138,7 +149,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ds-input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
 .ds-field{display:flex;flex-direction:column;gap:6px}
 .ds-flabel{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--steel)}
-.ds-finput{background:rgba(13,40,71,.6);border:1px solid var(--border2);border-radius:8px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;color:var(--cloud);min-height:38px}
+.ds-finput{background:rgba(13,40,71,.6);border:1px solid var(--border2);border-radius:8px;padding:10px 12px;font-family:'Inter',sans-serif;font-size:13px;color:var(--cloud);min-height:44px}
 .ds-selected{color:var(--cloud)}
 .ds-cursor{animation:blink 1s infinite;color:var(--teal)}
 .ds-btn{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;background:var(--teal);color:var(--bg);border:none;border-radius:8px;padding:11px 20px;cursor:pointer}
@@ -212,6 +223,17 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .hw p{font-size:13px;color:var(--mist);line-height:1.6}
 @media(max-width:1024px){.hw-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){.hw-grid{grid-template-columns:1fr}}
+
+/* 600px intermediate — 5-6 inch phones between 480 and 768 */
+@media(max-width:600px){
+  .hero-sub{font-size:14px}
+  .sh-sub{font-size:13px}
+  .csrd-wizard{padding:24px 16px}
+  .csrd-question{font-size:1.15rem}
+  .pgc{padding:20px 16px}
+  .pgc-price{font-size:1.6rem}
+  .hw{padding:20px 16px}
+}
 
 /* PRODUCTS */
 .products{padding:clamp(56px,8vw,88px) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -469,7 +491,9 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.pgc-cta,.f
 a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
 
 /* COMPARISON TABLE */
-.ca-comparison{max-width:960px;margin:0 auto;padding:0 24px 48px}
+.ca-comparison{max-width:960px;margin:0 auto;padding:0 24px 48px;-webkit-overflow-scrolling:touch}
+.ca-comparison::after{content:'Scroll →';display:none;font-family:'Inter',sans-serif;font-size:11px;color:var(--mist);text-align:right;padding:6px 0}
+@media(max-width:640px){.ca-comparison::after{display:block}}
 .ca-comparison h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.5rem;font-weight:800;color:var(--cloud);text-align:center;margin-bottom:24px}
 .ca-comparison-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px}
 .ca-comparison table{width:100%;border-collapse:collapse;min-width:500px}
@@ -523,6 +547,14 @@ a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:2px so
 .locale-opt.active{color:var(--teal);font-weight:600}
 .locale-note{font-family:'Inter',sans-serif;font-size:10px;color:var(--mist);padding:6px 14px 4px;font-style:italic}
 @media(max-width:1024px){.locale-selector{display:none}}
+
+/* MOBILE LOCALE PICKER (inside mob-menu) */
+.mob-locale{display:none;padding:12px 0;border-top:1px solid var(--border)}
+.mob-locale-label{font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist);margin-bottom:8px}
+.mob-locale-row{display:flex;flex-wrap:wrap;gap:8px}
+.mob-locale-btn{font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--steel);background:var(--surf);border:1px solid var(--border2);border-radius:6px;padding:6px 12px;cursor:pointer;transition:all .2s;min-height:36px}
+.mob-locale-btn:hover,.mob-locale-btn.active{border-color:var(--teal);color:var(--teal);background:var(--teal-dim)}
+@media(max-width:1024px){.mob-locale{display:block}}
 
 /* A11Y — respect reduced motion preference (WCAG 2.3.3) */
 @media(prefers-reduced-motion:reduce){
