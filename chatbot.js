@@ -25,8 +25,8 @@
     var style = document.createElement('style');
     style.textContent =
       ':root{' +
-        '--ca-teal:#0CC9A8;' +
-        '--ca-panel-bg:#040E1A;' +
+        '--ca-teal:var(--teal,#0CC9A8);' +
+        '--ca-panel-bg:var(--bg,#040E1A);' +
         '--ca-font:var(--font-body,"Inter",Arial,sans-serif);' +
       '}' +
 
@@ -37,7 +37,7 @@
       '#ca-chatbot-btn{' +
         'position:fixed;bottom:24px;right:24px;z-index:9999;' +
         'width:56px;height:56px;border-radius:50%;border:none;' +
-        'background:var(--ca-teal);color:#040E1A;cursor:pointer;' +
+        'background:var(--ca-teal);color:var(--ca-panel-bg);cursor:pointer;' +
         'display:flex;align-items:center;justify-content:center;' +
         'box-shadow:0 4px 16px rgba(0,0,0,.3);transition:transform .2s ease,opacity .2s ease;' +
       '}' +
@@ -84,7 +84,7 @@
         'max-width:85%;padding:10px 14px;border-radius:12px;font-size:14px;line-height:1.5;' +
         'word-wrap:break-word;white-space:pre-wrap;' +
       '}' +
-      '.ca-msg-user{align-self:flex-end;background:var(--ca-teal);color:#040E1A;border-bottom-right-radius:4px;}' +
+      '.ca-msg-user{align-self:flex-end;background:var(--ca-teal);color:var(--ca-panel-bg);border-bottom-right-radius:4px;}' +
       '.ca-msg-assistant{align-self:flex-start;background:rgba(255,255,255,.08);color:rgba(255,255,255,.9);border-bottom-left-radius:4px;}' +
 
       /* Loading dots */
@@ -133,7 +133,7 @@
       '.ca-input-area input:focus{border-color:var(--ca-teal);}' +
       '.ca-input-send{' +
         'width:38px;height:38px;border-radius:10px;border:none;' +
-        'background:var(--ca-teal);color:#040E1A;cursor:pointer;' +
+        'background:var(--ca-teal);color:var(--ca-panel-bg);cursor:pointer;' +
         'display:flex;align-items:center;justify-content:center;' +
         'transition:opacity .15s ease;flex-shrink:0;' +
       '}' +

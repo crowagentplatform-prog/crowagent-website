@@ -309,18 +309,31 @@ Agency:    Unlimited, all features + white-label
 
 ### Colours (CSS variables — always use these, never hardcode hex)
 ```css
---ca-bg-page:        #05101E  /* Obsidian — page background */
---ca-bg-card:        #0A1F3A  /* Navy — cards, nav, modals */
---ca-teal:           #0CC9A8  /* Primary action, CTAs, active */
---ca-text-primary:   #E4ECF7  /* Cloud — headings, body */
---ca-text-secondary: #8A9DB8  /* Steel — descriptions, meta */
---ca-warning:        #F59E0B  /* Amber — at-risk ONLY, never revenue */
---ca-error:          #F04438  /* Red — non-compliant, errors */
+/* Canonical tokens (defined in crowagent-brand-tokens.css) */
+--bg:                #040E1A  /* page background */
+--surf:              #0A1F3A  /* cards, nav, modals */
+--surf2:             #0D2847  /* elevated surfaces */
+--teal:              #0CC9A8  /* primary action, CTAs, active */
+--cloud:             #E8F0FA  /* headings, body text */
+--steel:             #B8CCE0  /* secondary text */
+--mist:              #8A9DB8  /* descriptions, meta */
+--warn:              #F59E0B  /* amber — at-risk ONLY, never revenue */
+--err:               #EF4444  /* red — non-compliant, errors */
+
+/* --ca-* aliases (used in components, resolve to canonical tokens) */
+--ca-bg-page:        var(--bg)
+--ca-bg-card:        var(--surf)
+--ca-teal:           var(--teal)
+--ca-text-primary:   var(--cloud)
+--ca-text-secondary: var(--mist)
+--ca-warning:        var(--warn)
+--ca-error:          var(--err)
 ```
 
 ### Typography
-- **Display/headings/buttons/nav:** Syne (400/600/700/800)
-- **Body/inputs/descriptions:** DM Sans (300/400/500/600)
+- **Display/headings/buttons/nav:** Plus Jakarta Sans (400/500/600/700/800) — var(--font-display)
+- **Body/inputs/descriptions:** Inter (300/400/500/600) — var(--font-body)
+- **Code/monospace:** JetBrains Mono — var(--font-mono)
 - Never use Arial, Helvetica, system-ui — brand violation
 
 ### Logo rules
