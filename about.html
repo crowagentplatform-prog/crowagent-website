@@ -155,11 +155,177 @@
       </a>
     </div>
 
+    <!-- ── MEET THE FOUNDERS ── -->
+    <style>
+      .founders-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 24px;
+      }
+      @media (min-width: 769px) {
+        .founders-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .founder-card {
+        background: var(--surf);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 28px 24px;
+        transition: transform 0.2s, border-color 0.2s;
+      }
+      .founder-card:hover {
+        transform: translateY(-3px);
+        border-color: var(--border2);
+      }
+      .founder-initials {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        background: var(--teal);
+        color: var(--bg);
+        font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+        font-weight: 800;
+        font-size: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+      }
+      .founder-name {
+        font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--cloud);
+        text-align: center;
+        margin-bottom: 4px;
+      }
+      .founder-title {
+        font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--teal);
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .founder-tagline {
+        font-family: var(--font-body, 'Inter', sans-serif);
+        font-size: 14px;
+        font-style: italic;
+        color: var(--steel);
+        text-align: center;
+        margin-bottom: 16px;
+        line-height: 1.6;
+      }
+      .founder-bio {
+        font-family: var(--font-body, 'Inter', sans-serif);
+        font-size: 14px;
+        color: var(--mist);
+        line-height: 1.75;
+        margin-bottom: 16px;
+      }
+      .founder-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--teal);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+      .founder-link:hover {
+        opacity: 0.8;
+      }
+    </style>
+
+    <div style="margin-top:56px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                  font-size:10px; font-weight:700; letter-spacing:.2em;
+                  text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+        Meet the Founders
+      </div>
+
+      <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                  font-size:clamp(1.4rem,2.8vw,2rem); font-weight:800;
+                  color:var(--cloud); letter-spacing:-.025em; line-height:1.2;
+                  margin-bottom:16px;">
+        Built by People Who Care
+      </h2>
+
+      <p style="font-family:var(--font-body,'Inter',sans-serif);
+                 font-size:15px; color:var(--steel); line-height:1.75;
+                 margin-bottom:32px; max-width:640px;">
+        CrowAgent was founded by two people who believe sustainability compliance
+        shouldn't require expensive consultants. We're building the tools that make
+        regulatory intelligence accessible to every organisation.
+      </p>
+
+      <div class="founders-grid">
+        <!-- Aparajita Parihar -->
+        <div class="founder-card">
+          <div class="founder-initials">AP</div>
+          <div class="founder-name">Aparajita Parihar</div>
+          <div class="founder-title">Co-founder &amp; CTO</div>
+          <div class="founder-tagline">Sustainability technologist building the compliance infrastructure the UK needs.</div>
+          <p class="founder-bio">
+            Aparajita is a computer scientist specialising in AI, machine learning, and sustainable technology.
+            She serves on the UK Cyber Security Council Youth Advisory Panel, trained in quantum computing
+            through Oxford's National Quantum Computing Centre programme, and holds certifications in
+            Responsible AI and Quantum Computing Fundamentals. Recognised as a Global Sustainability Leader
+            Scholar, she founded CrowAgent to make regulatory compliance accessible through autonomous intelligence.
+          </p>
+          <a class="founder-link" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+
+        <!-- Monika Parihar -->
+        <div class="founder-card">
+          <div class="founder-initials">MP</div>
+          <div class="founder-name">Monika Parihar</div>
+          <div class="founder-title">Co-founder &amp; CEO</div>
+          <div class="founder-tagline">From economic policy to compliance technology — making regulation work for everyone.</div>
+          <p class="founder-bio">
+            Monika brings a unique combination of economic insight and community commitment to CrowAgent.
+            With a background in Economics and Sociology, she understands the policy frameworks that drive
+            UK compliance requirements — from MEES energy regulations to social value procurement. Beyond
+            CrowAgent, she volunteers weekly with the Cancer Research Foundation, reflecting the same
+            commitment to societal impact that drives the company's mission.
+          </p>
+          <a class="founder-link" href="https://www.linkedin.com/company/crowagent-ltd/" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OUR APPROACH ── -->
+    <div style="background:var(--surf); border:1px solid var(--border);
+                border-left:3px solid var(--teal); border-radius:14px;
+                padding:24px 28px; margin-top:40px;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
+                   font-size:12px; font-weight:700; letter-spacing:.12em;
+                   text-transform:uppercase; color:var(--mist); margin-bottom:10px;">
+        Our Approach
+      </div>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);
+                 font-size:16px; color:var(--cloud); line-height:1.75; margin:0;">
+        We don't believe compliance needs to be complicated. CrowAgent combines AI
+        intelligence with regulatory expertise to deliver answers in minutes, not months.
+        Every feature we build is grounded in actual UK regulation — SI 2015/962 for
+        energy efficiency, PPN 002 for social value, EU 2022/2464 for sustainability reporting.
+      </p>
+    </div>
+
   </section>
 </main>
 
 <!-- ── FOOTER ── -->
-</main>
 <footer class="ca-footer" role="contentinfo">
   <div class="wrap">
     <div class="ca-footer-grid">
