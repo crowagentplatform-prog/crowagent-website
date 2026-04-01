@@ -106,9 +106,9 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
   .ham{display:flex}
 }
 /* HERO */
-.hero{padding:80px 0 80px;position:relative;overflow:visible}
+.hero{padding:48px 0 64px;position:relative;overflow:visible}
 .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(12,201,168,.12) 0%,rgba(91,200,255,.04) 40%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none;filter:blur(40px);z-index:0}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.08);border:1px solid var(--border2);border-radius:100px;padding:6px 18px;margin-bottom:28px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.08);border:1px solid var(--border2);border-radius:100px;padding:6px 18px;margin-bottom:20px}
 .hw-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2.2s infinite}
 .hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.2rem,5.5vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:keep-all;overflow-wrap:break-word;hyphens:none;white-space:normal}
 .hero h1 em{font-style:normal;color:var(--teal)}
@@ -421,7 +421,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ca-notify-error{color:var(--err);font-size:12px;font-family:'Inter',sans-serif}
 
 /* PRICING TEASER */
-.ca-pricing-teaser{text-align:center;padding:80px 24px}
+.ca-pricing-teaser{text-align:center;padding:0}
 .ca-pricing-teaser h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;color:var(--cloud);margin-bottom:12px}
 .ca-pricing-teaser>p{color:var(--steel);font-family:'Inter',sans-serif;font-size:16px;margin-bottom:40px}
 .ca-price-row{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
@@ -431,8 +431,8 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ca-price-desc{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--mist)}
 
 /* 4-COL FOOTER */
-.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:80px}
-.ca-footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1200px;margin:0 auto;padding:0 24px}
+.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:0}
+.ca-footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
 .ca-footer-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mist);margin-bottom:14px}
 .ca-footer-col a{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
 .ca-footer-col a:hover{color:var(--teal)}
@@ -440,7 +440,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ca-footer-social a{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:8px;background:var(--surf2);border:1px solid var(--border);color:var(--steel);text-decoration:none;transition:all 0.2s;margin-bottom:0}
 .ca-footer-social a:hover{background:var(--teal-dim);border-color:var(--teal);color:var(--teal)}
 .ca-footer-social a svg{width:16px;height:16px}
-.ca-footer-bottom{border-top:1px solid var(--border);max-width:1200px;margin:32px auto 0;padding:20px 24px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--mist)}
+.ca-footer-bottom{border-top:1px solid var(--border);max-width:1280px;margin:32px auto 0;padding:20px clamp(20px,4vw,56px) 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:'Inter',sans-serif;font-size:12px;color:var(--mist)}
 @media(max-width:768px){.ca-footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.ca-footer-grid{grid-template-columns:1fr}}
 
