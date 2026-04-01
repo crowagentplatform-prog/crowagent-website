@@ -678,13 +678,16 @@
           <p class="pc-sub">BNG (Biodiversity Net Gain) compliance</p>
           <p class="pc-phase" style="font-size:11px;color:var(--mist);font-style:italic;margin-top:4px;">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
         </div>
-        <div class="ca-notify-wrap">
+        <div class="ca-notify-wrap" data-product="crowsight">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowsight">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address">
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowSight notifications">
             <input type="hidden" name="product" value="crowsight">
+            <input type="hidden" name="_subject" value="CrowSight waitlist signup">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
+          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowSight opens.</p>
+          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
         </div>
       </div>
       <div class="pc pc-locked">
@@ -694,13 +697,16 @@
           <p class="pc-sub">Housing retrofit planning &amp; cost modelling</p>
           <p class="pc-phase" style="font-size:11px;color:var(--mist);font-style:italic;margin-top:4px;">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
         </div>
-        <div class="ca-notify-wrap">
+        <div class="ca-notify-wrap" data-product="crowbuild">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowbuild">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address">
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowBuild notifications">
             <input type="hidden" name="product" value="crowbuild">
+            <input type="hidden" name="_subject" value="CrowBuild waitlist signup">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
+          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowBuild opens.</p>
+          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
         </div>
       </div>
       <div class="pc pc-locked">
@@ -710,13 +716,16 @@
           <p class="pc-sub">NHS Green Plan compliance</p>
           <p class="pc-phase" style="font-size:11px;color:var(--mist);font-style:italic;margin-top:4px;">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
         </div>
-        <div class="ca-notify-wrap">
+        <div class="ca-notify-wrap" data-product="crownest">
           <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crownest">Notify me</button>
           <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address">
+            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowNest notifications">
             <input type="hidden" name="product" value="crownest">
+            <input type="hidden" name="_subject" value="CrowNest waitlist signup">
             <button class="btn-teal-sm" type="submit">Subscribe</button>
           </form>
+          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowNest opens.</p>
+          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
         </div>
       </div>
     </div>
@@ -1052,11 +1061,11 @@
         <form class="contact-form" id="contactForm" novalidate>
           <div class="form-group">
             <label for="contact-name" class="form-label">Full name <span aria-hidden="true">*</span></label>
-            <input type="text" id="contact-name" name="name" class="form-input" placeholder="Sarah Johnson" required autocomplete="name">
+            <input type="text" id="contact-name" name="name" class="form-input" placeholder="Sarah Johnson" required aria-required="true" autocomplete="name">
           </div>
           <div class="form-group">
             <label for="contact-email" class="form-label">Work email <span aria-hidden="true">*</span></label>
-            <input type="email" id="contact-email" name="email" class="form-input" placeholder="sarah@propertyco.com" required autocomplete="email">
+            <input type="email" id="contact-email" name="email" class="form-input" placeholder="sarah@propertyco.com" required aria-required="true" autocomplete="email">
           </div>
           <div class="form-group">
             <label for="contact-org" class="form-label">Organisation</label>

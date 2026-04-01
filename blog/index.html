@@ -236,11 +236,11 @@
 
     <!-- Filter pills -->
     <div class="filter-row">
-      <button class="filter-pill active" data-filter="all" type="button">All</button>
-      <button class="filter-pill" data-filter="mees-epc" type="button">MEES &amp; EPC</button>
-      <button class="filter-pill" data-filter="ppn-002" type="button">PPN 002</button>
-      <button class="filter-pill" data-filter="csrd-esg" type="button">CSRD &amp; ESG</button>
-      <button class="filter-pill" data-filter="regulatory-updates" type="button">Regulatory Updates</button>
+      <button class="filter-pill active" data-filter="all" type="button" aria-pressed="true">All</button>
+      <button class="filter-pill" data-filter="mees-epc" type="button" aria-pressed="false">MEES &amp; EPC</button>
+      <button class="filter-pill" data-filter="ppn-002" type="button" aria-pressed="false">PPN 002</button>
+      <button class="filter-pill" data-filter="csrd-esg" type="button" aria-pressed="false">CSRD &amp; ESG</button>
+      <button class="filter-pill" data-filter="regulatory-updates" type="button" aria-pressed="false">Regulatory Updates</button>
     </div>
 
     <!-- Article grid -->
@@ -411,8 +411,9 @@
     pills.forEach(function (pill) {
       pill.addEventListener('click', function () {
         // Update active pill
-        pills.forEach(function (p) { p.classList.remove('active'); });
+        pills.forEach(function (p) { p.classList.remove('active'); p.setAttribute('aria-pressed', 'false'); });
         pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
 
         var filter = pill.getAttribute('data-filter');
 

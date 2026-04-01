@@ -827,6 +827,14 @@ a.contact-method-value:hover{color:var(--teal)}
   .counter{transition:none!important}
 }
 
+/* ── TRUST BADGE STRIP MOBILE SCROLL (Task 11B) ── */
+.hero-trust{display:flex;gap:16px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:4px}
+.hero-trust::-webkit-scrollbar{display:none}
+@media(min-width:768px){.hero-trust{flex-wrap:wrap;overflow-x:visible;justify-content:center}}
+
+/* ── MIST CONTRAST PROTECTION (Task 3.4) ── */
+.article-body,.blog-articles-grid,.resource-card-desc,.demo-sub,.csrd-result p,.rc-preview,.card-preview{color:var(--steel)}
+
 /* ── SIM LABEL (Task 2) ── */
 .sim-label{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:4px;background:rgba(91,200,255,.12);color:var(--sky,#5BC8FF);margin-left:10px}
 

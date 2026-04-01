@@ -218,19 +218,19 @@
       <form id="partner-form" novalidate>
         <div class="form-group">
           <label for="partner-name">Name *</label>
-          <input type="text" id="partner-name" name="name" class="form-control" placeholder="Your full name" required>
+          <input type="text" id="partner-name" name="name" class="form-control" placeholder="Your full name" required aria-required="true">
         </div>
         <div class="form-group">
           <label for="partner-company">Company *</label>
-          <input type="text" id="partner-company" name="company" class="form-control" placeholder="Company name" required>
+          <input type="text" id="partner-company" name="company" class="form-control" placeholder="Company name" required aria-required="true">
         </div>
         <div class="form-group">
           <label for="partner-role">Role *</label>
-          <input type="text" id="partner-role" name="role" class="form-control" placeholder="Your role" required>
+          <input type="text" id="partner-role" name="role" class="form-control" placeholder="Your role" required aria-required="true">
         </div>
         <div class="form-group">
           <label for="partner-email">Email *</label>
-          <input type="email" id="partner-email" name="email" class="form-control" placeholder="you@company.com" required>
+          <input type="email" id="partner-email" name="email" class="form-control" placeholder="you@company.com" required aria-required="true">
         </div>
         <div class="form-group">
           <label for="partner-phone">Phone</label>
@@ -238,7 +238,7 @@
         </div>
         <div class="form-group">
           <label for="partner-type">Partner type *</label>
-          <select id="partner-type" name="partner_type" class="form-control" required>
+          <select id="partner-type" name="partner_type" class="form-control" required aria-required="true">
             <option value="" disabled selected>Select...</option>
             <option value="Property Consultant">Property Consultant</option>
             <option value="Bid Agency">Bid Agency</option>
@@ -251,10 +251,10 @@
           <label for="partner-description">About your client base</label>
           <textarea id="partner-description" name="description" class="form-control" rows="3" maxlength="200" placeholder="Tell us about your client base"></textarea>
         </div>
-        <div id="partner-form-error" style="display:none;color:#ff6b6b;font-size:var(--font-size-sm);margin-bottom:var(--space-4);font-family:var(--font-body);"></div>
+        <div id="partner-form-error" role="alert" style="display:none;color:#ff6b6b;font-size:var(--font-size-sm);margin-bottom:var(--space-4);font-family:var(--font-body);"></div>
         <button type="submit" class="btn-primary" style="width:100%;">Submit enquiry →</button>
       </form>
-      <div id="partner-form-success" class="form-success" style="display:none;color:var(--teal);padding:1.5rem;border:1px solid var(--teal);border-radius:8px;">
+      <div id="partner-form-success" class="form-success" role="alert" aria-live="polite" style="display:none;color:var(--teal);padding:1.5rem;border:1px solid var(--teal);border-radius:8px;">
         <p style="margin:0;font-family:var(--font-body);">Thank you for your interest. We'll be in touch within 2 business days.</p>
       </div>
     </div>

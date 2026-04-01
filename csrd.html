@@ -169,7 +169,7 @@
         <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
         <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a more detailed assessment and a record you can share internally</p>
         <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
-          <input type="email" id="csrd-email" placeholder="you@company.com" required style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--bg);color:var(--cloud);font-size:15px">
+          <input type="email" id="csrd-email" placeholder="you@company.com" required aria-required="true" style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--bg);color:var(--cloud);font-size:15px">
           <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
         </form>
         <div id="csrd-result" style="margin-top:24px"></div>

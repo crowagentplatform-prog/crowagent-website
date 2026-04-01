@@ -652,6 +652,31 @@ async function caSubmitNotify(btn) {
   });
 })();
 
+// ── CSRD WIZARD EMAIL BLUR VALIDATION (Task 2.5) ──
+(function() {
+  var el = document.getElementById('csrd-email');
+  if (!el) return;
+  el.addEventListener('blur', function() {
+    var val = el.value.trim();
+    var err = document.getElementById('csrd-email-err');
+    if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      if (!err) {
+        err = document.createElement('span');
+        err.id = 'csrd-email-err';
+        err.setAttribute('role', 'alert');
+        err.style.cssText = 'display:block;font-size:12px;color:#EF4444;margin-top:4px;';
+        el.parentNode.appendChild(err);
+      }
+      err.textContent = 'Please enter a valid email address.';
+      err.style.display = 'block';
+      el.classList.add('input-error');
+    } else {
+      if (err) err.style.display = 'none';
+      el.classList.remove('input-error');
+    }
+  });
+})();
+
 // ── CSRD FULL WIZARD (csrd.html) ──
 var csrdState = { employees: null, turnover: null, sector: null, step: 1 };
 function csrdSelect(field, value) {
@@ -670,7 +695,23 @@ function csrdShowStep(n) {
     el.classList.remove('active');
   });
   var target = document.querySelector('[data-csrd-step="' + n + '"]');
-  if (target) { target.style.display = 'block'; target.classList.add('active'); }
+  if (target) {
+    target.style.display = 'block';
+    target.classList.add('active');
+    // Focus management for accessibility (Task 3.5)
+    var focusTarget = target.querySelector('h2, h3, input, button, [tabindex]');
+    if (focusTarget) {
+      if (!focusTarget.hasAttribute('tabindex')) focusTarget.setAttribute('tabindex', '-1');
+      focusTarget.focus({ preventScroll: false });
+    }
+  }
+  // Update progress indicators
+  document.querySelectorAll('.csrd-progress-step').forEach(function(el) {
+    var step = parseInt(el.dataset.step);
+    el.classList.remove('csrd-progress-active', 'csrd-progress-done');
+    if (step === n) el.classList.add('csrd-progress-active');
+    else if (step < n) el.classList.add('csrd-progress-done');
+  });
   csrdState.step = n;
   if (n === 1) { csrdState.employees = null; }
   if (n <= 2) { csrdState.turnover = null; }

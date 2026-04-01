@@ -202,6 +202,73 @@
     </div>
 
   </section>
+<section class="contact-form-section" style="padding:64px 0;border-top:1px solid var(--border);">
+  <div class="wrap">
+    <div class="contact-page-grid">
+      <div class="contact-page-info">
+        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Send a message</div>
+        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;color:var(--cloud);margin-bottom:16px;">Tell us what you're working on</h2>
+        <p style="font-size:14px;color:var(--steel);line-height:1.7;margin-bottom:1.5rem;">Whether you're assessing your MEES position, bidding for public sector contracts, or exploring what CrowAgent can do for your organisation — we'll respond within one business day.</p>
+        <div class="contact-detail-list">
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Email</span>
+            <a href="mailto:hello@crowagent.ai" class="contact-detail-value">hello@crowagent.ai</a>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Book a demo</span>
+            <a href="https://calendly.com/crowagent-platform/new-meeting" target="_blank" rel="noopener noreferrer" class="contact-detail-value">calendly.com/crowagent-platform</a>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Response time</span>
+            <span class="contact-detail-value">Within 1 business day</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Company</span>
+            <span class="contact-detail-value">CrowAgent Ltd · No. 17076461</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactPageForm" novalidate>
+          <div class="form-group">
+            <label for="cp-name" class="form-label">Full name <span aria-hidden="true" style="color:var(--teal)">*</span></label>
+            <input type="text" id="cp-name" name="name" class="form-input" placeholder="Sarah Johnson" required aria-required="true" autocomplete="name">
+            <span class="form-error-msg" id="cp-name-err" role="alert" style="display:none;font-size:12px;color:#EF4444;margin-top:4px;">Please enter your name.</span>
+          </div>
+          <div class="form-group">
+            <label for="cp-email" class="form-label">Work email <span aria-hidden="true" style="color:var(--teal)">*</span></label>
+            <input type="email" id="cp-email" name="email" class="form-input" placeholder="sarah@company.com" required aria-required="true" autocomplete="email">
+            <span class="form-error-msg" id="cp-email-err" role="alert" style="display:none;font-size:12px;color:#EF4444;margin-top:4px;">Please enter a valid email address.</span>
+          </div>
+          <div class="form-group">
+            <label for="cp-org" class="form-label">Organisation</label>
+            <input type="text" id="cp-org" name="organisation" class="form-input" placeholder="Property Holdings Ltd" autocomplete="organization">
+          </div>
+          <div class="form-group">
+            <label for="cp-type" class="form-label">What are you working on?</label>
+            <select id="cp-type" name="enquiry_type" class="form-input form-select">
+              <option value="">Select an option</option>
+              <option value="mees-compliance">MEES compliance for commercial portfolio</option>
+              <option value="ppn002-bid">PPN 002 social value for a bid</option>
+              <option value="csrd-scope">CSRD applicability scoping</option>
+              <option value="enterprise">Enterprise / volume pricing</option>
+              <option value="partnership">Partnership enquiry</option>
+              <option value="general">General question</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="cp-msg" class="form-label">Message</label>
+            <textarea id="cp-msg" name="message" class="form-input form-textarea" rows="4" placeholder="Tell us about your portfolio, upcoming bid, or compliance question..."></textarea>
+          </div>
+          <button type="submit" class="btn-teal-sm form-submit" id="cpSubmitBtn" style="width:100%;min-height:48px;">Send message</button>
+          <p class="form-privacy" style="font-size:12px;color:var(--mist);margin-top:8px;">We'll never share your details. <a href="/privacy" style="color:var(--steel);text-decoration:underline;">Privacy policy</a>.</p>
+          <div class="form-success" id="cpFormSuccess" style="display:none;" role="alert"><strong>Message received.</strong> We'll get back to you within 1 business day.</div>
+          <div class="form-error" id="cpFormError" style="display:none;" role="alert">Something went wrong. Please email <a href="mailto:hello@crowagent.ai" style="color:#EF4444;">hello@crowagent.ai</a> directly.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 </main>
 
 <footer class="ca-footer" role="contentinfo">
