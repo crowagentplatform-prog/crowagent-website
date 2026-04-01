@@ -1,9 +1,9 @@
-const CACHE_NAME = 'crowagent-v17';
+const CACHE_NAME = 'crowagent-v18';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/styles.css?v=17',
-  '/scripts.js?v=17',
+  '/styles.css?v=18',
+  '/scripts.js?v=18',
   '/resources.html',
   '/print.css',
   '/manifest.json',
@@ -24,6 +24,10 @@ const ASSETS_TO_CACHE = [
   '/blog/ppn-002-guide',
   '/blog/mees-band-c-2028',
   '/blog/csrd-omnibus-i-2026',
+  '/blog/mees-commercial-property-guide.html',
+  '/blog/ppn-002-social-value-guide.html',
+  '/blog/retrofit-cost-calculator-guide.html',
+  '/Assets/og-image.svg',
   'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
 ];
 

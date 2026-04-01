@@ -1,4 +1,4 @@
-var APP_VERSION = '17';
+var APP_VERSION = '18';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
@@ -137,9 +137,18 @@ var APP_VERSION = '17';
     });
     currEl.textContent = SYMBOLS[currentCurrency] + ' ' + currentCurrency;
 
-    // Show/hide translation note
-    var note = document.getElementById('locale-note');
-    if (note) note.style.display = currentLang !== 'en' ? 'block' : 'none';
+    // Show language tooltip for non-English selections
+    var tooltip = document.getElementById('lang-tooltip');
+    if (tooltip) {
+      if (currentLang !== 'en') {
+        var langNames = { fr: 'French', de: 'German', es: 'Spanish', cy: 'Welsh' };
+        tooltip.textContent = 'Full ' + (langNames[currentLang] || '') + ' translation coming Q3 2026.';
+        tooltip.style.display = 'block';
+        setTimeout(function() { tooltip.style.display = 'none'; }, 3000);
+      } else {
+        tooltip.style.display = 'none';
+      }
+    }
     updateThemeButtons();
   }
 
@@ -408,8 +417,8 @@ function toggleBilling() {
   function animateCounter() {
     var el = document.querySelector('.ds-count');
     if (!el) return;
-    var target = 18750;
-    var step = 450;
+    var target = 42000;
+    var step = 1000;
     var val = 0;
     var t = setInterval(function() {
       val = Math.min(val + step, target);
@@ -809,6 +818,129 @@ async function csrdSubmit() {
       });
     });
   };
+})();
+
+// ── ANIMATED NUMBER COUNTERS (Task 11A) ──
+(function() {
+  var counters = document.querySelectorAll('.counter[data-target]');
+  if (!counters.length) return;
+  var animated = new Set();
+  var cObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !animated.has(entry.target)) {
+        animated.add(entry.target);
+        animateStatCounter(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(function(el) { cObserver.observe(el); });
+  function animateStatCounter(el) {
+    var target = parseFloat(el.dataset.target);
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    var duration = 1800;
+    var start = performance.now();
+    function step(now) {
+      var elapsed = now - start;
+      var progress = Math.min(elapsed / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(eased * target);
+      var display = current >= 1000 ? current.toLocaleString('en-GB') : current;
+      el.textContent = prefix + display + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+})();
+
+// ── METHODOLOGY ACCORDION ON MOBILE (Task 11C) ──
+(function() {
+  if (window.innerWidth > 768) return;
+  var methodCards = document.querySelectorAll('[style*="border-left:3px solid"]');
+  methodCards.forEach(function(card, i) {
+    var title = card.querySelector('[style*="font-weight:700"][style*="font-size:14px"]');
+    var body = card.querySelector('p');
+    if (!title || !body) return;
+    body.style.display = i === 0 ? 'block' : 'none';
+    title.style.cursor = 'pointer';
+    title.setAttribute('role', 'button');
+    title.setAttribute('aria-expanded', i === 0 ? 'true' : 'false');
+    title.addEventListener('click', function() {
+      var isOpen = body.style.display !== 'none';
+      body.style.display = isOpen ? 'none' : 'block';
+      title.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+    });
+  });
+})();
+
+// ── BLOG FILTER TABS (WP-SUPP-002 Task 2.6) ──
+(function() {
+  var filters = document.querySelectorAll('.blog-filter');
+  var articles = document.querySelectorAll('.blog-articles-grid article[data-category]');
+  if (!filters.length || !articles.length) return;
+  filters.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var filter = btn.dataset.filter;
+      filters.forEach(function(b) { b.classList.remove('blog-filter-active'); b.setAttribute('aria-pressed', 'false'); });
+      btn.classList.add('blog-filter-active'); btn.setAttribute('aria-pressed', 'true');
+      articles.forEach(function(art) {
+        art.style.display = (filter === 'all' || art.dataset.category === filter) ? '' : 'none';
+      });
+    });
+  });
+})();
+
+// ── NOTIFY-ME FORMS (Formspree) ──
+(function() {
+  document.querySelectorAll('.notify-form').forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var data = new FormData(form);
+      var btn = form.querySelector('.notify-btn');
+      var success = form.querySelector('.notify-success');
+      if (btn) { btn.disabled = true; btn.textContent = 'Adding...'; }
+      fetch('https://formspree.io/f/xbdpkaol', {
+        method: 'POST', body: data, headers: { 'Accept': 'application/json' }
+      }).then(function(r) {
+        if (r.ok) {
+          if (success) success.style.display = 'block';
+          if (btn) btn.style.display = 'none';
+          var emailInput = form.querySelector('input[type="email"]');
+          if (emailInput) emailInput.style.display = 'none';
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = 'Notify me \u2192'; }
+        }
+      }).catch(function() {
+        if (btn) { btn.disabled = false; btn.textContent = 'Notify me \u2192'; }
+      });
+    });
+  });
+})();
+
+// ── CONTACT PAGE FORM (WP-SUPP-002 Task 2.2) ──
+(function() {
+  var form = document.getElementById('contactPageForm');
+  if (!form) return;
+  function showErr(id, msg) { var el = document.getElementById(id); if (el) { el.textContent = msg; el.style.display = 'block'; } }
+  function clearErr(id) { var el = document.getElementById(id); if (el) el.style.display = 'none'; }
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var name = document.getElementById('cp-name').value.trim();
+    var email = document.getElementById('cp-email').value.trim();
+    var btn = document.getElementById('cpSubmitBtn');
+    var success = document.getElementById('cpFormSuccess');
+    var error = document.getElementById('cpFormError');
+    var valid = true;
+    clearErr('cp-name-err'); clearErr('cp-email-err');
+    if (!name) { showErr('cp-name-err', 'Please enter your name.'); valid = false; }
+    if (!email || !email.includes('@') || !email.includes('.')) { showErr('cp-email-err', 'Please enter a valid email address.'); valid = false; }
+    if (!valid) return;
+    btn.disabled = true; btn.textContent = 'Sending...';
+    success.style.display = 'none'; error.style.display = 'none';
+    fetch('https://formspree.io/f/xbdpkaol', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+    .then(function(r) { if (r.ok) { form.reset(); success.style.display = 'block'; btn.textContent = 'Message sent'; } else { throw new Error(); } })
+    .catch(function() { error.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send message'; });
+  });
 })();
 
 // ── Module exports (for testing) ─────────────────────────────────────────────
