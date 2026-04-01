@@ -27,7 +27,7 @@ const ASSETS_TO_CACHE = [
   '/blog/mees-commercial-property-guide.html',
   '/blog/ppn-002-social-value-guide.html',
   '/blog/retrofit-cost-calculator-guide.html',
-  '/Assets/og-image.svg',
+  '/Assets/og-image.png',
   'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap'
 ];
 
@@ -54,7 +54,10 @@ self.addEventListener('fetch', event => {
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request).then(response => {
-        caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone()));
+        if (response && response.ok) {
+          var responseClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, responseClone));
+        }
         return response;
       }).catch(() => caches.match('/index.html'))
     );
@@ -68,14 +71,16 @@ self.addEventListener('fetch', event => {
         // Refresh in background
         fetch(request).then(response => {
           if (response && response.ok) {
-            caches.open(CACHE_NAME).then(cache => cache.put(request, response.clone()));
+            var bgClone = response.clone();
+            caches.open(CACHE_NAME).then(cache => cache.put(request, bgClone));
           }
         }).catch(() => {});
         return cached;
       }
       return fetch(request).then(networkResponse => {
         if (networkResponse && networkResponse.ok) {
-          caches.open(CACHE_NAME).then(cache => cache.put(request, networkResponse.clone()));
+          var netClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(request, netClone));
         }
         return networkResponse;
       }).catch(() => caches.match('/index.html'));
