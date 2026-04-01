@@ -1,4 +1,65 @@
-var APP_VERSION = '15';
+var APP_VERSION = '16';
+
+// ── SCROLL-TRIGGERED SECTION REVEAL ──
+(function() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+    return;
+  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+})();
+
+// ── NAV SCROLL OPACITY ──
+(function() {
+  var nav = document.querySelector('nav');
+  if (!nav) return;
+  function updateNav() {
+    if (window.scrollY > 60) {
+      nav.style.backgroundColor = 'rgba(4, 14, 26, 0.96)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.webkitBackdropFilter = 'blur(12px)';
+      nav.style.borderBottom = '1px solid rgba(12, 201, 168, 0.15)';
+    } else {
+      nav.style.backgroundColor = '';
+      nav.style.backdropFilter = '';
+      nav.style.webkitBackdropFilter = '';
+      nav.style.borderBottom = '';
+    }
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+})();
+
+// ── NAV SCROLL-SPY ──
+(function() {
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  if (!sections.length || !navLinks.length || !('IntersectionObserver' in window)) return;
+  var activeLink = null;
+  var spyObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.getAttribute('id');
+        navLinks.forEach(function(link) {
+          if (link.getAttribute('href') === '#' + id) {
+            if (activeLink) activeLink.classList.remove('nav-link-active');
+            link.classList.add('nav-link-active');
+            activeLink = link;
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+  sections.forEach(function(s) { spyObserver.observe(s); });
+})();
 
 // ── LOCALE SELECTOR (Language & Currency) ──
 (function() {

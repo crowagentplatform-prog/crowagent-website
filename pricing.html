@@ -23,7 +23,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=13">
+<link rel="stylesheet" href="styles.css?v=16">
+<link rel="stylesheet" href="print.css" media="print">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -165,6 +166,7 @@
   <div class="pgc">
     <div class="pgc-name">Starter</div>
     <div class="pgc-price">£<span class="pv" data-m="149" data-a="134">149</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Less than one RICS energy assessment. One property analysis every week of the year.</p>
     <div class="pgc-scope">5 properties</div>
     <ul class="pgc-features">
       <li>Full MEES analysis</li>
@@ -177,6 +179,7 @@
     <div class="pgc-badge">Most popular</div>
     <div class="pgc-name">Pro</div>
     <div class="pgc-price">£<span class="pv" data-m="299" data-a="269">299</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Less than a single solicitor hour on an EPC dispute. Covers 25 properties continuously.</p>
     <div class="pgc-scope">6–25 properties</div>
     <ul class="pgc-features">
       <li>Everything in Starter</li>
@@ -191,6 +194,7 @@
   <div class="pgc">
     <div class="pgc-name">Portfolio</div>
     <div class="pgc-price">£<span class="pv" data-m="599" data-a="539">599</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Less than one day of specialist consultancy. Unlimited properties. White-label PDF reports.</p>
     <div class="pgc-scope">100 properties</div>
     <ul class="pgc-features">
       <li>Everything in Pro</li>
@@ -208,6 +212,7 @@
   <div class="pgc">
     <div class="pgc-name">Solo</div>
     <div class="pgc-price">£<span class="pv" data-m="49" data-a="44">49</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Less than one hour of a bid management consultant. One complete PPN 002 submission covered.</p>
     <div class="pgc-scope">1 user</div>
     <ul class="pgc-features">
       <li>AI narrative generation</li>
@@ -221,6 +226,7 @@
     <div class="pgc-badge">Most popular</div>
     <div class="pgc-name">Team</div>
     <div class="pgc-price">£<span class="pv" data-m="149" data-a="134">149</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Less than the cost of a single social value audit. Up to 5 users, unlimited bids.</p>
     <div class="pgc-scope">Up to 5 users</div>
     <ul class="pgc-features">
       <li>Everything in Solo</li>
@@ -234,6 +240,7 @@
   <div class="pgc">
     <div class="pgc-name">Agency</div>
     <div class="pgc-price">£<span class="pv" data-m="399" data-a="359">399</span><span class="pp">/mo</span></div>
+    <p class="price-anchor">Replaces a part-time social value consultant. Unlimited users, white-label outputs, API access.</p>
     <div class="pgc-scope">Unlimited users</div>
     <ul class="pgc-features">
       <li>Everything in Team</li>
@@ -424,8 +431,22 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="scripts.js?v=13"></script>
+<script src="scripts.js?v=16"></script>
 <script src="chatbot.js" defer></script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is there a free tier?", "acceptedAnswer": {"@type": "Answer", "text": "The CSRD Checker is free and does not require an account. CrowAgent Core and CrowMark are paid products with a 14-day trial."}},
+    {"@type": "Question", "name": "Can I switch plans later?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You can move to a different plan from billing once your account is live."}},
+    {"@type": "Question", "name": "How does annual billing work?", "acceptedAnswer": {"@type": "Answer", "text": "Pay upfront for the year and save 10% compared to monthly billing. You can switch from monthly to annual at any time."}},
+    {"@type": "Question", "name": "What happens when my trial ends?", "acceptedAnswer": {"@type": "Answer", "text": "At the end of the 14-day period, you can choose whether to continue on a paid plan. You are not charged during the trial itself."}},
+    {"@type": "Question", "name": "Do you offer enterprise pricing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Enterprise plans start at £999/mo and include SSO, custom SLA, dedicated customer success, and bespoke integrations."}},
+    {"@type": "Question", "name": "Is my data secure?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. AES-256 encryption at rest and in transit, UK data residency, GDPR compliant, ICO registered."}}
+  ]
+}
+</script>
 </body>
 </html>
 

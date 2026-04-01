@@ -634,10 +634,91 @@ a:focus-visible,button:focus-visible,[tabindex="0"]:focus-visible{outline:2px so
 .section-padding a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
 .section-padding a:hover{color:var(--cloud)}
 
+/* ── SCROLL-TRIGGERED REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* Card hover lift — global */
+.tc,.hw,.sector,.pc,.uc{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.tc:hover,.hw:hover,.sector:hover,.pc:hover:not(.pc-locked):not(.pc-p3),.uc:hover{
+  transform:translateY(-3px);
+  border-color:var(--border3);
+  box-shadow:0 8px 24px rgba(12,201,168,.08);
+}
+
+/* ── NAV SCROLL-SPY ACTIVE STATE ── */
+.nav-link-active{color:var(--teal);position:relative}
+.nav-link-active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--teal);border-radius:1px}
+
+/* ── HERO PENALTY CALLOUT ── */
+.hero-penalty-banner{display:flex;align-items:flex-start;gap:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 16px;margin:1.25rem auto 1.5rem;font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.55;max-width:620px;text-align:left}
+.hero-penalty-banner strong{color:var(--err);font-weight:600}
+.hero-penalty-icon{font-size:14px;flex-shrink:0;margin-top:1px}
+.cta-no-card{font-family:'Inter',sans-serif;font-size:12px;color:var(--mist);margin-top:8px;letter-spacing:.01em}
+
+/* ── PRODUCT MOCK SCREEN VISUALISATION ── */
+.product-mock-screen{background:var(--surf);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 24px 48px rgba(0,0,0,.4)}
+.mock-topbar{background:var(--surf2);padding:10px 16px;display:flex;align-items:center;gap:6px;border-bottom:1px solid var(--border)}
+.mock-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);display:inline-block}
+.mock-title{font-size:12px;color:var(--steel);margin-left:8px;font-family:'Plus Jakarta Sans',sans-serif}
+.mock-body{padding:20px}
+.mock-band-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.mock-label{font-size:12px;color:var(--mist)}
+.mock-band{font-size:18px;font-weight:700;width:36px;height:36px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif}
+.mock-band-e{background:rgba(239,68,68,.15);color:var(--err)}
+.mock-band-c{background:rgba(12,201,168,.15);color:var(--teal)}
+.mock-gap-bar{height:6px;background:rgba(255,255,255,.06);border-radius:3px;margin:12px 0;overflow:hidden}
+.mock-gap-fill{height:100%;background:var(--teal);border-radius:3px}
+.mock-fine-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid rgba(255,255,255,.06);margin-bottom:12px}
+.mock-fine-label{font-size:12px;color:var(--mist)}
+.mock-fine-value{font-size:13px;font-weight:600;color:var(--err)}
+.mock-scenarios{display:flex;flex-direction:column;gap:6px}
+.mock-scenario-pill{font-size:11px;color:var(--steel);background:var(--teal-dim);border:1px solid var(--border);border-radius:4px;padding:5px 10px}
+.mock-sv-score{text-align:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);margin-bottom:12px}
+.mock-sv-number{display:block;font-size:48px;font-weight:700;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;line-height:1}
+.mock-sv-label{display:block;font-size:12px;color:var(--mist);margin-top:4px}
+.mock-sv-threshold{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;margin-top:8px}
+.mock-sv-pass{background:rgba(12,201,168,.15);color:var(--teal)}
+.mock-missions{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.mock-mission-pill{font-size:11px;color:var(--steel);background:rgba(167,139,250,.08);border:1px solid rgba(167,139,250,.2);border-radius:4px;padding:5px 10px}
+.mock-narrative-preview{font-size:11px;color:var(--mist);font-style:italic;border-top:1px solid rgba(255,255,255,.06);padding-top:10px}
+.product-mock-wrap{margin-top:24px}
+
+/* ── SHIPPING SECTION ── */
+.shipping-section{padding:64px 0;border-bottom:1px solid var(--border)}
+.shipping-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2rem}
+.shipping-item{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:1.25rem}
+.shipping-date{font-size:12px;color:var(--mist);display:block;margin-bottom:6px;font-family:'Inter',sans-serif}
+.shipping-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif}
+.shipping-badge-new{background:rgba(12,201,168,.15);color:var(--teal)}
+.shipping-badge-update{background:rgba(91,200,255,.12);color:var(--sky)}
+.shipping-title{font-size:14px;font-weight:600;color:var(--cloud);margin-bottom:6px;font-family:'Plus Jakarta Sans',sans-serif;line-height:1.4}
+.shipping-desc{font-size:13px;color:var(--steel);line-height:1.6;font-family:'Inter',sans-serif}
+@media(max-width:768px){.shipping-grid{grid-template-columns:1fr}}
+
+/* ── MISSION STATEMENT ── */
+.mission-statement{max-width:700px;margin:0 auto 3rem;text-align:center}
+.mission-quote{font-family:'Inter',sans-serif;font-size:clamp(1.1rem,2.5vw,1.35rem);color:var(--cloud);line-height:1.7;font-style:italic;border:none;padding:0;margin:0 0 .75rem}
+.mission-quote::before{content:'\201C';color:var(--teal);font-size:3rem;line-height:0;vertical-align:-.6em;margin-right:4px}
+.mission-attribution{font-family:'Inter',sans-serif;font-size:13px;color:var(--mist)}
+
+/* ── PRICING VALUE ANCHORS ── */
+.price-anchor{font-family:'Inter',sans-serif;font-size:12px;color:var(--mist);font-style:italic;line-height:1.5;margin-top:6px}
+
+/* ── FOCUS VISIBLE ── */
+*:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:3px}
+*:focus:not(:focus-visible){outline:none}
+
 /* A11Y — respect reduced motion preference (WCAG 2.3.3) */
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .ticker-track{animation:none}
   .ab-dot,.hw-dot{animation:none}
   .hero-glow{display:none}
+  .reveal{opacity:1;transform:none;transition:none}
+  .tc:hover,.hw:hover,.sector:hover,.pc:hover,.uc:hover{transform:none}
 }

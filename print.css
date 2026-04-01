@@ -1,0 +1,57 @@
+/* CrowAgent — print stylesheet for A4 black-on-white */
+@media print {
+  nav,.mob-menu,.announce-bar,.hero-glow,.hero-btns,.cta-no-card,
+  .hero-penalty-banner,.shipping-section,.cta-band,.csrd-band,
+  .skip-link,.ticker,.product-mock-screen,.product-mock-wrap,
+  .ham,#ca-cookie,.ca-chatbot,.chatbot-bubble,.demo-section,
+  #live-demo,.toggle-row,.ptabs,footer .foot-col:not(.foot-brand),
+  .foot-social,.hero-trust,.use-cases,.reg-strip,.stats,
+  .hero-eyebrow,.btn-hero,.btn-hero-out,.btn-teal-sm,.btn-ghost-sm {
+    display: none !important;
+  }
+
+  *,*::before,*::after {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+    border-color: #ccc !important;
+  }
+
+  body {
+    font-family: Georgia, serif;
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  h1,h2,h3 {
+    font-family: Arial, sans-serif;
+    page-break-after: avoid;
+  }
+  h1 { font-size: 20pt; }
+  h2 { font-size: 16pt; margin-top: 2em; }
+  h3 { font-size: 13pt; }
+
+  p { orphans: 3; widows: 3; page-break-inside: avoid; }
+
+  .tc,.hw,.sector,.pc,.shipping-item,.faq-item {
+    border: 1px solid #ccc !important;
+    padding: 12pt !important;
+    margin-bottom: 12pt !important;
+    page-break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 9pt;
+    color: #666;
+  }
+  nav a::after,.foot-col a::after { content: none; }
+
+  .foot-brand { display: block !important; }
+
+  .hw-grid,.tc-grid,.sector-grid,.shipping-grid,.pc-grid {
+    display: block !important;
+  }
+
+  @page { margin: 2cm; size: A4; }
+}
