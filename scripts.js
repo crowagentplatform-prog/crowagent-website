@@ -1,4 +1,4 @@
-var APP_VERSION = '16';
+var APP_VERSION = '17';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
@@ -718,6 +718,96 @@ async function csrdSubmit() {
     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get my result'; }
   }
 }
+
+// ── CONTACT FORM SUBMISSION ──
+(function() {
+  var form = document.getElementById('contactForm');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    var submitBtn = document.getElementById('contactSubmit');
+    var successMsg = document.getElementById('formSuccess');
+    var errorMsg = document.getElementById('formError');
+
+    var name = document.getElementById('contact-name').value.trim();
+    var email = document.getElementById('contact-email').value.trim();
+
+    if (!name || !email || !email.includes('@')) {
+      document.getElementById('contact-name').classList.toggle('input-error', !name);
+      document.getElementById('contact-email').classList.toggle('input-error', !email.includes('@'));
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    successMsg.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    var formData = new FormData(form);
+    var FORMSPREE_ENDPOINT = 'https://formspree.io/f/REPLACE_WITH_FORM_ID';
+
+    if (FORMSPREE_ENDPOINT.includes('REPLACE_WITH_FORM_ID')) {
+      var subject = encodeURIComponent('CrowAgent enquiry from ' + name);
+      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nOrg: ' + formData.get('organisation') + '\nProduct: ' + formData.get('product') + '\nMessage: ' + formData.get('message'));
+      window.location.href = 'mailto:hello@crowagent.ai?subject=' + subject + '&body=' + body;
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+      return;
+    }
+
+    fetch(FORMSPREE_ENDPOINT, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function(response) {
+      if (response.ok) {
+        form.reset();
+        successMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send message';
+      } else {
+        throw new Error('Form submission failed');
+      }
+    })
+    .catch(function() {
+      errorMsg.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message';
+    });
+  });
+})();
+
+// ── CSRD SHARE MECHANIC ──
+(function() {
+  window.showCsrdShare = function(isInScope, companyName) {
+    var shareDiv = document.getElementById('csrdShare');
+    var linkedinLink = document.getElementById('csrdLinkedInShare');
+    var copyBtn = document.getElementById('csrdCopyLink');
+
+    if (!shareDiv) return;
+
+    var shareText = isInScope
+      ? (companyName || 'This company') + ' is in scope of CSRD Omnibus I reporting requirements. Check your company at crowagent.ai'
+      : (companyName || 'This company') + ' is currently out of scope of CSRD Omnibus I. Check your company at crowagent.ai';
+
+    var linkedinUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://crowagent.ai/#csrd') + '&summary=' + encodeURIComponent(shareText);
+
+    linkedinLink.href = linkedinUrl;
+    shareDiv.style.display = 'block';
+
+    copyBtn.addEventListener('click', function() {
+      navigator.clipboard.writeText('https://crowagent.ai/#csrd').then(function() {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 2000);
+      }).catch(function() {
+        copyBtn.textContent = 'crowagent.ai/#csrd';
+      });
+    });
+  };
+})();
 
 // ── Module exports (for testing) ─────────────────────────────────────────────
 if (typeof module !== 'undefined' && module.exports) {
