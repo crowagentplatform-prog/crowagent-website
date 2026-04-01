@@ -26,7 +26,11 @@ var APP_VERSION = '15';
       var theme = localStorage.getItem('ca_theme') || localStorage.getItem('ca-theme');
       if (lang && LANG_LABELS[lang]) currentLang = lang;
       if (curr && RATES[curr] !== undefined) currentCurrency = curr;
-      if (theme === 'light' || theme === 'dark') currentTheme = theme;
+      if (theme === 'light' || theme === 'dark') {
+        currentTheme = theme;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        currentTheme = 'light';
+      }
     } catch(e) {}
   }
 
