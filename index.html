@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://app.crowagent.ai">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=34">
+<link rel="stylesheet" href="styles.min.css?v=35">
 <link rel="stylesheet" href="print.css" media="print">
 <script type="application/ld+json">
 [
@@ -294,24 +294,18 @@
   </div>
 </section>
 <!-- ── LIVE DEMO WIDGET ── -->
-<section id="live-demo" style="padding:60px 0; border-bottom:1px solid var(--border);">
+<section id="live-demo" style="padding:60px 0;">
   <div class="wrap container-standard" style="text-align:center;">
 
-    <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-size:12px; font-weight:700; letter-spacing:.14em;
-                text-transform:uppercase; color:var(--teal); margin-bottom:10px;">
+    <div class="u-label">
       Try it now. No account required.
     </div>
 
-    <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-               font-size:clamp(1.4rem,2.5vw,1.9rem); font-weight:800;
-               color:var(--cloud); letter-spacing:-.02em; margin-bottom:10px;">
+    <h2 class="u-h2-display">
       Check a UK commercial property in seconds
     </h2>
 
-    <p style="font-family:var(--font-body,'Inter',sans-serif);
-               font-size:15px; color:var(--steel); line-height:1.7;
-               margin-bottom:28px;">
+    <p class="u-body-muted">
       Enter a postcode to see the current EPC band and whether the property is likely to be exposed under the proposed 2028 change.
     </p>
 
@@ -483,7 +477,7 @@
 </div>
 
 <!-- ── INTERACTIVE PRODUCT TAB DEMO — WP-WEB-003 ── -->
-<section id="products-tabs" class="section-padding" style="border-bottom:1px solid var(--border)">
+<section id="products-tabs" class="section-padding">
   <div class="container-standard">
     <div class="sh" style="text-align:center">
       <div class="sh-label" style="justify-content:center">Our Platform</div>
@@ -491,6 +485,7 @@
       <p class="sh-sub">Select a product to explore its capabilities.</p>
     </div>
     <div class="tab-nav" role="tablist" aria-label="Products">
+      <div class="tab-pill" id="tab-pill" aria-hidden="true"></div>
       <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="tab-core" data-tab="core" id="btn-core">CrowAgent Core</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-crowmark" data-tab="crowmark" id="btn-crowmark">CrowMark</button>
       <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-csrd" data-tab="csrd" id="btn-csrd">CSRD Checker</button>
@@ -508,7 +503,7 @@
               <li>Compliance reports in under 3 minutes — ready for lenders and solicitors</li>
             </ul>
             <div class="tab-cta-row">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial →</a>
+              <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               <a href="/pricing" class="btn-ghost-sm">See pricing</a>
             </div>
           </div>
@@ -536,7 +531,7 @@
               <li>Confidence scoring — know if your bid meets the 10% threshold before submission</li>
             </ul>
             <div class="tab-cta-row">
-              <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial →</a>
+              <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
               <a href="/pricing" class="btn-ghost-sm">See pricing</a>
             </div>
           </div>
@@ -564,7 +559,7 @@
               <li>Route to CrowAgent Core for full sustainability compliance management</li>
             </ul>
             <div class="tab-cta-row">
-              <a href="/csrd" class="btn-primary">Check CSRD applicability — free →</a>
+              <a href="/csrd" class="btn-primary">Check CSRD applicability — free <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
             </div>
           </div>
           <div class="tab-panel-visual">
@@ -603,30 +598,30 @@
 </section>
 
 <!-- ── WHY THIS WORK MATTERS ── -->
-<section class="reveal" style="padding:64px 0;border-bottom:1px solid var(--border);">
+<section class="reveal" style="padding:64px 0;">
   <div class="wrap container-standard">
     <div class="sh" style="text-align:center">
       <div class="sh-label" style="justify-content:center">Why this work matters</div>
       <h2>The regulatory pressure UK organisations face today</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:32px;">
-      <div style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:28px 24px;">
-        <div class="counter" data-target="25" data-prefix="" data-suffix="%" style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:28px;font-weight:800;color:var(--teal);margin-bottom:8px;">25%</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">UK emissions from the built environment</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.65;margin:0;">The built environment accounts for approximately a quarter of UK greenhouse gas emissions. MEES, building regulations, and net zero targets all drive the same outcome: commercial landlords need to act on energy performance.</p>
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:10px;color:var(--mist);margin-top:12px;">Source: UK Green Building Council, Net Zero Whole Life Carbon Roadmap</div>
+    <div class="u-grid-3">
+      <div class="u-card">
+        <div class="counter u-stat-number" data-target="25" data-prefix="" data-suffix="%" style="color:var(--teal)">25%</div>
+        <div class="u-stat-title">UK emissions from the built environment</div>
+        <p style="font-size:13px;color:var(--steel);line-height:1.65;margin:0;">The built environment accounts for approximately a quarter of UK greenhouse gas emissions. MEES, building regulations, and net zero targets all drive the same outcome: commercial landlords need to act on energy performance.</p>
+        <div class="u-source-label">Source: UK Green Building Council, Net Zero Whole Life Carbon Roadmap</div>
       </div>
-      <div style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:28px 24px;">
-        <div class="counter" data-target="65" data-prefix="£" data-suffix="B+" style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:28px;font-weight:800;color:var(--lime);margin-bottom:8px;">£65B+</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">Annual UK public sector procurement spend</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.65;margin:0;">PPN 002 requires a minimum 10% social value weighting on all central government contracts. Local authorities and NHS trusts increasingly apply the same standard, putting pressure on every supplier bidding for public work.</p>
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:10px;color:var(--mist);margin-top:12px;">Source: Cabinet Office, Procurement Policy Note 06/20 and PPN 002</div>
+      <div class="u-card">
+        <div class="counter u-stat-number" data-target="65" data-prefix="£" data-suffix="B+" style="color:var(--lime)">£65B+</div>
+        <div class="u-stat-title">Annual UK public sector procurement spend</div>
+        <p style="font-size:13px;color:var(--steel);line-height:1.65;margin:0;">PPN 002 requires a minimum 10% social value weighting on all central government contracts. Local authorities and NHS trusts increasingly apply the same standard, putting pressure on every supplier bidding for public work.</p>
+        <div class="u-source-label">Source: Cabinet Office, Procurement Policy Note 06/20 and PPN 002</div>
       </div>
-      <div style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:28px 24px;">
-        <div class="counter" data-target="50000" data-prefix="" data-suffix="+" style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:28px;font-weight:800;color:var(--sky);margin-bottom:8px;">50,000+</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px;">EU companies reassessing CSRD scope</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:13px;color:var(--steel);line-height:1.65;margin:0;">Omnibus I raised the thresholds to over 1,000 employees and more than &euro;450M in turnover. Thousands of groups that expected to report now need to confirm whether they remain in scope or fall below the new line.</p>
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:10px;color:var(--mist);margin-top:12px;">Source: European Commission, COM(2025) 80 final — Omnibus simplification package</div>
+      <div class="u-card">
+        <div class="counter u-stat-number" data-target="50000" data-prefix="" data-suffix="+" style="color:var(--sky)">50,000+</div>
+        <div class="u-stat-title">EU companies reassessing CSRD scope</div>
+        <p style="font-size:13px;color:var(--steel);line-height:1.65;margin:0;">Omnibus I raised the thresholds to over 1,000 employees and more than &euro;450M in turnover. Thousands of groups that expected to report now need to confirm whether they remain in scope or fall below the new line.</p>
+        <div class="u-source-label">Source: European Commission, COM(2025) 80 final — Omnibus simplification package</div>
       </div>
     </div>
   </div>
@@ -639,7 +634,7 @@
         <div class="sh-label">How it works</div>
         <h2>From messy compliance data to an action-ready roadmap</h2>
         <p class="steps-sub">Four steps. Under 10 minutes. No consultants required.</p>
-        <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial →</a>
+        <a href="https://app.crowagent.ai/signup" class="btn-primary" target="_blank" rel="noopener">Start your trial <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
       </div>
       <div class="steps-right">
         <div class="hw reveal reveal-delay-1">
@@ -684,9 +679,9 @@
     <!-- CrowAgent Core -->
     <div class="product-full-block pc--featured">
       <div class="product-full-inner">
-        <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem;font-family:'Plus Jakarta Sans',sans-serif;">For commercial landlords</div>
-        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--cloud);margin-bottom:1rem;line-height:1.1;">CrowAgent Core</h3>
-        <p style="font-size:1.1rem;color:var(--steel);line-height:1.65;margin-bottom:1.5rem;font-family:'Inter',sans-serif;">MEES compliance intelligence. From postcode to PDF in under 10 minutes.</p>
+        <div class="u-label">For commercial landlords</div>
+        <h3 class="u-h2-display" style="font-size:clamp(2rem,4vw,3rem);line-height:1.1;">CrowAgent Core</h3>
+        <p class="u-body-muted" style="font-size:1.1rem;margin-bottom:1.5rem;">MEES compliance intelligence. From postcode to PDF in under 10 minutes.</p>
         <ul class="product-full-features">
           <li>Live EPC data from MHCLG register</li>
           <li>Band C gap analysis cited to SI 2015/962</li>
@@ -745,9 +740,9 @@
         </div>
       </div>
       <div class="product-full-inner">
-        <div style="font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mark);margin-bottom:.75rem;font-family:'Plus Jakarta Sans',sans-serif;">For public sector suppliers</div>
-        <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--cloud);margin-bottom:1rem;line-height:1.1;">CrowMark</h3>
-        <p style="font-size:1.1rem;color:var(--steel);line-height:1.65;margin-bottom:1.5rem;font-family:'Inter',sans-serif;">PPN 002 social value scoring. From contract brief to submission-ready narrative in minutes.</p>
+        <div class="u-label" style="color:var(--mark);">For public sector suppliers</div>
+        <h3 class="u-h2-display" style="font-size:clamp(2rem,4vw,3rem);line-height:1.1;">CrowMark</h3>
+        <p class="u-body-muted" style="font-size:1.1rem;margin-bottom:1.5rem;">PPN 002 social value scoring. From contract brief to submission-ready narrative in minutes.</p>
         <ul class="product-full-features">
           <li>Automatic PPN 002 mission mapping</li>
           <li>TOMs-aligned measure library with Oxford proxy values</li>
@@ -957,35 +952,35 @@
   </div>
 </section>
 <!-- ── METHODOLOGY TRANSPARENCY ── -->
-<section class="reveal" style="padding:64px 0;border-bottom:1px solid var(--border);">
+<section class="reveal" style="padding:64px 0;">
   <div class="wrap container-standard">
     <div class="sh" style="text-align:center">
       <div class="sh-label" style="justify-content:center">Our methodology</div>
       <h2>Every output traces back to its source</h2>
     </div>
-    <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:15px;color:var(--steel);line-height:1.75;text-align:center;max-width:640px;margin:0 auto 36px;">
+    <p class="u-body-muted" style="text-align:center;max-width:640px;margin:0 auto 36px;">
       CrowAgent does not generate compliance opinions. The platform applies published rules, thresholds, and methodologies from the regulatory sources your team already works with.
     </p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
-      <div style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:12px;padding:20px 22px;">
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:11px;color:var(--teal);margin-bottom:6px;">SI 2015/962 reg 39</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:700;color:var(--cloud);margin-bottom:6px;">MEES penalty calculation</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:12px;color:var(--steel);line-height:1.6;margin:0;">Penalty exposure uses the rateable value formula from the regulation, not a flat estimate. Short breach (&lt;3 months) = 10% of RV. Long breach (&ge;3 months) = 20% of RV.</p>
+    <div class="u-grid-3" style="gap:12px;">
+      <div class="u-card" style="border-left:3px solid var(--teal);">
+        <div class="u-source-label" style="color:var(--teal);margin-top:0;margin-bottom:6px;">SI 2015/962 reg 39</div>
+        <div class="u-stat-title" style="font-size:14px;">MEES penalty calculation</div>
+        <p style="font-size:12px;color:var(--steel);line-height:1.6;margin:0;">Penalty exposure uses the rateable value formula from the regulation, not a flat estimate. Short breach (&lt;3 months) = 10% of RV. Long breach (&ge;3 months) = 20% of RV.</p>
       </div>
-      <div style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--lime);border-radius:12px;padding:20px 22px;">
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:11px;color:var(--lime);margin-bottom:6px;">PPN 002 + Oxford SVB 2023-24</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:700;color:var(--cloud);margin-bottom:6px;">Social value scoring</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:12px;color:var(--steel);line-height:1.6;margin:0;">Mission mapping follows the PPN 002 social value model. Proxy values come from the Oxford Social Value Bank 2023-24 edition, stored in our database and updated when new editions are published.</p>
+      <div class="u-card" style="border-left:3px solid var(--lime);">
+        <div class="u-source-label" style="color:var(--lime);margin-top:0;margin-bottom:6px;">PPN 002 + Oxford SVB 2023-24</div>
+        <div class="u-stat-title" style="font-size:14px;">Social value scoring</div>
+        <p style="font-size:12px;color:var(--steel);line-height:1.6;margin:0;">Mission mapping follows the PPN 002 social value model. Proxy values come from the Oxford Social Value Bank 2023-24 edition, stored in our database and updated when new editions are published.</p>
       </div>
-      <div style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--sky);border-radius:12px;padding:20px 22px;">
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:11px;color:var(--sky);margin-bottom:6px;">HM Treasury Green Book 2022</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:700;color:var(--cloud);margin-bottom:6px;">NPV financial modelling</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:12px;color:var(--steel);line-height:1.6;margin:0;">All retrofit cost comparisons use a 3.5% discount rate from HM Treasury Green Book methodology, the standard for UK public sector investment appraisal, with a 2% energy escalation rate from Ofgem SME data.</p>
+      <div class="u-card" style="border-left:3px solid var(--sky);">
+        <div class="u-source-label" style="color:var(--sky);margin-top:0;margin-bottom:6px;">HM Treasury Green Book 2022</div>
+        <div class="u-stat-title" style="font-size:14px;">NPV financial modelling</div>
+        <p style="font-size:12px;color:var(--steel);line-height:1.6;margin:0;">All retrofit cost comparisons use a 3.5% discount rate from HM Treasury Green Book methodology, the standard for UK public sector investment appraisal, with a 2% energy escalation rate from Ofgem SME data.</p>
       </div>
-      <div style="background:var(--surf);border:1px solid var(--border);border-left:3px solid var(--mark);border-radius:12px;padding:20px 22px;">
-        <div style="font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:11px;color:var(--mark);margin-bottom:6px;">Directive (EU) 2026/470</div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:700;color:var(--cloud);margin-bottom:6px;">CSRD Omnibus I thresholds</div>
-        <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:12px;color:var(--steel);line-height:1.6;margin:0;">The CSRD checker applies the post-Omnibus I thresholds: more than 1,000 employees AND more than &euro;450M turnover. Both conditions must be met. Previous thresholds (250 employees / &euro;40M) are superseded.</p>
+      <div class="u-card" style="border-left:3px solid var(--mark);">
+        <div class="u-source-label" style="color:var(--mark);margin-top:0;margin-bottom:6px;">Directive (EU) 2026/470</div>
+        <div class="u-stat-title" style="font-size:14px;">CSRD Omnibus I thresholds</div>
+        <p style="font-size:12px;color:var(--steel);line-height:1.6;margin:0;">The CSRD checker applies the post-Omnibus I thresholds: more than 1,000 employees AND more than &euro;450M turnover. Both conditions must be met. Previous thresholds (250 employees / &euro;40M) are superseded.</p>
       </div>
     </div>
   </div>
@@ -1048,7 +1043,7 @@
 </section>
 
 <!-- ── FAQ ── -->
-<section class="reveal" style="padding:var(--section-pad-secondary) 0;border-bottom:1px solid var(--border);">
+<section class="reveal" style="padding:var(--section-pad-secondary) 0;">
   <div class="wrap container-text">
     <div class="sh" style="text-align:center">
       <div class="sh-label" style="justify-content:center">FAQ</div>
@@ -1114,7 +1109,7 @@
 </section>
 
 <!-- ── MISSION STATEMENT ── -->
-<section style="padding:var(--section-pad-compact) 0;border-bottom:1px solid var(--border);">
+<section style="padding:var(--section-pad-compact) 0;">
   <div class="wrap container-text">
     <div class="mission-statement reveal">
       <blockquote class="mission-quote">
@@ -1128,7 +1123,7 @@
   </div>
 </section>
 
-<section style="padding:32px 0;border-bottom:1px solid var(--border);">
+<section style="padding:32px 0;">
   <div class="wrap container-text" style="text-align:center;">
     <div class="sh-label" style="justify-content:center">Our vision</div>
     <blockquote class="vision-quote">
@@ -1328,7 +1323,7 @@
   </div>
 </div>
 
-<script src="scripts.min.js?v=34" defer></script>
+<script src="scripts.min.js?v=35" defer></script>
 <script src="chatbot.js" defer></script>
 <script>
 (function() {

@@ -1,4 +1,4 @@
-var APP_VERSION = '34';
+var APP_VERSION = '35';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -29,16 +29,12 @@ var APP_VERSION = '34';
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 })();
 
-// ── NAV SCROLL OPACITY ──
+// ── NAV SCROLL — WP-WEB-006 Fix 4: shrinking nav at 20px ──
 (function() {
   var nav = document.querySelector('nav');
   if (!nav) return;
   function onScroll() {
-    if (window.scrollY > 40) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
+    nav.classList.toggle('scrolled', window.scrollY > 20);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
@@ -1260,3 +1256,41 @@ if (typeof module !== 'undefined' && module.exports) {
     set csrdState(v) { csrdState = v; }
   };
 }
+
+// WP-WEB-006: Card spotlight
+(function() {
+  var cards = document.querySelectorAll('.uc,.hw,.sector,.tc,.pc:not(.pc-locked):not(.pc-p3)');
+  cards.forEach(function(card) {
+    card.addEventListener('mousemove', function(e) {
+      var rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    }, { passive: true });
+    card.addEventListener('mouseleave', function() {
+      card.style.removeProperty('--mx');
+      card.style.removeProperty('--my');
+    }, { passive: true });
+  });
+})();
+
+// WP-WEB-006: Sliding tab pill
+(function() {
+  function positionTabPill() {
+    var active = document.querySelector('.tab-btn.active');
+    var pill = document.getElementById('tab-pill');
+    if (!active || !pill) return;
+    var nav = active.closest('.tab-nav');
+    if (!nav) return;
+    var nr = nav.getBoundingClientRect();
+    var br = active.getBoundingClientRect();
+    pill.style.width = br.width + 'px';
+    pill.style.transform = 'translateX(' + (br.left - nr.left - 4) + 'px)';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    positionTabPill();
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { setTimeout(positionTabPill, 10); });
+    });
+  });
+  window.addEventListener('resize', positionTabPill, { passive: true });
+})();

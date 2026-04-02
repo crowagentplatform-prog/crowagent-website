@@ -36,9 +36,25 @@
   }
 }
 
-/* Light-mode card shadows and logo border for better visual definition */
-[data-theme="light"] .uc,[data-theme="light"] .hw,[data-theme="light"] .sector,[data-theme="light"] .pc,[data-theme="light"] .tc{
-  box-shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+/* Light-mode card shadows and logo border — WP-WEB-006 Fix 1 */
+[data-theme="light"] .uc,
+[data-theme="light"] .hw,
+[data-theme="light"] .sector,
+[data-theme="light"] .tc {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+}
+[data-theme="light"] .uc:hover,
+[data-theme="light"] .hw:hover,
+[data-theme="light"] .sector:hover,
+[data-theme="light"] .tc:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 0 12px -2px rgba(10,168,140,0.10);
+}
+/* WP-WEB-006 Fix 7: Light mode gradient stats */
+[data-theme="light"] .sc-num {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-d) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 [data-theme="light"] .logo-mark-wrap{
   border:1.5px solid #D8E8F5;
@@ -155,9 +171,34 @@ code,pre,kbd{overflow-x:auto;word-break:normal;white-space:pre}
 .ab-close:hover{color:var(--cloud)}
 @media(max-width:640px){.ab-text{display:none}.announce-bar{justify-content:center}}
 
-/* NAV */
-nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:64px}
-[data-theme="light"] nav{background:rgba(244,248,255,.92)}
+/* NAV — WP-WEB-006 Fix 4: Shrinking frosted glass nav */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  height: 72px;
+  background: rgba(4,14,26,0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  border-bottom: 1px solid transparent;
+  transition:
+    height 0.4s cubic-bezier(0.16,1,0.3,1),
+    background 0.35s ease,
+    backdrop-filter 0.35s ease,
+    border-color 0.35s ease;
+}
+nav.scrolled {
+  height: 60px;
+  background: rgba(4,14,26,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom-color: var(--border);
+}
+nav .wrap {
+  height: 100%;
+}
+[data-theme="light"] nav { background: rgba(244,248,255,0); border-bottom-color: transparent; }
+[data-theme="light"] nav.scrolled { background: rgba(244,248,255,0.92); }
 
 /* LOGO (CSS bar-chart) */
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none}
@@ -202,7 +243,38 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 }
 /* HERO */
 .hero{padding:var(--section-pad-hero) 0 var(--section-pad-primary);position:relative;overflow:visible}
-.hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(12,201,168,.12) 0%,rgba(91,200,255,.04) 40%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none;filter:blur(40px);z-index:0}
+/* WP-WEB-006 Fix 2: Hero glow — two asymmetric blobs */
+.hero-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+.hero-glow::before,
+.hero-glow::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  transform: translateZ(0);
+}
+.hero-glow::before {
+  width: 55vw;
+  height: 600px;
+  background: rgba(12,201,168,0.10);
+  top: -100px;
+  left: -5vw;
+}
+.hero-glow::after {
+  width: 45vw;
+  height: 500px;
+  background: rgba(91,200,255,0.06);
+  top: 80px;
+  right: -5vw;
+}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.08);border:1px solid var(--border2);border-radius:100px;padding:6px 18px;margin-bottom:20px}
 .hw-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2.2s infinite}
 .hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-h1,clamp(2.8rem,1.5rem + 5vw,4.6rem));font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:keep-all;overflow-wrap:break-word;hyphens:none;white-space:normal}
@@ -268,7 +340,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 /* DEMO SECTION */
 .demo-section{padding:clamp(56px,8vw,88px) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.demo-browser{max-width:760px;margin:clamp(28px,4vw,44px) auto 0;background:var(--bg);border:1px solid var(--border2);border-radius:var(--r3);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.4)}
+/* demo-browser original rule superseded by WP-WEB-006 Fix 15 */
 .demo-chrome{background:var(--surf2);padding:10px 14px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--border)}
 .demo-dot{width:10px;height:10px;border-radius:50%}
 .d-r{background:#EF4444;opacity:.7}
@@ -338,7 +410,18 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 /* STATS */
 .stats{padding:clamp(48px,6vw,72px) 0;border-bottom:1px solid var(--border)}
 .stats-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);text-align:center}
-.sc-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;color:var(--teal);line-height:1;margin-bottom:8px}
+/* WP-WEB-006 Fix 7: Text gradient on stats + tabular figures */
+.sc-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,#9EFCE8 0%,var(--teal) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
+.sc-num,
+.pgc-price,
+.ds-penalty-val,
+.mock-sv-number,
+.sector-stat,
+.counter,
+.mees-countdown-value {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
 .sc-lbl{font-size:13px;color:var(--steel);line-height:1.4}
 @media(min-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
@@ -351,15 +434,20 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 /* HOW IT WORKS */
 .how{padding:var(--section-pad-primary) 0}
-.hw-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
+/* WP-WEB-006 Fix 12: hw-grid auto-fit */
+.hw-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: var(--grid-gap-lg);
+  margin-top: clamp(32px,4vw,48px);
+}
 .hw{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px;transition:border-color .2s,transform .2s}
 .hw:hover{border-color:var(--border2);transform:translateY(-2px)}
 .hw-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:2.4rem;font-weight:800;color:rgba(12,201,168,.12);line-height:1;margin-bottom:12px}
 .hw-icon{margin-bottom:14px}
 .hw h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px}
 .hw p{font-size:13px;color:var(--steel);line-height:1.6}
-@media(min-width:640px){.hw-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.hw-grid{grid-template-columns:repeat(4,1fr)}}
+/* hw-grid @media breakpoints removed by WP-WEB-006 Fix 12 */
 
 /* 600px intermediate — 5-6 inch phones between 480 and 768 */
 @media(max-width:600px){
@@ -410,7 +498,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 @media(min-width:1024px){.pc-grid{grid-template-columns:repeat(3,1fr)}}
 
 /* INTERACTIVE TAB DEMO — WP-WEB-003 */
-.tab-nav{display:flex;gap:8px;border-bottom:1px solid var(--border);margin-bottom:40px;flex-wrap:wrap}
+/* tab-nav original rule superseded by WP-WEB-006 Fix 9 */
 .tab-btn{font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-sm,0.875rem);font-weight:700;color:var(--steel);background:transparent;border:none;padding:12px 24px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .2s,border-color .2s}
 .tab-btn:hover{color:var(--cloud)}
 .tab-btn.active{color:var(--teal);border-bottom-color:var(--teal)}
@@ -434,27 +522,32 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 
 /* SECTORS */
 .sectors{padding:var(--section-pad-primary) 0}
-.sector-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
+/* WP-WEB-006 Fix 12: Auto-fit intrinsic grids */
+.sector-grid,
+.tc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+  gap: var(--grid-gap-lg);
+  margin-top: clamp(32px,4vw,48px);
+}
+/* Original .sector-grid base replaced above */
+.sector-grid-placeholder-removed{display:none}
 .sector{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:24px 20px;text-align:center;transition:border-color .2s,transform .2s}
 .sector:hover{border-color:var(--border2);transform:translateY(-2px)}
 .sector-icon{margin-bottom:12px}
 .sector-stat{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.06em;margin-bottom:8px}
 .sector h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:6px}
 .sector p{font-size:12.5px;color:var(--steel);line-height:1.5}
-@media(min-width:640px){.sector-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.sector-grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1280px){.sector-grid{grid-template-columns:repeat(6,1fr)}}
+/* sector-grid @media breakpoints removed by WP-WEB-006 Fix 12 — auto-fit replaces them */
 /* TRUST */
 .trust{padding:var(--section-pad-primary) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.tc-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
+/* tc-grid base rule replaced by Fix 12 combined rule above */
 .tc{background:var(--bg);border:1px solid var(--border);border-radius:var(--r2);padding:24px 20px;text-align:center;transition:border-color .2s,transform .2s}
 .tc:hover{border-color:var(--border2);transform:translateY(-2px)}
 .tc-icon{margin-bottom:14px}
 .tc h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px}
 .tc p{font-size:12.5px;color:var(--steel);line-height:1.5}
-@media(min-width:640px){.tc-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.tc-grid{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1280px){.tc-grid{grid-template-columns:repeat(6,1fr)}}
+/* tc-grid @media breakpoints removed by WP-WEB-006 Fix 12 */
 
 /* PRICING */
 .pricing{padding:var(--section-pad-primary) 0}
@@ -467,8 +560,9 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ptab{font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:600;padding:8px 24px;border-radius:100px;border:1px solid var(--border2);background:transparent;color:var(--steel);cursor:pointer;transition:all .2s}
 .ptab.on{background:var(--teal);color:var(--bg);border-color:var(--teal)}
 .ptab:hover:not(.on){color:var(--cloud);border-color:var(--teal)}
-.pgrid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);max-width:1080px;margin:0 auto}
-.pgc{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;display:flex;flex-direction:column;position:relative;transition:border-color .2s,transform .2s;min-height:100%}
+/* WP-WEB-006 Fix 13: Subgrid pricing card alignment */
+.pgrid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);max-width:1080px;margin:0 auto;grid-template-rows:auto}
+.pgc{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;display:grid;position:relative;transition:border-color .2s,transform .2s;min-height:100%;grid-row:span 5;gap:0}
 .pgc:hover{border-color:var(--teal);transform:translateY(-2px)}
 .pgc-pop{border-color:var(--teal);box-shadow:0 18px 42px rgba(12,201,168,.12)}
 .pgc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;font-weight:700;background:var(--teal);color:var(--bg);padding:3px 12px;border-radius:100px;white-space:nowrap}
@@ -486,6 +580,10 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .pgc-cta-out:hover{border-color:var(--teal);color:var(--teal);background:transparent}
 @media(min-width:640px){.pgrid{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1024px){.pgrid{grid-template-columns:repeat(3,1fr)}}
+@supports (grid-template-rows: subgrid) {
+  .pgrid { grid-auto-rows: auto; }
+  .pgc { grid-template-rows: subgrid; }
+}
 
 /* CSRD BAND */
 .csrd-band{padding:var(--section-pad-primary) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
@@ -561,7 +659,33 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .ca-price-desc{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--mist)}
 
 /* 4-COL FOOTER */
-.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:0}
+/* WP-WEB-006 Fix 10: Footer horizon glow */
+.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:0;position:relative;overflow:hidden}
+.ca-footer::before {
+  content: '';
+  position: absolute;
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1000px, 100vw);
+  height: 500px;
+  background: radial-gradient(
+    ellipse at bottom center,
+    rgba(12,201,168,0.08) 0%,
+    rgba(91,200,255,0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(48px);
+}
+.ca-footer-grid,
+.ca-footer-bottom,
+.footer-grid,
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+}
 .ca-footer-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
 .ca-footer-col h4{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--mist);margin-bottom:14px}
 .ca-footer-col a{display:block;font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);text-decoration:none;margin-bottom:8px;transition:color 0.2s}
@@ -762,20 +886,45 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primar
 .section-padding a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
 .section-padding a:hover{color:var(--cloud)}
 
-/* ── SCROLL-TRIGGERED REVEAL ANIMATIONS ── */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+/* ── SCROLL-TRIGGERED REVEAL ANIMATIONS — WP-WEB-006 Fix 3 ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px) scale(0.99);
+  transition:
+    opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+    transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
 .reveal-delay-1{transition-delay:.1s}
 .reveal-delay-2{transition-delay:.2s}
 .reveal-delay-3{transition-delay:.3s}
 .reveal-delay-4{transition-delay:.4s}
 
-/* Card hover lift — global */
-.tc,.hw,.sector,.pc,.uc{transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
-.tc:hover,.hw:hover,.sector:hover,.pc:hover:not(.pc-locked):not(.pc-p3),.uc:hover{
-  transform:translateY(-3px);
-  border-color:var(--border3);
-  box-shadow:0 8px 24px rgba(12,201,168,.08);
+/* Card hover lift — global — WP-WEB-006 Fix 1 */
+.uc,.hw,.sector,.pc,.tc {
+  box-shadow:
+    0 1px 3px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.03);
+  transition:
+    transform 0.3s cubic-bezier(0.4,0,0.2,1),
+    border-color 0.3s cubic-bezier(0.4,0,0.2,1),
+    box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.uc:hover,
+.hw:hover,
+.sector:hover,
+.tc:hover,
+.pc:hover:not(.pc-locked):not(.pc-p3) {
+  transform: translateY(-4px);
+  border-color: rgba(12,201,168,0.25);
+  box-shadow:
+    0 12px 32px -8px rgba(0,0,0,0.5),
+    0 0 16px -4px rgba(12,201,168,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 /* ── NAV SCROLL-SPY ACTIVE STATE ── */
@@ -886,7 +1035,24 @@ a.contact-method-value:hover{color:var(--teal)}
 .form-label span{color:var(--teal)}
 .form-input{width:100%;background:var(--surf2);border:1px solid var(--border2);border-radius:8px;padding:10px 14px;font-family:'Inter',sans-serif;font-size:14px;color:var(--cloud);transition:border-color .15s ease;box-sizing:border-box;-webkit-appearance:none;appearance:none;min-height:44px}
 .form-input::placeholder{color:var(--mist)}
-.form-input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(12,201,168,.1)}
+/* WP-WEB-006 Fix 5: Premium input focus states */
+.form-input,
+#demo-postcode {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.form-input:hover,
+#demo-postcode:hover {
+  border-color: rgba(12,201,168,0.3);
+}
+.form-input:focus,
+#demo-postcode:focus {
+  outline: 0;
+  border-color: var(--teal);
+  box-shadow:
+    inset 0 0 0 1px rgba(12,201,168,0.4),
+    0 0 0 4px rgba(12,201,168,0.12);
+  background: var(--bg);
+}
 .form-input.input-error{border-color:var(--err)}
 .form-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A9DB8' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
 .form-select option{background:var(--surf2);color:var(--cloud)}
@@ -953,8 +1119,8 @@ a.contact-method-value:hover{color:var(--teal)}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .ticker-track{animation:none}
   .ab-dot,.hw-dot{animation:none}
-  .hero-glow{display:none}
-  .reveal{opacity:1;transform:none;transition:none}
+  .hero-glow::before, .hero-glow::after{display:none}
+  .reveal{opacity:1;transform:none;transition:none;will-change:auto}
   .tc:hover,.hw:hover,.sector:hover,.pc:hover,.uc:hover{transform:none}
   .counter{transition:none!important}
 }
@@ -1175,8 +1341,7 @@ a.contact-detail-value:hover{color:var(--teal)}
 @media(min-width:1920px){
   .container-wide{padding-inline:80px}
   .container-standard{padding-inline:64px}
-  .tc-grid{grid-template-columns:repeat(6,minmax(0,220px));justify-content:center}
-  .sector-grid{grid-template-columns:repeat(6,minmax(0,200px));justify-content:center}
+  /* tc-grid/sector-grid 1920px overrides removed by WP-WEB-006 Fix 12 — auto-fit handles this */
 }
 
 /* =============================================================
@@ -1219,11 +1384,7 @@ a.contact-detail-value:hover{color:var(--teal)}
 /* Prose max-width 65ch for reading sections */
 .ca-faq .faq-answer,.mission-quote,.vision-quote,.ca-about-section p,.hero-sub{max-width:65ch}
 
-/* =============================================================
-   NAV SCROLL STATE — WP-RESP-001-SUPP-A
-   ============================================================= */
-nav{transition:background .3s ease,border-bottom-color .3s ease}
-nav.scrolled{background:rgba(4,14,26,.97);backdrop-filter:blur(20px);border-bottom-color:rgba(12,201,168,.18)}
+/* NAV SCROLL STATE — superseded by WP-WEB-006 Fix 4 */
 
 /* =============================================================
    BLOG ARTICLE TYPOGRAPHY — WP-RESP-001-SUPP-A
@@ -1334,8 +1495,7 @@ body{overscroll-behavior-x:none}
   #live-demo .wrap > div{padding:20px 16px}
 }
 
-/* GAP-35: Product demo mock comprehensive responsive */
-.demo-browser{max-width:760px;margin-left:auto;margin-right:auto}
+/* GAP-35: Product demo mock comprehensive responsive — base rule now in WP-WEB-006 Fix 15 */
 @media(max-width:480px){
   .demo-browser{border-radius:var(--r2)}
   .demo-body{padding:16px;min-height:200px}
@@ -1461,10 +1621,7 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
    ============================================================= */
 .tc p,.sector p,.hw p,.security-card li{color:var(--cloud)}
 
-/* =============================================================
-   WP-WEB-003: Card hover elevation unified
-   ============================================================= */
-.tc:hover,.hw:hover,.sector:hover,.pc:hover{transform:translateY(-4px);border-color:rgba(12,201,168,0.4);transition:transform 0.2s ease,border-color 0.2s ease}
+/* WP-WEB-003: Card hover elevation — superseded by WP-WEB-006 Fix 1 */
 
 /* =============================================================
    WP-WEB-003: Nav link active state
@@ -1587,8 +1744,272 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 /* =============================================================
    WP-WEB-004: Bento grid for featured products
    ============================================================= */
-.products-bento{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px}
-@media(min-width:768px){.products-bento{grid-template-columns:3fr 2fr}}
-@media(min-width:1024px){.products-bento{grid-template-columns:5fr 4fr;gap:20px}}
-.pc--featured{position:relative;overflow:hidden}
-.pc--featured::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(ellipse,rgba(12,201,168,.08) 0%,transparent 70%);pointer-events:none}
+/* WP-WEB-006 Fix 11: Container queries for bento grid */
+.products-bento {
+  container-type: inline-size;
+  container-name: bento;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+@container bento (min-width: 640px) {
+  .products-bento { grid-template-columns: 3fr 2fr; }
+}
+@container bento (min-width: 900px) {
+  .products-bento { grid-template-columns: 5fr 4fr; gap: 20px; }
+}
+/* WP-WEB-006 Fix 16: Animated beam border on featured card */
+.pc--featured {
+  position: relative;
+  overflow: hidden;
+  background: var(--surf);
+  border: none;
+  border-radius: var(--r2);
+  z-index: 1;
+}
+@media (pointer: fine) {
+  .pc--featured::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: calc(var(--r2) + 2px);
+    background: conic-gradient(
+      from 0deg,
+      transparent 65%,
+      rgba(12,201,168,0.6) 80%,
+      rgba(91,200,255,0.4) 100%
+    );
+    z-index: -1;
+    animation: beam-rotate 5s linear infinite;
+  }
+  .pc--featured::after {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    border-radius: var(--r2);
+    background: var(--surf);
+    z-index: -1;
+  }
+}
+@keyframes beam-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* WP-WEB-006 Fix 8: Card spotlight CSS */
+.uc, .hw, .sector, .tc,
+.pc:not(.pc-locked):not(.pc-p3) {
+  overflow: hidden;
+  position: relative;
+}
+.uc::before, .hw::before, .sector::before, .tc::before,
+.pc:not(.pc-locked):not(.pc-p3)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    600px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(12,201,168,0.05),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+.uc:hover::before, .hw:hover::before, .sector:hover::before,
+.tc:hover::before, .pc:hover:not(.pc-locked):not(.pc-p3)::before {
+  opacity: 1;
+}
+.uc > *, .hw > *, .sector > *, .tc > *, .pc > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* WP-WEB-006 Fix 9: Sliding pill tab nav CSS */
+.tab-nav {
+  display: inline-flex;
+  position: relative;
+  background: rgba(13,40,71,0.5);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 40px;
+  gap: 0;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+}
+.tab-pill {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  height: calc(100% - 8px);
+  background: var(--surf);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1;
+  transition:
+    transform 0.35s cubic-bezier(0.25,1,0.5,1),
+    width 0.35s cubic-bezier(0.25,1,0.5,1);
+  pointer-events: none;
+}
+.tab-btn {
+  position: relative;
+  z-index: 2;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: 700;
+  color: var(--steel);
+  background: transparent;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.25s ease;
+  margin-bottom: 0;
+}
+.tab-btn.active { color: var(--cloud); border-bottom-color: transparent; }
+.tab-btn:hover:not(.active) { color: var(--cloud); }
+
+/* WP-WEB-006 Fix 14: Semantic utility classes replacing inline styles */
+.u-label {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+.u-h2-display {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: clamp(1.4rem,2.5vw,1.9rem);
+  font-weight: 800;
+  color: var(--cloud);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.u-body-muted {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  color: var(--steel);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.u-section {
+  padding: var(--section-pad-secondary) 0;
+}
+.u-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px,100%), 1fr));
+  gap: 16px;
+  margin-top: 32px;
+}
+.u-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+}
+.u-source-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  color: var(--mist);
+  margin-top: 12px;
+}
+.u-stat-number {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+.u-stat-title {
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cloud);
+  margin-bottom: 8px;
+}
+.u-section-divider {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* WP-WEB-006 Fix 6: Section whitespace rhythm */
+.section-rhythm {
+  padding: var(--section-pad-secondary) 0;
+}
+
+/* WP-WEB-006 Fix 15: Glassmorphism demo browser */
+.demo-browser {
+  max-width: 760px;
+  margin: clamp(28px,4vw,44px) auto 0;
+  background: rgba(10,31,58,0.35);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r3);
+  overflow: hidden;
+  box-shadow:
+    0 32px 64px -16px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.demo-chrome {
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.demo-url-bar {
+  flex: 1;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-family: "Inter", sans-serif;
+  font-size: 11px;
+  color: var(--steel);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 8px;
+}
+[data-theme=light] .demo-browser {
+  background: rgba(255,255,255,0.65);
+  border-color: rgba(0,0,0,0.08);
+  box-shadow: 0 32px 64px -16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+[data-theme=light] .demo-chrome { background: rgba(0,0,0,0.03); }
+
+/* WP-WEB-006 Fix 17: Button arrow animation */
+.btn-primary,
+.btn-hero,
+.btn-teal-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-arrow {
+  flex-shrink: 0;
+  transition: transform 0.25s cubic-bezier(0.2,0.8,0.2,1);
+}
+.btn-primary:hover .btn-arrow,
+.btn-hero:hover .btn-arrow,
+.btn-teal-sm:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+/* WP-WEB-006: Reduced motion additions for Fixes 8, 16, 17 */
+@media (prefers-reduced-motion: reduce) {
+  .uc::before,.hw::before,.sector::before,.tc::before,.pc::before { display: none; }
+  .pc--featured::before { animation: none; }
+  .btn-arrow { transition: none; }
+  .btn-primary:hover .btn-arrow,
+  .btn-hero:hover .btn-arrow,
+  .btn-teal-sm:hover .btn-arrow { transform: none; }
+}
