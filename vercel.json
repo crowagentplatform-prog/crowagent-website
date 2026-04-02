@@ -20,7 +20,11 @@
     { "source": "/products", "destination": "/products/index.html" },
     { "source": "/products/crowagent-core", "destination": "/products/crowagent-core.html" },
     { "source": "/products/crowmark", "destination": "/products/crowmark.html" },
-    { "source": "/blog/ppn-002-guide", "destination": "/blog/ppn-002-guide.html" }
+    { "source": "/blog/ppn-002-guide", "destination": "/blog/ppn-002-guide.html" },
+    { "source": "/blog/epc-register-explained", "destination": "/blog/epc-register-explained.html" },
+    { "source": "/blog/social-value-themes-explained", "destination": "/blog/social-value-themes-explained.html" },
+    { "source": "/blog/mees-exemptions-guide", "destination": "/blog/mees-exemptions-guide.html" },
+    { "source": "/blog/regulatory-updates-2026", "destination": "/blog/regulatory-updates-2026.html" }
   ],
   "headers": [
     {
