@@ -1592,3 +1592,12 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 .roadmap-milestone::before{content:'';position:absolute;left:-5px;top:32px;width:10px;height:10px;border-radius:50%;background:var(--surf2);border:2px solid rgba(12,201,168,.3);transition:border-color .3s,background .3s}
 .roadmap-milestone.visible::before{border-color:var(--teal);background:rgba(12,201,168,.2)}
 .roadmap-milestone.done::before{background:var(--teal);border-color:var(--teal)}
+
+/* =============================================================
+   WP-WEB-004: Bento grid for featured products
+   ============================================================= */
+.products-bento{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:24px}
+@media(min-width:768px){.products-bento{grid-template-columns:3fr 2fr}}
+@media(min-width:1024px){.products-bento{grid-template-columns:5fr 4fr;gap:20px}}
+.pc--featured{position:relative;overflow:hidden}
+.pc--featured::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:radial-gradient(ellipse,rgba(12,201,168,.08) 0%,transparent 70%);pointer-events:none}
