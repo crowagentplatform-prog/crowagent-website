@@ -1,4 +1,4 @@
-var APP_VERSION = '30';
+var APP_VERSION = '31';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -1173,6 +1173,16 @@ async function csrdSubmit() {
     if (simpleActions) simpleActions.style.display = 'flex';
     if (detailPanel) detailPanel.style.display = 'none';
     showBanner();
+  });
+})();
+
+// ── CSRD STEP MICRO-INTERACTIONS — WP-WEB-003-SUP ──
+(function() {
+  document.addEventListener('change', function(e) {
+    var step = e.target.closest('.csrd-step, .csrd-option');
+    if (!step) return;
+    step.classList.add('answered', 'step-complete');
+    setTimeout(function() { step.classList.remove('step-complete'); }, 450);
   });
 })();
 
