@@ -432,6 +432,21 @@ function toggleBilling() {
   el.textContent = days.toLocaleString('en-GB');
 })();
 
+// ── MEES 2028 COUNTDOWN — WP-WEB-003 (hero countdown pill) ──
+(function() {
+  var el = document.getElementById('mees-days');
+  if (!el) return;
+  var target = new Date('2028-04-01T00:00:00Z');
+  function update() {
+    var now = new Date();
+    var diff = target - now;
+    if (diff <= 0) { el.textContent = '0'; return; }
+    el.textContent = Math.floor(diff / 86400000).toLocaleString('en-GB');
+  }
+  update();
+  setInterval(update, 60000);
+})();
+
 // ── ANIMATED PRODUCT DEMO ──
 (function() {
   var screens = ['.ds-1', '.ds-2', '.ds-3'];
