@@ -45,7 +45,7 @@
 }
 
 html,body{background:var(--bg)!important;background-color:var(--bg)!important;color:var(--cloud);min-height:100vh}
-html{scroll-behavior:smooth;overflow-x:hidden}
+html{font-family:'Inter','Plus Jakarta Sans',sans-serif;scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;min-height:100vh;max-width:100vw;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 
@@ -121,6 +121,9 @@ img,picture,video,canvas,svg,iframe{max-width:100%;height:auto;display:block}
    hyphens:none on marketing copy; hyphens:auto only on long-form prose */
 p,li{hyphens:none;overflow-wrap:break-word;word-break:normal}
 h1,h2,h3,h4,h5,h6{hyphens:none;word-break:normal;overflow-wrap:normal;text-wrap:balance}
+h1{line-height:1.08;letter-spacing:-.03em}
+h2{line-height:1.12;letter-spacing:-.025em}
+h3{line-height:1.2}
 .article-body p,.article-body li,.section-padding p,.section-padding li,.faq-answer p,.legal-content p,td,th,blockquote{hyphens:auto;overflow-wrap:break-word;word-break:break-word}
 .article-body h2,.article-body h3{text-wrap:pretty}
 code,pre,kbd{overflow-x:auto;word-break:normal;white-space:pre}
