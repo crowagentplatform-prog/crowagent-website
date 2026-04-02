@@ -1,4 +1,4 @@
-var APP_VERSION = '33';
+var APP_VERSION = '34';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -1229,28 +1229,6 @@ async function csrdSubmit() {
   });
 })();
 
-// ── CUSTOM CURSOR — WP-WEB-004 ──
-(function() {
-  if (!matchMedia('(pointer: fine)').matches) return;
-  var cur = document.getElementById('cursor');
-  var dot = document.getElementById('cursor-dot');
-  if (!cur || !dot) return;
-  var mx=0,my=0,cx=0,cy=0;
-  document.addEventListener('mousemove',function(e){
-    mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
-  },{passive:true});
-  (function loop(){
-    cx+=(mx-cx)*0.12; cy+=(my-cy)*0.12;
-    cur.style.left=Math.round(cx)+'px'; cur.style.top=Math.round(cy)+'px';
-    requestAnimationFrame(loop);
-  })();
-  var hoverEls = document.querySelectorAll('a,button,[role="button"],.tab-btn,.faq-q,.term');
-  hoverEls.forEach(function(el){
-    el.addEventListener('mouseenter',function(){ cur.classList.add('hover'); },{passive:true});
-    el.addEventListener('mouseleave',function(){ cur.classList.remove('hover'); },{passive:true});
-  });
-})();
 
 // ── ROADMAP TIMELINE — WP-WEB-004 ──
 (function() {

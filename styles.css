@@ -1563,15 +1563,6 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 .seg-text[hidden]{display:none}
 .segment-selector{animation:hero-enter .6s cubic-bezier(.4,0,.2,1) .15s both}
 
-/* =============================================================
-   WP-WEB-004: Custom cursor (pointer:fine only)
-   ============================================================= */
-@media(pointer:fine){
-  *{cursor:none!important}
-  .cursor{position:fixed;width:32px;height:32px;border:1.5px solid rgba(12,201,168,.5);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .15s cubic-bezier(.4,0,.2,1),border-color .15s,opacity .15s;transform:translate(-50%,-50%)}
-  .cursor-dot{position:fixed;width:5px;height:5px;background:var(--teal);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .05s;transform:translate(-50%,-50%)}
-  .cursor.hover{transform:translate(-50%,-50%) scale(1.6);border-color:rgba(12,201,168,.9);background:rgba(12,201,168,.06)}
-}
 
 /* =============================================================
    WP-WEB-004: View Transitions API
