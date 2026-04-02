@@ -1,4 +1,4 @@
-var APP_VERSION = '18';
+var APP_VERSION = '19';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
