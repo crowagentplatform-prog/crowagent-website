@@ -1,4 +1,4 @@
-var APP_VERSION = '22';
+var APP_VERSION = '23';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
@@ -988,6 +988,73 @@ async function csrdSubmit() {
     fetch('https://formspree.io/f/xbdpkaol', { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
     .then(function(r) { if (r.ok) { form.reset(); success.style.display = 'block'; btn.textContent = 'Message sent'; } else { throw new Error(); } })
     .catch(function() { error.style.display = 'block'; btn.disabled = false; btn.textContent = 'Send message'; });
+  });
+})();
+
+// ── COOKIE CONSENT — GRANULAR — WP-WEB-NEXT-001 ──
+(function() {
+  var CONSENT_KEY = 'ca_cookie_consent_v2';
+  var OLD_KEY = 'ca-cookie-ok';
+  var banner = document.getElementById('ca-cookie');
+  var simpleActions = document.getElementById('ca-cookie-simple');
+  var detailPanel = document.getElementById('ca-cookie-detail');
+  var analyticsChk = document.getElementById('ca-cookie-analytics');
+  var marketingChk = document.getElementById('ca-cookie-marketing');
+  var reopenBtn = document.getElementById('ca-cookie-reopen');
+  if (!banner) return;
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); } catch(e) { return null; }
+  }
+  function saveConsent(analytics, marketing) {
+    var consent = { necessary: true, analytics: !!analytics, marketing: !!marketing, ts: Date.now() };
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+    localStorage.removeItem(OLD_KEY);
+    hideBanner();
+  }
+  function showBanner() {
+    banner.style.display = 'block';
+    var stored = getConsent();
+    if (stored && analyticsChk) analyticsChk.checked = !!stored.analytics;
+    if (stored && marketingChk) marketingChk.checked = !!stored.marketing;
+  }
+  function hideBanner() { banner.style.display = 'none'; }
+  function showDetail() {
+    if (simpleActions) simpleActions.style.display = 'none';
+    if (detailPanel) detailPanel.style.display = 'flex';
+  }
+
+  // Check existing consent
+  var stored = getConsent();
+  if (stored) {
+    hideBanner();
+  } else if (localStorage.getItem(OLD_KEY)) {
+    // Migrate v1 consent
+    var wasAccepted = localStorage.getItem(OLD_KEY) === '1';
+    saveConsent(wasAccepted, false);
+  } else {
+    setTimeout(function() { showBanner(); }, 800);
+  }
+
+  // Simple action buttons
+  var acceptBtn = document.getElementById('ca-cookie-accept');
+  var rejectBtn = document.getElementById('ca-cookie-reject');
+  var manageBtn = document.getElementById('ca-cookie-manage');
+  var saveBtn = document.getElementById('ca-cookie-save');
+  var acceptAllBtn = document.getElementById('ca-cookie-accept-all');
+
+  if (acceptBtn) acceptBtn.addEventListener('click', function() { saveConsent(true, true); });
+  if (rejectBtn) rejectBtn.addEventListener('click', function() { saveConsent(false, false); });
+  if (manageBtn) manageBtn.addEventListener('click', function() { showDetail(); });
+  if (saveBtn) saveBtn.addEventListener('click', function() {
+    saveConsent(analyticsChk ? analyticsChk.checked : false, marketingChk ? marketingChk.checked : false);
+  });
+  if (acceptAllBtn) acceptAllBtn.addEventListener('click', function() { saveConsent(true, true); });
+  if (reopenBtn) reopenBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (simpleActions) simpleActions.style.display = 'flex';
+    if (detailPanel) detailPanel.style.display = 'none';
+    showBanner();
   });
 })();
 

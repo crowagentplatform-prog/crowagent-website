@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-  <link rel="stylesheet" href="/styles.min.css?v=22">
+  <link rel="stylesheet" href="/styles.min.css?v=23">
 <link rel="stylesheet" href="print.css" media="print">
   <style>
     .core-feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -393,21 +393,44 @@
     <div class="footer-bottom">
       <p class="footer-copyright">&copy; 2026 CrowAgent Ltd. All rights reserved. Autonomous Sustainability Intelligence.</p>
       <p class="footer-infra">Built on Railway &middot; Vercel &middot; Cloudflare &middot; Supabase</p>
+      <a href="#" id="ca-cookie-reopen" class="cookie-reopen-link">Cookie preferences</a>
     </div>
   </div>
 </footer>
 
-<script src="/scripts.min.js?v=22" defer></script>
+<script src="/scripts.min.js?v=23" defer></script>
 
-<div id="ca-cookie" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid rgba(255,255,255,.08);padding:16px 24px;z-index:9999;font-size:13px;color:var(--steel)">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
-    <p style="margin:0;flex:1;min-width:200px">We use essential cookies to run the site and analytics cookies to improve your experience. See our <a href="/cookies" style="color:var(--teal)">cookie policy</a>.</p>
-    <div style="display:flex;gap:8px">
-      <button onclick="document.getElementById('ca-cookie').style.display='none';localStorage.setItem('ca-cookie-ok','1')" class="btn-teal-sm">Accept</button>
-      <button onclick="document.getElementById('ca-cookie').style.display='none';localStorage.setItem('ca-cookie-ok','0')" class="btn-ghost-sm">Reject</button>
+<!-- Cookie consent -->
+<div id="ca-cookie" class="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg);border-top:1px solid var(--border);padding:20px 24px;z-index:9999">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <strong style="color:var(--cloud);font-size:14px;">Cookie preferences</strong>
+      <p style="margin:6px 0 0;font-size:13px;color:var(--steel);">We use cookies to improve your experience and analyse site usage. <a href="/cookies" style="color:var(--teal);text-decoration:underline;">Cookie policy</a></p>
+    </div>
+    <div id="ca-cookie-simple" class="cookie-actions">
+      <button id="ca-cookie-manage" class="btn-cookie-outline">Manage preferences</button>
+      <button id="ca-cookie-reject" class="btn-cookie-outline">Reject all</button>
+      <button id="ca-cookie-accept" class="btn-cookie-primary">Accept all</button>
+    </div>
+    <div id="ca-cookie-detail" class="cookie-detail" style="display:none">
+      <div class="cookie-toggle-row">
+        <div><span class="cookie-cat-name">Necessary</span><span class="cookie-cat-desc">Session management, security. Always active.</span></div>
+        <div class="cookie-toggle cookie-toggle-locked" aria-label="Always active"><span class="toggle-on">On</span></div>
+      </div>
+      <div class="cookie-toggle-row">
+        <div><span class="cookie-cat-name">Analytics</span><span class="cookie-cat-desc">Usage analytics via PostHog EU. Helps us improve the product.</span></div>
+        <label class="cookie-toggle" aria-label="Analytics cookies"><input type="checkbox" id="ca-cookie-analytics" class="cookie-chk"><span class="cookie-slider"></span></label>
+      </div>
+      <div class="cookie-toggle-row">
+        <div><span class="cookie-cat-name">Marketing</span><span class="cookie-cat-desc">Remarketing and conversion tracking. None currently active.</span></div>
+        <label class="cookie-toggle" aria-label="Marketing cookies"><input type="checkbox" id="ca-cookie-marketing" class="cookie-chk"><span class="cookie-slider"></span></label>
+      </div>
+      <div class="cookie-detail-actions">
+        <button id="ca-cookie-save" class="btn-cookie-primary">Save preferences</button>
+        <button id="ca-cookie-accept-all" class="btn-cookie-outline">Accept all</button>
+      </div>
     </div>
   </div>
 </div>
-<script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 </body>
 </html>
