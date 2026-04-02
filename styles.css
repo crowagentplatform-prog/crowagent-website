@@ -49,7 +49,9 @@ html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.7;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
 
-.wrap,.container{max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+.wrap,.container{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,24px)}
+/* Nav inner wider for logo + links at large screens */
+nav .wrap{max-width:1400px;padding-inline:clamp(20px,5vw,80px)}
 
 /* =============================================================
    CONTAINER TIER SYSTEM — WP-RESP-001
@@ -1305,3 +1307,15 @@ body{overscroll-behavior:none}
 
 /* Tap highlight — WP-RESP-002 */
 a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm{-webkit-tap-highlight-color:transparent}
+
+/* =============================================================
+   WP-RESP-003: Grid selector fixes — match real HTML class names
+   ============================================================= */
+
+/* Blog index: real class is .article-grid (not .blog-articles-grid) */
+.article-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg)}
+@media(min-width:640px){.article-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.article-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+
+/* About page: real class is .founders-grid (not .ca-founders-grid) */
+.founders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-top:32px}
