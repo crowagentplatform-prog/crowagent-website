@@ -1168,3 +1168,136 @@ footer,.ca-footer,.foot{padding-bottom:max(32px,calc(32px + env(safe-area-inset-
 @media(max-width:639px){
   .footer-bottom,.foot-bottom{flex-direction:column;text-align:center}
 }
+
+/* =============================================================
+   WP-RESP-001 GAP FIXES — Missing items from both prompts
+   ============================================================= */
+
+/* GAP-01: Nav CTA 44px touch target on tablet/mobile */
+@media(max-width:1023px){
+  .btn-teal-sm,.btn-ghost-sm,.nav-cta{min-height:44px;display:inline-flex;align-items:center}
+}
+
+/* GAP-02: Hero mobile stacking at 767px (was only at 480px) */
+@media(max-width:767px){
+  .hero-btns{flex-direction:column;align-items:stretch}
+  .hero-btns .btn-hero,.hero-btns .btn-hero-out{text-align:center;justify-content:center;width:100%;box-sizing:border-box}
+}
+
+/* GAP-03: Card min-height 44px WCAG touch target on mobile */
+@media(max-width:639px){
+  .tc,.sector,.hw,.security-item,.ca-security-card{min-height:44px}
+}
+
+/* GAP-07: iOS overscroll bounce prevention */
+body{overscroll-behavior-y:none}
+
+/* GAP-06: Prose max-width 65ch — additional selectors */
+.article-body p,.section-padding p,.ca-about-section p,.csrd-copy p,.contact-desc{max-width:65ch}
+
+/* GAP-13: Plan toggle mobile responsive */
+.toggle-row,.ptabs{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
+@media(max-width:480px){
+  .ptabs{gap:6px}
+  .ptab{padding:6px 16px;font-size:12px}
+}
+
+/* GAP-14: Most popular badge mobile fix */
+.pgc-badge{white-space:nowrap;max-width:100%}
+@media(max-width:639px){
+  .pgc-badge{font-size:9px;padding:2px 10px}
+}
+
+/* GAP-26: CSRD form responsive enhancements */
+.csrd-options{display:flex;flex-direction:column;gap:10px;width:100%}
+.csrd-option{min-height:64px}
+@media(max-width:480px){
+  .csrd-wizard{padding:24px 16px}
+  .csrd-submit-btn{padding:16px}
+}
+
+/* GAP-27: CSRD email/share form responsive */
+.csrd-share-actions{display:flex;gap:.75rem;flex-wrap:wrap}
+@media(max-width:480px){
+  .csrd-share-actions{flex-direction:column}
+  .csrd-share-actions .btn-share{width:100%;justify-content:center;text-align:center}
+}
+
+/* GAP-30: Security details table styles */
+.security-details-table{width:100%;border-collapse:collapse}
+.security-details-table tr{border-bottom:1px solid var(--border)}
+.security-details-table td{padding:12px 0;font-size:13px;font-family:'Inter',sans-serif}
+.security-details-table td:first-child{color:var(--mist);width:40%;padding-right:16px}
+.security-details-table td:last-child{color:var(--cloud)}
+
+/* GAP-34: Postcode widget comprehensive responsive */
+@media(max-width:480px){
+  #live-demo .wrap > div{padding:20px 16px}
+}
+
+/* GAP-35: Product demo mock comprehensive responsive */
+.demo-browser{max-width:760px;margin-left:auto;margin-right:auto}
+@media(max-width:480px){
+  .demo-browser{border-radius:var(--r2)}
+  .demo-body{padding:16px;min-height:200px}
+  .ds-result-row{flex-direction:column;align-items:center;gap:16px}
+  .ds-arrow{transform:rotate(90deg)}
+}
+
+/* GAP-36: Hero stats 2x2 on mobile */
+.hero-trust{display:flex;flex-wrap:wrap;gap:16px}
+@media(max-width:639px){
+  .hero-trust{gap:10px 16px}
+  .ht-item{min-width:calc(50% - 8px);flex:1 1 calc(50% - 8px)}
+}
+@media(max-width:375px){
+  .hero-trust{flex-direction:column;gap:8px}
+  .ht-item{min-width:100%}
+}
+
+/* GAP-37: Enhanced focus-visible for cards and buttons */
+.btn-primary:focus-visible,.btn-hero:focus-visible,.btn-teal-sm:focus-visible,.btn-ghost-sm:focus-visible,.btn-hero-out:focus-visible{outline-offset:4px;border-radius:12px}
+.tc:focus-within,.sector:focus-within,.pc:focus-within,.hw:focus-within,.pgc:focus-within{outline:2px solid var(--teal);outline-offset:6px;border-radius:18px}
+
+/* GAP-40: Pricing card padding at 1440px+ */
+@media(min-width:1440px){
+  .pgc{padding:40px 36px}
+  .pgc-price{font-size:clamp(2.4rem,3vw,3.2rem)}
+}
+
+/* GAP-41: Feature / steps grid 3-col at 1440px+ */
+@media(min-width:1440px){
+  .steps-grid-3{grid-template-columns:repeat(3,1fr);gap:var(--grid-gap-lg)}
+  .ca-values-grid{gap:var(--grid-gap-lg)}
+  .ca-security-grid{gap:var(--grid-gap-lg)}
+}
+
+/* GAP-19: Product page step cards — ensure 4-col option exists */
+.steps-grid-4{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
+@media(min-width:640px){.steps-grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.steps-grid-4{grid-template-columns:repeat(4,1fr)}}
+
+/* Hero trust strip — override earlier nowrap for 2x2 layout */
+@media(max-width:767px){
+  .hero-trust{flex-wrap:wrap;overflow-x:visible}
+}
+
+/* Blog articles grid — explicit mobile-first */
+@media(min-width:640px){.blog-articles-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1024px){.blog-articles-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* Contact grid mobile-first fix */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+@media(min-width:768px){.contact-grid{grid-template-columns:1fr 1.5fr;gap:4rem}}
+
+/* Shipping section fluid padding */
+.shipping-section{padding:var(--section-pad-secondary) 0;border-bottom:1px solid var(--border)}
+
+/* About page section padding */
+.ca-about-section{padding:var(--section-pad-secondary) 0}
+
+/* Demo section fluid padding */
+.demo-section{padding:var(--section-pad-secondary) 0;background:var(--surf);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+
+/* Stats section fluid padding */
+.stats{padding:var(--section-pad-compact) 0;border-bottom:1px solid var(--border)}
