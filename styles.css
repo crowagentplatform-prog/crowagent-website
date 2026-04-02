@@ -101,9 +101,12 @@ nav{padding-left:max(var(--section-gutter,24px),env(safe-area-inset-left));paddi
 /* All media elements scale correctly */
 img,picture,video,canvas,svg,iframe{max-width:100%;height:auto;display:block}
 
-/* Long content word breaking — NEVER on headings (RULE-15) */
-p,li,td,th,blockquote{overflow-wrap:break-word;word-break:break-word;hyphens:auto}
-h1,h2,h3,h4,h5,h6{hyphens:none;word-break:normal;overflow-wrap:normal}
+/* ── HYPHENS STRATEGY — WP-WEB-NEXT-004 (Anthropic principle) ──
+   hyphens:none on marketing copy; hyphens:auto only on long-form prose */
+p,li{hyphens:none;overflow-wrap:break-word;word-break:normal}
+h1,h2,h3,h4,h5,h6{hyphens:none;word-break:normal;overflow-wrap:normal;text-wrap:balance}
+.article-body p,.article-body li,.section-padding p,.section-padding li,.faq-answer p,.legal-content p,td,th,blockquote{hyphens:auto;overflow-wrap:break-word;word-break:break-word}
+.article-body h2,.article-body h3{text-wrap:pretty}
 code,pre,kbd{overflow-x:auto;word-break:normal;white-space:pre}
 
 /* ANNOUNCE BAR */
@@ -1107,9 +1110,15 @@ a.contact-detail-value:hover{color:var(--teal)}
 /* =============================================================
    HERO LAYOUT — WP-RESP-002 (reverted two-column — no right visual yet)
    ============================================================= */
-.hero-inner{display:block;width:100%;text-align:center}
+.hero-inner{display:block;width:100%;max-width:none;text-align:center}
 .hero-content{text-align:center}
 .hero-visual{margin-top:var(--grid-gap-lg)}
+/* Hero headline — generous width, balanced wrapping */
+.hero h1,.hero-headline{max-width:820px;margin-left:auto;margin-right:auto;text-wrap:balance}
+/* Hero subheading — comfortable reading width */
+.hero-sub{max-width:640px;margin-left:auto;margin-right:auto}
+/* Step card text — no hyphens */
+.hw p{hyphens:none;overflow-wrap:break-word}
 
 /* Prose max-width 65ch for reading sections */
 .ca-faq .faq-answer,.mission-quote,.vision-quote,.ca-about-section p,.hero-sub{max-width:65ch}
