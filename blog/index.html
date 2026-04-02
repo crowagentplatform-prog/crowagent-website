@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-  <link rel="stylesheet" href="/styles.css?v=18">
+  <link rel="stylesheet" href="/styles.css?v=19">
 <link rel="stylesheet" href="print.css" media="print">
   <style>
     /* Blog index styles */
@@ -257,17 +257,19 @@
 
 <!-- Blog hero -->
 <section class="blog-hero">
-  <div class="container">
+  <div class="container container-standard">
     <div class="section-label">INSIGHTS</div>
     <h1>Guides &amp; Resources</h1>
 
     <!-- Filter pills -->
-    <div class="filter-row">
-      <button class="filter-pill active" data-filter="all" type="button" aria-pressed="true">All</button>
-      <button class="filter-pill" data-filter="mees-epc" type="button" aria-pressed="false">MEES &amp; EPC</button>
-      <button class="filter-pill" data-filter="ppn-002" type="button" aria-pressed="false">PPN 002</button>
-      <button class="filter-pill" data-filter="csrd-esg" type="button" aria-pressed="false">CSRD &amp; ESG</button>
-      <button class="filter-pill" data-filter="regulatory-updates" type="button" aria-pressed="false">Regulatory Updates</button>
+    <div class="blog-filters-scroll">
+      <div class="filter-row">
+        <button class="filter-pill active" data-filter="all" type="button" aria-pressed="true">All</button>
+        <button class="filter-pill" data-filter="mees-epc" type="button" aria-pressed="false">MEES &amp; EPC</button>
+        <button class="filter-pill" data-filter="ppn-002" type="button" aria-pressed="false">PPN 002</button>
+        <button class="filter-pill" data-filter="csrd-esg" type="button" aria-pressed="false">CSRD &amp; ESG</button>
+        <button class="filter-pill" data-filter="regulatory-updates" type="button" aria-pressed="false">Regulatory Updates</button>
+      </div>
     </div>
 
     <!-- Article grid -->
@@ -428,7 +430,7 @@
 </div>
 <script>if(!localStorage.getItem('ca-cookie-ok'))document.getElementById('ca-cookie').style.display='block';</script>
 
-<script src="/scripts.js?v=18" defer></script>
+<script src="/scripts.js?v=19" defer></script>
 <script>
   // Blog category filter
   (function () {

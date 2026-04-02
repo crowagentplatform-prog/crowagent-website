@@ -1,4 +1,4 @@
-var APP_VERSION = '18';
+var APP_VERSION = '19';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
@@ -21,21 +21,28 @@ var APP_VERSION = '18';
 (function() {
   var nav = document.querySelector('nav');
   if (!nav) return;
-  function updateNav() {
-    if (window.scrollY > 60) {
-      nav.style.backgroundColor = 'rgba(4, 14, 26, 0.96)';
-      nav.style.backdropFilter = 'blur(12px)';
-      nav.style.webkitBackdropFilter = 'blur(12px)';
-      nav.style.borderBottom = '1px solid rgba(12, 201, 168, 0.15)';
+  function onScroll() {
+    if (window.scrollY > 40) {
+      nav.classList.add('scrolled');
     } else {
-      nav.style.backgroundColor = '';
-      nav.style.backdropFilter = '';
-      nav.style.webkitBackdropFilter = '';
-      nav.style.borderBottom = '';
+      nav.classList.remove('scrolled');
     }
   }
-  window.addEventListener('scroll', updateNav, { passive: true });
-  updateNav();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+// ── CLOSE MOBILE NAV ON SCROLL ──
+(function() {
+  var mobMenu = document.querySelector('.mob-menu');
+  if (!mobMenu) return;
+  window.addEventListener('scroll', function() {
+    if (mobMenu.classList.contains('open')) {
+      mobMenu.classList.remove('open');
+      var ham = document.querySelector('.ham');
+      if (ham) ham.setAttribute('aria-expanded', 'false');
+    }
+  }, { passive: true });
 })();
 
 // ── NAV SCROLL-SPY ──
