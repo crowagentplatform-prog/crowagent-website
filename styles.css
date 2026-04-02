@@ -65,8 +65,8 @@ a{color:inherit;text-decoration:none}
 /* TIER 3 — Text: prose, FAQ, about copy, vision statements */
 .container-text{width:100%;max-width:740px;margin-inline:auto;padding-inline:clamp(20px,4vw,48px)}
 
-/* ULTRA-WIDE GUARD — prevents layout stretching on 1920px+ monitors */
-body{max-width:1600px;margin-inline:auto}
+/* ULTRA-WIDE GUARD removed — container tiers handle width at section level.
+   body max-width:1600px caused centring regression on production. */
 
 /* =============================================================
    FLUID SPACING TOKENS — WP-RESP-001
@@ -99,8 +99,9 @@ nav{padding-left:max(var(--section-gutter,24px),env(safe-area-inset-left));paddi
 /* All media elements scale correctly */
 img,picture,video,canvas,svg,iframe{max-width:100%;height:auto;display:block}
 
-/* Long content word breaking */
+/* Long content word breaking — NEVER on headings (RULE-15) */
 p,li,td,th,blockquote{overflow-wrap:break-word;word-break:break-word;hyphens:auto}
+h1,h2,h3,h4,h5,h6{hyphens:none;word-break:normal;overflow-wrap:normal}
 code,pre,kbd{overflow-x:auto;word-break:normal;white-space:pre}
 
 /* ANNOUNCE BAR */
@@ -164,7 +165,7 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(12,201,168,.12) 0%,rgba(91,200,255,.04) 40%,transparent 70%);top:20%;left:50%;transform:translateX(-50%);pointer-events:none;filter:blur(40px);z-index:0}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.08);border:1px solid var(--border2);border-radius:100px;padding:6px 18px;margin-bottom:20px}
 .hw-dot{width:7px;height:7px;background:var(--teal);border-radius:50%;animation:blink 2.2s infinite}
-.hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:keep-all;overflow-wrap:break-word;hyphens:auto;white-space:normal}
+.hero h1,.hero-headline{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2.5rem,6vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--cloud);margin-bottom:20px;word-break:keep-all;overflow-wrap:break-word;hyphens:none;white-space:normal}
 .hero h1 em{font-style:normal;color:var(--teal)}
 .hero-sub{font-family:'Inter',sans-serif;font-size:clamp(1rem,1.8vw,1.15rem);color:var(--steel);max-width:760px;margin:0 auto 32px;line-height:1.7}
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
@@ -1102,21 +1103,11 @@ a.contact-detail-value:hover{color:var(--teal)}
 }
 
 /* =============================================================
-   HERO TWO-COLUMN DESKTOP LAYOUT — WP-RESP-001
+   HERO LAYOUT — WP-RESP-002 (reverted two-column — no right visual yet)
    ============================================================= */
-.hero-inner{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg)}
-@media(min-width:1024px){
-  .hero-inner{grid-template-columns:1fr 1fr;align-items:center}
-  .hero-content{text-align:left}
-  .hero-content .hero-btns{justify-content:flex-start}
-  .hero-content .hero-sub{margin-left:0;margin-right:0}
-  .hero-content .hero-trust{justify-content:flex-start}
-  .hero-visual{display:flex;align-items:center;justify-content:center}
-}
-@media(max-width:1023px){
-  .hero-inner{text-align:center}
-  .hero-visual{order:-1}
-}
+.hero-inner{display:block;width:100%;text-align:center}
+.hero-content{text-align:center}
+.hero-visual{margin-top:var(--grid-gap-lg)}
 
 /* Prose max-width 65ch for reading sections */
 .ca-faq .faq-answer,.mission-quote,.vision-quote,.ca-about-section p,.hero-sub{max-width:65ch}
@@ -1190,7 +1181,7 @@ footer,.ca-footer,.foot{padding-bottom:max(32px,calc(32px + env(safe-area-inset-
 }
 
 /* GAP-07: iOS overscroll bounce prevention */
-body{overscroll-behavior-y:none}
+body{overscroll-behavior:none}
 
 /* GAP-06: Prose max-width 65ch — additional selectors */
 .article-body p,.section-padding p,.ca-about-section p,.csrd-copy p,.contact-desc{max-width:65ch}
@@ -1284,7 +1275,7 @@ body{overscroll-behavior-y:none}
 
 /* Blog articles grid — explicit mobile-first */
 @media(min-width:640px){.blog-articles-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.blog-articles-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.blog-articles-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
 
 /* Contact grid mobile-first fix */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:2rem}
@@ -1305,3 +1296,12 @@ body{overscroll-behavior-y:none}
 /* Blog filter-row nowrap inside scroll wrapper */
 .blog-filters-scroll .filter-row{display:flex;gap:8px;flex-wrap:nowrap;white-space:nowrap}
 .blog-filters-scroll .filter-pill,.blog-filters-scroll .blog-filter{flex-shrink:0;min-height:44px;display:inline-flex;align-items:center}
+
+/* Table scroll wrapper — WP-RESP-002 */
+.table-scroll-wrapper{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px;scrollbar-width:thin;scrollbar-color:var(--teal) transparent}
+.table-scroll-wrapper::-webkit-scrollbar{height:4px}
+.table-scroll-wrapper::-webkit-scrollbar-track{background:transparent}
+.table-scroll-wrapper::-webkit-scrollbar-thumb{background:var(--teal);border-radius:4px}
+
+/* Tap highlight — WP-RESP-002 */
+a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm{-webkit-tap-highlight-color:transparent}
