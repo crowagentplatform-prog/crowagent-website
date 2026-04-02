@@ -181,11 +181,11 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 @media(max-width:1024px){.nav-price-hint{display:none}}
 
 .btn-ghost-sm{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:600;color:var(--cloud);padding:7px 16px;min-height:44px;border:1px solid var(--border2);border-radius:8px;transition:all .2s;display:inline-flex;align-items:center;white-space:nowrap}
-.btn-ghost-sm:hover{border-color:var(--teal);color:var(--teal)}
+.btn-ghost-sm:hover{border-color:var(--teal);color:var(--teal);background:rgba(12,201,168,.06);box-shadow:0 0 0 1px rgba(12,201,168,.25),inset 0 0 20px rgba(12,201,168,.04);transform:translateY(-2px)}
 .btn-teal-sm{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;color:var(--bg);background:var(--teal);padding:7px 18px;min-height:44px;border-radius:8px;transition:all .2s;display:inline-flex;align-items:center;white-space:nowrap}
 .btn-teal-sm:hover{background:var(--teal-d)}
-.btn-primary{display:inline-flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;background:var(--teal);color:var(--bg);padding:12px 28px;min-height:44px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap}
-.btn-primary:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-primary{display:inline-flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:700;background:var(--teal);color:var(--bg);padding:12px 28px;min-height:44px;border-radius:8px;border:none;cursor:pointer;transition:color var(--transition-base),background-color var(--transition-base),transform var(--transition-base),box-shadow var(--transition-base);text-decoration:none;white-space:nowrap;box-shadow:0 0 0 1px rgba(12,201,168,.4),0 4px 16px rgba(12,201,168,.2),0 12px 32px rgba(12,201,168,.12)}
+.btn-primary:hover{background:var(--teal-d);transform:translateY(-3px);box-shadow:0 0 0 1px rgba(12,201,168,.7),0 4px 20px rgba(12,201,168,.35),0 16px 48px rgba(12,201,168,.2)}
 
 .ham{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:11px;min-width:44px;min-height:44px;align-items:center;justify-content:center}
 .ham span{display:block;width:22px;height:2px;background:var(--cloud);border-radius:2px}
@@ -1494,3 +1494,13 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 .faq-q[aria-expanded="true"]::after{transform:rotate(45deg)}
 .faq-a{font-size:var(--font-size-sm,0.875rem);color:var(--steel);line-height:1.7;padding-bottom:20px}
 .faq-a[hidden]{display:none}
+
+/* =============================================================
+   WP-WEB-003-SUP: Compliance term tooltips
+   ============================================================= */
+.term{border-bottom:1px dashed rgba(12,201,168,.5);cursor:help;position:relative;display:inline}
+.term::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surf);border:1px solid rgba(12,201,168,.25);border-radius:8px;padding:8px 12px;font-size:.75rem;font-family:'Inter',sans-serif;font-weight:400;color:var(--cloud);max-width:260px;white-space:normal;text-align:left;line-height:1.5;opacity:0;pointer-events:none;transition:opacity var(--transition-base);z-index:100}
+.term::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(12,201,168,.25);opacity:0;pointer-events:none;transition:opacity var(--transition-base);z-index:101}
+.term:hover::after,.term:focus::after{opacity:1}
+.term:hover::before,.term:focus::before{opacity:1}
+@media(max-width:767px){.term::after{left:0;transform:none;max-width:220px}.term::before{left:16px;transform:none}}
