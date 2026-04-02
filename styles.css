@@ -1192,7 +1192,7 @@ footer,.ca-footer,.foot{padding-bottom:max(32px,calc(32px + env(safe-area-inset-
 }
 
 /* GAP-07: iOS overscroll bounce prevention */
-body{overscroll-behavior:none}
+body{overscroll-behavior-x:none}
 
 /* GAP-06: Prose max-width 65ch — additional selectors */
 .article-body p,.section-padding p,.ca-about-section p,.csrd-copy p,.contact-desc{max-width:65ch}
