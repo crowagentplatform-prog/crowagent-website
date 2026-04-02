@@ -1214,6 +1214,21 @@ async function csrdSubmit() {
   obs.observe(featured);
 })();
 
+// ── HERO SEGMENT SELECTOR — WP-WEB-004 ──
+(function() {
+  var btns = document.querySelectorAll('.seg-btn');
+  if (!btns.length) return;
+  btns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var seg = btn.dataset.seg;
+      btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed','true');
+      document.querySelectorAll('.seg-text').forEach(function(el) { el.hidden = (el.dataset.for !== seg); });
+    });
+  });
+})();
+
 // ── CUSTOM CURSOR — WP-WEB-004 ──
 (function() {
   if (!matchMedia('(pointer: fine)').matches) return;

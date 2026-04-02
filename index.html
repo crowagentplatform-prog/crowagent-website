@@ -211,8 +211,22 @@
     <div class="hero-inner">
       <div class="hero-content" style="text-align:center">
         <div class="hero-eyebrow" aria-label="Countdown to MEES Band C deadline on 1 April 2028"><span class="hw-dot"></span><span id="mees-countdown">733</span> days until the proposed MEES Band C date</div>
-        <h1>Know your UK &amp; EU compliance<br>position in <em>10 minutes</em></h1>
-        <p class="hero-sub"><span class="term" data-tip="Energy Performance Certificate. A legal rating (A–G) of a building's energy efficiency." tabindex="0">EPC</span> gap analysis for landlords. Social value scoring for public sector suppliers. <span class="term" data-tip="Corporate Sustainability Reporting Directive. EU law requiring companies with >1,000 employees and >€450M turnover to report on sustainability impacts." tabindex="0">CSRD</span> applicability for corporates. Regulation-cited reports. No consultants. No guesswork.</p>
+        <div class="segment-selector" role="group" aria-label="I am a...">
+          <span class="segment-label">I am a</span>
+          <button class="seg-btn active" data-seg="landlord" aria-pressed="true">Commercial Landlord</button>
+          <button class="seg-btn" data-seg="supplier" aria-pressed="false">Public Sector Supplier</button>
+          <button class="seg-btn" data-seg="council" aria-pressed="false">Council / NHS Trust</button>
+        </div>
+        <h1>
+          <span class="seg-text" data-for="landlord">Know your <span class="term" data-tip="Minimum Energy Efficiency Standards. UK law requiring commercial properties to reach EPC Band E, with proposed Band C by 2028." tabindex="0">MEES</span> penalty exposure before 2028</span>
+          <span class="seg-text" data-for="supplier" hidden>Win more public sector contracts with AI social value scoring</span>
+          <span class="seg-text" data-for="council" hidden>Decarbonise your estate and meet Net Zero targets</span>
+        </h1>
+        <p class="hero-sub">
+          <span class="seg-text" data-for="landlord">CrowAgent Core gives commercial landlords AI-powered <span class="term" data-tip="Energy Performance Certificate. A legal rating (A–G) of a building's energy efficiency." tabindex="0">EPC</span> gap analysis, retrofit scenarios, and compliance reports in under 3 minutes.</span>
+          <span class="seg-text" data-for="supplier" hidden>CrowMark automates <span class="term" data-tip="Procurement Policy Note 002. UK government policy requiring a minimum 10% social value weighting on public sector contract bids." tabindex="0">PPN 002</span> social value scoring so your bids consistently hit the 10% threshold — without the spreadsheets.</span>
+          <span class="seg-text" data-for="council" hidden>From Net Zero NHS Green Plans to public estate decarbonisation — CrowAgent gives you the compliance intelligence layer your organisation needs.</span>
+        </p>
         <div class="hero-penalty-banner">
           <span class="hero-penalty-icon">⚠</span>
           <span class="hero-penalty-text">
@@ -1190,6 +1204,8 @@
             <label for="contact-message" class="form-label">Message</label>
             <textarea id="contact-message" name="message" class="form-input form-textarea" placeholder="Tell us about your portfolio size, upcoming tenders, or compliance questions..." rows="4"></textarea>
           </div>
+          <input type="hidden" name="_replyto" value="sales@crowagent.ai">
+          <input type="hidden" name="_subject" value="New early access request — CrowAgent">
           <button type="submit" class="btn-teal-sm form-submit" id="contactSubmit">Send message</button>
           <p class="form-privacy">We'll never share your details. <a href="/privacy">Privacy policy</a>.</p>
           <div class="form-success" id="formSuccess" style="display:none;" role="alert"><strong>Message sent.</strong> We'll get back to you within 1 business day.</div>
