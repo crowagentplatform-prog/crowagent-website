@@ -1,4 +1,4 @@
-var APP_VERSION = '25';
+var APP_VERSION = '26';
 
 // ── SCROLL-TRIGGERED SECTION REVEAL ──
 (function() {
@@ -548,33 +548,49 @@ document.querySelectorAll('.sc, .hw, .pc, .sector, .tc, .uc').forEach(function(e
   observer.observe(el);
 });
 
-// ── SMOOTH SCROLL for anchor links ──
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var href = a.getAttribute('href');
-    // Only intercept same-page anchors (#how), not cross-page (/#how)
-    if (!href || href.startsWith('/#')) return;
-    var target = document.querySelector(href);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    }
-  });
-});
-
-// ── SCROLL TO HASH ON PAGE LOAD — WP-WEB-NEXT-003 ──
+// ══════════════════════════════════════════════════════════════
+//  ANCHOR SCROLL SYSTEM — WP-WEB-NEXT-004
+//  Complete replacement — smoothScrollTo with nav offset
+// ══════════════════════════════════════════════════════════════
 (function() {
+  'use strict';
+  var NAV_H = 72;
+  function smoothScrollTo(el) {
+    if (!el) return;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - NAV_H;
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+  // 1. Same-page anchor clicks (#how) — not cross-page (/#how)
+  document.addEventListener('click', function(e) {
+    var a = e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    if (!href || href === '#' || href[0] !== '#') return;
+    var el = document.querySelector(href);
+    if (!el) return;
+    e.preventDefault();
+    smoothScrollTo(el);
+    if (history.pushState) history.pushState(null, '', href);
+  }, false);
+  // 2. Hash-on-load (navigated from /#how on another page)
   var hash = window.location.hash;
-  if (!hash) return;
-  window.addEventListener('load', function() {
-    var target = document.querySelector(hash);
-    if (!target) return;
-    setTimeout(function() {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 100);
-  });
+  if (hash && hash !== '#' && hash[0] === '#') {
+    function tryScroll() {
+      var el = document.querySelector(hash);
+      if (el) { smoothScrollTo(el); return; }
+      setTimeout(function() {
+        var el2 = document.querySelector(hash);
+        if (el2) smoothScrollTo(el2);
+      }, 400);
+    }
+    if (document.readyState === 'complete') {
+      requestAnimationFrame(tryScroll);
+    } else {
+      window.addEventListener('load', function() {
+        requestAnimationFrame(tryScroll);
+      }, { once: true });
+    }
+  }
 })();
 
 // ── OUTSIDE CLICK: Close mobile menu ──
