@@ -1451,3 +1451,27 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
    WP-WEB-003: Nav link active state
    ============================================================= */
 .nav-links a.active{color:var(--teal)}
+
+/* =============================================================
+   WP-WEB-003: Feature comparison table (pricing page)
+   ============================================================= */
+.compare-table-wrap{overflow-x:auto}
+.compare-table{width:100%;border-collapse:collapse;font-size:var(--font-size-sm,0.875rem)}
+.compare-th{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:var(--font-size-xs,0.75rem);letter-spacing:.1em;text-transform:uppercase;color:var(--steel);padding:16px 20px;text-align:center;border-bottom:2px solid var(--border)}
+.compare-th--feature{text-align:left}
+.compare-th--featured{color:var(--teal)}
+.compare-table td{padding:12px 20px;text-align:center;color:var(--cloud);border-bottom:1px solid var(--border)}
+.compare-feat{text-align:left;color:var(--steel)}
+.compare-td--featured{color:var(--teal);font-weight:600}
+.compare-group td{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:var(--font-size-xs,0.75rem);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);background:rgba(12,201,168,.06);text-align:left;padding:10px 20px}
+
+/* =============================================================
+   WP-WEB-003: FAQ accordion (pricing page)
+   ============================================================= */
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:transparent;border:none;text-align:left;padding:20px 0;font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-body,1rem);font-weight:600;color:var(--cloud);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.faq-q::after{content:'+';font-size:1.4rem;font-weight:300;color:var(--teal);flex-shrink:0;transition:transform .2s}
+.faq-q[aria-expanded="true"]::after{transform:rotate(45deg)}
+.faq-a{font-size:var(--font-size-sm,0.875rem);color:var(--steel);line-height:1.7;padding-bottom:20px}
+.faq-a[hidden]{display:none}

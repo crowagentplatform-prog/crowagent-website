@@ -1005,6 +1005,20 @@ async function csrdSubmit() {
   });
 })();
 
+// ── FAQ ACCORDION — WP-WEB-003 ──
+(function() {
+  var faqBtns = document.querySelectorAll('.faq-q');
+  faqBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var expanded = btn.getAttribute('aria-expanded') === 'true';
+      var answer = btn.nextElementSibling;
+      btn.setAttribute('aria-expanded', !expanded);
+      if (expanded) { answer.setAttribute('hidden', ''); }
+      else { answer.removeAttribute('hidden'); }
+    });
+  });
+})();
+
 // ── METHODOLOGY ACCORDION ON MOBILE (Task 11C) ──
 (function() {
   if (window.innerWidth > 768) return;
