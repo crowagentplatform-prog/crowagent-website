@@ -300,12 +300,15 @@ nav{position:sticky;top:0;z-index:200;background:rgba(4,14,26,.92);backdrop-filt
 .demo-pdot.active{background:var(--teal)}
 @media(max-width:640px){.ds-input-row{grid-template-columns:1fr}.ds-result-row{justify-content:center}}
 
-/* TICKER */
-.ticker{overflow:hidden;background:var(--surf);border-bottom:1px solid var(--border);padding:14px 0}
-.ticker-track{display:flex;gap:24px;animation:scroll 30s linear infinite;white-space:nowrap;width:max-content}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.ticker-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
+/* TICKER — WP-WEB-003 upgraded with mask fade */
+.ticker-wrap{width:100%;overflow:hidden;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,black 8%,black 92%,transparent 100%)}
+.ticker,.ticker-wrap{background:var(--surf)}
+.ticker-track{display:flex;width:max-content;animation:ticker-scroll 28s linear infinite}
+.ticker-item{font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-xs,0.75rem);font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--steel);padding:0 40px;white-space:nowrap;position:relative}
+.ticker-item::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:4px;height:4px;border-radius:50%;background:var(--teal);opacity:.5}
 .ticker-sep{color:var(--border2);font-size:12px}
+@keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* STATS */
 .stats{padding:clamp(48px,6vw,72px) 0;border-bottom:1px solid var(--border)}
