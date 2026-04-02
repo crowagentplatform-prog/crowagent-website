@@ -99,7 +99,23 @@ nav .wrap{max-width:1400px;padding-inline:clamp(20px,5vw,80px)}
   --section-py-hero:clamp(80px,12vh,140px);
   --section-py-primary:clamp(64px,8vh,96px);
   --section-py-secondary:clamp(48px,6vh,80px);
+  /* Transition tokens — WP-WEB-003-SUP */
+  --transition-fast:0.15s cubic-bezier(0.4,0,0.2,1);
+  --transition-base:0.2s cubic-bezier(0.4,0,0.2,1);
+  --transition-slow:0.35s cubic-bezier(0.4,0,0.2,1);
 }
+
+/* Global smooth transitions — WP-WEB-003-SUP */
+a,button,[role="button"],.btn-primary,.btn-ghost-sm,.btn-teal-sm,.btn-hero,.btn-hero-out,.tab-btn,.faq-q{
+  transition:color var(--transition-base),background-color var(--transition-base),border-color var(--transition-base),transform var(--transition-base),box-shadow var(--transition-base),opacity var(--transition-base);
+}
+
+/* Noise texture overlay — premium dark theme depth — WP-WEB-003-SUP */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
+
+/* Section ambient glows — WP-WEB-003-SUP */
+.products{position:relative}
+.products::before{content:'';position:absolute;top:0;right:-100px;width:500px;height:500px;background:radial-gradient(ellipse,rgba(12,201,168,.05) 0%,transparent 70%);pointer-events:none;z-index:0}
 
 /* =============================================================
    GLOBAL RESPONSIVE FOUNDATIONS — WP-RESP-001-SUPP-A
