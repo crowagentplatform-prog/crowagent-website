@@ -1416,10 +1416,53 @@ a.contact-detail-value:hover{color:var(--teal)}
 }
 
 /* Hero visual placeholder — WP-WEB-003 Phase 2 */
+/* Legacy placeholder — kept for reference */
 .hero-visual-placeholder{width:100%;aspect-ratio:16/10;background:var(--surf);border-radius:16px;border:1px solid var(--border);overflow:hidden;position:relative;flex-shrink:0}
 .hero-visual .use-cases{width:100%}
 .hero-visual-bar{height:32px;background:var(--surf2);border-bottom:1px solid var(--border)}
 .hero-visual-content{height:calc(100% - 32px);background:linear-gradient(135deg,var(--surf) 0%,var(--surf2) 100%)}
+
+/* ── HERO PRODUCT MOCK — animated dashboard ── */
+.hero-mock{width:100%;border-radius:16px;border:1px solid var(--border2);overflow:hidden;background:var(--surf);box-shadow:0 32px 64px -16px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);flex-shrink:0}
+.hero-mock-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--surf2);border-bottom:1px solid var(--border)}
+.hero-mock-dots{display:flex;gap:6px}
+.hmd{width:10px;height:10px;border-radius:50%}
+.hmd-r{background:#EF4444}
+.hmd-y{background:#F59E0B}
+.hmd-g{background:#22C55E}
+.hero-mock-url{font-family:var(--font-mono);font-size:11px;color:var(--mist);background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:4px 12px;flex:1}
+.hero-mock-lock{font-size:10px;margin-right:4px}
+.hero-mock-body{display:flex;min-height:260px}
+.hero-mock-sidebar{width:140px;flex-shrink:0;padding:12px 0;border-right:1px solid var(--border);background:rgba(4,14,26,.4)}
+.hms-item{display:flex;align-items:center;gap:8px;padding:8px 14px;font-family:var(--font-body);font-size:11px;color:var(--mist);cursor:default;transition:color .2s}
+.hms-active{color:var(--teal);background:var(--teal-dim);border-right:2px solid var(--teal)}
+.hero-mock-main{flex:1;padding:16px 20px;overflow:hidden}
+.hero-mock-header{font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--cloud);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.hero-mock-badge{font-size:10px;font-weight:600;color:var(--warn);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2);border-radius:20px;padding:2px 10px}
+.hero-mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.hero-mock-stat{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.hero-mock-stat-label{font-family:var(--font-body);font-size:10px;color:var(--steel);margin-bottom:4px}
+.hero-mock-stat-val{font-family:var(--font-display);font-size:18px;font-weight:800;font-variant-numeric:tabular-nums}
+.hero-mock-stat-warn{color:var(--warn)}
+.hero-mock-stat-teal{color:var(--teal)}
+.hero-mock-stat-green{color:var(--success)}
+.hero-mock-table{border:1px solid var(--border);border-radius:8px;overflow:hidden;font-family:var(--font-body);font-size:11px}
+.hero-mock-row{display:grid;grid-template-columns:2fr 0.5fr 0.8fr 1fr;padding:8px 12px;border-bottom:1px solid var(--border);color:var(--steel);align-items:center}
+.hero-mock-row:last-child{border-bottom:none}
+.hero-mock-row-head{font-weight:600;color:var(--mist);font-size:10px;text-transform:uppercase;letter-spacing:.06em;background:rgba(4,14,26,.5)}
+.hero-epc{font-family:var(--font-display);font-weight:800;font-size:13px;width:24px;height:24px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center}
+.hero-epc-c{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
+.hero-epc-d{background:rgba(239,68,68,.15);color:#EF4444;border:1px solid rgba(239,68,68,.3)}
+.hero-epc-e{background:rgba(239,68,68,.2);color:#EF4444;border:1px solid rgba(239,68,68,.4)}
+.hero-status-pass{color:var(--success);font-weight:600}
+.hero-status-fail{color:var(--warn);font-weight:600}
+@media(max-width:768px){
+  .hero-mock-sidebar{display:none}
+  .hero-mock-stats{grid-template-columns:1fr}
+  .hero-mock-row{grid-template-columns:2fr 0.5fr 1fr;font-size:10px}
+  .hero-mock-row span:last-child{display:none}
+  .hero-mock-body{min-height:auto}
+}
 
 /* 1440px+ hero: wider visual column */
 @media(min-width:1440px){
