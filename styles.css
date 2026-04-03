@@ -215,7 +215,8 @@ nav.scrolled {
   background: rgba(4, 14, 26, 0.88);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(12, 201, 168, 0.08);
+  border-bottom: 1px solid rgba(12, 201, 168, 0.18);
+  box-shadow: 0 1px 12px rgba(12, 201, 168, 0.06);
 }
 nav .wrap {
   height: 100%;
@@ -397,18 +398,18 @@ nav .wrap {
 .ds-btn{font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;background:var(--teal);color:var(--bg);border:none;border-radius:8px;padding:11px 20px;cursor:pointer}
 .ds-result-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap}
 .ds-band-box{text-align:center}
-.ds-band-label{font-size:10px;color:var(--mist);margin-bottom:4px}
+.ds-band-label{font-size:10px;color:var(--steel);margin-bottom:4px}
 .ds-band{font-family:'Plus Jakarta Sans',sans-serif;font-size:2rem;font-weight:800;width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin:0 auto}
 .ds-band-d{background:rgba(239,68,68,.15);color:#EF4444;border:1px solid rgba(239,68,68,.3)}
 .ds-band-c{background:rgba(34,197,94,.15);color:#22C55E;border:1px solid rgba(34,197,94,.3)}
 .ds-band-sub{font-size:10px;color:var(--steel);margin-top:4px}
 .ds-arrow{font-size:18px;color:var(--mist)}
 .ds-penalty-box{background:rgba(245,158,11,.06);border:1px solid rgba(245,158,11,.2);border-radius:10px;padding:12px 16px;text-align:center}
-.ds-penalty-label{font-size:10px;color:var(--mist);margin-bottom:4px}
+.ds-penalty-label{font-size:10px;color:var(--steel);margin-bottom:4px}
 .ds-penalty-val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:var(--warn)}
 .ds-penalty-sub{font-size:10px;color:var(--steel);margin-top:2px}
 .ds-gaps{display:flex;flex-direction:column;gap:8px}
-.ds-gap-item{font-size:12.5px;color:var(--mist);display:flex;align-items:flex-start;gap:8px}
+.ds-gap-item{font-size:12.5px;color:var(--steel);display:flex;align-items:flex-start;gap:8px}
 .ds-gap-dot{width:5px;height:5px;background:var(--teal);border-radius:50%;flex-shrink:0;margin-top:5px}
 .ds-report-preview{background:var(--surf);border:1px solid var(--border2);border-radius:12px;padding:20px 22px;margin-bottom:16px}
 .ds-report-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
@@ -847,7 +848,7 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primar
 .step-icon-wrap{width:48px;height:48px;margin-bottom:14px;color:var(--teal)}
 .step-icon-wrap svg{width:48px;height:48px}
 .step-title-new{font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;color:var(--cloud);margin-bottom:8px}
-.step-desc-new{font-size:13px;color:var(--mist);line-height:1.6}
+.step-desc-new{font-size:13px;color:var(--steel);line-height:1.6}
 @media(max-width:1024px){.steps-grid-3{grid-template-columns:repeat(2,1fr)!important}}
 @media(max-width:640px){.steps-grid-3{grid-template-columns:1fr!important}}
 
@@ -967,8 +968,10 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primar
 }
 
 /* ── NAV SCROLL-SPY ACTIVE STATE ── */
-.nav-link-active{color:var(--teal);position:relative}
-.nav-link-active::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--teal);border-radius:1px}
+.nav-links a{position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:2px;background:var(--teal);border-radius:1px;transform:scaleX(0);transition:transform 0.3s cubic-bezier(0.16,1,0.3,1)}
+.nav-link-active{color:var(--teal)}
+.nav-link-active::after{transform:scaleX(1)}
 
 /* ── HERO PENALTY CALLOUT ── */
 .hero-penalty-banner{display:flex;align-items:flex-start;gap:10px;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:10px 16px;margin:1.25rem auto 1.5rem;font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.55;max-width:620px;text-align:left}
@@ -1502,6 +1505,40 @@ body.no-scroll{overflow:hidden;position:fixed;width:100%;top:0}
 
 /* GAP-06: Prose max-width 65ch — additional selectors */
 .article-body p,.section-padding p,.ca-about-section p,.csrd-copy p,.contact-desc{max-width:65ch}
+/* Legal pages: remove 65ch cap so text fills the wider container */
+.legal-page p,.legal-content p{max-width:none}
+
+/* ── CrowMark product page grids ── */
+.cm-features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cm-steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cm-pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+@media(max-width:1024px){
+  .cm-steps-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .cm-features-grid{grid-template-columns:1fr}
+  .cm-steps-grid{grid-template-columns:1fr}
+  .cm-pricing-grid{grid-template-columns:1fr;max-width:420px;margin-inline:auto}
+}
+
+/* ── CrowMark pricing card styles ── */
+.pricing-card{background:linear-gradient(145deg,var(--surf) 0%,var(--surf2) 100%);border:1px solid var(--border);border-radius:var(--r2);padding:32px 28px;display:flex;flex-direction:column;gap:0;transition:border-color .2s,transform .2s}
+.pricing-card:hover{border-color:rgba(12,201,168,.25);transform:translateY(-4px)}
+.pricing-card--popular{border-color:var(--teal);position:relative}
+.pricing-card-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--teal);color:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:20px;white-space:nowrap}
+.pricing-card-tier{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.25rem;font-weight:700;color:var(--cloud);margin-bottom:4px}
+.pricing-card .product-price-hint{font-size:2rem;font-style:normal;color:var(--cloud);font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;margin-bottom:4px}
+.pricing-card .product-price-unit{font-size:1rem;font-weight:500;color:var(--steel)}
+.pricing-card-desc{font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);margin-bottom:20px;padding-bottom:20px;border-bottom:1px solid var(--border)}
+.pricing-card-list{list-style:none;padding:0;margin:0 0 24px;display:flex;flex-direction:column;gap:10px}
+.pricing-card-list li{font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);display:flex;align-items:center;gap:8px}
+.pricing-card-list .check{color:var(--teal);font-weight:700;flex-shrink:0}
+.pricing-card .btn-hero{width:100%;text-align:center;justify-content:center;margin-top:auto}
+.pricing-card-footnote{font-family:'Inter',sans-serif;font-size:13px;color:var(--mist);text-align:center;margin-top:16px}
+.pricing-card-footnote a{color:var(--teal)}
+@media(max-width:768px){
+  .pricing-card{padding:28px 20px}
+}
 
 /* GAP-13: Plan toggle mobile responsive */
 .toggle-row,.ptabs{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
@@ -2671,6 +2708,14 @@ nav .wrap {
   flex-wrap: wrap;
   align-items: center;
 }
+@media(max-width:768px) {
+  .product-cta-row { flex-direction: column; align-items: stretch; }
+  .product-cta-row .btn-hero,
+  .product-cta-row .btn-hero-out { width: 100%; text-align: center; justify-content: center; box-sizing: border-box; white-space: normal; }
+}
+@media(max-width:480px) {
+  .product-cta-row .btn-hero { font-size: 15px; padding: 14px 20px; }
+}
 
 /* CSRD wizard layout utilities */
 .csrd-step-nav {
@@ -3130,4 +3175,50 @@ textarea.form-input {
     padding-left: 0;
     border-left: none;
   }
+}
+
+/* ═══════════════════════════════════════════════
+   VISUAL TOKEN REFINEMENTS — April 2026
+   Teal glow, tabular nums, consistent motion
+   ═══════════════════════════════════════════════ */
+
+/* Teal glow shadow on primary CTA buttons */
+.btn-hero,
+.btn-primary {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(12, 201, 168, 0.2),
+    0 0 0 1px rgba(10, 168, 140, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn-hero:hover,
+.btn-primary:hover {
+  box-shadow:
+    0 6px 20px rgba(12, 201, 168, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 0 1px var(--teal-d),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+/* Tabular nums for currency, prices, countdowns */
+.ds-penalty-val,
+.product-price-hint,
+.pricing-card .product-price-hint,
+.pgc-price,
+.ca-price,
+.countdown,
+.stat-value,
+.nav-price-hint {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Consistent 0.8s section reveal timing */
+.reveal {
+  transition-duration: 0.8s;
+}
+
+/* Light theme nav glow */
+[data-theme="light"] nav.scrolled {
+  border-bottom: 1px solid rgba(12, 201, 168, 0.12);
+  box-shadow: 0 1px 8px rgba(12, 201, 168, 0.04);
 }

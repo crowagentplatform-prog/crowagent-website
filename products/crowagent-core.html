@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-  <link rel="stylesheet" href="/styles.min.css?v=42">
+  <link rel="stylesheet" href="/styles.min.css?v=43">
 <link rel="stylesheet" href="print.css" media="print">
   <style>
     .core-feature-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
@@ -35,6 +35,12 @@
       .core-feature-grid { grid-template-columns:1fr; }
       .core-steps { flex-direction:column; }
       .core-pricing-grid { grid-template-columns:1fr; }
+      .product-cta-row { flex-direction:column; align-items:stretch; }
+      .product-cta-row .btn-hero,
+      .product-cta-row .btn-hero-out { width:100%; text-align:center; justify-content:center; box-sizing:border-box; white-space:normal; }
+    }
+    @media(max-width:480px) {
+      .product-section--hero .btn-hero { font-size:15px; padding:14px 20px; }
     }
   </style>
 </head>
