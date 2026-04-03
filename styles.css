@@ -2173,11 +2173,6 @@ footer,
   z-index: 1;
 }
 
-section {
-  position: relative;
-  z-index: 1;
-}
-
 /* ── DYNAMIC NAVIGATION ENHANCEMENTS — WP-WEB-008 FIX-I ── */
 nav.scrolled .wrap,
 nav.scrolled [class*="nav-inner"] {
