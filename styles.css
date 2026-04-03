@@ -3079,3 +3079,42 @@ textarea.form-input {
     inset 0 0 0 1px rgba(239, 68, 68, 0.4),
     0 0 0 3px rgba(239, 68, 68, 0.12);
 }
+
+/* =============================================================
+   WP-WEB-012: DESKTOP ASYMMETRY ENFORCEMENT
+   Forces left-alignment on sections that were previously centered
+   ============================================================= */
+
+@media (min-width: 768px) {
+  /* 1. Fix the Live Demo Widget Text */
+  #live-demo .wrap {
+    text-align: left;
+  }
+
+  /* 2. Fix the CSRD Band */
+  .csrd-band-inner {
+    text-align: left;
+  }
+
+  /* 3. Fix the Pricing Teaser */
+  .ca-pricing-teaser {
+    text-align: left;
+  }
+  .ca-pricing-teaser .cta-band-sub {
+    margin-left: 0;
+  }
+  .ca-pricing-teaser .hero-btns {
+    justify-content: flex-start;
+  }
+
+  /* 4. Fix the bottom CTA Band */
+  .cta-band .wrap {
+    text-align: left;
+  }
+  .cta-band .cta-band-sub {
+    margin-left: 0;
+  }
+  .cta-band .hero-btns {
+    justify-content: flex-start;
+  }
+}
