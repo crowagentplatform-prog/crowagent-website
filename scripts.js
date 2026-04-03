@@ -1,4 +1,4 @@
-var APP_VERSION = '38';
+var APP_VERSION = '39';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load

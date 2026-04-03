@@ -25,14 +25,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=38">
+<link rel="stylesheet" href="styles.min.css?v=39">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
 
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="wrap">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -125,52 +125,36 @@
 </div>
 
 <main id="main-content">
-  <section class="container-text" style="padding:80px clamp(20px,4vw,56px);">
+  <section class="container-text section-padding">
 
-    <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-size:12px; font-weight:700; letter-spacing:.14em;
-                text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+    <div class="page-label">
       About
     </div>
 
-    <h1 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800;
-                color:var(--cloud); letter-spacing:-.025em; line-height:1.15;
-                margin-bottom:24px;">
+    <h1 class="page-title">
       Compliance software built for<br>UK organisations
     </h1>
 
-    <p style="font-family:var(--font-body,'Inter',sans-serif);
-               font-size:17px; color:var(--steel); line-height:1.8;
-               margin-bottom:32px; max-width:640px;">
+    <p class="page-intro">
       CrowAgent builds software that helps UK organisations work through
       MEES, PPN 002, CSRD, and related compliance requirements using workflows
       grounded in the source regulations, not generic consulting advice.
     </p>
 
     <!-- Mission card -->
-    <div style="background:var(--surf); border:1px solid var(--border);
-                border-left:3px solid var(--teal); border-radius:16px;
-                padding:24px 28px; margin-bottom:32px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                   font-size:12px; font-weight:700; letter-spacing:.12em;
-                   text-transform:uppercase; color:var(--mist); margin-bottom:10px;">
+    <div class="about-card accent-teal">
+      <div class="about-card-label">
         Our mission
       </div>
-      <p style="font-family:var(--font-body,'Inter',sans-serif);
-                 font-size:16px; color:var(--cloud); line-height:1.75; margin:0;">
+      <p>
         To make sustainability compliance accessible, affordable, and verifiable
         for every UK organisation — not just those who can afford consultants.
       </p>
     </div>
 
     <!-- Vision card -->
-    <div style="background:var(--surf); border:1px solid var(--border);
-                border-left:3px solid var(--teal); border-radius:16px;
-                padding:24px 28px; margin-bottom:32px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                   font-size:12px; font-weight:700; letter-spacing:.12em;
-                   text-transform:uppercase; color:var(--mist); margin-bottom:10px;">
+    <div class="about-card accent-teal">
+      <div class="about-card-label">
         Our vision
       </div>
       <blockquote class="vision-quote" style="margin:0;">
@@ -180,23 +164,18 @@
     </div>
 
     <!-- Company registration card -->
-    <div style="background:var(--surf); border:1px solid var(--border);
-                border-radius:16px; padding:24px 28px; margin-bottom:32px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                   font-size:12px; font-weight:700; letter-spacing:.12em;
-                   text-transform:uppercase; color:var(--mist); margin-bottom:16px;">
+    <div class="about-card">
+      <div class="about-card-label">
         Company details
       </div>
-      <div style="display:grid; gap:8px; font-family:var(--font-body,'Inter',sans-serif);
-                   font-size:14px; color:var(--steel); line-height:1.8;">
-        <div><span style="color:var(--mist);">Registered name</span>&nbsp;&nbsp;CrowAgent Ltd</div>
-        <div><span style="color:var(--mist);">Company number</span>&nbsp;&nbsp;17076461</div>
-        <div><span style="color:var(--mist);">Registered in</span>&nbsp;&nbsp;England and Wales</div>
-        <div><span style="color:var(--mist);">Data protection</span>&nbsp;&nbsp;ICO registered · UK data residency</div>
-        <div><span style="color:var(--mist);">Founded</span>&nbsp;&nbsp;2026</div>
-        <div><span style="color:var(--mist);">Contact</span>&nbsp;&nbsp;
-          <a href="mailto:hello@crowagent.ai"
-             style="color:var(--teal); text-decoration:none;">
+      <div class="company-details-grid">
+        <div><span class="company-details-label">Registered name</span>&nbsp;&nbsp;CrowAgent Ltd</div>
+        <div><span class="company-details-label">Company number</span>&nbsp;&nbsp;17076461</div>
+        <div><span class="company-details-label">Registered in</span>&nbsp;&nbsp;England and Wales</div>
+        <div><span class="company-details-label">Data protection</span>&nbsp;&nbsp;ICO registered · UK data residency</div>
+        <div><span class="company-details-label">Founded</span>&nbsp;&nbsp;2026</div>
+        <div><span class="company-details-label">Contact</span>&nbsp;&nbsp;
+          <a href="mailto:hello@crowagent.ai">
             hello@crowagent.ai
           </a>
         </div>
@@ -204,20 +183,11 @@
     </div>
 
     <!-- CTA -->
-    <div style="display:flex; gap:16px; flex-wrap:wrap;">
-      <a href="https://app.crowagent.ai/signup"
-         style="display:inline-block; background:var(--teal); color:var(--bg);
-                font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-weight:700; font-size:14px; padding:14px 28px;
-                border-radius:8px; text-decoration:none;">
+    <div class="cta-row">
+      <a href="https://app.crowagent.ai/signup" class="btn-primary">
         Start free trial →
       </a>
-      <a href="/demo"
-         style="display:inline-block; background:transparent; color:var(--steel);
-                border:1px solid var(--border2);
-                font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-weight:700; font-size:14px; padding:14px 28px;
-                border-radius:8px; text-decoration:none;">
+      <a href="/demo" class="btn-ghost-sm">
         Book a demo
       </a>
     </div>
@@ -309,22 +279,15 @@
     </style>
 
     <div class="container-text" style="margin-top:56px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                  font-size:12px; font-weight:700; letter-spacing:.14em;
-                  text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+      <div class="page-label">
         Meet the Founders
       </div>
 
-      <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                  font-size:clamp(1.4rem,2.8vw,2rem); font-weight:800;
-                  color:var(--cloud); letter-spacing:-.025em; line-height:1.2;
-                  margin-bottom:16px;">
+      <h2 class="u-h2-display">
         Built by People Who Care
       </h2>
 
-      <p style="font-family:var(--font-body,'Inter',sans-serif);
-                 font-size:15px; color:var(--steel); line-height:1.75;
-                 margin-bottom:32px; max-width:640px;">
+      <p class="page-intro">
         CrowAgent was founded by two people who believe sustainability compliance
         shouldn't require expensive consultants. We're building the tools that make
         regulatory intelligence accessible to every organisation.
@@ -372,16 +335,11 @@
     </div>
 
     <!-- ── OUR APPROACH ── -->
-    <div class="container-standard" style="background:var(--surf); border:1px solid var(--border);
-                border-left:3px solid var(--teal); border-radius:16px;
-                padding:24px 28px; margin-top:40px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                   font-size:12px; font-weight:700; letter-spacing:.12em;
-                   text-transform:uppercase; color:var(--mist); margin-bottom:10px;">
+    <div class="about-card accent-teal" style="margin-top:40px;">
+      <div class="about-card-label">
         Our Approach
       </div>
-      <p style="font-family:var(--font-body,'Inter',sans-serif);
-                 font-size:16px; color:var(--cloud); line-height:1.75; margin:0;">
+      <p>
         We don't believe compliance needs to be complicated. CrowAgent combines AI
         intelligence with regulatory expertise to deliver answers in minutes, not months.
         Every feature we build is grounded in actual UK regulation — SI 2015/962 for
@@ -391,10 +349,10 @@
 
   </section>
 
-<section class="founders-section" style="padding:64px 0;border-top:1px solid var(--border);">
+<section class="founders-section section-padding section-divider">
   <div class="wrap container-text">
-    <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">The team</div>
-    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;color:var(--cloud);margin-bottom:8px;">Founded to remove compliance friction</h2>
+    <div class="page-label">The team</div>
+    <h2 class="u-h2-display">Founded to remove compliance friction</h2>
     <div class="founders-content">
       <div class="founder-quote-block">
         <blockquote>
@@ -545,7 +503,7 @@
   </div>
 </div>
 
-<script src="scripts.min.js?v=38" defer></script>
+<script src="scripts.min.js?v=39" defer></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>

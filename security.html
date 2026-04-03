@@ -26,14 +26,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-<link rel="stylesheet" href="styles.min.css?v=38">
+<link rel="stylesheet" href="styles.min.css?v=39">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
 
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="wrap">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -125,16 +125,16 @@
 </div>
 
 <main id="main-content">
-  <section style="max-width:900px; margin:0 auto; padding:80px clamp(20px,4vw,56px);">
+  <section class="product-section product-section--hero">
 
     <!-- Eyebrow -->
-    <p style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 12px">Security &amp; Trust</p>
+    <p class="page-label">Security &amp; Trust</p>
 
     <!-- H1 -->
-    <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;color:var(--cloud);letter-spacing:-.025em;margin:0 0 16px;line-height:1.15">Enterprise-grade security from day one</h1>
+    <h1 class="page-title">Enterprise-grade security from day one</h1>
 
     <!-- Subheading -->
-    <p style="font-family:'Inter',sans-serif;font-size:16px;color:var(--steel);line-height:1.75;margin:0 0 40px;max-width:720px">CrowAgent is built on UK infrastructure with data protection, encryption, and access controls designed for regulated industry use.</p>
+    <p class="hero-sub">CrowAgent is built on UK infrastructure with data protection, encryption, and access controls designed for regulated industry use.</p>
 
     <!-- Security cards grid -->
     <style>
@@ -199,37 +199,37 @@
     </div>
 
     <!-- Separator -->
-    <div style="border-top:1px solid var(--border);margin:40px 0"></div>
+    <div class="divider"></div>
 
     <!-- Vulnerability disclosure -->
-    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--cloud);margin:0 0 8px">Vulnerability disclosure</h3>
-    <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);line-height:1.7;margin:0 0 32px">If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:hello@crowagent.ai?subject=Security%20Disclosure" style="color:var(--teal)">hello@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
+    <h3 class="sec-card-title">Vulnerability disclosure</h3>
+    <p class="sec-card-body">If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:hello@crowagent.ai?subject=Security%20Disclosure">hello@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
 
     <!-- Uptime commitment -->
-    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--cloud);margin:0 0 8px">Uptime commitment</h3>
-    <p style="font-family:'Inter',sans-serif;font-size:14px;color:var(--steel);line-height:1.7;margin:0 0 32px">CrowAgent targets 99.9% monthly uptime. For current system status, contact <a href="mailto:hello@crowagent.ai?subject=Status%20Enquiry" style="color:var(--teal)">hello@crowagent.ai</a> with subject 'Status Enquiry'. We will publish a status page at status.crowagent.ai in Q2 2026.</p>
+    <h3 class="sec-card-title">Uptime commitment</h3>
+    <p class="sec-card-body">CrowAgent targets 99.9% monthly uptime. For current system status, contact <a href="mailto:hello@crowagent.ai?subject=Status%20Enquiry">hello@crowagent.ai</a> with subject 'Status Enquiry'. We will publish a status page at status.crowagent.ai in Q2 2026.</p>
 
     <!-- Company & regulatory details -->
-    <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;color:var(--cloud);margin:0 0 16px">Company &amp; regulatory details</h3>
-    <div style="display:grid;grid-template-columns:auto 1fr;gap:8px 20px;font-family:'Inter',sans-serif;font-size:14px;line-height:1.7">
-      <span style="color:var(--steel)">ICO registration</span>
-      <span style="color:var(--cloud)">Registered with Information Commissioner's Office</span>
-      <span style="color:var(--steel)">Company</span>
-      <span style="color:var(--cloud)">CrowAgent Ltd &middot; Company No. 17076461</span>
-      <span style="color:var(--steel)">Registered</span>
-      <span style="color:var(--cloud)">England and Wales</span>
-      <span style="color:var(--steel)">Data controller</span>
-      <span style="color:var(--cloud)">CrowAgent Ltd</span>
-      <span style="color:var(--steel)">Contact</span>
-      <span style="color:var(--cloud)"><a href="mailto:hello@crowagent.ai" style="color:var(--teal)">hello@crowagent.ai</a></span>
+    <h3 class="sec-card-title">Company &amp; regulatory details</h3>
+    <div class="security-details-grid">
+      <span class="security-details-label">ICO registration</span>
+      <span class="security-details-value">Registered with Information Commissioner's Office</span>
+      <span class="security-details-label">Company</span>
+      <span class="security-details-value">CrowAgent Ltd &middot; Company No. 17076461</span>
+      <span class="security-details-label">Registered</span>
+      <span class="security-details-value">England and Wales</span>
+      <span class="security-details-label">Data controller</span>
+      <span class="security-details-value">CrowAgent Ltd</span>
+      <span class="security-details-label">Contact</span>
+      <span class="security-details-value"><a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a></span>
     </div>
 
   </section>
 
 <section class="security-practices section">
   <div class="container container-standard">
-    <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Technical security</div>
-    <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;color:var(--cloud);margin-bottom:24px;">How we protect your data</h2>
+    <div class="page-label">Technical security</div>
+    <h2 class="u-h2-display">How we protect your data</h2>
     <div class="security-grid">
       <div class="security-item">
         <h3>Encryption</h3>
@@ -371,7 +371,7 @@
   </div>
 </div>
 
-<script src="scripts.min.js?v=38" defer></script>
+<script src="scripts.min.js?v=39" defer></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>

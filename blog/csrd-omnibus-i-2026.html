@@ -199,7 +199,7 @@
 
 <!-- NAV -->
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="wrap">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -237,12 +237,12 @@
           <button class="locale-opt" role="menuitem" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>
           <button class="locale-opt" role="menuitem" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>
           <button class="locale-opt" role="menuitem" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>
-          <div class="locale-section-label" style="margin-top:6px">Currency</div>
+          <div class="locale-section-label locale-section-label-mt">Currency</div>
           <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
           <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
           <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>
           <div id="lang-tooltip" style="display:none;" role="status" aria-live="polite"></div>
-          <div class="locale-section-label" style="margin-top:6px">Theme</div>
+          <div class="locale-section-label locale-section-label-mt">Theme</div>
           <div class="theme-toggle-row">
             <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>
             <button class="theme-opt" type="button" data-theme-choice="light">Light</button>
@@ -277,13 +277,13 @@
       <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>
       <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>
     </div>
-    <div class="mob-locale-label" style="margin-top:10px">Currency</div>
+    <div class="mob-locale-label mob-locale-label-mt">Currency</div>
     <div class="mob-locale-row" id="mob-curr-row">
       <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
       <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
       <button class="mob-locale-btn" data-currency="USD">$ USD</button>
     </div>
-    <div class="mob-locale-label" style="margin-top:10px">Theme</div>
+    <div class="mob-locale-label mob-locale-label-mt">Theme</div>
     <div class="mob-theme-row">
       <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>
       <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>
@@ -424,9 +424,9 @@
 </article>
 
 <!-- Related articles -->
-<section style="padding:48px 0;border-top:1px solid var(--border);">
+<section class="section-padding--sm section-divider">
   <div class="wrap container-text">
-    <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--cloud);margin-bottom:20px;">Related articles</h2>
+    <h2 class="blog-related-heading">Related articles</h2>
     <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
       <a href="/blog/mees-band-c-2028.html" style="background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;display:block;">
         <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:600;color:var(--cloud);margin-bottom:6px;">MEES Band C 2028: What Commercial Landlords Need to Know</div>
@@ -444,7 +444,7 @@
 </section>
 
 <!-- CTA -->
-<section style="padding:48px 0;text-align:center;border-top:1px solid var(--border);">
+<section class="section-padding--sm section-divider text-center">
   <div class="wrap container-wide">
     <h2 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;color:var(--cloud);margin-bottom:12px;">Start with the workflow you need now</h2>
     <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:15px;color:var(--steel);margin-bottom:24px;">14-day free trial. No credit card required. Cancel anytime.</p>

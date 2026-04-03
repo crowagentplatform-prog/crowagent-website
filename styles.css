@@ -437,7 +437,7 @@ nav .wrap {
 
 /* STATS */
 .stats{padding:clamp(48px,6vw,72px) 0;border-bottom:1px solid var(--border)}
-.stats-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);text-align:center}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--grid-gap-lg);text-align:center}
 /* WP-WEB-006 Fix 7: Text gradient on stats + tabular figures */
 .sc-num{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,4vw,2.8rem);font-weight:800;line-height:1;margin-bottom:8px;background:linear-gradient(135deg,#9EFCE8 0%,var(--teal) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent}
 .sc-num,
@@ -451,8 +451,7 @@ nav .wrap {
   font-feature-settings: "tnum";
 }
 .sc-lbl{font-size:13px;color:var(--steel);line-height:1.4}
-@media(min-width:640px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+/* stats-grid breakpoints removed — auto-fit handles responsiveness */
 /* SECTION HEADERS */
 .sh h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-h2,clamp(1.9rem,1.5rem + 2.5vw,3rem));font-weight:800;color:var(--cloud);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px}
 .sh-label,.section-label{display:flex;align-items:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:var(--font-size-xs,0.75rem);font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
@@ -755,14 +754,13 @@ nav .wrap {
 .ca-about-section{padding:clamp(48px,6vw,80px) 0}
 .ca-about-section h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--cloud);margin-bottom:16px}
 .ca-about-section p{font-family:'Inter',sans-serif;font-size:15px;color:var(--steel);line-height:1.7;margin-bottom:14px}
-.ca-values-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:32px}
+.ca-values-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--grid-gap-lg);margin-top:32px}
 .ca-value-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px}
 .ca-value-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:var(--cloud);margin-bottom:8px}
 .ca-value-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.6;margin-bottom:0}
 .ca-trust-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
 .ca-trust-pill{font-family:'Inter',sans-serif;font-size:12px;color:var(--teal);border:1px solid var(--teal);border-radius:100px;padding:6px 16px}
-@media(min-width:640px){.ca-values-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.ca-values-grid{grid-template-columns:repeat(3,1fr)}}
+/* ca-values-grid breakpoints removed — auto-fit handles responsiveness */
 
 /* ROADMAP PAGE */
 .ca-roadmap-phase{margin-bottom:48px}
@@ -777,11 +775,11 @@ nav .wrap {
 .ca-roadmap-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.5;margin-bottom:12px}
 
 /* SECURITY PAGE */
-.ca-security-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:32px}
+.ca-security-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--grid-gap-lg);margin-top:32px}
 .ca-security-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:28px 24px}
 .ca-security-card h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:700;color:var(--cloud);margin-bottom:8px}
 .ca-security-card p{font-family:'Inter',sans-serif;font-size:13px;color:var(--steel);line-height:1.6;margin-bottom:0}
-@media(min-width:768px){.ca-security-grid{grid-template-columns:repeat(2,1fr)}}
+/* ca-security-grid breakpoint removed — auto-fit handles responsiveness */
 
 /* FAQ */
 .ca-faq{max-width:760px;margin:0 auto;padding:0 24px 48px}
@@ -1135,8 +1133,7 @@ textarea:focus,
 .resources-hero .sh-label{color:var(--teal,#0CC9A8);font-family:'Inter',sans-serif;font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
 .resources-hero h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;color:var(--cloud,#E4ECF7);margin:0 auto 16px}
 .resources-hero .resources-subtitle{font-family:'Inter',sans-serif;font-size:17px;color:var(--steel,#8A9DB8);max-width:560px;margin:0 auto;line-height:1.7}
-.resources-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:900px;margin:0 auto 80px;padding:0 20px}
-@media(max-width:700px){.resources-grid{grid-template-columns:1fr;max-width:500px}}
+.resources-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:28px;max-width:900px;margin:0 auto 80px;padding:0 20px}
 .resource-card{background:var(--navy2,#0D2847);border:1px solid rgba(138,157,184,0.1);border-radius:16px;padding:32px 28px;transition:transform 0.2s ease,border-color 0.2s ease;display:flex;flex-direction:column}
 .resource-card:hover{transform:translateY(-4px);border-color:var(--teal,#0CC9A8)}
 .resource-card a{text-decoration:none;color:inherit;display:flex;flex-direction:column;flex:1}
@@ -1567,19 +1564,15 @@ body{overscroll-behavior-x:none}
   .ca-security-grid{gap:var(--grid-gap-lg)}
 }
 
-/* GAP-19: Product page step cards — ensure 4-col option exists */
-.steps-grid-4{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
-@media(min-width:640px){.steps-grid-4{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.steps-grid-4{grid-template-columns:repeat(4,1fr)}}
+/* GAP-19: Product page step cards — fluid auto-fit */
+.steps-grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:var(--grid-gap-lg);margin-top:clamp(32px,4vw,48px)}
 
 /* Hero trust strip — override earlier nowrap for 2x2 layout */
 @media(max-width:767px){
   .hero-trust{flex-wrap:wrap;overflow-x:visible}
 }
 
-/* Blog articles grid — explicit mobile-first */
-@media(min-width:640px){.blog-articles-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.blog-articles-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+/* blog-articles-grid breakpoints removed — base rule already uses auto-fit */
 
 /* Contact grid mobile-first fix */
 .contact-grid{display:grid;grid-template-columns:1fr;gap:2rem}
@@ -1615,9 +1608,7 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
    ============================================================= */
 
 /* Blog index: real class is .article-grid (not .blog-articles-grid) */
-.article-grid{display:grid;grid-template-columns:1fr;gap:var(--grid-gap-lg)}
-@media(min-width:640px){.article-grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1024px){.article-grid{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}}
+.article-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:var(--grid-gap-lg)}
 
 /* About page: real class is .founders-grid (not .ca-founders-grid) */
 .founders-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:24px;margin-top:32px}
@@ -2177,4 +2168,783 @@ footer,
 nav.scrolled .wrap,
 nav.scrolled [class*="nav-inner"] {
   height: 52px;
+}
+
+/* =============================================================
+   WP-WEB-010: Utility classes — replacing inline styles
+   ============================================================= */
+
+/* Section divider — replaces inline border-top on sections */
+.section-divider { border-top: 1px solid var(--border); }
+
+/* Text alignment utilities */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+/* Padding-bottom utilities */
+.pb-compact { padding-bottom: var(--section-pad-compact); }
+.pb-sm { padding-bottom: 2rem; }
+.pb-0 { padding-bottom: 0; }
+
+/* FAQ answer styling — replaces inline styles on FAQ answer divs */
+.faq-answer {
+  padding: 12px 20px 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.7;
+}
+
+/* FAQ question styling — replaces inline styles on summary elements */
+.faq-q-styled {
+  cursor: pointer;
+  padding: 16px 20px;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cloud);
+  list-style: none;
+}
+.faq-q-styled::-webkit-details-marker { display: none; }
+
+/* Product page section container — replaces inline max-width/margin/padding */
+.product-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--section-pad-compact) clamp(20px, 4vw, 56px);
+}
+.product-section--hero {
+  padding-top: var(--section-pad-secondary);
+  padding-bottom: var(--section-pad-compact);
+}
+.product-section--flush { padding-top: 0; }
+
+/* Pricing comparison table styling — replaces inline table styles */
+.comparison-table { width: 100%; border-collapse: collapse; }
+.comparison-table th,
+.comparison-table td { padding: 10px 16px; }
+.comparison-table th { text-align: center; }
+.comparison-table td:first-child { color: var(--cloud); }
+.comparison-table td:not(:first-child) { text-align: center; }
+.comparison-table thead tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
+.comparison-table tbody tr { border-bottom: 1px solid rgba(255,255,255,0.05); }
+.comparison-table tbody tr:last-child { border-bottom: none; }
+.comparison-table .check { color: var(--teal); }
+
+/* =============================================================
+   WP-WEB-010: GLOBAL SITE-WIDE REFACTOR
+   Fluid grids, premium cards, glassmorphism, trench inputs,
+   asymmetric layouts, spring physics, section header alignment
+   ============================================================= */
+
+/* ── TASK 1: SUBGRID — pricing & feature grids ── */
+.pgrid {
+  grid-template-rows: masonry;
+}
+@supports (grid-template-rows: subgrid) {
+  .pgrid > .pgc {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 6;
+  }
+}
+
+/* ── TASK 2: PREMIUM CARD SURFACES — gradient bg, deep shadow, inner highlight ── */
+.uc,
+.hw,
+.sector,
+.pc:not(.pc-locked):not(.pc-p3),
+.tc,
+.pgc,
+.resource-card,
+.u-card,
+.security-item,
+.roadmap-item,
+.shipping-item,
+.founder-card,
+.about-card,
+.contact-card {
+  background: linear-gradient(145deg, var(--surf) 0%, var(--surf2) 100%);
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  border: none;
+  border-radius: var(--r2);
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.uc:hover,
+.hw:hover,
+.sector:hover,
+.pc:not(.pc-locked):not(.pc-p3):hover,
+.tc:hover,
+.pgc:hover,
+.resource-card:hover,
+.u-card:hover,
+.security-item:hover,
+.roadmap-item:hover,
+.shipping-item:hover,
+.founder-card:hover,
+.contact-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 12px 40px -12px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(12, 201, 168, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* Light mode premium cards */
+[data-theme="light"] .uc,
+[data-theme="light"] .hw,
+[data-theme="light"] .sector,
+[data-theme="light"] .pc:not(.pc-locked):not(.pc-p3),
+[data-theme="light"] .tc,
+[data-theme="light"] .pgc,
+[data-theme="light"] .resource-card,
+[data-theme="light"] .u-card,
+[data-theme="light"] .security-item,
+[data-theme="light"] .founder-card,
+[data-theme="light"] .contact-card {
+  background: linear-gradient(145deg, var(--surf) 0%, var(--surf2) 100%);
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ── TASK 2: GLASSMORPHISM — product mock screens ── */
+.product-mock-screen {
+  background: rgba(13, 40, 71, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+[data-theme="light"] .product-mock-screen {
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 24px 48px -12px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* ── TASK 2: TRENCH INPUTS — stamped-in look ── */
+.form-input,
+.ca-notify-input,
+.notify-input,
+#demo-postcode,
+.csrd-option input,
+#csrd-email {
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--cloud);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.form-input:focus,
+.ca-notify-input:focus,
+.notify-input:focus,
+#demo-postcode:focus,
+#csrd-email:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px var(--teal),
+    0 0 0 4px rgba(12, 201, 168, 0.15);
+}
+[data-theme="light"] .form-input,
+[data-theme="light"] .ca-notify-input,
+[data-theme="light"] #demo-postcode,
+[data-theme="light"] #csrd-email {
+  background: var(--surf2);
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.06),
+    inset 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* ── TASK 3: SECTION HEADER LEFT-ALIGNMENT ON DESKTOP ── */
+.sh { text-align: center; }
+.sh .sh-label { justify-content: center; }
+@media (min-width: 768px) {
+  .sh { text-align: left; }
+  .sh .sh-label { justify-content: flex-start; }
+}
+
+/* ── TASK 3: HERO BUTTON ENGINEERED VOLUME ── */
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--bg);
+  background: linear-gradient(180deg, var(--teal) 0%, var(--teal-d) 100%);
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.2),
+    0 4px 12px rgba(12, 201, 168, 0.2),
+    0 0 0 1px rgba(10, 168, 140, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-hero:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 20px rgba(12, 201, 168, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.2),
+    0 0 0 1px var(--teal-d),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.btn-hero-out {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cloud);
+  background: transparent;
+  padding: 16px 32px;
+  border-radius: 12px;
+  border: 1px solid var(--border2);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
+}
+.btn-hero-out:hover {
+  transform: translateY(-2px);
+  border-color: var(--teal);
+  color: var(--teal);
+  box-shadow:
+    0 0 0 1px rgba(12, 201, 168, 0.25),
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    inset 0 0 20px rgba(12, 201, 168, 0.04);
+}
+
+/* ── TASK 4: SPRING PHYSICS ON .reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-3 { transition-delay: 0.24s; }
+.reveal-delay-4 { transition-delay: 0.32s; }
+
+/* ── WP-WEB-010: UTILITY CLASSES FOR INLINE STYLE PURGE ── */
+
+/* Nav inner layout — replaces inline style="display:flex;align-items:center;justify-content:space-between;height:64px" */
+nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Announce bar wrap layout */
+.announce-bar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  height: 100%;
+  position: relative;
+}
+
+/* Hero wrap positioning */
+.hero .wrap { position: relative; z-index: 1; }
+
+/* Section header utilities — for centered headers that should now use .sh */
+.sh-center { text-align: center; }
+.sh-center .sh-label { justify-content: center; }
+
+/* Card accent borders */
+.accent-teal { border-left: 3px solid var(--teal); }
+.accent-lime { border-left: 3px solid var(--lime); }
+.accent-sky { border-left: 3px solid var(--sky); }
+.accent-mark { border-left: 3px solid var(--mark); }
+
+/* About page card */
+.about-card {
+  background: linear-gradient(145deg, var(--surf) 0%, var(--surf2) 100%);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.about-card-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--mist);
+  margin-bottom: 10px;
+}
+
+/* Contact page cards */
+.contact-card {
+  padding: 24px;
+  border-radius: 16px;
+}
+.contact-card-label {
+  font-size: 11px;
+  color: var(--mist);
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+}
+.contact-card-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cloud);
+  margin-bottom: 8px;
+}
+.contact-card-desc {
+  font-size: 13px;
+  color: var(--steel);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+/* Company details grid */
+.company-details-grid {
+  display: grid;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.8;
+}
+.company-details-label {
+  color: var(--mist);
+}
+
+/* About page hero text */
+.page-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 12px;
+}
+.page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 800;
+  color: var(--cloud);
+  letter-spacing: -.025em;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+.page-intro {
+  font-family: 'Inter', sans-serif;
+  font-size: 17px;
+  color: var(--steel);
+  line-height: 1.8;
+  margin-bottom: 32px;
+  max-width: 640px;
+}
+
+/* CTA button row */
+.cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Product price hint */
+.product-price-hint {
+  font-size: 14px;
+  color: var(--mist);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  font-family: 'Inter', sans-serif;
+}
+.product-price-hint strong {
+  color: var(--cloud);
+  font-style: normal;
+}
+
+/* Product CTA row */
+.product-cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* CSRD wizard layout utilities */
+.csrd-step-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+.csrd-step-nav-end {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+.csrd-step-nav-start {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 24px;
+}
+.csrd-dots-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.csrd-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.csrd-step-title {
+  text-align: center;
+  margin-bottom: 8px;
+}
+.csrd-step-desc {
+  text-align: center;
+  color: var(--steel);
+  margin-bottom: 28px;
+  font-size: 14px;
+}
+.csrd-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.csrd-email-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, .1);
+  background: var(--bg);
+  color: var(--cloud);
+  font-size: 15px;
+}
+.csrd-disclaimer {
+  text-align: center;
+  color: var(--steel);
+  font-size: 12px;
+  margin-top: 16px;
+}
+
+/* Live demo widget card */
+.demo-widget-card {
+  background: linear-gradient(145deg, var(--surf) 0%, var(--surf2) 100%);
+  border-radius: 20px;
+  padding: 28px 32px;
+  text-align: left;
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.demo-widget-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.demo-widget-input {
+  flex: 1;
+  min-width: 180px;
+  height: 48px;
+  padding: 0 16px;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.demo-widget-btn {
+  height: 48px;
+  padding: 0 24px;
+  background: var(--teal);
+  color: var(--bg);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.demo-widget-note {
+  font-size: 12px;
+  color: var(--mist);
+  margin-top: 14px;
+  font-family: 'Inter', sans-serif;
+}
+.demo-widget-note a {
+  color: var(--teal);
+  text-decoration: none;
+}
+
+/* Pricing toggle labels */
+.toggle-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+.toggle-label-save {
+  font-size: 11px;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* Pricing small note */
+.pricing-note {
+  font-size: 12px;
+  color: var(--steel);
+  margin: 16px auto 48px;
+  text-align: center;
+  max-width: 700px;
+  padding: 0 24px;
+}
+.pricing-note a {
+  color: var(--teal);
+}
+
+/* Methodology card — override u-card for accent border */
+.methodology-card {
+  background: linear-gradient(145deg, var(--surf) 0%, var(--surf2) 100%);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow:
+    0 4px 24px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.methodology-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+  gap: 12px;
+  margin-top: 32px;
+}
+
+/* CTA band text */
+.cta-band-sub {
+  color: var(--steel);
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.cta-band .hero-btns {
+  justify-content: center;
+}
+
+/* Pricing teaser */
+.pricing-teaser-sub {
+  color: var(--steel);
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.pricing-teaser-note {
+  font-size: 12px;
+  color: var(--steel);
+  margin-top: 16px;
+}
+
+/* Tab screen dot colors */
+.tab-screen-dot-red { background: var(--err); }
+.tab-screen-dot-yellow { background: var(--warn); }
+.tab-screen-dot-green { background: var(--success); }
+
+/* Tab badge colors */
+.tab-badge-teal { color: var(--teal); }
+.tab-badge-lime { color: var(--lime); }
+.tab-badge-sky { color: var(--sky); }
+
+/* Tab screen stat colors */
+.tab-stat-teal { color: var(--teal); }
+.tab-stat-lime { color: var(--lime); }
+.tab-stat-sky { color: var(--sky); }
+
+/* Counter stat colors */
+.stat-teal { color: var(--teal); }
+.stat-lime { color: var(--lime); }
+.stat-sky { color: var(--sky); }
+
+/* Phase label margins */
+.phase-label-spaced { margin-top: 48px; }
+
+/* Phase card text */
+.pc-phase-text {
+  font-size: 11px;
+  color: var(--mist);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+/* CSRD band inline purge */
+.csrd-band-inner {
+  text-align: center;
+  padding: 48px 0;
+}
+
+/* Contact form page section */
+.contact-form-section .form-error-msg {
+  display: none;
+  font-size: 12px;
+  color: #EF4444;
+  margin-top: 4px;
+}
+
+/* Comparison table header styles */
+.comparison-table th {
+  font-weight: 600;
+  color: var(--cloud);
+  padding: 12px 16px;
+}
+.comparison-table th:first-child { text-align: left; }
+
+/* Mock gap bar fill */
+.mock-gap-fill { width: 40%; }
+
+/* Founders section inline purge */
+.founders-section .page-label,
+.founders-section .u-h2-display {
+  margin-bottom: 16px;
+}
+.comparison-table .dash { color: var(--steel); }
+
+/* Blog inline-style purge — related articles section */
+.blog-related-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--cloud);
+  margin-bottom: 20px;
+}
+.blog-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+.blog-related-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  text-decoration: none;
+  display: block;
+}
+.blog-related-card:hover { border-color: rgba(12,201,168,.3); }
+.blog-related-card-title {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cloud);
+  margin-bottom: 6px;
+}
+.blog-related-card-meta {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 12px;
+  color: var(--mist);
+}
+.blog-view-all {
+  text-align: center;
+  margin-top: 32px;
+}
+.blog-view-all a {
+  color: var(--teal);
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* Blog inline-style purge — CTA band */
+.blog-cta-heading {
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--cloud);
+  margin-bottom: 12px;
+}
+.blog-cta-sub {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
+  color: var(--steel);
+  margin-bottom: 24px;
+}
+.blog-cta-btn {
+  display: inline-block;
+  background: var(--teal);
+  color: var(--bg);
+  font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 32px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Blog inline-style purge — locale spacing */
+.locale-section-label-mt { margin-top: 6px; }
+.mob-locale-label-mt { margin-top: 10px; }
+
+/* Blog inline-style purge — CSRD inline link */
+.blog-inline-link {
+  color: var(--teal);
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  padding: 13px 2px;
+  margin: -13px 0;
+}
+
+/* Blog index — card badge variants */
+.card-badge-ppn {
+  background: rgba(167, 139, 250, 0.1);
+  color: var(--mark, #A78BFA);
+  border-color: rgba(167, 139, 250, 0.25);
+}
+.card-badge-reg {
+  background: rgba(218, 165, 32, 0.1);
+  color: var(--gold, #DAA520);
+  border-color: rgba(218, 165, 32, 0.25);
 }

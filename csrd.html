@@ -21,14 +21,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=38">
+<link rel="stylesheet" href="styles.min.css?v=39">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
 
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="wrap">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -121,9 +121,9 @@
 </div>
 
 <main id="main-content" role="main">
-<section class="hero" style="padding-bottom:40px">
+<section class="hero pb-compact">
   <div class="hero-glow"></div>
-  <div class="wrap container-wide" style="text-align:center;position:relative;z-index:1">
+  <div class="wrap container-wide text-center">
     <div class="hero-eyebrow"><span class="hw-dot"></span>Free tool · No account required</div>
     <h1>Check your CSRD applicability</h1>
     <p class="hero-sub">Updated for Omnibus I and designed for a fast first pass. Answer two questions to see whether your group appears to meet the new threshold test of more than 1,000 employees and more than &#8364;450M in turnover.</p>
@@ -134,12 +134,12 @@
   </div>
 </section>
 
-<section style="padding:0 0 80px">
-  <div class="wrap container-text" style="max-width:640px">
+<section class="pb-compact">
+  <div class="wrap container-text">
     <div class="csrd-wizard">
 
       <!-- Step indicator dots -->
-      <div style="display:flex;justify-content:center;gap:10px;margin-bottom:32px">
+      <div class="csrd-dots-row">
         <span class="csrd-dot active" id="dot-1"></span>
         <span class="csrd-dot" id="dot-2"></span>
         <span class="csrd-dot" id="dot-3"></span>
@@ -147,9 +147,9 @@
 
       <!-- Step 1: Employees -->
       <div class="csrd-step" id="csrd-step-1" data-csrd-step="1" style="display:block">
-        <h2 style="text-align:center;margin-bottom:8px">How many employees?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Full-time equivalent headcount across the group</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
+        <h2 class="csrd-step-title">How many employees?</h2>
+        <p class="csrd-step-desc">Full-time equivalent headcount across the group</p>
+        <div class="csrd-options">
           <button class="csrd-option" onclick="csrdSelect('employees','<250')">
             <span>&lt; 250</span>
             <span class="csrd-option-note">Well below the new headcount threshold.</span>
@@ -163,16 +163,16 @@
             <span class="csrd-option-note">Meets the headcount threshold if turnover also exceeds &#8364;450M.</span>
           </button>
         </div>
-        <div style="display:flex;justify-content:flex-end;margin-top:24px">
+        <div class="csrd-step-nav-end">
           <button class="btn-teal-sm" onclick="csrdShowStep(2)" id="csrd-next-1" disabled>Next</button>
         </div>
       </div>
 
       <!-- Step 2: Turnover -->
       <div class="csrd-step" id="csrd-step-2" data-csrd-step="2" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">What is your annual turnover?</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Consolidated group revenue in the most recent financial year</p>
-        <div style="display:flex;flex-direction:column;gap:12px">
+        <h2 class="csrd-step-title">What is your annual turnover?</h2>
+        <p class="csrd-step-desc">Consolidated group revenue in the most recent financial year</p>
+        <div class="csrd-options">
           <button class="csrd-option" onclick="csrdSelect('turnover','<150m')">
             <span>&lt; &#8364;150M</span>
             <span class="csrd-option-note">Below the Omnibus I revenue threshold.</span>
@@ -186,25 +186,25 @@
             <span class="csrd-option-note">Meets the revenue threshold if headcount is also 1,000+.</span>
           </button>
         </div>
-        <div style="display:flex;justify-content:space-between;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(1)" style="background:transparent;border:1px solid var(--border);color:var(--mist)">Back</button>
+        <div class="csrd-step-nav">
+          <button class="btn-ghost-sm" onclick="csrdShowStep(1)">Back</button>
           <button class="btn-teal-sm" onclick="csrdShowStep(3)" id="csrd-next-2" disabled>Get result</button>
         </div>
       </div>
 
       <!-- Step 3: Email capture + Result -->
       <div class="csrd-step" id="csrd-step-3" data-csrd-step="3" style="display:none">
-        <h2 style="text-align:center;margin-bottom:8px">Your result</h2>
-        <p style="text-align:center;color:var(--steel);margin-bottom:28px;font-size:14px">Enter your email to receive a more detailed assessment and a record you can share internally</p>
-        <form onsubmit="csrdSubmit();return false" style="display:flex;flex-direction:column;gap:16px">
-          <input type="email" id="csrd-email" placeholder="you@company.com" required aria-required="true" style="width:100%;padding:14px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.1);background:var(--bg);color:var(--cloud);font-size:15px">
-          <button class="btn-teal-sm" type="submit" style="width:100%;padding:14px 0;font-size:15px">Get my result</button>
+        <h2 class="csrd-step-title">Your result</h2>
+        <p class="csrd-step-desc">Enter your email to receive a more detailed assessment and a record you can share internally</p>
+        <form onsubmit="csrdSubmit();return false" class="csrd-email-form">
+          <input type="email" id="csrd-email" placeholder="you@company.com" required aria-required="true" class="csrd-email-input form-input">
+          <button class="btn-teal-sm" type="submit">Get my result</button>
         </form>
         <div id="csrd-result" style="margin-top:24px"></div>
-        <div style="display:flex;justify-content:flex-start;margin-top:24px">
-          <button class="btn-ghost-sm" onclick="csrdShowStep(2)" style="background:transparent;border:1px solid var(--border);color:var(--mist)">Back</button>
+        <div class="csrd-step-nav-start">
+          <button class="btn-ghost-sm" onclick="csrdShowStep(2)">Back</button>
         </div>
-        <p style="text-align:center;color:var(--steel);font-size:12px;margin-top:16px">Thresholds per Directive (EU) 2026/470 (Omnibus I). This tool provides indicative guidance only and does not constitute legal advice.</p>
+        <p class="csrd-disclaimer">Thresholds per Directive (EU) 2026/470 (Omnibus I). This tool provides indicative guidance only and does not constitute legal advice.</p>
       </div>
 
     </div>
@@ -212,10 +212,10 @@
 </section>
 
 <section class="cta-band">
-  <div class="wrap container-wide" style="text-align:center">
+  <div class="wrap container-wide text-center">
     <h2>Move from scope check to full workflow</h2>
-    <p style="color:var(--steel);max-width:520px;margin:0 auto 28px">Once you know whether reporting may apply, you can use the wider platform to handle property compliance and bid work in the same environment.</p>
-    <div class="hero-btns" style="justify-content:center">
+    <p class="cta-band-sub">Once you know whether reporting may apply, you can use the wider platform to handle property compliance and bid work in the same environment.</p>
+    <div class="hero-btns">
       <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
       <a class="btn-hero-out" href="/pricing">View pricing</a>
     </div>
@@ -333,7 +333,7 @@
   </div>
 </div>
 
-<script src="scripts.min.js?v=38" defer></script>
+<script src="scripts.min.js?v=39" defer></script>
 </body>
 </html>
 

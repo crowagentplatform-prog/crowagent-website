@@ -24,14 +24,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-<link rel="stylesheet" href="/styles.min.css?v=38">
+<link rel="stylesheet" href="/styles.min.css?v=39">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
 
 <nav role="navigation" aria-label="Main navigation">
-  <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;height:64px">
+  <div class="wrap">
     <a href="/" class="logo">
       <div class="logo-mark-wrap">
         <div class="b b1"></div>
@@ -124,109 +124,49 @@
 </div>
 
 <main id="main-content">
-  <section class="container-standard" style="padding:80px clamp(20px,4vw,56px);">
+  <section class="container-standard section-padding">
 
-    <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-size:12px; font-weight:700; letter-spacing:.14em;
-                text-transform:uppercase; color:var(--teal); margin-bottom:12px;">
+    <div class="page-label">
       Contact
     </div>
 
-    <h1 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                font-size:clamp(1.8rem,3.5vw,2.6rem); font-weight:800;
-                color:var(--cloud); letter-spacing:-.025em; line-height:1.15;
-                margin-bottom:40px;">
+    <h1 class="page-title" style="margin-bottom:40px">
       Get in touch
     </h1>
 
     <!-- Three contact cards -->
-    <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
-                gap:16px; margin-bottom:48px;">
+    <div class="methodology-grid" style="margin-bottom:48px">
 
       <!-- Card 1: Book a demo -->
-      <div style="background:var(--surf); border:1px solid var(--border);
-                  border-radius:16px; padding:24px;">
-        <div style="font-size:11px; color:var(--mist); font-family:var(--font-body,'Inter',sans-serif);
-                    text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px;">
-          Demo
-        </div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                     font-weight:700; font-size:16px; color:var(--cloud); margin-bottom:8px;">
-          Book a 20-min demo
-        </div>
-        <div style="font-size:13px; color:var(--steel); font-family:var(--font-body,'Inter',sans-serif);
-                    line-height:1.6; margin-bottom:16px;">
-          See the product live. No sales pitch.
-        </div>
-        <a href="/demo"
-           style="display:inline-block; background:var(--teal); color:var(--bg);
-                  font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                  font-weight:700; font-size:13px; padding:10px 20px;
-                  border-radius:8px; text-decoration:none;">
-          Book demo →
-        </a>
+      <div class="contact-card">
+        <div class="contact-card-label">Demo</div>
+        <div class="contact-card-title">Book a 20-min demo</div>
+        <div class="contact-card-desc">See the product live. No sales pitch.</div>
+        <a href="/demo" class="btn-primary">Book demo →</a>
       </div>
 
       <!-- Card 2: Enterprise -->
-      <div style="background:var(--surf); border:1px solid var(--border);
-                  border-radius:16px; padding:24px;">
-        <div style="font-size:11px; color:var(--mist); font-family:var(--font-body,'Inter',sans-serif);
-                    text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px;">
-          Enterprise
-        </div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                     font-weight:700; font-size:16px; color:var(--cloud); margin-bottom:8px;">
-          Custom pricing & integrations
-        </div>
-        <div style="font-size:13px; color:var(--steel); font-family:var(--font-body,'Inter',sans-serif);
-                    line-height:1.6; margin-bottom:16px;">
-          API access, SSO, white-label, and volume pricing for 100+ properties or users.
-        </div>
-        <a href="mailto:hello@crowagent.ai?subject=Enterprise%20Enquiry"
-           style="display:inline-block; background:transparent; color:var(--teal);
-                  border:1px solid var(--border2); font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                  font-weight:700; font-size:13px; padding:9px 20px;
-                  border-radius:8px; text-decoration:none;">
-          Email us →
-        </a>
+      <div class="contact-card">
+        <div class="contact-card-label">Enterprise</div>
+        <div class="contact-card-title">Custom pricing & integrations</div>
+        <div class="contact-card-desc">API access, SSO, white-label, and volume pricing for 100+ properties or users.</div>
+        <a href="mailto:hello@crowagent.ai?subject=Enterprise%20Enquiry" class="btn-ghost-sm">Email us →</a>
       </div>
 
       <!-- Card 3: General -->
-      <div style="background:var(--surf); border:1px solid var(--border);
-                  border-radius:16px; padding:24px;">
-        <div style="font-size:11px; color:var(--mist); font-family:var(--font-body,'Inter',sans-serif);
-                    text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px;">
-          General
-        </div>
-        <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                     font-weight:700; font-size:16px; color:var(--cloud); margin-bottom:8px;">
-          Support & partnerships
-        </div>
-        <div style="font-size:13px; color:var(--steel); font-family:var(--font-body,'Inter',sans-serif);
-                    line-height:1.6; margin-bottom:16px;">
-          hello@crowagent.ai · Response within 1 business day.
-        </div>
-        <a href="mailto:hello@crowagent.ai"
-           style="display:inline-block; background:transparent; color:var(--teal);
-                  border:1px solid var(--border2); font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                  font-weight:700; font-size:13px; padding:9px 20px;
-                  border-radius:8px; text-decoration:none;">
-          hello@crowagent.ai
-        </a>
+      <div class="contact-card">
+        <div class="contact-card-label">General</div>
+        <div class="contact-card-title">Support & partnerships</div>
+        <div class="contact-card-desc">hello@crowagent.ai · Response within 1 business day.</div>
+        <a href="mailto:hello@crowagent.ai" class="btn-ghost-sm">hello@crowagent.ai</a>
       </div>
 
     </div>
 
     <!-- Company info -->
-    <div style="background:var(--surf); border:1px solid var(--border);
-                border-radius:16px; padding:24px 28px;">
-      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);
-                   font-size:12px; font-weight:700; letter-spacing:.12em;
-                   text-transform:uppercase; color:var(--mist); margin-bottom:12px;">
-        Company details
-      </div>
-      <div style="font-family:var(--font-body,'Inter',sans-serif);
-                   font-size:14px; color:var(--steel); line-height:2;">
+    <div class="about-card">
+      <div class="about-card-label">Company details</div>
+      <div style="font-size:14px;color:var(--steel);line-height:2">
         CrowAgent Ltd &nbsp;·&nbsp; Company No. 17076461<br>
         Registered in England and Wales<br>
         ICO registered &nbsp;·&nbsp; UK data residency<br>
@@ -235,13 +175,13 @@
     </div>
 
   </section>
-<section class="contact-form-section" style="padding:64px 0;border-top:1px solid var(--border);">
+<section class="contact-form-section section-padding section-divider">
   <div class="wrap container-standard">
     <div class="contact-page-grid">
       <div class="contact-page-info">
-        <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;">Send a message</div>
-        <h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:800;color:var(--cloud);margin-bottom:16px;">Tell us what you're working on</h2>
-        <p style="font-size:14px;color:var(--steel);line-height:1.7;margin-bottom:1.5rem;">Whether you're assessing your MEES position, bidding for public sector contracts, or exploring what CrowAgent can do for your organisation — we'll respond within one business day.</p>
+        <div class="page-label">Send a message</div>
+        <h2 class="u-h2-display">Tell us what you're working on</h2>
+        <p>Whether you're assessing your MEES position, bidding for public sector contracts, or exploring what CrowAgent can do for your organisation — we'll respond within one business day.</p>
         <div class="contact-detail-list">
           <div class="contact-detail-item">
             <span class="contact-detail-label">Email</span>
@@ -294,7 +234,7 @@
             <textarea id="cp-msg" name="message" class="form-input form-textarea" rows="4" placeholder="Tell us about your portfolio, upcoming bid, or compliance question..."></textarea>
           </div>
           <button type="submit" class="btn-teal-sm form-submit" id="cpSubmitBtn" style="width:100%;min-height:48px;">Send message</button>
-          <p class="form-privacy" style="font-size:12px;color:var(--mist);margin-top:8px;">We'll never share your details. <a href="/privacy" style="color:var(--steel);text-decoration:underline;">Privacy policy</a>.</p>
+          <p class="form-privacy">We'll never share your details. <a href="/privacy">Privacy policy</a>.</p>
           <div class="form-success" id="cpFormSuccess" style="display:none;" role="alert"><strong>Message received.</strong> We'll get back to you within 1 business day.</div>
           <div class="form-error" id="cpFormError" style="display:none;" role="alert">Something went wrong. Please email <a href="mailto:hello@crowagent.ai" style="color:#EF4444;">hello@crowagent.ai</a> directly.</div>
         </form>
@@ -414,7 +354,7 @@
   </div>
 </div>
 
-<script src="scripts.min.js?v=38" defer></script>
+<script src="scripts.min.js?v=39" defer></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>
