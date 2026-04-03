@@ -1,4 +1,4 @@
-var APP_VERSION = '39';
+var APP_VERSION = '42';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -391,8 +391,8 @@ document.querySelectorAll('.mob-menu a').forEach(function(a) {
 function switchPTab(product, btn) {
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('on'); });
   btn.classList.add('on');
-  document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
-  document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
+  document.getElementById('core-p').style.display = product === 'core' ? 'grid' : 'none';
+  document.getElementById('mark-p').style.display = product === 'mark' ? 'grid' : 'none';
 }
 
 // ── BILLING TOGGLE (monthly/annual) ──
