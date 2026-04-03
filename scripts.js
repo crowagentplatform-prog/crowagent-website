@@ -1,4 +1,4 @@
-var APP_VERSION = '42';
+var APP_VERSION = '43';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -400,8 +400,8 @@ document.querySelectorAll('.mob-menu a').forEach(function(a) {
 function switchPTab(product, btn) {
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('on'); });
   btn.classList.add('on');
-  document.getElementById('core-p').style.display = product === 'core' ? 'grid' : 'none';
-  document.getElementById('mark-p').style.display = product === 'mark' ? 'grid' : 'none';
+  document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
+  document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
 }
 
 // ── BILLING TOGGLE (monthly/annual) ──
@@ -1247,13 +1247,15 @@ if (typeof module !== 'undefined' && module.exports) {
     toggleMob: toggleMob,
     switchPTab: switchPTab,
     toggleBilling: toggleBilling,
+    submitCSRD: submitCSRD,
     submitCSRDInline: submitCSRDInline,
     caToggleNotify: caToggleNotify,
+    caSubmitNotify: caSubmitNotify,
     csrdSelect: csrdSelect,
     csrdShowStep: csrdShowStep,
-    csrdMapEmployees: csrdMapEmployees,
-    csrdMapTurnover: csrdMapTurnover,
-    csrdGetResult: csrdGetResult,
+    csrdMapEmployees: typeof csrdMapEmployees !== 'undefined' ? csrdMapEmployees : null,
+    csrdMapTurnover: typeof csrdMapTurnover !== 'undefined' ? csrdMapTurnover : null,
+    csrdGetResult: typeof csrdGetResult !== 'undefined' ? csrdGetResult : null,
     get csrdState() { return csrdState; },
     set csrdState(v) { csrdState = v; }
   };

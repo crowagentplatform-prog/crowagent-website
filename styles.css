@@ -37,50 +37,158 @@
   --letter-spacing-heading:-0.04em;--letter-spacing-ui:-0.02em;--letter-spacing-caps:0.1em
 }
 
-[data-theme="light"]{
-  --bg:#F4F8FF;--surf:#FFFFFF;--surf2:#ECF4FF;--surf3:#E2EEFC;--surf4:#D7E7F7;
-  --teal:#0AA88C;--teal-d:#087A66;--teal-dim:rgba(10,168,140,.10);--teal-glow:rgba(10,168,140,.12);
-  --lime:#5C8C00;--lime-dim:rgba(92,140,0,.12);--sky:#1A8FC5;--sky-dim:rgba(26,143,197,.12);
-  --gold:#9A7200;--gold-dim:rgba(154,114,0,.12);--mark:#7C3AED;--coral:#DC2626;
-  --cloud:#081321;--steel:#34506B;--mist:#5D7892;--dim-c:#7B93AB;
-  --border:rgba(10,168,140,.14);--border2:rgba(10,168,140,.24);--border3:rgba(10,168,140,.38);
-  --warn:#B45309;--err:#DC2626;--success:#15803D;
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT THEME — Antigravity-inspired premium upgrade
+   High contrast, stark white surfaces, vivid teal accents
+   ═══════════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  /* Surfaces — crisp white system, not washed-out blue */
+  --bg: #FFFFFF;
+  --surf: #F7F9FC;
+  --surf2: #EEF3FA;
+  --surf3: #E5ECF5;
+  --surf4: #DAE4F0;
+
+  /* Brand — richer teal in light context */
+  --teal: #0A8F78;
+  --teal-d: #07705E;
+  --teal-dim: rgba(10,143,120,.09);
+  --teal-glow: rgba(10,143,120,.14);
+
+  /* Accent palette */
+  --lime: #4C7A00;
+  --lime-dim: rgba(76,122,0,.10);
+  --sky: #0F7AB8;
+  --sky-dim: rgba(15,122,184,.10);
+  --gold: #8A6200;
+  --gold-dim: rgba(138,98,0,.10);
+  --mark: #6D28D9;
+  --coral: #C81E1E;
+
+  /* Typography — true black hierarchy */
+  --cloud: #070F1A;
+  --steel: #1A3550;
+  --mist: #496A82;
+  --dim-c: #6B8399;
+
+  /* Borders — sharper in light mode */
+  --border: rgba(10,143,120,.12);
+  --border2: rgba(10,143,120,.22);
+  --border3: rgba(10,143,120,.35);
+  --border-sub: rgba(26,53,80,.08);
+
+  /* Semantic */
+  --warn: #92400E;
+  --err: #C81E1E;
+  --success: #14532D;
+
+  /* Shadows — warm, light-mode depth instead of dark blobs */
+  --shadow-xs: 0 1px 2px rgba(26,53,80,.05);
+  --shadow-sm: 0 2px 8px rgba(26,53,80,.08), 0 1px 2px rgba(26,53,80,.04);
+  --shadow-md: 0 4px 16px rgba(26,53,80,.10), 0 2px 4px rgba(26,53,80,.06);
+  --shadow-lg: 0 8px 32px rgba(26,53,80,.12), 0 4px 8px rgba(26,53,80,.06);
+  --shadow-teal-sm: 0 0 10px rgba(10,143,120,.15);
+  --shadow-teal-md: 0 0 20px rgba(10,143,120,.18);
 }
 
+/* ── Light mode: media-query variant ── */
 @media(prefers-color-scheme:light){
   html:not([data-theme="dark"]){
-    --bg:#F4F8FF;--surf:#FFFFFF;--surf2:#ECF4FF;--surf3:#E2EEFC;--surf4:#D7E7F7;
-    --teal:#0AA88C;--teal-d:#087A66;--teal-dim:rgba(10,168,140,.10);--teal-glow:rgba(10,168,140,.12);
-    --lime:#5C8C00;--lime-dim:rgba(92,140,0,.12);--sky:#1A8FC5;--sky-dim:rgba(26,143,197,.12);
-    --gold:#9A7200;--gold-dim:rgba(154,114,0,.12);--mark:#7C3AED;--coral:#DC2626;
-    --cloud:#081321;--steel:#34506B;--mist:#5D7892;--dim-c:#7B93AB;
-    --border:rgba(10,168,140,.14);--border2:rgba(10,168,140,.24);--border3:rgba(10,168,140,.38);
-    --warn:#B45309;--err:#DC2626;--success:#15803D;
+    --bg:#FFFFFF;--surf:#F7F9FC;--surf2:#EEF3FA;--surf3:#E5ECF5;--surf4:#DAE4F0;
+    --teal:#0A8F78;--teal-d:#07705E;--teal-dim:rgba(10,143,120,.09);--teal-glow:rgba(10,143,120,.14);
+    --lime:#4C7A00;--lime-dim:rgba(76,122,0,.10);--sky:#0F7AB8;--sky-dim:rgba(15,122,184,.10);
+    --gold:#8A6200;--gold-dim:rgba(138,98,0,.10);--mark:#6D28D9;--coral:#C81E1E;
+    --cloud:#070F1A;--steel:#1A3550;--mist:#496A82;--dim-c:#6B8399;
+    --border:rgba(10,143,120,.12);--border2:rgba(10,143,120,.22);--border3:rgba(10,143,120,.35);
+    --warn:#92400E;--err:#C81E1E;--success:#14532D;
   }
 }
 
-/* Light-mode card shadows and logo border — WP-WEB-006 Fix 1 */
+/* ── Light Mode: Premium card polish — deep lifted shadows on interaction ── */
 [data-theme="light"] .uc,
 [data-theme="light"] .hw,
 [data-theme="light"] .sector,
-[data-theme="light"] .tc {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+[data-theme="light"] .tc,
+[data-theme="light"] .pgc,
+[data-theme="light"] .ca-value-card,
+[data-theme="light"] .ca-roadmap-card,
+[data-theme="light"] .ca-security-card {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border);
 }
 [data-theme="light"] .uc:hover,
 [data-theme="light"] .hw:hover,
 [data-theme="light"] .sector:hover,
-[data-theme="light"] .tc:hover {
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 0 12px -2px rgba(10,168,140,0.10);
+[data-theme="light"] .tc:hover,
+[data-theme="light"] .pgc:hover,
+[data-theme="light"] .ca-value-card:hover,
+[data-theme="light"] .ca-roadmap-card:hover {
+  box-shadow: var(--shadow-md), var(--shadow-teal-sm);
+  border-color: var(--border2);
 }
-/* WP-WEB-006 Fix 7: Light mode gradient stats */
+
+/* ── Light Mode: Gradient stats (vivid teal gradient) ── */
 [data-theme="light"] .sc-num {
-  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-d) 100%);
+  background: linear-gradient(135deg, #07705E 0%, #0A8F78 60%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-[data-theme="light"] .logo-mark-wrap{
-  border:1.5px solid #D8E8F5;
+
+/* ── Light Mode: Logo border ── */
+[data-theme="light"] .logo-mark-wrap {
+  border: 1.5px solid #C8DDEF;
+  box-shadow: 0 1px 4px rgba(26,53,80,.08);
+}
+
+/* ── Light Mode: Nav — crisp glass over white ── */
+[data-theme="light"] nav { background: rgba(255,255,255,0); border-bottom-color: transparent; }
+[data-theme="light"] nav.scrolled {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(10,143,120,0.12);
+  box-shadow: 0 1px 12px rgba(26,53,80,0.06);
+}
+
+/* ── Light Mode: Hero glow — light/warm ambient ── */
+[data-theme="light"] .hero-glow::before {
+  background: rgba(10,143,120,.07);
+}
+[data-theme="light"] .hero-glow::after {
+  background: rgba(15,122,184,.04);
+}
+
+/* ── Light Mode: Surface sections ── */
+[data-theme="light"] .products,
+[data-theme="light"] .trust,
+[data-theme="light"] .demo-section {
+  background: var(--surf);
+}
+[data-theme="light"] .reg-strip { background: rgba(255,255,255,0.85); }
+[data-theme="light"] .demo-url-bar { background: rgba(255,255,255,.85); border-color: var(--border); }
+
+/* ── Light Mode: Announce bar ── */
+[data-theme="light"] .announce-bar { background: rgba(10,143,120,.06); }
+
+/* ── Light Mode: Buttons ── */
+[data-theme="light"] .btn-ghost-sm {
+  border-color: var(--border2);
+  color: var(--steel);
+}
+[data-theme="light"] .btn-ghost-sm:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-dim);
+}
+[data-theme="light"] .btn-hero-out {
+  color: var(--cloud);
+  border-color: var(--border3);
+}
+[data-theme="light"] .btn-hero-out:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-dim);
 }
 
 html,body{background:var(--bg)!important;background-color:var(--bg)!important;color:var(--cloud);min-height:100vh}
@@ -3261,8 +3369,169 @@ textarea.form-input {
   transition-duration: 0.8s;
 }
 
-/* Light theme nav glow */
-[data-theme="light"] nav.scrolled {
-  border-bottom: 1px solid rgba(12, 201, 168, 0.12);
-  box-shadow: 0 1px 8px rgba(12, 201, 168, 0.04);
+/* Note: [data-theme="light"] nav.scrolled is now handled in the upgraded light theme block above */
+
+/* ═══════════════════════════════════════════════════════════════════
+   PREMIUM MICRO-ANIMATIONS & DARK-MODE AESTHETICS — Antigravity-inspired
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Ambient Dot Grid Overlay (hero sections only) ── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle, rgba(12,201,168,.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 40%, transparent 100%);
 }
+[data-theme="light"] .hero::before {
+  background-image: radial-gradient(circle, rgba(10,143,120,.07) 1px, transparent 1px);
+}
+
+/* ── Glowing animated border on ".pgc-pop" (most popular pricing card) ── */
+@keyframes borderGlow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(12,201,168,.5), 0 0 20px rgba(12,201,168,.12); }
+  50%       { box-shadow: 0 0 0 1px rgba(12,201,168,.8), 0 0 32px rgba(12,201,168,.22); }
+}
+.pgc-pop {
+  animation: borderGlow 3.5s ease-in-out infinite;
+}
+[data-theme="light"] .pgc-pop {
+  animation: none;
+  box-shadow: 0 4px 16px rgba(10,143,120,.16), 0 0 0 1.5px rgba(10,143,120,.4);
+}
+
+/* ── Card hover lift — all card types ── */
+.uc, .hw, .sector, .tc, .pgc, .ca-value-card, .ca-roadmap-card {
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s ease, border-color 0.2s ease;
+  will-change: transform;
+}
+.uc:hover, .hw:hover, .sector:hover, .tc:hover,
+.ca-value-card:hover, .ca-roadmap-card:hover {
+  transform: translateY(-3px);
+}
+.pgc:hover {
+  transform: translateY(-4px) scale(1.01);
+}
+
+/* ── CTA button shimmer ── */
+@keyframes shimmerSweep {
+  0%   { transform: translateX(-120%) skewX(-12deg); }
+  100% { transform: translateX(220%)  skewX(-12deg); }
+}
+.btn-hero, .pgc .pgc-cta {
+  position: relative;
+  overflow: hidden;
+}
+.btn-hero::after, .pgc .pgc-cta::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(105deg, transparent 20%, rgba(255,255,255,.25) 50%, transparent 80%);
+  transform: translateX(-120%) skewX(-12deg);
+}
+.btn-hero:hover::after, .pgc .pgc-cta:hover::after {
+  animation: shimmerSweep 0.6s ease-out forwards;
+}
+
+/* ── Stat number counter glow on reveal ── */
+.sc-num {
+  transition: text-shadow 0.4s ease;
+}
+.sc:hover .sc-num {
+  text-shadow: 0 0 24px rgba(12,201,168,.4);
+}
+
+/* ── Nav link active glow indicator ── */
+.nav-links a.active::after,
+.nav-links a.nav-link-active::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  border-radius: 1px;
+  margin-top: 2px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scaleX(0.5); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+/* ── Feature bullet icon pulse — use case cards ── */
+.pgc-features li::before {
+  content: '✓';
+  margin-right: 7px;
+  color: var(--teal);
+  font-weight: 800;
+  font-size: 12px;
+}
+.pgc-features li {
+  transition: color 0.15s ease;
+  list-style: none;
+  padding-left: 0;
+}
+.pgc:hover .pgc-features li {
+  color: var(--cloud);
+}
+
+/* ── Testimonial / trust card slide-in on scroll ── */
+.tc {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, opacity 0.3s ease;
+}
+
+/* ── Keyboard focus ring — premium teal glow ── */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--teal);
+  border-radius: 4px;
+}
+
+/* ── Pricing toggle — smooth animated track ── */
+.ttrack { transition: background 0.3s ease; }
+.tthumb { transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1); }
+.ttrack.ann .tthumb { transform: translateX(22px); }
+
+/* ── Locale dropdown — refined slide+fade animation ── */
+.locale-dropdown {
+  transform-origin: top right;
+  transform: scale(0.95) translateY(-8px);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.2s ease;
+  pointer-events: none;
+}
+.locale-dropdown.open {
+  transform: scale(1) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Hero headline — stagger shimmer on text gradient ── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hero h1 .gradient-text,
+.hero-eyebrow {
+  background-size: 200% 200%;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* ── Accessibility: no animations for prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .btn-hero::after, .pgc .pgc-cta::after,
+  .pgc-pop, .hero::before, .ttrack, .tthumb,
+  .locale-dropdown {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

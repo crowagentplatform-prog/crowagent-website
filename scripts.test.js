@@ -145,6 +145,26 @@ function setupFullDOM() {
       <div id="dd2"></div>
       <div class="sc">Card</div>
       <div class="hw">How</div>
+
+      <!-- Test elements for CSRD / forms / notify -->
+      <form id="csrd-inline-form">
+        <input type="email" id="csrd-i-email" value="test@test.com" />
+        <select id="csrd-i-employees"><option value="<250">&lt;250</option></select>
+        <select id="csrd-i-turnover"><option value="<150m">&lt;150m</option></select>
+        <button class="btn-form" type="button">Test</button>
+        <span id="csrd-email-err" style="display:none">Error</span>
+      </form>
+      <div id="csrd-inline-success" style="display:none">Success</div>
+
+      <div class="ca-notify-wrap" data-product="mees">
+        <button class="btn">Notify Me</button>
+        <div class="ca-notify-form" style="display:none">
+          <input class="ca-notify-input" value="test@test.com" />
+          <button class="btn ca-notify-submit">Submit</button>
+          <span class="ca-notify-error" style="display:none">Err</span>
+        </div>
+        <span class="ca-notify-success" style="display:none">Success</span>
+      </div>
     </main>
   `;
 }
@@ -370,7 +390,89 @@ describe('intersection observer animations', () => {
 // ── APP_VERSION ─────────────────────────────────────────────────────────────
 
 describe('APP_VERSION', () => {
-  test('APP_VERSION is 15', () => {
+  test('APP_VERSION is exported or mod is valid', () => {
     expect(typeof mod).toBe('object');
+  });
+});
+
+// ── Submit Notify ────────────────────────────────────────────────────────
+describe('notify / waitlist functions', () => {
+  beforeEach(() => { jest.useRealTimers(); });
+  afterEach(() => { jest.useFakeTimers(); });
+  
+  test('caToggleNotify reveals form', () => {
+    const wrap = document.querySelector('.ca-notify-wrap');
+    const btn = wrap.querySelector('.btn');
+    const form = wrap.querySelector('.ca-notify-form');
+    
+    // Simulate onclick
+    mod.caToggleNotify(btn);
+    expect(btn.style.display).toBe('none');
+    expect(form.style.display).toBe('flex');
+  });
+
+  test('caSubmitNotify triggers fetch and shows success', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
+    
+    const wrap = document.querySelector('.ca-notify-wrap');
+    const submitBtn = wrap.querySelector('.ca-notify-submit');
+    
+    await mod.caSubmitNotify(submitBtn);
+    
+    expect(fetch).toHaveBeenCalled();
+    expect(submitBtn.disabled).toBe(true);
+    expect(wrap.querySelector('.ca-notify-form').style.display).toBe('none');
+    expect(wrap.querySelector('.ca-notify-success').style.display).toBe('block');
+  });
+});
+
+// ── CSRD Inline ──────────────────────────────────────────────────────────
+describe('csrd inline forms', () => {
+  beforeEach(() => { jest.useRealTimers(); });
+  afterEach(() => { jest.useFakeTimers(); });
+
+  test('submitCSRDInline calls fetch with mapped inputs', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
+    
+    // Add mock global functions for mapping
+    global.csrdMapEmployees = (val) => val;
+    global.csrdMapTurnover = (val) => val;
+    
+    await mod.submitCSRDInline();
+    
+    expect(fetch).toHaveBeenCalled();
+    // Allow Promise chain to settle
+    await Promise.resolve();
+    await Promise.resolve();
+    
+    const form = document.getElementById('csrd-inline-form');
+    const success = document.getElementById('csrd-inline-success');
+    expect(form.style.display).toBe('none');
+    // success block is changed synchronously? No, inside finally()
+    expect(success.style.display).toBe('block');
+  });
+});
+
+describe('submitCSRD', () => {
+  beforeEach(() => { jest.useRealTimers(); });
+  afterEach(() => { jest.useFakeTimers(); });
+
+  test('handles form submission successfully', async () => {
+    fetch.mockResolvedValueOnce({ ok: true, json: async () => ({}) });
+    document.body.innerHTML = `
+      <form id="csrd-main-form">
+        <input type="text" value="Acme" />
+        <input type="email" value="test@acme.com" />
+        <select><option value="1">1</option></select>
+        <select><option value="2">2</option></select>
+        <button class="btn-form">Submit</button>
+      </form>
+    `;
+    const form = document.getElementById('csrd-main-form');
+    await mod.submitCSRD({ preventDefault: jest.fn(), target: form });
+    
+    expect(fetch).toHaveBeenCalled();
+    const btn = form.querySelector('.btn-form');
+    expect(btn.innerHTML).toContain('Report sent');
   });
 });

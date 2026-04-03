@@ -1,0 +1,52 @@
+
+> crowagent-website@1.0.0 test
+> jest
+
+PASS ./scripts.test.js
+  dismissBar
+    ΓêÜ hides announce bar and stores localStorage key (559 ms)
+    ΓêÜ handles missing announce bar gracefully (16 ms)
+  announce bar auto-hide
+    ΓêÜ hides bar on load when ca_bar_dismissed is set (63 ms)
+  toggleMob
+    ΓêÜ opens the mobile menu (12 ms)
+    ΓêÜ second call closes the mobile menu (10 ms)
+    ΓêÜ focuses first link when opened (9 ms)
+  mob-menu link click
+    ΓêÜ clicking a mob-menu link closes the menu (14 ms)
+  switchPTab
+    ΓêÜ switches to mark product tab (9 ms)
+    ΓêÜ switches back to core product tab (9 ms)
+  toggleBilling
+    ΓêÜ toggles to annual pricing (27 ms)
+    ΓêÜ toggles back to monthly (21 ms)
+    ΓêÜ updates signup plan params when billing cadence changes (13 ms)
+  locale selector
+    ΓêÜ saves language preference to localStorage (14 ms)
+    ΓêÜ saves currency preference to localStorage (11 ms)
+    ΓêÜ trigger click opens dropdown (8 ms)
+    ΓêÜ second trigger click closes dropdown (8 ms)
+    ΓêÜ theme buttons persist and apply the selected theme (15 ms)
+  mobile locale picker
+    ΓêÜ clicking FR button saves language (10 ms)
+    ΓêÜ clicking EUR button saves currency (11 ms)
+  days counter
+    ΓêÜ days-counter element is populated on load (7 ms)
+  intersection observer animations
+    ΓêÜ .sc elements get opacity set to 1 on intersection (8 ms)
+    ΓêÜ .hw elements get opacity set to 1 on intersection (7 ms)
+  APP_VERSION
+    ΓêÜ APP_VERSION is 15 (7 ms)
+
+------------|---------|----------|---------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+File        | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                                                                                                                                                                                                                                                                                        
+------------|---------|----------|---------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+All files   |   39.45 |    29.44 |   44.23 |   43.74 |                                                                                                                                                                                                                                                                                                                                                          
+ scripts.js |   39.45 |    29.44 |   44.23 |   43.74 | 18-19,22-25,48-49,101,151-161,204-206,286-297,331,343,346-347,437-445,459-486,505-506,517-569,628-630,636-637,648-719,726-737,745-761,769-856,865-916,924-944,954-979,988-1001,1010-1015,1023-1035,1045-1051,1060-1078,1088-1106,1123-1173,1180-1183,1192-1200,1207-1212,1219-1225,1235-1240,1257-1258,1268-1272,1275-1276,1284-1292,1295-1297,1307-1330 
+------------|---------|----------|---------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Jest: "global" coverage threshold for lines (50%) not met: 43.74%
+Test Suites: 1 passed, 1 total
+Tests:       23 passed, 23 total
+Snapshots:   0 total
+Time:        1.625 s, estimated 2 s
+Ran all test suites.
