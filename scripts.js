@@ -352,16 +352,14 @@ function dismissBar() {
   }} catch(e) {}
 })();
 
-// ── MOBILE HAMBURGER — WP-WEB-HOTFIX-002 ──
+// ── MOBILE HAMBURGER — WP-WEB-011 (scroll lock via .no-scroll class) ──
 var _mobScrollY = 0;
 function openMob() {
   var menu = document.querySelector('.mob-menu');
   if (!menu) return;
   _mobScrollY = window.pageYOffset || document.documentElement.scrollTop;
-  document.body.style.overflow = 'hidden';
-  document.body.style.position = 'fixed';
+  document.body.classList.add('no-scroll');
   document.body.style.top = '-' + _mobScrollY + 'px';
-  document.body.style.width = '100%';
   menu.classList.add('open');
   var firstLink = menu.querySelector('a');
   if (firstLink) firstLink.focus();
@@ -371,13 +369,8 @@ function openMob() {
 function closeMob() {
   var menu = document.querySelector('.mob-menu');
   if (!menu) return;
-  document.body.style.overflow = '';
-  document.body.style.position = '';
+  document.body.classList.remove('no-scroll');
   document.body.style.top = '';
-  document.body.style.width = '';
-  document.body.style.height = '';
-  document.documentElement.style.overflow = '';
-  document.documentElement.style.height = '';
   menu.classList.remove('open');
   window.scrollTo(0, _mobScrollY);
   var ham = document.querySelector('.ham');
