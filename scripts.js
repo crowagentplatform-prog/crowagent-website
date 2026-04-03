@@ -1,4 +1,4 @@
-var APP_VERSION = '36';
+var APP_VERSION = '37';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -1257,21 +1257,24 @@ if (typeof module !== 'undefined' && module.exports) {
   };
 }
 
-// WP-WEB-006: Card spotlight
-(function() {
-  var cards = document.querySelectorAll('.uc,.hw,.sector,.tc,.pc:not(.pc-locked):not(.pc-p3)');
-  cards.forEach(function(card) {
-    card.addEventListener('mousemove', function(e) {
+/* ── SPOTLIGHT CARD HOVER MODULE — WP-WEB-008 FIX-H ── */
+(function () {
+  'use strict';
+  var cards = document.querySelectorAll('.uc, .hw, .sector, .tc, .pgc, .resource-card, .pc:not(.pc-locked):not(.pc-p3)');
+  cards.forEach(function (card) {
+    card.addEventListener('mousemove', function (e) {
       var rect = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      card.style.setProperty('--mouse-x', x + '%');
+      card.style.setProperty('--mouse-y', y + '%');
     }, { passive: true });
-    card.addEventListener('mouseleave', function() {
-      card.style.removeProperty('--mx');
-      card.style.removeProperty('--my');
+    card.addEventListener('mouseleave', function () {
+      card.style.removeProperty('--mouse-x');
+      card.style.removeProperty('--mouse-y');
     }, { passive: true });
   });
-})();
+}());
 
 // WP-WEB-006: Sliding tab pill
 (function() {
