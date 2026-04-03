@@ -857,6 +857,7 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primar
 .locale-opt.active{color:var(--teal);font-weight:600}
 .locale-note{font-family:'Inter',sans-serif;font-size:10px;color:var(--mist);padding:6px 14px 4px;font-style:italic;line-height:1.5}
 .theme-toggle-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:0 14px 6px}
+.theme-toggle-row.force-center{justify-content:center;max-width:240px;margin:0 auto}
 .theme-opt,.mob-theme-btn{display:inline-flex;align-items:center;justify-content:center;min-height:36px;border-radius:8px;border:1px solid var(--border2);background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-weight:700;color:var(--steel);cursor:pointer;transition:all .2s}
 .theme-opt:hover,.theme-opt.active,.mob-theme-btn:hover,.mob-theme-btn.active{background:var(--teal);border-color:var(--teal);color:var(--bg)}
 @media(max-width:1024px){.locale-selector{display:none}}
@@ -2380,12 +2381,55 @@ nav.scrolled [class*="nav-inner"] {
     inset 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* ── TASK 3: SECTION HEADER LEFT-ALIGNMENT ON DESKTOP ── */
-.sh { text-align: center; }
+/* ── TASK 3: SECTION HEADER — mobile centered, desktop left-aligned ── */
+.sh { text-align: center; margin-bottom: 3rem; }
 .sh .sh-label { justify-content: center; }
+.sh-sub { margin: 0 auto; }
+
 @media (min-width: 768px) {
   .sh { text-align: left; }
   .sh .sh-label { justify-content: flex-start; }
+  .sh-sub { margin-left: 0; max-width: 600px; }
+
+  /* Explicit center override — use .sh.force-center on hero/CTA headers */
+  .sh.force-center { text-align: center; }
+  .sh.force-center .sh-label { justify-content: center; }
+  .sh.force-center .sh-sub { margin: 0 auto; }
+}
+
+/* ── ASYMMETRIC FEATURE SPLIT — zig-zag product tours ── */
+.feature-split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 48px;
+  align-items: center;
+  padding: var(--section-pad-compact) 0;
+  text-align: center;
+}
+.feature-text { max-width: 540px; }
+.feature-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(145deg, var(--surf), var(--surf2));
+  border-radius: var(--r3);
+  box-shadow:
+    0 32px 64px -16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+@media (min-width: 1024px) {
+  .feature-split {
+    grid-template-columns: 5fr 6fr;
+    gap: 80px;
+    text-align: left;
+  }
+  .feature-split.reverse {
+    grid-template-columns: 6fr 5fr;
+  }
+  .feature-split.reverse .feature-text {
+    order: 2;
+  }
 }
 
 /* ── TASK 3: HERO BUTTON ENGINEERED VOLUME ── */
@@ -2490,10 +2534,6 @@ nav .wrap {
 
 /* Hero wrap positioning */
 .hero .wrap { position: relative; z-index: 1; }
-
-/* Section header utilities — for centered headers that should now use .sh */
-.sh-center { text-align: center; }
-.sh-center .sh-label { justify-content: center; }
 
 /* Card accent borders */
 .accent-teal { border-left: 3px solid var(--teal); }
