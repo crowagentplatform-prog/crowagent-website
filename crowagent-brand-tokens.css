@@ -61,4 +61,86 @@
   --r2: 16px;
   --r3: 20px;
   --rp: 100px;
+
+  /* ── --ca-* aliases ── maps prefixed tokens used across
+     41 components to canonical brand values ── */
+  --ca-bg-page:        var(--bg);
+  --ca-bg-card:        var(--surf);
+  --ca-teal:           var(--teal);
+  --ca-teal-hover:     var(--teal-d);
+  --ca-teal-glow:      var(--teal-glow);
+  --ca-text-primary:   var(--cloud);
+  --ca-text-secondary: var(--mist);
+  --ca-border:         var(--border);
+  --ca-warning:        var(--warn);
+  --ca-error:          var(--err);
+  --ca-error-glow:     rgba(239, 68, 68, 0.18);
+  --ca-font-display:   var(--font-display);
+  --ca-font-body:      var(--font-body);
+  --ca-lime:           var(--lime);
+  --ca-sky:            var(--sky);
+
+  /* ── opacity-tinted teal ── */
+  --teal-20: rgba(12, 201, 168, 0.20);
+  --teal-30: rgba(12, 201, 168, 0.30);
+  --teal-40: rgba(12, 201, 168, 0.40);
+
+  /* ── surface aliases ── */
+  --obsidian: var(--bg);
+
+  /* ── product colour aliases ── */
+  --crowmark: #5BC8FF;
+
+  /* ── WCAG 2.1 AA contrast tokens ── GAP-023 / F-170 */
+  --ca-text-on-dark: #E5E7EB;
+  --ca-text-muted:   #9CA3AF;
+
+  /* ── Spacing Scale ── */
+  --ca-space-1: 0.25rem;        /* 4px */
+  --ca-space-2: 0.5rem;         /* 8px */
+  --ca-space-3: 0.75rem;        /* 12px */
+  --ca-space-4: 1rem;           /* 16px */
+  --ca-space-5: 1.25rem;        /* 20px */
+  --ca-space-6: 1.5rem;         /* 24px */
+  --ca-space-8: 2rem;           /* 32px */
+  --ca-space-10: 2.5rem;        /* 40px */
+  --ca-space-12: 3rem;          /* 48px */
+  --ca-space-16: 4rem;          /* 64px */
+
+  /* ── Typography Scale ── */
+  --ca-text-xs: 0.75rem;        /* 12px */
+  --ca-text-sm: 0.875rem;       /* 14px */
+  --ca-text-base: 1rem;         /* 16px */
+  --ca-text-lg: 1.125rem;       /* 18px */
+  --ca-text-xl: 1.25rem;        /* 20px */
+  --ca-text-2xl: 1.5rem;        /* 24px */
+  --ca-text-3xl: 1.875rem;      /* 30px */
+  --ca-text-4xl: 2.25rem;       /* 36px */
+
+  /* ── Line Heights ── */
+  --ca-leading-tight: 1.25;
+  --ca-leading-normal: 1.5;
+  --ca-leading-relaxed: 1.625;
+
+  /* ── Font Weights ── */
+  --ca-font-normal: 400;
+  --ca-font-medium: 500;
+  --ca-font-semibold: 600;
+  --ca-font-bold: 700;
+
+  /* ── Elevation / Shadows ── */
+  --ca-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --ca-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --ca-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+
+  /* ── Border Radius ── */
+  --ca-radius-sm: 0.25rem;
+  --ca-radius-md: 0.5rem;
+  --ca-radius-lg: 0.75rem;
+  --ca-radius-xl: 1rem;
+
+  /* ── Transitions ── */
+  --ca-transition-fast: 150ms ease;
+  --ca-transition-normal: 250ms ease;
+  --ca-transition-slow: 350ms ease;
 }
