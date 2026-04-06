@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/crowagent-brand-tokens.css">
-  <link rel="stylesheet" href="/styles.min.css?v=43">
+  <link rel="stylesheet" href="/styles.min.css?v=44">
 <link rel="stylesheet" href="print.css" media="print">
   <script type="application/ld+json">
   {
@@ -325,9 +325,9 @@
 <article class="article-wrapper">
 
   <!-- Breadcrumb -->
-  <div class="breadcrumb">
-    <a href="/blog">Blog</a><span>&rsaquo;</span>Regulatory Updates
-  </div>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/blog">Blog</a> <span aria-hidden="true">›</span> <span class="breadcrumb-current">UK & EU Sustainability Regulation: Key Changes in 2026</span>
+  </nav>
 
   <!-- Header -->
   <div class="article-badge-gold">REGULATORY UPDATES</div>
@@ -447,9 +447,12 @@
       </tbody>
     </table>
 
-    <div class="article-footer-cta">
-      <p>Track your regulatory exposure across MEES, PPN 002, and CSRD</p>
-      <a href="https://app.crowagent.ai/signup" class="btn-primary">Check your exposure in CrowAgent <span class="arrow">&rarr;</span></a>
+    <!-- ARTICLE CTA — MEES/Core -->
+    <div class="article-cta-block" style="background:rgba(12,201,168,0.06);border:1px solid rgba(12,201,168,0.18);border-radius:12px;padding:28px 32px;margin:48px 0 0;">
+      <div style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--teal);margin-bottom:8px;">Check your portfolio</div>
+      <h3 style="font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:20px;font-weight:800;color:var(--cloud);margin:0 0 10px;letter-spacing:-0.02em;">Know your MEES exposure before 2028</h3>
+      <p style="font-family:var(--font-body,'Inter',sans-serif);font-size:14px;color:var(--mist);line-height:1.65;margin:0 0 20px;max-width:520px;">Run a gap analysis on any UK commercial property in under 3 minutes. See your current EPC band, penalty exposure, and retrofit scenarios. No consultants required.</p>
+      <a href="https://app.crowagent.ai/signup?plan=starter" style="display:inline-flex;align-items:center;height:48px;padding:0 28px;background:var(--teal);color:var(--bg);font-family:var(--font-display,'Plus Jakarta Sans',sans-serif);font-size:14px;font-weight:700;border-radius:10px;text-decoration:none;box-shadow:0 4px 12px rgba(12,201,168,0.25);">Start free trial — no card required →</a>
     </div>
 
   </div>

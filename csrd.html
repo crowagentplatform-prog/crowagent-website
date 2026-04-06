@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=43">
+<link rel="stylesheet" href="styles.min.css?v=44">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
@@ -121,6 +121,11 @@
 </div>
 
 <main id="main-content" role="main">
+<noscript>
+  <div style="padding:24px;text-align:center;background:var(--surf,#0A1F3A);color:var(--cloud,#E8F0FA);font-family:'Inter',sans-serif;">
+    The CSRD Checker requires JavaScript to run. Please enable JavaScript in your browser settings to use this tool.
+  </div>
+</noscript>
 <section class="hero pb-compact">
   <div class="hero-glow"></div>
   <div class="wrap container-wide">
@@ -196,6 +201,7 @@
       <div class="csrd-step" id="csrd-step-3" data-csrd-step="3" style="display:none">
         <h2 class="csrd-step-title">Your result</h2>
         <p class="csrd-step-desc">Enter your email to receive a more detailed assessment and a record you can share internally</p>
+        <p style="font-size:13px;color:var(--mist);margin-top:8px;">Enter your email to receive a summary of this assessment and future regulatory updates.</p>
         <form onsubmit="csrdSubmit();return false" class="csrd-email-form">
           <input type="email" id="csrd-email" placeholder="you@company.com" required aria-required="true" class="csrd-email-input form-input">
           <button class="btn-teal-sm" type="submit">Get my result</button>
@@ -213,12 +219,20 @@
 
 <section class="cta-band">
   <div class="wrap container-wide">
-    <h2>Move from scope check to full workflow</h2>
-    <p class="cta-band-sub">Once you know whether reporting may apply, you can use the wider platform to handle property compliance and bid work in the same environment.</p>
-    <div class="hero-btns">
-      <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
-      <a class="btn-hero-out" href="/pricing">View pricing</a>
+    <h2>Need help with CSRD reporting?</h2>
+    <p class="cta-band-sub">Our team can help you move from an applicability check to a full reporting workflow — scoping, gap analysis, and disclosure preparation.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:24px;">
+      <a href="/contact?topic=csrd" class="btn-hero">
+        Talk to our team about CSRD reporting →
+      </a>
+      <a href="/contact" class="btn-hero-out">
+        Book a scoping call
+      </a>
     </div>
+    <p style="margin-top:12px;font-size:13px;color:var(--mist);text-align:center;">
+      Need MEES property compliance or PPN 002 social value?
+      <a href="/" style="color:var(--teal);">See all our products →</a>
+    </p>
   </div>
 </section>
 </main>

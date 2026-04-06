@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://app.crowagent.ai">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=43">
+<link rel="stylesheet" href="styles.min.css?v=44">
 <link rel="stylesheet" href="print.css" media="print">
 <script type="application/ld+json">
 [
@@ -149,12 +149,12 @@
           <button class="locale-opt" role="menuitem" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>
           <button class="locale-opt" role="menuitem" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>
           <button class="locale-opt" role="menuitem" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>
-          <div class="locale-section-label" style="margin-top:6px">Currency</div>
+          <div class="locale-section-label" style="margin-top:var(--space-2)">Currency</div>
           <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
           <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
           <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>
           <div id="lang-tooltip" style="display:none;" role="status" aria-live="polite"></div>
-          <div class="locale-section-label" style="margin-top:6px">Theme</div>
+          <div class="locale-section-label" style="margin-top:var(--space-2)">Theme</div>
           <div class="theme-toggle-row">
             <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>
             <button class="theme-opt" type="button" data-theme-choice="light">Light</button>
@@ -190,13 +190,13 @@
       <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>
       <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>
     </div>
-    <div class="mob-locale-label" style="margin-top:10px">Currency</div>
+    <div class="mob-locale-label" style="margin-top:var(--space-3)">Currency</div>
     <div class="mob-locale-row" id="mob-curr-row">
       <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>
       <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>
       <button class="mob-locale-btn" data-currency="USD">$ USD</button>
     </div>
-    <div class="mob-locale-label" style="margin-top:10px">Theme</div>
+    <div class="mob-locale-label" style="margin-top:var(--space-3)">Theme</div>
     <div class="mob-theme-row">
       <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>
       <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>
@@ -205,8 +205,8 @@
 </div>
 
 <main id="main-content" role="main">
-<section class="hero">
-  <div class="hero-glow"></div>
+<section class="hero" role="banner">
+  <div class="hero-glow" aria-hidden="true"></div>
   <div class="wrap container-wide"><!-- hero: container-wide -->
     <div class="hero-inner">
       <div class="hero-content">
@@ -215,20 +215,20 @@
           <span class="segment-label">I am a</span>
           <button class="seg-btn active" data-seg="landlord" aria-pressed="true">Commercial Landlord</button>
           <button class="seg-btn" data-seg="supplier" aria-pressed="false">Public Sector Supplier</button>
-          <button class="seg-btn" data-seg="council" aria-pressed="false">Council / NHS Trust</button>
+          <button class="seg-btn" data-seg="csrd" aria-pressed="false">Sustainability / CSRD</button>
         </div>
         <h1>
           <span class="seg-text" data-for="landlord">Know your <span class="term" data-tip="Minimum Energy Efficiency Standards. UK law requiring commercial properties to reach EPC Band E, with proposed Band C by 2028." tabindex="0">MEES</span> penalty exposure before 2028</span>
           <span class="seg-text" data-for="supplier" hidden>Win more public sector contracts with AI social value scoring</span>
-          <span class="seg-text" data-for="council" hidden>Decarbonise your estate and meet Net Zero targets</span>
+          <span class="seg-text" data-for="csrd" hidden>Check your CSRD applicability under Omnibus I in 60 seconds</span>
         </h1>
         <p class="hero-sub">
           <span class="seg-text" data-for="landlord">CrowAgent Core gives commercial landlords automated <span class="term" data-tip="Energy Performance Certificate. A legal rating (A–G) of a building's energy efficiency." tabindex="0">EPC</span> gap analysis, retrofit scenarios, and compliance reports in under 3 minutes.</span>
           <span class="seg-text" data-for="supplier" hidden>CrowMark automates <span class="term" data-tip="Procurement Policy Note 002. UK government policy requiring a minimum 10% social value weighting on public sector contract bids." tabindex="0">PPN 002</span> social value scoring so your bids consistently hit the 10% threshold — without the spreadsheets.</span>
-          <span class="seg-text" data-for="council" hidden>From Net Zero NHS Green Plans to public estate decarbonisation — CrowAgent gives you the compliance tools your organisation needs.</span>
+          <span class="seg-text" data-for="csrd" hidden>The CSRD Checker applies the latest Omnibus I thresholds (&gt;1,000 employees AND &gt;€450M turnover) and gives you an immediate result. Free, no account required.</span>
         </p>
-        <div class="hero-penalty-banner">
-          <span class="hero-penalty-icon">⚠</span>
+        <div class="hero-penalty-banner seg-text" data-for="landlord" role="status">
+          <span class="hero-penalty-icon" role="img" aria-label="Warning">⚠</span>
           <span class="hero-penalty-text">
             Commercial properties failing Band C by 2028 face fines up to
             <strong>£150,000</strong> — rateable-value basis per SI 2015/962 reg 39.
@@ -236,8 +236,18 @@
           </span>
         </div>
         <div class="hero-btns">
-          <a class="btn-hero" href="https://app.crowagent.ai/signup">Start your trial</a>
-          <a class="btn-hero-out" href="https://calendly.com/crowagent-platform/new-meeting" target="_blank" rel="noopener noreferrer">Book a demo</a>
+          <span class="seg-text" data-for="landlord">
+            <a class="btn-hero" href="https://app.crowagent.ai/signup">Start your trial</a>
+            <a class="btn-hero-out" href="https://calendly.com/crowagent-platform/new-meeting" target="_blank" rel="noopener noreferrer">Book a demo</a>
+          </span>
+          <span class="seg-text" data-for="supplier" hidden>
+            <a class="btn-hero" href="https://app.crowagent.ai/signup">Start your trial</a>
+            <a class="btn-hero-out" href="https://calendly.com/crowagent-platform/new-meeting" target="_blank" rel="noopener noreferrer">Book a demo</a>
+          </span>
+          <span class="seg-text" data-for="csrd" hidden>
+            <a class="btn-hero" href="/csrd">Check CSRD applicability — free</a>
+            <a class="btn-hero-out" href="/contact">Talk to our team</a>
+          </span>
         </div>
         <p class="cta-no-card">No credit card required · 14-day free trial · Cancel anytime</p>
         <div class="hero-trust">
@@ -246,6 +256,14 @@
           <div class="ht-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>UK data residency</div>
           <div class="ht-item" title="We follow ISO 27001 controls. Formal certification planned for Phase 2."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>ISO 27001 aligned</div>
           <div class="ht-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>99.9% uptime target</div>
+          <!-- G-Cloud badge — uncomment when listed on G-Cloud 16 -->
+          <!-- TO ENABLE: Remove comment tags when G-Cloud 16 listing is live -->
+          <!--
+          <div class="ht-item" id="gcloud-badge" style="display:none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            G-Cloud 16 listed
+          </div>
+          -->
         </div>
       </div>
       <div class="hero-visual">
@@ -253,7 +271,7 @@
         <div class="hero-mock" aria-hidden="true">
           <div class="hero-mock-bar">
             <div class="hero-mock-dots"><span class="hmd hmd-r"></span><span class="hmd hmd-y"></span><span class="hmd hmd-g"></span></div>
-            <div class="hero-mock-url"><span class="hero-mock-lock">🔒</span> app.crowagent.ai/dashboard</div>
+            <div class="hero-mock-url"><span class="hero-mock-lock" role="img" aria-label="Secure">🔒</span> app.crowagent.ai/dashboard</div>
           </div>
           <div class="hero-mock-body">
             <div class="hero-mock-sidebar">
@@ -315,22 +333,7 @@
       </div>
     </div>
 
-    <!-- Regulatory authority strip -->
-    <div class="reg-strip">
-      <div class="reg-strip-label">Grounded in source rules</div>
-      <div class="reg-strip-items">
-        <div class="reg-item"><span class="reg-code">SI 2015/962</span><span class="reg-name">MEES Regulations</span></div>
-        <div class="reg-sep">·</div>
-        <div class="reg-item"><span class="reg-code">PPN 002</span><span class="reg-name">Social Value</span></div>
-        <div class="reg-sep">·</div>
-        <div class="reg-item"><span class="reg-code">EU 2022/2464</span><span class="reg-name">CSRD</span></div>
-        <div class="reg-sep">·</div>
-        <div class="reg-item"><span class="reg-code">Environment Act 2021</span><span class="reg-name">BNG</span></div>
-        <div class="reg-sep">·</div>
-        <div class="reg-item"><span class="reg-code">HM Treasury</span><span class="reg-name">Green Book NPV</span></div>
-      </div>
-      <div class="reg-strip-company">CrowAgent Ltd &nbsp;·&nbsp; Company No. 17076461 &nbsp;·&nbsp; Registered in England &amp; Wales &nbsp;·&nbsp; ICO registered &nbsp;·&nbsp; UK data residency</div>
-    </div>
+    <!-- P1-1: reg-strip removed — duplicated by methodology section below -->
   </div>
 </section>
 <!-- ── LIVE DEMO WIDGET ── -->
@@ -390,8 +393,8 @@
   </div>
 </section>
 
-<!-- ── ANIMATED DEMO ── -->
-<section class="demo-section">
+<!-- P1-1: Animated demo consolidated into "How it works" section below -->
+<section class="demo-section" style="display:none" aria-hidden="true">
   <div class="wrap container-standard">
     <div class="sh">
       <div class="sh-label">See it in action</div>
@@ -462,7 +465,7 @@
               <div class="ds-rl ds-rl-wide"></div>
               <div class="ds-rl ds-rl-med"></div>
               <div class="ds-rl ds-rl-short"></div>
-              <div class="ds-rl ds-rl-wide" style="margin-top:8px"></div>
+              <div class="ds-rl ds-rl-wide" style="margin-top:var(--space-2)"></div>
               <div class="ds-rl ds-rl-med"></div>
             </div>
             <div class="ds-report-cite">Cited to: SI 2015/962 reg 39 · MHCLG EPC Register · HM Treasury Green Book</div>
@@ -482,7 +485,8 @@
   </div>
 </section>
 
-<div class="ticker-wrap" aria-hidden="true">
+<!-- P1-1: Ticker removed to reduce visual noise -->
+<div class="ticker-wrap" aria-hidden="true" style="display:none">
   <div class="ticker-track">
     <span class="ticker-item">MEES 2028</span>
     <span class="ticker-item">PPN 002</span>
@@ -719,7 +723,7 @@
         <div class="product-price-hint">From <strong>£149/month</strong></div>
         <div class="product-cta-row">
           <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?product=core" target="_blank" rel="noopener noreferrer">Start free trial</a>
-          <a class="btn-ghost-sm" href="/products/crowagent-core">Learn more →</a>
+          <a class="btn-ghost-sm" href="/products/crowagent-core" aria-label="Learn more about CrowAgent Core">Learn more →</a>
         </div>
       </div>
       <div class="product-full-visual">
@@ -780,7 +784,7 @@
         <div class="product-price-hint">From <strong>£49/month</strong></div>
         <div class="product-cta-row">
           <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?product=crowmark" target="_blank" rel="noopener noreferrer">Start free trial</a>
-          <a class="btn-ghost-sm" href="/products/crowmark">Learn more →</a>
+          <a class="btn-ghost-sm" href="/products/crowmark" aria-label="Learn more about CrowMark">Learn more →</a>
         </div>
       </div>
     </div>
@@ -805,85 +809,17 @@
       </div>
     </div>
 
-    <!-- Phase 2 — Coming soon -->
-    <div class="phase-label phase-label-spaced">Planned next</div>
+    <!-- P1-3: Planned products condensed into roadmap summary -->
+    <div class="phase-label phase-label-spaced">Coming in 2026–2027</div>
     <div class="pc-grid">
       <div class="pc pc-locked">
         <div class="pc-head">
-          <span class="pc-badge pc-badge-soon">Q3 2026</span>
-          <h3>CrowSight</h3>
-          <p class="pc-sub">BNG (Biodiversity Net Gain) compliance</p>
-          <p class="pc-phase pc-phase-text">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
+          <span class="pc-badge pc-badge-soon">Q3–Q4 2026</span>
+          <h3>CrowSight · CrowBuild · CrowNest</h3>
+          <p class="pc-sub">BNG compliance, housing retrofit planning, and NHS Green Plan reporting — launching as our platform grows.</p>
         </div>
-        <div class="ca-notify-wrap" data-product="crowsight">
-          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowsight">Notify me</button>
-          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowSight notifications">
-            <input type="hidden" name="product" value="crowsight">
-            <input type="hidden" name="_subject" value="CrowSight waitlist signup">
-            <button class="btn-teal-sm" type="submit">Subscribe</button>
-          </form>
-          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowSight opens.</p>
-          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
-        </div>
-      </div>
-      <div class="pc pc-locked">
-        <div class="pc-head">
-          <span class="pc-badge pc-badge-soon">Q4 2026</span>
-          <h3>CrowBuild</h3>
-          <p class="pc-sub">Housing retrofit planning &amp; cost modelling</p>
-          <p class="pc-phase pc-phase-text">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
-        </div>
-        <div class="ca-notify-wrap" data-product="crowbuild">
-          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crowbuild">Notify me</button>
-          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowBuild notifications">
-            <input type="hidden" name="product" value="crowbuild">
-            <input type="hidden" name="_subject" value="CrowBuild waitlist signup">
-            <button class="btn-teal-sm" type="submit">Subscribe</button>
-          </form>
-          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowBuild opens.</p>
-          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
-        </div>
-      </div>
-      <div class="pc pc-locked">
-        <div class="pc-head">
-          <span class="pc-badge pc-badge-soon">Q4 2026</span>
-          <h3>CrowNest</h3>
-          <p class="pc-sub">NHS Green Plan compliance</p>
-          <p class="pc-phase pc-phase-text">Phase 2 · Unlocks at £20K MRR + 2 case studies</p>
-        </div>
-        <div class="ca-notify-wrap" data-product="crownest">
-          <button class="btn-ghost-sm" onclick="caToggleNotify(this)" data-product="crownest">Notify me</button>
-          <form class="ca-notify-form" onsubmit="caSubmitNotify(this);return false" style="display:none">
-            <input type="email" class="ca-notify-input" placeholder="you@company.com" required aria-label="Email address for CrowNest notifications">
-            <input type="hidden" name="product" value="crownest">
-            <input type="hidden" name="_subject" value="CrowNest waitlist signup">
-            <button class="btn-teal-sm" type="submit">Subscribe</button>
-          </form>
-          <p class="ca-notify-success" style="display:none;font-size:12px;color:var(--teal);margin-top:6px;" role="status">On the list. We'll email you when CrowNest opens.</p>
-          <p class="ca-notify-error" style="display:none;font-size:12px;color:var(--err);margin-top:6px;" role="alert">Something went wrong. Try again.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Phase 3 — Research -->
-    <div class="phase-label phase-label-spaced">Phase 3 — Research</div>
-    <div class="pc-grid">
-      <div class="pc pc-p3">
-        <div class="pc-head">
-          <span class="pc-badge pc-badge-soon">2027</span>
-          <h3>CrowTrace</h3>
-          <p class="pc-sub">Scope 3 supply chain carbon tracking</p>
-          <p class="pc-phase pc-phase-text">Phase 3 · Unlocks at Seed funding + £35K MRR</p>
-        </div>
-      </div>
-      <div class="pc pc-p3">
-        <div class="pc-head">
-          <span class="pc-badge pc-badge-soon">2027</span>
-          <h3>Regulatory Monitor</h3>
-          <p class="pc-sub">Live UK/EU regulatory change feed</p>
-          <p class="pc-phase pc-phase-text">Phase 3 · Unlocks at Seed funding + £35K MRR</p>
+        <div class="product-cta-row" style="margin-top:var(--space-4);">
+          <a class="btn-ghost-sm" href="/roadmap" aria-label="View full product roadmap">View roadmap →</a>
         </div>
       </div>
     </div>
@@ -1070,10 +1006,7 @@
         <summary class="faq-q-styled">Can I use CrowAgent Core and CrowMark together?</summary>
         <div class="faq-answer">Yes. They are separate products with separate subscriptions. If your organisation needs both MEES compliance for commercial property and PPN 002 social value for public sector bids, you can subscribe to both from the same account.</div>
       </details>
-      <details>
-        <summary class="faq-q-styled">What happens after the 14-day trial?</summary>
-        <div class="faq-answer">At the end of the trial you can choose whether to continue on a paid plan. You are not charged during the trial itself, and no credit card is required to start. The CSRD Checker remains free and does not require an account at all.</div>
-      </details>
+      <!-- P1-5: Trial FAQ removed (lives on /pricing). Data FAQ kept as unique to homepage. -->
       <details>
         <summary class="faq-q-styled">Where is my data stored?</summary>
         <div class="faq-answer">All data is stored in UK/EU data centres (eu-west-1) with AES-256 encryption at rest and TLS in transit. CrowAgent is ICO registered, GDPR compliant, and follows ISO 27001 aligned security practices. We do not share your data with third parties.</div>
@@ -1314,6 +1247,9 @@ function runLiveDemo() {
 
     var resultEl = document.getElementById('demo-result');
     resultEl.style.display = 'block';
+    var checkedPostcode = postcode;
+    var signupUrl = 'https://app.crowagent.ai/signup?plan=starter' +
+      (checkedPostcode ? '&postcode=' + encodeURIComponent(checkedPostcode) : '');
     resultEl.innerHTML =
       '<div style="padding:16px; background:var(--surf2); border-radius:8px;">' +
         '<div style="font-family:var(--font-display,\'Plus Jakarta Sans\',sans-serif);' +
@@ -1323,13 +1259,21 @@ function runLiveDemo() {
               'font-size:14px; color:var(--steel); line-height:1.7; margin-bottom:16px;">' +
           reply.replace(/\n/g, '<br>') +
         '</div>' +
-        '<a href="https://app.crowagent.ai/signup?plan=starter"' +
+        '<a href="' + signupUrl + '"' +
            ' style="display:inline-block; background:var(--teal); color:var(--bg);' +
                    'font-family:var(--font-display,\'Plus Jakarta Sans\',sans-serif);' +
                    'font-weight:700; font-size:13px; padding:10px 20px;' +
                    'border-radius:8px; text-decoration:none;">' +
           'Get your full report — start free trial →' +
         '</a>' +
+        '<div style="margin-top:12px;text-align:center;">' +
+          '<button onclick="resetDemo()" style="' +
+            'background:transparent;border:none;' +
+            'font-family:var(--font-body,\'Inter\',sans-serif);' +
+            'font-size:13px;color:var(--mist);' +
+            'cursor:pointer;text-decoration:underline;padding:0;' +
+          '">Check another postcode →</button>' +
+        '</div>' +
       '</div>';
   })
   .catch(function(err) {
@@ -1341,6 +1285,13 @@ function runLiveDemo() {
       'style="color:var(--teal)">Start a free trial</a> to get the full analysis.'
     );
   });
+}
+
+function resetDemo() {
+  document.getElementById('demo-result').style.display = 'none';
+  document.getElementById('demo-result').innerHTML = '';
+  document.getElementById('demo-postcode').value = '';
+  document.getElementById('demo-postcode').focus();
 }
 
 function showDemoError(msg) {
