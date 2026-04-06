@@ -121,6 +121,8 @@ var APP_VERSION = '43';
     document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
       btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === currentTheme);
     });
+    // Sync body class for any CSS that relies on it
+    document.body.classList.toggle('light-mode', currentTheme === 'light');
   }
 
   function updateTriggerDisplay() {
