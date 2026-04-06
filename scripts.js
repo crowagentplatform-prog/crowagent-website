@@ -803,6 +803,8 @@ function csrdShowStep(n) {
   csrdState.step = n;
   if (n === 1) { csrdState.employees = null; }
   if (n <= 2) { csrdState.turnover = null; }
+  // WP-QA-001 BUG #10/11: Show verdict immediately on step 3 (no email gate)
+  if (n === 3) { csrdRenderVerdict(); }
 }
 function csrdMapEmployees(val) {
   if (val === '1000+') return 1001;
@@ -819,14 +821,28 @@ function csrdGetResult() {
   var watchlist = csrdState.employees === '1000+' || csrdState.turnover === '450m+';
   return mandatory ? 'mandatory' : watchlist ? 'watchlist' : 'not_required';
 }
+// WP-QA-001 BUG #10/11: Render verdict immediately (no email gate)
+function csrdRenderVerdict() {
+  var resultDiv = document.getElementById('csrd-result');
+  if (!resultDiv) return;
+  var scope = csrdGetResult();
+  var html = '';
+  if (scope === 'mandatory') {
+    html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
+  } else if (scope === 'watchlist') {
+    html = '<div style="background:rgba(245,158,11,.1);border:1px solid var(--warn);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--warn);font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
+  } else {
+    html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
+  }
+  resultDiv.innerHTML = html;
+}
 async function csrdSubmit() {
   var email = document.getElementById('csrd-email');
   if (!email) return;
   var val = email.value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return;
-  var resultDiv = document.getElementById('csrd-result');
-  var submitBtn = document.querySelector('[data-csrd-step="3"] .btn-teal-sm[type="submit"]');
-  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Checking...'; }
+  var submitBtn = document.querySelector('#csrd-email-form .btn-ghost-sm[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
   try {
     var res = await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
       method: 'POST',
@@ -840,22 +856,10 @@ async function csrdSubmit() {
       })
     });
     if (!res.ok) throw new Error('API error ' + res.status);
-    var data = await res.json();
-    var scope = csrdGetResult();
-    var html = '';
-    if (scope === 'mandatory') {
-      html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
-    } else if (scope === 'watchlist') {
-      html = '<div style="background:rgba(245,158,11,.1);border:1px solid var(--warn);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--warn);font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
-    } else {
-      html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
-    }
-    if (resultDiv) resultDiv.innerHTML = html;
-    if (submitBtn) { submitBtn.textContent = 'Result ready'; submitBtn.style.background = 'var(--teal)'; }
+    if (submitBtn) { submitBtn.textContent = 'Sent \u2713'; submitBtn.style.color = 'var(--teal)'; }
   } catch(e) {
-    console.error('CSRD form error:', e);
-    if (resultDiv) resultDiv.innerHTML = '<div style="background:rgba(240,68,56,.1);border:1px solid var(--err);border-radius:10px;padding:16px;text-align:center;color:var(--err)">Unable to get result. Please try again.</div>';
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get my result'; }
+    console.error('CSRD email error:', e);
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to my email'; }
   }
 }
 
@@ -1240,6 +1244,53 @@ async function csrdSubmit() {
     });
   }, { threshold: 0.2 });
   milestones.forEach(function(m) { obs.observe(m); });
+})();
+
+// ── TOOLTIP DISMISS ON CLICK/ESCAPE — WP-QA-001 BUG #3 ──
+(function() {
+  document.addEventListener('click', function(e) {
+    var term = e.target.closest('.term');
+    document.querySelectorAll('.term.active').forEach(function(el) {
+      if (el !== term) el.classList.remove('active');
+    });
+    if (term) term.classList.toggle('active');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.term.active').forEach(function(el) {
+        el.classList.remove('active');
+      });
+    }
+  });
+})();
+
+// ── CONTACT PAGE FORM BLUR VALIDATION — WP-QA-001 BUG #29 ──
+(function() {
+  var form = document.getElementById('contactPageForm');
+  if (!form) return;
+  form.querySelectorAll('.form-input[required]').forEach(function(input) {
+    input.setAttribute('data-touched', 'false');
+    input.addEventListener('blur', function() {
+      this.setAttribute('data-touched', 'true');
+      var errId = this.id + '-err';
+      var errEl = document.getElementById(errId);
+      if (!errEl) return;
+      if (this.type === 'email') {
+        var val = this.value.trim();
+        if (!val || !val.includes('@') || !val.includes('.')) {
+          errEl.style.display = 'block';
+        } else {
+          errEl.style.display = 'none';
+        }
+      } else {
+        if (!this.value.trim()) {
+          errEl.style.display = 'block';
+        } else {
+          errEl.style.display = 'none';
+        }
+      }
+    });
+  });
 })();
 
 // ── Module exports (for testing) ─────────────────────────────────────────────

@@ -7,6 +7,17 @@
   var AUTO_OPEN_DELAY = 30000; // 30 seconds
   var LS_KEY = 'ca_chatbot_opened';
 
+  // System prompt for the chatbot API — WP-QA-001 CHATBOT FIX A
+  var SYSTEM_PROMPT = 'You are the CrowAgent website assistant. Keep answers helpful and concise. ' +
+    'If the user greets you (e.g. "hello", "hi", "hey"), respond with a short friendly greeting only — do NOT list product features unless asked. ' +
+    'Always complete your full answer without truncating. ' +
+    'You can answer questions about: MEES regulations (SI 2015/962, proposed Band C 2028), EPC bands and energy efficiency, ' +
+    'PPN 002 social value and TOMs framework, CSRD/Omnibus I applicability, CrowAgent pricing and features, and general platform queries. ' +
+    'When discussing MEES Band C 2028, always note it is a proposed target, not yet enacted law. ' +
+    'Penalties use the rateable value formula from SI 2015/962 reg 39 — never cite a flat £30,000 figure.';
+
+  var GREETING_RE = /^(hi|hello|hey|howdy|morning|afternoon|evening|yo|sup|hiya|hola)\b/i;
+
   var SUGGESTED_QUESTIONS = [
     'What is MEES 2028?',
     'How does CrowMark work?',
@@ -435,6 +446,16 @@
       return;
     }
 
+    // Handle simple greetings client-side — CHATBOT FIX A
+    if (GREETING_RE.test(trimmed) && trimmed.split(/\s+/).length <= 3) {
+      messages.push({ role: 'user', content: trimmed });
+      messages.push({ role: 'assistant', content: 'Hi there! How can I help you today? I can answer questions about MEES compliance, PPN 002 social value, CSRD reporting, pricing, or anything else about CrowAgent.' });
+      renderMessages(els);
+      els.input.value = '';
+      els.sendBtn.disabled = true;
+      return;
+    }
+
     // Check for plan recommendation trigger
     if (PLAN_TRIGGERS.test(trimmed)) {
       recommenderState = { step: 1, role: '', volume: '' };
@@ -463,6 +484,8 @@
       body: JSON.stringify({
         message: apiMessages[apiMessages.length - 1].content,
         context: 'marketing_website',
+        system_prompt: SYSTEM_PROMPT,
+        max_tokens: 800,
       }),
     })
       .then(function (res) {

@@ -226,7 +226,7 @@ nav .wrap{max-width:1400px;padding-inline:clamp(20px,5vw,80px)}
    ============================================================= */
 :root{
   /* Fluid spacing — WP-RESP-001 */
-  --section-pad-hero:clamp(80px,10vw,140px);
+  --section-pad-hero:clamp(56px,6vw,96px);
   --section-pad-primary:clamp(64px,8vw,120px);
   --section-pad-secondary:clamp(48px,6vw,96px);
   --section-pad-compact:clamp(32px,4vw,64px);
@@ -407,7 +407,7 @@ nav .wrap {
   .ham{display:flex}
 }
 /* HERO */
-.hero{padding:var(--section-pad-hero) 0 var(--section-pad-primary);position:relative;overflow:visible;background-image:url('Assets/bg-hero.svg');background-size:cover;background-position:center top;background-repeat:no-repeat}
+.hero{padding:var(--section-pad-hero) 0 var(--section-pad-primary);position:relative;overflow:visible;background-image:url('Assets/bg-hero.svg');background-size:cover;background-position:center top;background-repeat:no-repeat;max-height:none}
 /* WP-WEB-006 Fix 2: Hero glow — two asymmetric blobs */
 .hero-glow {
   position: absolute;
@@ -483,7 +483,7 @@ nav .wrap {
 .reg-code{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;color:var(--teal);letter-spacing:.04em}
 .reg-name{font-size:10px;color:var(--steel)}
 .reg-sep{color:var(--mist);opacity:.4;font-size:14px}
-.reg-strip-company{font-size:10px;color:rgba(90,122,142,.5);letter-spacing:.03em}
+.reg-strip-company{font-size:11px;color:var(--steel);letter-spacing:.03em}
 @media(max-width:640px){.reg-sep{display:none}.reg-strip-items{gap:12px}}
 
 @media(max-width:768px){.hero h1,.hero-headline{font-size:clamp(1.75rem,5vw,3rem);line-height:1.2}}
@@ -558,7 +558,7 @@ nav .wrap {
 .ds-rl-wide{width:85%}
 .ds-rl-med{width:60%}
 .ds-rl-short{width:40%}
-.ds-report-cite{font-size:9px;color:var(--mist);margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-family:'Inter',sans-serif}
+.ds-report-cite{font-size:11px;color:var(--steel);margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-family:'Inter',sans-serif}
 .ds-download{display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Plus Jakarta Sans',sans-serif;font-size:13px;font-weight:700;background:var(--teal);color:var(--bg);border:none;border-radius:8px;padding:12px 20px;text-decoration:none;transition:all .2s}
 .ds-download svg{width:16px;height:16px;flex-shrink:0}
 .ds-download:hover{background:var(--teal-d)}
@@ -1515,7 +1515,7 @@ a.contact-detail-value:hover{color:var(--teal)}
 @media(min-width:1440px){
   .container-wide{padding-inline:clamp(48px,6vw,96px)}
   .container-standard{padding-inline:clamp(32px,4vw,72px)}
-  :root{--section-pad-hero:140px;--section-pad-primary:120px;--section-pad-secondary:96px;--section-py-primary:112px;--section-py-hero:160px}
+  :root{--section-pad-hero:96px;--section-pad-primary:120px;--section-pad-secondary:96px;--section-py-primary:112px;--section-py-hero:120px}
 }
 
 @media(min-width:1920px){
@@ -1914,10 +1914,10 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
    WP-WEB-003-SUP: Compliance term tooltips
    ============================================================= */
 .term{border-bottom:1px dashed rgba(12,201,168,.5);cursor:help;position:relative;display:inline}
-.term::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surf);border:1px solid rgba(12,201,168,.25);border-radius:8px;padding:8px 12px;font-size:.75rem;font-family:'Inter',sans-serif;font-weight:400;color:var(--cloud);max-width:320px;white-space:normal;word-break:normal;text-align:left;line-height:1.5;opacity:0;pointer-events:none;transition:opacity var(--transition-base);z-index:2000}
+.term::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--surf);border:1px solid rgba(12,201,168,.25);border-radius:8px;padding:8px 12px;font-size:.75rem;font-family:'Inter',sans-serif;font-weight:400;color:var(--cloud);max-width:320px;white-space:normal;word-break:normal;word-spacing:normal;letter-spacing:normal;text-align:left;line-height:1.5;opacity:0;pointer-events:none;transition:opacity var(--transition-base);z-index:2000}
 .term::before{content:'';position:absolute;bottom:calc(100% + 2px);left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:rgba(12,201,168,.25);opacity:0;pointer-events:none;transition:opacity var(--transition-base);z-index:2001}
-.term:hover::after,.term:focus::after{opacity:1}
-.term:hover::before,.term:focus::before{opacity:1}
+.term:hover::after,.term:focus::after,.term.active::after{opacity:1;pointer-events:auto}
+.term:hover::before,.term:focus::before,.term.active::before{opacity:1}
 @media(max-width:767px){.term::after{left:0;transform:none;max-width:220px}.term::before{left:16px;transform:none}}
 
 /* =============================================================
@@ -3561,5 +3561,15 @@ textarea.form-input {
     animation: none !important;
     transition: none !important;
   }
+}
+
+/* WP-QA-001: Source citation minimum readability */
+.source-citation,
+.ds-report-cite,
+.csrd-disclaimer,
+.reg-strip-company,
+small {
+  font-size: max(11px, 1em);
+  color: var(--steel);
 }
 

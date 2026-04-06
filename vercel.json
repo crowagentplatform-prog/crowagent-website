@@ -28,7 +28,8 @@
     { "source": "/blog/epc-register-explained", "destination": "/blog/epc-register-explained.html" },
     { "source": "/blog/social-value-themes-explained", "destination": "/blog/social-value-themes-explained.html" },
     { "source": "/blog/mees-exemptions-guide", "destination": "/blog/mees-exemptions-guide.html" },
-    { "source": "/blog/regulatory-updates-2026", "destination": "/blog/regulatory-updates-2026.html" }
+    { "source": "/blog/regulatory-updates-2026", "destination": "/blog/regulatory-updates-2026.html" },
+    { "source": "/faq", "destination": "/faq.html" }
   ],
   "headers": [
     {
@@ -36,7 +37,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self' https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://crowagent-platform-staging-production.up.railway.app; frame-ancestors 'none';"
+          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com; connect-src 'self' https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://crowagent-platform-staging-production.up.railway.app https://formspree.io; frame-src https://calendly.com; frame-ancestors 'none';"
         },
         {
           "key": "X-Content-Type-Options",
