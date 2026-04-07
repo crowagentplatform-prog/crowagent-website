@@ -99,7 +99,7 @@
     '      </div>',
     '      <span class="nav-price-hint">From &pound;99/mo</span>',
     '      <a class="btn-ghost-sm nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
-    '      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>',
+    '      <a class="btn-teal-sm nav-cta" href="https://app.crowagent.ai/signup" style="flex-shrink:0;white-space:nowrap;">Get started</a>',
     '    </div>',
     '    <button class="ham" onclick="toggleMob()" aria-label="Toggle menu" aria-expanded="false">',
     '      <span></span><span></span><span></span>',
@@ -133,11 +133,6 @@
     '      <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>',
     '      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>',
     '      <button class="mob-locale-btn" data-currency="USD">$ USD</button>',
-    '    </div>',
-    '    <div class="mob-locale-label" style="margin-top:10px">Theme</div>',
-    '    <div class="mob-theme-row">',
-    '      <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>',
-    '      <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>',
     '    </div>',
     '  </div>',
     '</div>'
@@ -221,6 +216,8 @@
   function run() {
     inject('ca-nav', NAV_HTML);
     inject('ca-footer', FOOTER_HTML);
+    // Signal nav injection complete so scripts.js can rebind locale/theme handlers
+    document.dispatchEvent(new CustomEvent('ca-nav-ready'));
   }
 
   if (document.readyState === 'loading') {

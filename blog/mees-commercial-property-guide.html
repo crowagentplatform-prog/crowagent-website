@@ -37,63 +37,8 @@
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
-<nav role="navigation" aria-label="Main navigation">
-  <div class="wrap">
-    <a href="/" class="logo">
-      <div class="logo-mark-wrap">
-        <div class="b b1"></div><div class="b b2"></div><div class="b b3"></div><div class="b b4"></div>
-      </div>
-      <div class="logo-text">
-        <div class="logo-wordmark">Crow<span>Agent</span></div>
-        <div class="logo-tag">Sustainability Intelligence</div>
-      </div>
-    </a>
-    <div class="nav-links">
-      <a href="/#how">How it works</a><a href="/#products">Products</a><a href="/#sectors">Sectors</a>
-      <a href="/pricing">Pricing</a><a href="/csrd">CSRD Checker</a><a href="/blog">Blog</a><a href="/about">About</a>
-      <a href="/faq">FAQ</a>
-    </div>
-    <div class="nav-actions">
-      <div class="locale-selector" id="locale-selector">
-        <button class="locale-trigger" id="locale-trigger" aria-haspopup="true" aria-expanded="false">
-          <span id="locale-flag">&#x1F1EC;&#x1F1E7;</span>
-          <span id="locale-lang">EN</span>
-          <span class="locale-sep">|</span>
-          <span id="locale-curr">&pound; GBP</span>
-          <span class="locale-chevron">&#x25BE;</span>
-        </button>
-        <div class="locale-dropdown" id="locale-dropdown" role="menu">
-          <div class="locale-section-label">Language</div>
-          <button class="locale-opt" role="menuitem" data-lang="en" data-flag="&#x1F1EC;&#x1F1E7;">&#x1F1EC;&#x1F1E7; English</button>
-          <button class="locale-opt" role="menuitem" data-lang="fr" data-flag="&#x1F1EB;&#x1F1F7;">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</button>
-          <button class="locale-opt" role="menuitem" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>
-          <button class="locale-opt" role="menuitem" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>
-          <button class="locale-opt" role="menuitem" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>
-          <div class="locale-section-label locale-section-label-mt">Currency</div>
-          <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>
-          <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>
-          <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>
-          <div id="lang-tooltip" style="display:none;" role="status" aria-live="polite"></div>
-          <div class="locale-section-label locale-section-label-mt">Theme</div>
-          <div class="theme-toggle-row">
-            <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>
-            <button class="theme-opt" type="button" data-theme-choice="light">Light</button>
-          </div>
-        </div>
-      </div>
-      <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
-      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
-    </div>
-    <button class="ham" onclick="toggleMob()" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</nav>
-<div class="mob-menu">
-  <a href="/#how">How it works</a><a href="/#products">Products</a><a href="/#sectors">Sectors</a>
-  <a href="/pricing">Pricing</a><a href="/csrd">CSRD Checker</a><a href="/blog">Blog</a><a href="/about">About</a>
-      <a href="/faq">FAQ</a>
-  <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Log in &rarr;</a>
-  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
-</div>
+<!-- NAV — injected by js/nav-inject.js (single source of truth) -->
+<div id="ca-nav"></div>
 
 <main id="main-content">
   <article class="blog-article">
@@ -248,28 +193,8 @@
   </article>
 </main>
 
-<footer class="ca-footer" role="contentinfo">
-  <div class="wrap container-standard">
-    <div class="footer-grid">
-      <div class="footer-col footer-col-brand">
-        <a href="/" class="logo"><div class="logo-mark-wrap"><div class="b b1"></div><div class="b b2"></div><div class="b b3"></div><div class="b b4"></div></div><div class="logo-text"><div class="logo-wordmark">Crow<span>Agent</span></div><div class="logo-tag">Sustainability Intelligence</div></div></a>
-        <p class="footer-tagline">Sustainability Compliance Software for UK organisations navigating MEES, PPN 002, CSRD, and the full regulatory agenda.</p>
-        <p class="footer-company">CrowAgent Ltd &middot; Company No. 17076461<br>Registered in England &amp; Wales &middot; ICO registered</p>
-      </div>
-      <div class="footer-col"><h4 class="footer-col-title">Products</h4><div class="footer-links"><a href="/products/crowagent-core">CrowAgent Core</a><a href="/products/crowmark">CrowMark</a><a href="/csrd">CSRD Checker</a><a href="/pricing">Pricing</a></div></div>
-      <div class="footer-col"><h4 class="footer-col-title">Resources</h4><div class="footer-links"><a href="/blog">All articles</a><a href="/blog/mees-band-c-2028">MEES guides</a><a href="/blog/ppn-002-guide">PPN 002 guides</a><a href="/blog/csrd-omnibus-i-2026">CSRD guides</a></div></div>
-          <a href="/faq">FAQ</a>
-      <div class="footer-col"><h4 class="footer-col-title">Company</h4><div class="footer-links"><a href="/about">About</a>
-      <a href="/faq">FAQ</a><a href="/demo">Book a demo</a><a href="/roadmap">Roadmap</a><a href="/contact">Contact</a></div></div>
-      <div class="footer-col"><h4 class="footer-col-title">Legal</h4><div class="footer-links"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/cookies">Cookies</a><a href="/security">Security</a></div></div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-copyright">&copy; 2026 CrowAgent Ltd. All rights reserved.</p>
-      <p class="footer-infra">Built on Railway &middot; Vercel &middot; Cloudflare &middot; Supabase</p>
-      <a href="#" id="ca-cookie-reopen" class="cookie-reopen-link">Cookie preferences</a>
-    </div>
-  </div>
-</footer>
+<!-- FOOTER — injected by js/nav-inject.js (single source of truth) -->
+<div id="ca-footer"></div>
 <script src="/scripts.min.js?v=45" defer></script>
 <!-- Cookie consent -->
 <script src="/cookie-banner.js" defer></script>

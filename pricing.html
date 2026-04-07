@@ -169,6 +169,7 @@
 <p class="pricing-note">All prices exclude VAT. Annual billing saves 10%. Every paid plan includes a 14-day trial. <a href="/contact" style="color:var(--teal)">Contact us</a> for enterprise pricing from £999 per month, including SSO, SLA, and dedicated customer support.</p>
 
 <!-- ── FEATURE COMPARISON: Core ── -->
+<div id="core-compare">
 <section class="wrap container-standard pb-compact">
   <div class="sh">
     <h2>Compare CrowAgent Core plans</h2>
@@ -199,8 +200,10 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- ── FEATURE COMPARISON: CrowMark ── -->
+<div id="mark-compare" style="display:none">
 <section class="wrap container-standard pb-compact">
   <div class="sh">
     <h2>Compare CrowMark plans</h2>
@@ -230,6 +233,7 @@
     </div>
   </div>
 </section>
+</div>
 
 <!-- ── FAQ ── -->
 <section class="wrap container-text pb-compact" style="max-width:760px;text-align:center">
@@ -240,98 +244,8 @@
   <a href="/faq" class="btn-ghost-sm">See our FAQ &rarr;</a>
 </section>
 
-<!-- ── FEATURE COMPARISON TABLE — WP-WEB-003 ── -->
-<section class="section-padding">
-  <div class="container-standard">
-    <div class="sh"><h2>Compare all features</h2></div>
-    <div class="compare-table-wrap" style="margin-top:40px">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th class="compare-th compare-th--feature">Feature</th>
-            <th class="compare-th">Starter</th>
-            <th class="compare-th compare-th--featured">Pro</th>
-            <th class="compare-th">Portfolio</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="compare-group"><td colspan="4">MEES Compliance — CrowAgent Core</td></tr>
-          <tr><td class="compare-feat">Properties monitored</td><td>Up to 5</td><td class="compare-td--featured">Up to 25</td><td>Unlimited</td></tr>
-          <tr><td class="compare-feat">EPC gap analysis</td><td>✓</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">Retrofit scenario modelling</td><td>3 scenarios</td><td class="compare-td--featured">10 scenarios</td><td>Unlimited</td></tr>
-          <tr><td class="compare-feat">NPV financial modelling</td><td>—</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">PDF compliance reports</td><td>✓</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">Portfolio analytics dashboard</td><td>—</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">EPC monitoring alerts</td><td>—</td><td class="compare-td--featured">—</td><td>✓</td></tr>
-          <tr class="compare-group"><td colspan="4">Social Value — CrowMark</td></tr>
-          <tr><td class="compare-feat">Active contracts</td><td>1</td><td class="compare-td--featured">5</td><td>Unlimited</td></tr>
-          <tr><td class="compare-feat">AI bid narrative generation</td><td>✓</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">TOMs framework scoring</td><td>✓</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">Evidence portfolio management</td><td>—</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr><td class="compare-feat">Confidence gate (10% threshold)</td><td>✓</td><td class="compare-td--featured">✓</td><td>✓</td></tr>
-          <tr class="compare-group"><td colspan="4">Platform</td></tr>
-          <tr><td class="compare-feat">Team members</td><td>1</td><td class="compare-td--featured">5</td><td>Unlimited</td></tr>
-          <tr><td class="compare-feat">Email support</td><td>✓</td><td class="compare-td--featured">Priority</td><td>Dedicated CSM</td></tr>
-          <tr><td class="compare-feat">Annual discount</td><td>10%</td><td class="compare-td--featured">10%</td><td>10%</td></tr>
-          <tr><td class="compare-feat">CSRD Checker</td><td>Free</td><td class="compare-td--featured">Free</td><td>Free</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
 
-<!-- ── PRICING FAQ — WP-WEB-003 ── -->
-<section class="section-padding--sm">
-  <div class="container-text">
-    <div class="sh"><h2>Frequently asked questions</h2></div>
-    <div class="faq-list" style="margin-top:40px">
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What is the annual discount?</button>
-        <div class="faq-a" hidden>Pay annually and save exactly 10% compared to the monthly rate. The saving is shown as a £ amount on each plan card. No other discounts are applied.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Can I subscribe to both Core and CrowMark?</button>
-        <div class="faq-a" hidden>CrowAgent Core (MEES compliance) and CrowMark (PPN 002 social value) are separate subscriptions — you can use one or both from the same account. If you need both, contact us at hello@crowagent.ai for a combined pricing discussion.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Is CSRD Checker always free?</button>
-        <div class="faq-a" hidden>Yes. The CSRD Checker is permanently free — no account required. It is a standalone assessment tool for CSRD applicability under the Omnibus I thresholds.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Can I switch plans at any time?</button>
-        <div class="faq-a" hidden>Yes. Upgrade or downgrade your plan at any time from the billing settings in your account. Upgrades take effect immediately. Downgrades apply at the end of your current billing period.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">What support is included?</button>
-        <div class="faq-a" hidden>All plans include email support. Pro plans receive priority email response (target: 4 hours during UK business hours). Portfolio plans receive a dedicated Customer Success Manager.</div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" aria-expanded="false">Can I cancel at any time?</button>
-        <div class="faq-a" hidden>Yes. Monthly subscriptions can be cancelled at any time with no notice period. Annual subscriptions run to the end of the annual term. No penalty for cancellation.</div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ── CTA BAND ── -->
-<section class="cta-band">
-  <div class="wrap container-wide">
-    <h2>Start with the workflow you need now</h2>
-    <p class="cta-band-sub">Choose CrowAgent Core for property compliance or CrowMark for social value work. If you are still assessing scope, start with the free CSRD checker first.</p>
-    <div class="hero-btns">
-      <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
-      <a class="btn-hero-out" href="/contact">Enterprise enquiry</a>
-    </div>
-    <!-- G-Cloud badge — uncomment when listed on G-Cloud 16 -->
-    <!-- TO ENABLE: Remove comment tags when G-Cloud 16 listing is live -->
-    <!--
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;font-size:13px;color:var(--mist);">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-      G-Cloud 16 listed
-    </div>
-    -->
-  </div>
-</section>
 
 <!-- ── FOOTER ── -->
 </main>

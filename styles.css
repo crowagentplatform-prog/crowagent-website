@@ -3698,3 +3698,213 @@ small {
 .calendly-inline-widget { min-width: 320px; height: 700px; border: none; }
 @media (max-width: 768px) { .calendly-inline-widget { height: 600px; } }
 
+/* ============================================================
+   WP-WEB-REORG-002 — Additive alignment patch
+   Appended April 2026. Zero existing rules modified.
+   All changes are additions only.
+   ============================================================ */
+
+/* ── CRITICAL: Fix "Most popular" badge rendering as full-width bar ──
+   Our prev patch set width:100% on .pgc-pop .pgc-cta which was
+   inherited by .pgc-badge. This overrides it. */
+.pgc-badge {
+  display: inline-block !important;
+  width: auto !important;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  /* background and color already set by existing styles.css */
+}
+
+/* ── EQUAL-HEIGHT CARDS — all grid card types use flex column ──
+   This is the single fix for uneven card heights across all sections.
+   CSS grid stretch (default) handles equalisation automatically. */
+.u-card,
+.sector,
+.tc,
+.hw,
+.pgc {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pin bottom elements to bottom of their cards */
+.tc .trust-note { margin-top: auto; padding-top: 8px; }
+.pgc .pgc-cta   { margin-top: auto; }
+.u-card .u-source-label { margin-top: auto; padding-top: 12px; }
+
+/* ── STATS BAR — centre all stat items ── */
+.sc { text-align: center; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ── SECTION HEADINGS — consistent centring via .sh class ── */
+.sh {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.sh h2, .sh .u-h2-display { margin-bottom: 8px; }
+
+/* ── BUTTON HEIGHTS — two tiers, always centred ──
+   Tier 1 large (hero / CTA bands): 48px
+   Tier 2 standard (cards / nav): 40px
+   Both: flex centred, no text wrap */
+.btn-hero,
+.btn-hero-out {
+  min-height: 48px;
+  padding: 0 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-teal-sm,
+.btn-ghost-sm,
+.btn-primary {
+  min-height: 40px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* ── PRICING CARD CTA — full width, centred, consistent height ── */
+.pgc-cta {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+/* ── PRICING GRID — always 3-column on desktop ──
+   Fixes CrowMark Solo showing as single full-width card */
+.pgrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 1120px;
+  margin: 0 auto 24px;
+  padding: 0 20px;
+}
+@media (max-width: 900px) {
+  .pgrid { grid-template-columns: 1fr; gap: 16px; }
+}
+
+/* ── PRODUCT CTA ROW — aligned ── */
+.product-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* ── HOW-IT-WORKS 2x2 — equal height steps ── */
+.hw-grid-2col .hw { min-height: 160px; }
+
+/* ── METHODOLOGY SECTION — 4-col on desktop ── */
+.methodology-4col {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1024px) {
+  .methodology-4col { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .methodology-4col { grid-template-columns: 1fr; }
+}
+
+/* ── BOTTOM TRIPLE SECTION — CSRD + CTA + FAQ side by side ── */
+.triple-cta-section {
+  padding: clamp(48px, 7vw, 80px) 0;
+}
+.triple-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 24px;
+  align-items: start;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+@media (max-width: 900px) {
+  .triple-cta-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+.triple-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(12,201,168,0.15);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.triple-card .u-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); }
+.triple-card h3 { font-family: var(--font-display,'Plus Jakarta Sans',sans-serif); font-size: 16px; font-weight: 700; color: var(--cloud,#E4ECF7); line-height: 1.3; }
+.triple-card p { font-size: 13px; color: var(--steel,#8A9DB8); line-height: 1.6; flex:1; }
+.triple-cta-main { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.triple-cta-main h2 { font-family: var(--font-display,'Plus Jakarta Sans',sans-serif); font-size: clamp(20px,3vw,28px); font-weight: 700; color: var(--cloud,#E4ECF7); }
+.triple-cta-main p  { font-size: 14px; color: var(--steel,#8A9DB8); max-width: 320px; }
+.triple-cta-buttons { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.triple-team-link { font-size: 13px; color: var(--steel,#8A9DB8); }
+.triple-team-link a { color: var(--teal,#0CC9A8); }
+
+/* ── SCROLL-TO-TOP BUTTON ── */
+#back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--teal, #0CC9A8);
+  color: var(--bg, #040E1A);
+  border: none;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  box-shadow: 0 4px 16px rgba(12,201,168,0.35);
+  transition: transform 0.2s, opacity 0.2s;
+}
+#back-to-top.visible { display: flex; }
+#back-to-top:hover { transform: translateY(-2px); }
+#back-to-top svg { display: block; }
+
+/* ── NAV LOCALE — fix binding timing indicator ── */
+.locale-selector { position: relative; }
+
+/* ── NAV OVERFLOW FIX — "Get started" was clipping ── */
+.nav-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.nav-price-hint { white-space: nowrap; flex-shrink: 0; }
+.btn-teal-sm.nav-cta { flex-shrink: 0; }
+
+/* ── U-GRID-3 — equal height stretch ── */
+.u-grid-3 {
+  align-items: stretch;
+}
+.u-grid-3 .u-card {
+  height: 100%;
+}
+

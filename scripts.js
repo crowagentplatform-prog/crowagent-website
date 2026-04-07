@@ -334,6 +334,8 @@ var APP_VERSION = '43';
   } else {
     initLocale();
   }
+  // Rebind locale/theme after nav-inject.js injects nav HTML
+  document.addEventListener('ca-nav-ready', initLocale);
 })();
 
 // ── TOUCH SWIPE: Close mobile menu on swipe-left ──
@@ -404,6 +406,11 @@ function switchPTab(product, btn) {
   btn.classList.add('on');
   document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
   document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
+  // Toggle comparison tables with tabs
+  var coreCompare = document.getElementById('core-compare');
+  var markCompare = document.getElementById('mark-compare');
+  if (coreCompare) coreCompare.style.display = (product === 'core') ? '' : 'none';
+  if (markCompare) markCompare.style.display = (product === 'mark') ? '' : 'none';
 }
 
 // ── BILLING TOGGLE (monthly/annual) ──
@@ -1384,4 +1391,23 @@ if (typeof module !== 'undefined' && module.exports) {
   } else {
     animateCounters();
   }
+})();
+
+// ── SCROLL-TO-TOP ──────────────────────────────────────────────
+(function() {
+  var btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+  document.body.appendChild(btn);
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 })();
