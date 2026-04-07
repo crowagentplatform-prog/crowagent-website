@@ -335,7 +335,32 @@ var APP_VERSION = '43';
     initLocale();
   }
   // Rebind locale/theme after nav-inject.js injects nav HTML
-  document.addEventListener('ca-nav-ready', initLocale);
+  document.addEventListener('ca-nav-ready', function() {
+    initLocale();
+
+    // MOB-MENU CLOSE-ON-CLICK — moved here (fix: ran before nav-inject injected nav)
+    document.querySelectorAll('.mob-menu a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        closeMob();
+      });
+    });
+
+    // STATUS CHECK — moved here from raw IIFE (fix: ran before nav-inject injected footer)
+    (function() {
+      var dot = document.getElementById('status-dot');
+      var label = document.getElementById('status-label');
+      if (!dot || !label) return;
+      fetch('https://crowagent-platform-production.up.railway.app/api/v1/health', {
+        method: 'GET',
+        signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined
+      })
+      .then(function(r) {
+        if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
+        else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
+      })
+      .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
+    })();
+  });
 })();
 
 // ── TOUCH SWIPE: Close mobile menu on swipe-left ──
@@ -1197,21 +1222,7 @@ async function csrdSubmit() {
   });
 })();
 
-// ── FOOTER SYSTEM STATUS — WP-WEB-003-SUP ──
-(function() {
-  var dot = document.getElementById('status-dot');
-  var label = document.getElementById('status-label');
-  if (!dot || !label) return;
-  fetch('https://crowagent-platform-production.up.railway.app/api/v1/health', {
-    method: 'GET',
-    signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined
-  })
-  .then(function(r) {
-    if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
-    else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
-  })
-  .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
-})();
+// ── FOOTER SYSTEM STATUS — moved into ca-nav-ready listener (WP-WEB-FIX-001) ──
 
 // ── PRICING CARD ENTRANCE — WP-WEB-003-SUP ──
 (function() {
