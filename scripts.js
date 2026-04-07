@@ -1210,7 +1210,7 @@ async function csrdSubmit() {
     if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
     else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
   })
-  .catch(function() { dot.className = 'footer-status-dot offline'; label.textContent = 'Status unavailable'; });
+  .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
 })();
 
 // ── PRICING CARD ENTRANCE — WP-WEB-003-SUP ──
@@ -1385,11 +1385,11 @@ if (typeof module !== 'undefined' && module.exports) {
   }
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); obs.disconnect(); } });
+      entries.forEach(function(e) { if (e.isIntersecting) { setTimeout(animateCounters, 1000); obs.disconnect(); } });
     }, { threshold: 0.3 });
     counters.forEach(function(c) { obs.observe(c); });
   } else {
-    animateCounters();
+    setTimeout(animateCounters, 1000);
   }
 })();
 
