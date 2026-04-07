@@ -377,7 +377,7 @@ var APP_VERSION = '49';
     })();
   }
   /* Fire immediately if nav already injected (race condition guard) */
-  var navEl = document.getElementById('ca-nav');
+  var navEl = document.querySelector('nav[role="navigation"]');
   if (navEl && navEl.hasChildNodes()) {
     onNavReady();
   } else {
