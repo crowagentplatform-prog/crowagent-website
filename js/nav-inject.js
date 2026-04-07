@@ -65,7 +65,6 @@
     '      <a href="/pricing"' + (isActive('/pricing') ? ' aria-current="page"' : '') + '>Pricing</a>',
     '      <a href="/csrd"' + (isActive('/csrd') ? ' aria-current="page"' : '') + '>CSRD Checker</a>',
     '      <a href="/blog"' + (isActive('/blog') ? ' aria-current="page"' : '') + '>Blog</a>',
-    '
     '      <a href="/about"' + (isActive('/about') ? ' aria-current="page"' : '') + '>About</a>',
     '    </div>',
     '    <div class="nav-actions">',
@@ -96,7 +95,6 @@
     '          </div>',
     '        </div>',
     '      </div>',
-    '
     '      <a class="btn-ghost-sm nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
     '      <a class="btn-teal-sm nav-cta" href="https://app.crowagent.ai/signup" style="flex-shrink:0;white-space:nowrap;">Get started</a>',
     '    </div>',
@@ -114,7 +112,6 @@
     '  <a href="/#sectors">Sectors</a>',
     '  <a href="/pricing">Pricing</a>',
     '  <a href="/blog">Blog</a>',
-    '
     '  <a href="/about">About</a>',
     '  <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
     '  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>',
