@@ -1,4 +1,4 @@
-var APP_VERSION = '43';
+var APP_VERSION = '49';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -338,6 +338,15 @@ var APP_VERSION = '43';
   document.addEventListener('ca-nav-ready', function() {
     initLocale();
 
+    // NAV GLASSMORPHISM — solid bg on scroll (WP-WEB-TRANSFORM-001)
+    (function() {
+      var nav = document.querySelector('nav');
+      if (!nav) return;
+      window.addEventListener('scroll', function() {
+        nav.classList.toggle('nav-solid', window.scrollY > 30);
+      }, { passive: true });
+    })();
+
     // MOB-MENU CLOSE-ON-CLICK — moved here (fix: ran before nav-inject injected nav)
     document.querySelectorAll('.mob-menu a').forEach(function(a) {
       a.addEventListener('click', function() {
@@ -359,6 +368,18 @@ var APP_VERSION = '43';
         else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
       })
       .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
+    })();
+
+    // BACK-TO-TOP BUTTON — WP-WEB-TRANSFORM-001
+    (function() {
+      var btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     })();
   });
 })();
@@ -454,15 +475,8 @@ function toggleBilling() {
   if (typeof window.caUpdatePlanLinks === 'function') window.caUpdatePlanLinks();
 }
 
-// ── MEES COUNTDOWN ──
-(function() {
-  var el = document.getElementById('days-counter');
-  if (!el) return;
-  var deadline = new Date('2028-04-01T00:00:00Z');
-  var now = new Date();
-  var days = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
-  el.textContent = days.toLocaleString('en-GB');
-})();
+// ── MEES COUNTDOWN — removed dead days-counter IIFE (WP-WEB-TRANSFORM-001) ──
+// Live countdown uses #mees-days (below) and inline script in index.html
 
 // ── MEES 2028 COUNTDOWN — WP-WEB-003 (hero countdown pill) ──
 (function() {
@@ -683,38 +697,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// ── CSRD INLINE FORM (homepage) ──
-function submitCSRDInline() {
-  var email = document.getElementById('csrd-i-email');
-  var err = document.getElementById('csrd-email-err');
-  if (!email) return;
-  var val = email.value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-    if (err) err.style.display = 'block';
-    return;
-  }
-  if (err) err.style.display = 'none';
-  var employees = document.getElementById('csrd-i-employees');
-  var turnover = document.getElementById('csrd-i-turnover');
-  var btn = document.querySelector('#csrd-inline-form .btn-form');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-  fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      company_name: 'Website visitor (homepage)',
-      email: val,
-      employee_count: csrdMapEmployees(employees ? employees.value : '<250'),
-      annual_turnover_eur: csrdMapTurnover(turnover ? turnover.value : '<150m'),
-      is_listed: false
-    })
-  }).catch(function(){}).finally(function(){
-    var form = document.getElementById('csrd-inline-form');
-    var success = document.getElementById('csrd-inline-success');
-    if (form) form.style.display = 'none';
-    if (success) success.style.display = 'block';
-  });
-}
+// ── CSRD INLINE FORM — removed (WP-WEB-TRANSFORM-001: IDs never existed in HTML) ──
 
 // ── PHASE 2 NOTIFY-ME ──
 function caToggleNotify(btn) {
@@ -753,24 +736,7 @@ async function caSubmitNotify(btn) {
   if (successEl) successEl.style.display = 'block';
 }
 
-// ── CSRD INLINE EMAIL BLUR VALIDATION ──
-(function() {
-  var el = document.getElementById('csrd-i-email');
-  if (!el) return;
-  el.addEventListener('blur', function() {
-    var err = document.getElementById('csrd-email-err');
-    var val = el.value.trim();
-    if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      if (err) err.style.display = 'block';
-    } else {
-      if (err) err.style.display = 'none';
-    }
-  });
-  el.addEventListener('input', function() {
-    var err = document.getElementById('csrd-email-err');
-    if (err) err.style.display = 'none';
-  });
-})();
+// ── CSRD INLINE EMAIL BLUR VALIDATION — removed (WP-WEB-TRANSFORM-001: csrd-i-email never existed) ──
 
 // ── CSRD WIZARD EMAIL BLUR VALIDATION (Task 2.5) ──
 (function() {
@@ -867,6 +833,7 @@ function csrdRenderVerdict() {
     html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
   }
   resultDiv.innerHTML = html;
+  if (typeof window.showCsrdShare === 'function') window.showCsrdShare();
 }
 async function csrdSubmit() {
   var email = document.getElementById('csrd-email');
@@ -895,94 +862,33 @@ async function csrdSubmit() {
   }
 }
 
-// ── CONTACT FORM SUBMISSION ──
+// ── CONTACT FORM SUBMISSION — removed (WP-WEB-TRANSFORM-001: contactForm ID never existed, contact.html uses contactPageForm) ──
+
+// ── CSRD SHARE MECHANIC — WP-WEB-TRANSFORM-001 ──
 (function() {
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var submitBtn = document.getElementById('contactSubmit');
-    var successMsg = document.getElementById('formSuccess');
-    var errorMsg = document.getElementById('formError');
-
-    var name = document.getElementById('contact-name').value.trim();
-    var email = document.getElementById('contact-email').value.trim();
-
-    if (!name || !email || !email.includes('@')) {
-      document.getElementById('contact-name').classList.toggle('input-error', !name);
-      document.getElementById('contact-email').classList.toggle('input-error', !email.includes('@'));
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    successMsg.style.display = 'none';
-    errorMsg.style.display = 'none';
-
-    var formData = new FormData(form);
-    var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xbdpkaol';
-
-    if (FORMSPREE_ENDPOINT.includes('REPLACE_WITH_FORM_ID')) {
-      var subject = encodeURIComponent('CrowAgent enquiry from ' + name);
-      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nOrg: ' + formData.get('organisation') + '\nProduct: ' + formData.get('product') + '\nMessage: ' + formData.get('message'));
-      window.location.href = 'mailto:hello@crowagent.ai?subject=' + subject + '&body=' + body;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
-      return;
-    }
-
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        form.reset();
-        successMsg.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send message';
-      } else {
-        throw new Error('Form submission failed');
-      }
-    })
-    .catch(function() {
-      errorMsg.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
+  window.showCsrdShare = function() {
+    var panel = document.getElementById('csrdShare');
+    if (panel) panel.style.display = 'block';
+  };
+  var liBtn = document.getElementById('csrdLinkedInShare');
+  if (liBtn) {
+    liBtn.addEventListener('click', function() {
+      var text = encodeURIComponent('I just checked our CSRD reporting eligibility with CrowAgent. Find out if your organisation qualifies: ');
+      var url = encodeURIComponent('https://crowagent.ai/csrd');
+      window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url + '&summary=' + text, '_blank', 'noopener,width=600,height=500');
     });
-  });
-})();
-
-// ── CSRD SHARE MECHANIC ──
-(function() {
-  window.showCsrdShare = function(isInScope, companyName) {
-    var shareDiv = document.getElementById('csrdShare');
-    var linkedinLink = document.getElementById('csrdLinkedInShare');
-    var copyBtn = document.getElementById('csrdCopyLink');
-
-    if (!shareDiv) return;
-
-    var shareText = isInScope
-      ? (companyName || 'This company') + ' is in scope of CSRD Omnibus I reporting requirements. Check your company at crowagent.ai'
-      : (companyName || 'This company') + ' is currently out of scope of CSRD Omnibus I. Check your company at crowagent.ai';
-
-    var linkedinUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://crowagent.ai/#csrd') + '&summary=' + encodeURIComponent(shareText);
-
-    linkedinLink.href = linkedinUrl;
-    shareDiv.style.display = 'block';
-
+  }
+  var copyBtn = document.getElementById('csrdCopyLink');
+  if (copyBtn) {
     copyBtn.addEventListener('click', function() {
-      navigator.clipboard.writeText('https://crowagent.ai/#csrd').then(function() {
-        copyBtn.textContent = 'Copied!';
+      navigator.clipboard.writeText('https://crowagent.ai/csrd').then(function() {
+        copyBtn.textContent = '\u2713 Copied';
         setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 2000);
       }).catch(function() {
-        copyBtn.textContent = 'crowagent.ai/#csrd';
+        copyBtn.textContent = 'crowagent.ai/csrd';
       });
     });
-  };
+  }
 })();
 
 // ── ANIMATED NUMBER COUNTERS (Task 11A) ──
@@ -1319,7 +1225,6 @@ if (typeof module !== 'undefined' && module.exports) {
     switchPTab: switchPTab,
     toggleBilling: toggleBilling,
     submitCSRD: submitCSRD,
-    submitCSRDInline: submitCSRDInline,
     caToggleNotify: caToggleNotify,
     caSubmitNotify: caSubmitNotify,
     csrdSelect: csrdSelect,

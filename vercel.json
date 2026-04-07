@@ -30,7 +30,11 @@
     { "source": "/blog/social-value-themes-explained", "destination": "/blog/social-value-themes-explained.html" },
     { "source": "/blog/mees-exemptions-guide", "destination": "/blog/mees-exemptions-guide.html" },
     { "source": "/blog/regulatory-updates-2026", "destination": "/blog/regulatory-updates-2026.html" },
-    { "source": "/faq", "destination": "/faq.html" }
+    { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/blog/ppn-002-social-value-guide", "destination": "/blog/ppn-002-social-value-guide.html" },
+    { "source": "/blog/mees-commercial-property-guide", "destination": "/blog/mees-commercial-property-guide.html" },
+    { "source": "/blog/retrofit-cost-calculator-guide", "destination": "/blog/retrofit-cost-calculator-guide.html" },
+    { "source": "/resources", "destination": "/resources.html" }
   ],
   "headers": [
     {
@@ -48,7 +52,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com; connect-src 'self' https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://crowagent-platform-staging-production.up.railway.app https://formspree.io; frame-src https://calendly.com; frame-ancestors 'none';"
+          "value": "default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://eu.posthog.com; connect-src 'self' https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://crowagent-platform-staging-production.up.railway.app https://formspree.io https://eu.posthog.com; frame-src https://calendly.com; frame-ancestors 'none';"
         },
         {
           "key": "X-Content-Type-Options",
