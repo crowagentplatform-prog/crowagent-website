@@ -3908,3 +3908,122 @@ small {
   height: 100%;
 }
 
+/* ============================================================
+   WP-WEB-REORG-003 — Final alignment + badge fix
+   Appended April 2026. Zero existing rules modified.
+   ============================================================ */
+
+/* ── ISSUE-004: pgc-badge — true fix via box-shadow cutout ──
+   position:absolute is kept (required by existing layout)
+   box-shadow creates visual separation from the teal glow border
+   so badge reads as a distinct pill, not a bar */
+.pgc-badge {
+  position: absolute !important;
+  top: -14px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  display: inline-block !important;
+  width: auto !important;
+  max-width: fit-content !important;
+  white-space: nowrap !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  padding: 4px 16px !important;
+  border-radius: 100px !important;
+  z-index: 10 !important;
+  box-shadow: 0 0 0 3px var(--surf) !important;
+  background: var(--teal) !important;
+  color: var(--bg) !important;
+}
+.pgc-pop {
+  padding-top: 32px !important;
+  overflow: visible !important;
+}
+
+/* ── ISSUE-005: pgrid 3-col — high-specificity override ──
+   The existing rule uses auto-fit minmax which collapses to 1fr.
+   We need higher specificity to force 3-col on desktop. */
+@media (min-width: 901px) {
+  div#core-p.pgrid,
+  div#mark-p.pgrid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 24px !important;
+  }
+}
+
+/* ── ISSUE-008: How-it-works CTA button — centred on all viewports ── */
+.how .sh .btn-primary,
+.how .force-center .btn-primary {
+  display: block !important;
+  width: fit-content !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ── ISSUE-009: Step numbers — improved visibility ── */
+.hw-num {
+  color: rgba(12, 201, 168, 0.28) !important;
+  font-size: 2.8rem !important;
+}
+
+/* ── ISSUE-010: Nav Get started button — never clip ── */
+nav .btn-teal-sm,
+.nav-actions .btn-teal-sm {
+  flex-shrink: 0 !important;
+  white-space: nowrap !important;
+  min-width: fit-content !important;
+}
+
+/* ── Hide nav price hint at smaller breakpoints to prevent overflow ── */
+@media (max-width: 1180px) {
+  .nav-price-hint { display: none !important; }
+}
+
+/* ── Equal-height enforcement — belt-and-suspenders ── */
+.u-card,
+.sector,
+.tc,
+.hw,
+.pgc {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* ── Pricing grid consistent wrapper ── */
+.pgrid {
+  display: grid !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding: 0 20px !important;
+}
+
+/* ── Triple CTA section — ensure CTA band background applies ── */
+.triple-cta-section.cta-band {
+  padding: clamp(48px, 7vw, 80px) 0 !important;
+}
+
+/* ── Scroll to top button — ensure shows on all pages ── */
+#back-to-top {
+  position: fixed !important;
+  bottom: 28px !important;
+  right: 28px !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  background: var(--teal, #0CC9A8) !important;
+  color: var(--bg, #040E1A) !important;
+  border: none !important;
+  cursor: pointer !important;
+  z-index: 9999 !important;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 16px rgba(12, 201, 168, 0.35) !important;
+}
+#back-to-top.visible {
+  display: flex !important;
+}
