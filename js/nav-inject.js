@@ -216,7 +216,10 @@
     inject('ca-nav', NAV_HTML);
     inject('ca-footer', FOOTER_HTML);
     // Signal nav injection complete so scripts.js can rebind locale/theme handlers
-    document.dispatchEvent(new CustomEvent('ca-nav-ready'));
+    // setTimeout(0) defers dispatch to next tick — ensures all defer scripts have registered listeners
+    setTimeout(function() {
+      document.dispatchEvent(new CustomEvent('ca-nav-ready'));
+    }, 0);
   }
 
   if (document.readyState === 'loading') {

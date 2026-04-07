@@ -329,7 +329,7 @@ var APP_VERSION = '49';
     initLocale();
   }
   // Rebind locale/theme after nav-inject.js injects nav HTML
-  document.addEventListener('ca-nav-ready', function() {
+  function onNavReady() {
     initLocale();
 
     // NAV GLASSMORPHISM — solid bg on scroll (WP-WEB-TRANSFORM-001)
@@ -375,7 +375,14 @@ var APP_VERSION = '49';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     })();
-  });
+  }
+  /* Fire immediately if nav already injected (race condition guard) */
+  var navEl = document.getElementById('ca-nav');
+  if (navEl && navEl.hasChildNodes()) {
+    onNavReady();
+  } else {
+    document.addEventListener('ca-nav-ready', onNavReady, { once: true });
+  }
 })();
 
 // ── TOUCH SWIPE: Close mobile menu on swipe-left ──
