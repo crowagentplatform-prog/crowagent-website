@@ -1532,7 +1532,7 @@ a.contact-detail-value:hover{color:var(--teal)}
 
 /* Two-column hero at desktop — WP-WEB-003 Phase 2 */
 @media(min-width:1024px){
-  .hero-inner{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(40px,5vw,80px)}
+  .hero-inner{display:grid;grid-template-columns:5fr 7fr;align-items:center;gap:clamp(40px,5vw,80px)}
   .hero-content{max-width:600px;text-align:left}
   .hero h1,.hero-headline{margin-left:0;margin-right:0}
   .hero-sub{margin-left:0;margin-right:0}
@@ -4262,7 +4262,7 @@ div.reg-strip[role="marquee"]:hover .mq-t { animation-play-state: paused; }
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 40px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(12,201,168,0.12);
-  max-width: 440px;
+  max-width: 100%;
   width: 100%;
 }
 .pc-header {
@@ -4282,7 +4282,7 @@ div.reg-strip[role="marquee"]:hover .mq-t { animation-play-state: paused; }
   background: rgba(12,201,168,0.15); color: var(--teal);
   border: 1px solid rgba(12,201,168,0.3); padding: 2px 8px; border-radius: 20px;
 }
-.pc-body { min-height: 260px; position: relative; overflow: hidden; }
+.pc-body { min-height: 320px; position: relative; overflow: hidden; }
 .pc-screen {
   position: absolute; inset: 0; padding: 16px;
   opacity: 0; transform: translateX(20px);
@@ -4390,6 +4390,7 @@ button.pc-dot.active { background: var(--teal); width: 18px; border-radius: 3px;
   .nav-links { display: none !important; }
   .platform-carousel { max-width: 100%; margin: 0 auto; }
   .hero-visual { width: 100%; padding: 0; }
+  .pc-body { min-height: 260px; }
 }
 @media (max-width: 480px) {
   .footer-grid { grid-template-columns: 1fr !important; gap: 24px; }
@@ -4408,4 +4409,31 @@ button.pc-dot.active { background: var(--teal); width: 18px; border-radius: 3px;
 }
 @media (max-width: 900px) {
   .pgrid { grid-template-columns: 1fr !important; }
+}
+
+/* ── FIX-04: Products page spacing ── */
+#active, #phase2, #phase3, #cta {
+  padding-top: clamp(48px, 6vw, 80px);
+}
+#active .section-label, #phase2 .section-label,
+#phase3 .section-label, #cta .section-label {
+  margin-bottom: 8px;
+}
+#active h2, #phase2 h2, #phase3 h2, #cta h2 {
+  margin-bottom: 8px;
+}
+#active .section-sub, #phase2 .section-sub,
+#phase3 .section-sub, #cta .section-sub {
+  margin-bottom: 32px;
+}
+.product-hub-grid {
+  gap: 20px;
+}
+.product-hub-card {
+  padding: 20px 24px;
+}
+#cta {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
