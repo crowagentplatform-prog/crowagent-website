@@ -3573,3 +3573,128 @@ small {
   color: var(--steel);
 }
 
+/* ============================================================
+   WP-WEB-REORG-001 — Additive patch
+   Appended April 2026. Zero existing rules modified.
+   ============================================================ */
+
+/* Footer social icons — proper touch targets */
+.foot-social {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+.foot-social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border, rgba(12,201,168,0.1));
+  transition: background 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+.foot-social a:hover {
+  background: rgba(12,201,168,0.08);
+  border-color: rgba(12,201,168,0.3);
+}
+
+/* Footer link list — consistent spacing */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.footer-col-title { margin-bottom: 14px; }
+
+/* Footer bottom bar */
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border, rgba(12,201,168,0.1));
+  margin-top: 40px;
+}
+.footer-copyright, .footer-infra {
+  font-size: 12px;
+  color: var(--steel, #8A9DB8);
+  line-height: 1.5;
+}
+
+/* Button text — centred, correct brand colour (obsidian on teal) */
+.btn-hero,
+.btn-teal-sm,
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--bg, #040E1A) !important;
+}
+.btn-hero:hover,
+.btn-teal-sm:hover,
+.btn-primary:hover {
+  color: var(--bg, #040E1A) !important;
+}
+.btn-hero-out,
+.btn-ghost-sm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Pricing card CTA — most-popular teal, others ghost */
+.pgc-pop .pgc-cta {
+  background-color: var(--teal, #0CC9A8);
+  color: var(--bg, #040E1A) !important;
+}
+.pgc-cta-out {
+  background: transparent;
+  color: var(--cloud, #E4ECF7) !important;
+  border: 1px solid rgba(228,236,247,0.25);
+}
+.pgc-cta-out:hover {
+  border-color: var(--teal, #0CC9A8);
+  color: var(--teal, #0CC9A8) !important;
+}
+
+/* How it works — 2×2 grid layout */
+.hw-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .hw-grid-2col { grid-template-columns: 1fr; }
+}
+
+/* Mobile layout fixes */
+@media (max-width: 768px) {
+  .hero .wrap { padding-left: 16px; padding-right: 16px; }
+  .products-bento { gap: 16px; }
+  .sector-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+  .footer-col-brand { grid-column: 1 / -1; }
+  .pgrid { grid-template-columns: 1fr; }
+  .hero-btns { flex-wrap: wrap; gap: 10px; }
+  .hero-btns .btn-hero,
+  .hero-btns .btn-hero-out { width: 100%; justify-content: center; }
+  .footer-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+@media (max-width: 480px) {
+  .sector-grid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+/* Calendly iframe */
+.calendly-inline-widget { min-width: 320px; height: 700px; border: none; }
+@media (max-width: 768px) { .calendly-inline-widget { height: 600px; } }
+
