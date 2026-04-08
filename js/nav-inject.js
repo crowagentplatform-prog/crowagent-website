@@ -100,7 +100,7 @@
     '      <a class="btn-ghost-sm nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
     '      <a class="btn-teal-sm nav-cta" href="https://app.crowagent.ai/signup" style="flex-shrink:0;white-space:nowrap;">Get started</a>',
     '    </div>',
-    '    <button class="ham" onclick="toggleMob()" aria-label="Toggle menu" aria-expanded="false">',
+    '    <button class="ham" aria-label="Toggle menu" aria-expanded="false">',
     '      <span></span><span></span><span></span>',
     '    </button>',
     '  </div>',
@@ -221,6 +221,7 @@
     }, 0);
   }
 
+  /* Run immediately — defer script order guarantees DOM placeholders exist */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {

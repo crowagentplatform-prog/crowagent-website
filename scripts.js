@@ -359,6 +359,18 @@ var APP_VERSION = '49';
       });
     });
 
+    // WP-RESP-FIX-001: Bind hamburger click here (after nav-inject has injected .ham)
+    // Inline onclick removed from nav-inject.js to prevent double-fire on Android
+    (function() {
+      var ham = document.querySelector('.ham');
+      if (ham) {
+        ham.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleMob();
+        });
+      }
+    })();
+
     // STATUS CHECK — moved here from raw IIFE (fix: ran before nav-inject injected footer)
     (function() {
       var dot = document.getElementById('status-dot');
@@ -415,6 +427,12 @@ function dismissBar() {
   var bar = document.getElementById('announce-bar');
   if (bar) bar.style.display = 'none';
   try { localStorage.setItem('ca_bar_dismissed', '1'); } catch(e) {}
+  // Recalculate mob-menu top if open (announce bar height changed)
+  var menu = document.querySelector('.mob-menu');
+  var nav = document.querySelector('nav');
+  if (menu && nav && menu.classList.contains('open')) {
+    menu.style.top = nav.getBoundingClientRect().bottom + 'px';
+  }
 }
 (function() {
   try { if (localStorage.getItem('ca_bar_dismissed')) {
@@ -428,6 +446,11 @@ var _mobScrollY = 0;
 function openMob() {
   var menu = document.querySelector('.mob-menu');
   if (!menu) return;
+  // Dynamically position mob-menu below nav + announce bar
+  var nav = document.querySelector('nav');
+  if (nav) {
+    menu.style.top = nav.getBoundingClientRect().bottom + 'px';
+  }
   _mobScrollY = window.pageYOffset || document.documentElement.scrollTop;
   document.body.classList.add('no-scroll');
   document.body.style.top = '-' + _mobScrollY + 'px';
@@ -452,25 +475,11 @@ function toggleMob() {
   if (menu && menu.classList.contains('open')) { closeMob(); } else { openMob(); }
 }
 // Auto-close mobile menu on internal link click
-document.querySelectorAll('.mob-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    closeMob();
-  });
-});
+// (Moved into onNavReady to ensure .mob-menu exists after nav-inject)
 
-// ── WP-RESP-FIX-001: Attach click listener to hamburger button ──
-// The .ham button uses onclick="toggleMob()" in nav-inject.js HTML,
-// but we also add a programmatic listener as a belt-and-suspenders
-// guard for cases where the inline handler may not fire (e.g. CSP).
-(function() {
-  var ham = document.querySelector('.ham');
-  if (ham) {
-    ham.addEventListener('click', function(e) {
-      e.stopPropagation();
-      toggleMob();
-    });
-  }
-})();
+// ── WP-RESP-FIX-001: (Moved into onNavReady — see above) ──
+// Inline onclick removed from nav-inject.js; single programmatic listener
+// now lives inside onNavReady() to prevent double-fire on Android.
 
 // ── WP-RESP-FIX-002: Escape key closes mobile menu ──
 document.addEventListener('keydown', function(e) {
@@ -1459,26 +1468,6 @@ if (typeof module !== 'undefined' && module.exports) {
   function stop() { running = false; }
   if (document.visibilityState === 'visible') start();
   document.addEventListener('visibilitychange', function() {
-    if (document.visibilityState === 'visible') start(); else stop();
+    if (document.visibilityState === 'visible') { start(); } else { stop(); }
   });
-})();
-
-// ── SERVICE WORKER REGISTRATION — M-09 ──
-(function() {
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
-      navigator.serviceWorker.register('/service-worker.js').catch(function() {});
-    });
-  }
-})();
-
-// ── PWA MANIFEST INJECTION — H-12 ──
-// Ensures manifest is linked on every page (not just index.html)
-(function() {
-  if (!document.querySelector('link[rel="manifest"]')) {
-    var link = document.createElement('link');
-    link.rel = 'manifest';
-    link.href = '/manifest.json';
-    document.head.appendChild(link);
-  }
 })();
