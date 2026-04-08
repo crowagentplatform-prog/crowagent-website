@@ -4476,7 +4476,10 @@ small {
 /* ── ISSUE-008: How-it-works CTA button — centred on all viewports ── */
 .how .sh .btn-primary,
 .how .force-center .btn-primary {
-  display: block !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
   width: fit-content !important;
   margin-left: auto !important;
   margin-right: auto !important;
@@ -4716,11 +4719,12 @@ nav.nav-solid {
 .how .btn-primary, a.btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   white-space: nowrap;
 }
 .btn-arrow {
   flex-shrink: 0;
+  min-width: 16px;
 }
 
 /* ── FIX-07: Language/currency selector z-index ── */
