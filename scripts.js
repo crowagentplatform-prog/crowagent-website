@@ -108,13 +108,18 @@ var APP_VERSION = '49';
       localStorage.setItem('ca_lang', currentLang);
       localStorage.setItem('ca_currency', currentCurrency);
       localStorage.setItem('ca_theme', currentTheme);
-      localStorage.setItem('ca-theme', currentTheme);
+      // C-04: removed duplicate ca-theme key write
     } catch(e) {}
   }
 
   function setTheme(theme) {
     currentTheme = theme === 'light' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', currentTheme);
+  }
+
+  function updateLang() {
+    // M-07: keep html[lang] in sync with selected language
+    document.documentElement.setAttribute('lang', currentLang);
   }
 
   function updateThemeButtons() {
@@ -223,6 +228,7 @@ var APP_VERSION = '49';
 
   function applyLocale() {
     setTheme(currentTheme);
+    updateLang();
     updateTriggerDisplay();
     resetPricesToGBP();
     convertPrices();
@@ -1455,4 +1461,24 @@ if (typeof module !== 'undefined' && module.exports) {
   document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible') start(); else stop();
   });
+})();
+
+// ── SERVICE WORKER REGISTRATION — M-09 ──
+(function() {
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('/service-worker.js').catch(function() {});
+    });
+  }
+})();
+
+// ── PWA MANIFEST INJECTION — H-12 ──
+// Ensures manifest is linked on every page (not just index.html)
+(function() {
+  if (!document.querySelector('link[rel="manifest"]')) {
+    var link = document.createElement('link');
+    link.rel = 'manifest';
+    link.href = '/manifest.json';
+    document.head.appendChild(link);
+  }
 })();

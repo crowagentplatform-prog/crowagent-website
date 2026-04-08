@@ -17,6 +17,8 @@
 <meta name="twitter:title" content="CrowAgent Core — MEES Compliance Intelligence">
 <meta name="twitter:description" content="Automated MEES compliance for UK commercial landlords. EPC gap analysis, penalty exposure, retrofit scenarios, and compliance reports.">
 <meta name="twitter:site" content="@crowagent_ai" />
+<meta name="twitter:image" content="https://crowagent.ai/Assets/og-image.png">
+<meta name="theme-color" content="#040E1A">
 <link rel="canonical" href="https://crowagent.ai/crowagent-core">
 <meta name="view-transition" content="same-origin">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -34,8 +36,12 @@
   "name": "CrowAgent Core",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "url": "https://app.crowagent.ai",
-  "offers": {"@type": "Offer", "price": "149", "priceCurrency": "GBP"},
+  "url": "https://crowagent.ai/crowagent-core",
+  "offers": [
+    {"@type": "Offer", "name": "Starter",   "price": "149.00", "priceCurrency": "GBP", "description": "Up to 5 properties"},
+    {"@type": "Offer", "name": "Pro",        "price": "299.00", "priceCurrency": "GBP", "description": "Up to 25 properties"},
+    {"@type": "Offer", "name": "Portfolio",  "price": "599.00", "priceCurrency": "GBP", "description": "Up to 100 properties"}
+  ],
   "description": "MEES compliance intelligence for UK commercial landlords."
 }
 </script>
@@ -46,7 +52,7 @@
 <!-- NAV — injected by js/nav-inject.js (single source of truth) -->
 <div id="ca-nav"></div>
 
-<main id="main-content">
+<main id="main-content" role="main">
 
 <!-- ── HERO ── -->
 <section class="hero">

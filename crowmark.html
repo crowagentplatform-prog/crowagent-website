@@ -17,6 +17,8 @@
 <meta name="twitter:title" content="CrowMark — PPN 002 Social Value Scoring | CrowAgent">
 <meta name="twitter:description" content="Social value scoring for UK public sector suppliers. PPN 002 compliant TOMs framework and bid narrative generation.">
 <meta name="twitter:site" content="@crowagent_ai" />
+<meta name="twitter:image" content="https://crowagent.ai/Assets/og-image.png">
+<meta name="theme-color" content="#040E1A">
 <link rel="canonical" href="https://crowagent.ai/crowmark">
 <meta name="view-transition" content="same-origin">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -34,8 +36,12 @@
   "name": "CrowMark",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "url": "https://app.crowagent.ai",
-  "offers": {"@type": "Offer", "price": "49", "priceCurrency": "GBP"},
+  "url": "https://crowagent.ai/crowmark",
+  "offers": [
+    {"@type": "Offer", "name": "Solo",   "price": "99.00",  "priceCurrency": "GBP", "description": "1 user, 3 bids/month"},
+    {"@type": "Offer", "name": "Team",   "price": "149.00", "priceCurrency": "GBP", "description": "Up to 5 users, unlimited bids"},
+    {"@type": "Offer", "name": "Agency", "price": "399.00", "priceCurrency": "GBP", "description": "Unlimited bids, white-label, API access"}
+  ],
   "description": "PPN 002 social value scoring platform for UK public sector suppliers."
 }
 </script>
@@ -46,7 +52,7 @@
 <!-- NAV — injected by js/nav-inject.js (single source of truth) -->
 <div id="ca-nav"></div>
 
-<main id="main-content">
+<main id="main-content" role="main">
 
 <!-- ── HERO ── -->
 <section class="hero">

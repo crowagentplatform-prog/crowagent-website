@@ -15,6 +15,8 @@
   var path = window.location.pathname.replace(/\/$/, '') || '/';
 
   function isActive(href) {
+    // M-08: skip aria-current for hash-only links (/#how, /#sectors) — they're anchors not pages
+    if (href && href[0] === '#') return false;
     var h = href.replace(/\/$/, '') || '/';
     return path === h || (h !== '/' && path.startsWith(h));
   }
