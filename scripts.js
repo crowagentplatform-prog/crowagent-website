@@ -452,6 +452,52 @@ document.querySelectorAll('.mob-menu a').forEach(function(a) {
   });
 });
 
+// ── WP-RESP-FIX-001: Attach click listener to hamburger button ──
+// The .ham button uses onclick="toggleMob()" in nav-inject.js HTML,
+// but we also add a programmatic listener as a belt-and-suspenders
+// guard for cases where the inline handler may not fire (e.g. CSP).
+(function() {
+  var ham = document.querySelector('.ham');
+  if (ham) {
+    ham.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleMob();
+    });
+  }
+})();
+
+// ── WP-RESP-FIX-002: Escape key closes mobile menu ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.querySelector('.mob-menu');
+    if (menu && menu.classList.contains('open')) {
+      closeMob();
+      var ham = document.querySelector('.ham');
+      if (ham) ham.focus();
+    }
+  }
+});
+
+// ── WP-RESP-FIX-003: Focus trap inside mobile menu ──
+(function() {
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    var menu = document.querySelector('.mob-menu');
+    if (!menu || !menu.classList.contains('open')) return;
+    var focusable = menu.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+})();
+
 // ── PRICING PRODUCT TAB SWITCHER ──
 function switchPTab(product, btn) {
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('on'); });

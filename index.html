@@ -322,12 +322,15 @@
     <div class="demo-widget-card">
 
       <div class="demo-widget-row">
+        <label for="demo-postcode" class="sr-only">Enter your building postcode</label>
         <input type="text"
                id="demo-postcode"
                class="demo-widget-input form-input"
                aria-label="Postcode"
+               aria-describedby="demo-error"
                placeholder="e.g. EC1A 1BB"
                maxlength="8"
+               autocomplete="postal-code"
                oninput="this.value=this.value.toUpperCase()">
         <button id="demo-submit"
                 class="demo-widget-btn"

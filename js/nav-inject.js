@@ -103,7 +103,7 @@
     '    </button>',
     '  </div>',
     '</nav>',
-    '<div class="mob-menu" id="mob-menu">',
+    '<div class="mob-menu" id="mob-menu" role="dialog" aria-label="Mobile navigation menu" aria-modal="true">',
     '  <a href="/#how">How it works</a>',
     '  <a href="/products">Products</a>',
     '  <a href="/products/crowagent-core" style="padding-left:20px;font-size:14px;opacity:.85">CrowAgent Core</a>',
