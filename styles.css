@@ -356,6 +356,227 @@
   box-shadow: 0 1px 3px rgba(0,0,0,.1);
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE: PRODUCT HUB CARDS FIX (products/index.html)
+   Fix hardcoded dark colors in inline styles + glassmorphism
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .product-hub-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(10, 168, 140, 0.15) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .product-hub-card:hover {
+  border-color: var(--teal) !important;
+  box-shadow: 0 4px 16px rgba(10, 168, 140, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+[data-theme="light"] .product-hub-card--disabled {
+  opacity: 0.6;
+  background: rgba(255, 255, 255, 0.4) !important;
+}
+
+[data-theme="light"] .product-hub-card--disabled:hover {
+  border-color: rgba(10, 168, 140, 0.15) !important;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .product-hub-card h3 {
+  color: var(--cloud) !important;
+}
+
+[data-theme="light"] .product-hub-card p {
+  color: var(--steel) !important;
+}
+
+[data-theme="light"] .product-hub-badge--active {
+  background: rgba(10, 168, 140, 0.12) !important;
+  color: var(--teal) !important;
+}
+
+[data-theme="light"] .product-hub-badge--coming {
+  background: rgba(92, 140, 0, 0.12) !important;
+  color: #5C8C00 !important;
+}
+
+[data-theme="light"] .product-hub-badge--future {
+  background: rgba(30, 58, 88, 0.12) !important;
+  color: var(--steel) !important;
+}
+
+[data-theme="light"] .product-hub-badge--pro {
+  background: rgba(26, 143, 197, 0.12) !important;
+  color: #1A8FC5 !important;
+}
+
+[data-theme="light"] .product-hub-card-link {
+  color: var(--teal) !important;
+}
+
+[data-theme="light"] .product-hub-card-link:hover {
+  color: var(--teal-d) !important;
+}
+
+[data-theme="light"] .product-hub-card-link--disabled {
+  color: var(--mist) !important;
+}
+
+[data-theme="light"] .product-hub-card-link--disabled:hover {
+  color: var(--mist) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE: BLOG CARDS FIX (blog/index.html)
+   Fix hardcoded dark colors in inline styles + glassmorphism
+   ═══════════════════════════════════════════════════════════════ */
+
+[data-theme="light"] .article-card {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(10, 168, 140, 0.15) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+[data-theme="light"] .article-card:hover {
+  border-color: var(--teal) !important;
+  box-shadow: 0 4px 16px rgba(10, 168, 140, 0.12), 0 2px 4px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+
+[data-theme="light"] .card-badge {
+  color: var(--teal) !important;
+  background: rgba(10, 168, 140, 0.12) !important;
+  border-color: rgba(10, 168, 140, 0.25) !important;
+}
+
+[data-theme="light"] .card-title {
+  color: var(--cloud) !important;
+}
+
+[data-theme="light"] .card-preview {
+  color: var(--steel) !important;
+}
+
+[data-theme="light"] .card-meta {
+  color: var(--mist) !important;
+}
+
+[data-theme="light"] .filter-pill {
+  background: rgba(255, 255, 255, 0.6) !important;
+  color: var(--steel) !important;
+  border-color: rgba(10, 168, 140, 0.2) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+[data-theme="light"] .filter-pill:hover {
+  border-color: var(--teal) !important;
+  color: var(--cloud) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme="light"] .filter-pill.active {
+  background: var(--teal) !important;
+  color: #FFFFFF !important;
+  border-color: var(--teal) !important;
+}
+
+[data-theme="light"] .blog-hero .section-label {
+  color: var(--teal) !important;
+}
+
+[data-theme="light"] .blog-hero h1 {
+  color: var(--cloud) !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LIGHT MODE: ENHANCED BACKGROUND VISUALS
+   Add subtle gradient mesh and improved glassmorphism effects
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Light mode hero glow enhancement */
+[data-theme="light"] .hero-glow {
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
+
+[data-theme="light"] .hero-glow::before {
+  width: 50vw;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(10, 168, 140, 0.08) 0%, rgba(10, 168, 140, 0.03) 40%, transparent 70%);
+  top: -80px;
+  left: -5vw;
+  filter: blur(60px);
+}
+
+[data-theme="light"] .hero-glow::after {
+  width: 40vw;
+  height: 450px;
+  background: radial-gradient(ellipse, rgba(26, 143, 197, 0.06) 0%, rgba(26, 143, 197, 0.02) 40%, transparent 70%);
+  top: 60px;
+  right: -5vw;
+  filter: blur(60px);
+}
+
+/* Light mode section backgrounds with subtle texture */
+[data-theme="light"] #active,
+[data-theme="light"] #phase2,
+[data-theme="light"] #phase3 {
+  background: linear-gradient(180deg, rgba(242, 247, 255, 0.5) 0%, rgba(235, 243, 255, 0.8) 100%);
+  position: relative;
+}
+
+[data-theme="light"] #active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(10, 168, 140, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+/* Light mode noise texture (subtle) */
+[data-theme="light"] body::after {
+  opacity: .015;
+  mix-blend-mode: overlay;
+}
+
+/* Light mode dividers */
+[data-theme="light"] .divider {
+  background: linear-gradient(90deg, transparent, rgba(10, 168, 140, 0.15), transparent);
+  height: 1px;
+}
+
+/* Light mode phase headers */
+[data-theme="light"] .phase-header h3 {
+  color: var(--cloud) !important;
+}
+
+[data-theme="light"] .phase-unlock {
+  color: var(--steel) !important;
+}
+
+/* Light mode section labels */
+[data-theme="light"] .section-label {
+  color: var(--teal) !important;
+}
+
+/* Light mode section titles and subtitles */
+[data-theme="light"] .section-sub,
+[data-theme="light"] .hero-sub {
+  color: var(--steel) !important;
+}
+
 
 html,body{background:var(--bg)!important;background-color:var(--bg)!important;color:var(--cloud);min-height:100vh}
 html{font-family:'Inter','Plus Jakarta Sans',sans-serif;scroll-behavior:smooth;overflow-x:hidden}
