@@ -132,6 +132,11 @@
     '      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>',
     '      <button class="mob-locale-btn" data-currency="USD">$ USD</button>',
     '    </div>',
+    '    <div class="mob-locale-label" style="margin-top:10px">Theme</div>',
+    '    <div class="mob-theme-row">',
+    '      <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>',
+    '      <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>',
+    '    </div>',
     '  </div>',
     '</div>'
   ].join('\n');
