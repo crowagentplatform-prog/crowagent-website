@@ -4435,3 +4435,409 @@ button.pc-dot.active { background: var(--teal); width: 18px; border-radius: 3px;
   padding-top: 48px;
   padding-bottom: 48px;
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WP-RESP-FIX — Comprehensive Responsiveness, Accessibility &
+   Alignment Audit Fixes — April 2026
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── FIX-R01: Hamburger button visibility — ensure visible on all mobile ──
+   Belt-and-suspenders: force display at 1024px and below */
+@media (max-width: 1024px) {
+  .ham {
+    display: flex !important;
+    position: relative;
+    z-index: 205;
+  }
+  .nav-links, .nav-actions .locale-selector {
+    display: none !important;
+  }
+  /* Keep Sign in / Get started visible in nav on tablet */
+  .nav-actions {
+    display: flex !important;
+    gap: 8px;
+  }
+  .nav-actions .nav-login,
+  .nav-actions .nav-cta {
+    display: none !important;
+  }
+}
+
+/* ── FIX-R02: Footer grid — prevent single-column stacking on tablet ──
+   At 640-767px use 2-col; at 480px+ use 2-col for link columns;
+   Only go 1-col at ≤479px */
+@media (min-width: 640px) and (max-width: 767px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 24px 16px !important;
+  }
+  .footer-col-brand {
+    grid-column: 1 / -1 !important;
+  }
+}
+@media (max-width: 479px) {
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+}
+
+/* ── FIX-R03: Footer bottom bar — prevent long single stack ──
+   Wrap into 2 lines max on mobile, not all items stacked */
+@media (max-width: 639px) {
+  .footer-bottom {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 4px 12px !important;
+  }
+  .footer-copyright {
+    flex-basis: 100%;
+    text-align: center;
+  }
+  .footer-infra {
+    text-align: center;
+  }
+}
+
+/* ── FIX-R04: Footer column titles — tighter spacing on mobile ── */
+@media (max-width: 639px) {
+  .footer-col-title {
+    margin-bottom: 8px !important;
+    font-size: 11px !important;
+  }
+  .footer-links {
+    gap: 6px !important;
+  }
+  .footer-links a {
+    font-size: 13px;
+    padding: 2px 0;
+  }
+}
+
+/* ── FIX-R05: Footer social icons — wrap and centre on mobile ── */
+@media (max-width: 479px) {
+  .foot-social,
+  .ca-footer-social {
+    justify-content: center !important;
+    flex-wrap: wrap;
+  }
+}
+
+/* ── FIX-R06: Calendly widget — remove min-width on small screens ── */
+@media (max-width: 480px) {
+  .calendly-inline-widget {
+    min-width: 0 !important;
+    width: 100% !important;
+    height: 550px !important;
+  }
+}
+
+/* ── FIX-R07: Comparison table scroll hint on mobile ── */
+.ca-comparison {
+  position: relative;
+}
+@media (max-width: 768px) {
+  .ca-comparison {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ca-comparison::after {
+    content: '← Scroll →';
+    display: block;
+    text-align: center;
+    font-size: 11px;
+    color: var(--steel, #8A9DB8);
+    padding: 8px 0 0;
+    opacity: 0.7;
+  }
+}
+
+/* ── FIX-R08: Mobile menu — full-height fix and touch target spacing ── */
+@media (max-width: 1024px) {
+  .mob-menu {
+    top: 72px !important;
+    padding-bottom: max(32px, calc(32px + env(safe-area-inset-bottom))) !important;
+  }
+  .mob-menu a {
+    min-height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .mob-menu .btn-teal-sm,
+  .mob-menu .btn-ghost-sm {
+    min-height: 48px !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-top: 8px;
+  }
+}
+
+/* ── FIX-A01: Skip link — visible on focus ── */
+.skip-link:focus {
+  position: fixed !important;
+  top: 8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 99999 !important;
+  padding: 12px 24px !important;
+  background: var(--teal, #0CC9A8) !important;
+  color: var(--bg, #040E1A) !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  clip: auto !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3) !important;
+}
+
+/* ── FIX-A02: Focus-visible styles — all interactive elements ── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--teal, #0CC9A8) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+/* Remove inner dotted border in Firefox */
+button::-moz-focus-inner {
+  border: 0;
+}
+
+/* ── FIX-A03: Touch target sizes — WCAG 2.5.8 (44×44 minimum) ── */
+.mob-locale-btn,
+.locale-opt,
+.pc-dot,
+.seg-btn,
+.theme-opt,
+.ab-close {
+  min-width: 44px !important;
+  min-height: 44px !important;
+}
+
+/* ── FIX-A04: Reduced motion — disable all animations ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .mob-menu {
+    transition: none !important;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ── FIX-A05: High contrast mode support ── */
+@media (forced-colors: active) {
+  .btn-hero, .btn-teal-sm, .btn-primary {
+    border: 2px solid ButtonText !important;
+  }
+  .ham span {
+    background: ButtonText !important;
+  }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid Highlight !important;
+  }
+}
+
+/* ── FIX-A06: Form error messages — proper aria association ── */
+.form-error {
+  font-size: 12px;
+  color: #EF4444;
+  margin-top: 4px;
+  min-height: 0;
+}
+.form-input:invalid:not(:placeholder-shown) {
+  border-color: #EF4444;
+}
+.form-input:valid:not(:placeholder-shown) {
+  border-color: var(--teal, #0CC9A8);
+}
+
+/* ── FIX-C01: Button consistency — unified sizing system ──
+   Tier 1 (hero/CTA): 48px height, 15px font
+   Tier 2 (cards/nav): 40px height, 13px font
+   All use inline-flex + centre alignment */
+.btn-hero,
+.btn-hero-out,
+.btn-teal-sm,
+.btn-ghost-sm,
+.btn-primary,
+.pgc-cta,
+.pgc-cta-out {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  box-sizing: border-box;
+  line-height: 1;
+}
+
+/* ── FIX-C02: Section heading consistency ── */
+.sh h2,
+.u-h2-display,
+.section-heading h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--cloud, #E4ECF7);
+}
+
+/* ── FIX-C03: CrowMark inline styles — extract to class ── */
+.crowmark-accent {
+  color: var(--mark, #A78BFA) !important;
+}
+.btn-mark {
+  background: var(--mark, #A78BFA) !important;
+  color: var(--bg, #040E1A) !important;
+}
+.btn-mark:hover {
+  filter: brightness(1.1);
+}
+
+/* ── FIX-C04: Consistent card border-radius ── */
+.tc, .sector, .u-card, .hw, .pgc, .security-item,
+.triple-card, .ca-security-card, .founder-card {
+  border-radius: 16px;
+}
+
+/* ── FIX-C05: Nav link alignment — vertically centred ── */
+nav .wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ── FIX-C06: Pricing tab buttons — consistent active state ── */
+.ptab {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--steel, #8A9DB8);
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.ptab.on {
+  background: rgba(12, 201, 168, 0.1);
+  color: var(--teal, #0CC9A8);
+  border-color: rgba(12, 201, 168, 0.3);
+}
+
+/* ── FIX-C07: Segment button consistency ── */
+.seg-btn {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* ── FIX-R09: Extra-small screen (≤375px) typography ── */
+@media (max-width: 375px) {
+  .hero h1, .hero-headline {
+    font-size: clamp(22px, 7vw, 32px) !important;
+    line-height: 1.15 !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+  .hero-sub {
+    font-size: 13px !important;
+  }
+  .btn-hero, .btn-hero-out {
+    font-size: 14px !important;
+    padding: 10px 16px !important;
+    min-height: 44px !important;
+  }
+  .wrap, .container, .container-standard, .container-wide {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+/* ── FIX-R10: Notify input — remove min-width on small screens ── */
+@media (max-width: 480px) {
+  .ca-notify-input,
+  .notify-input {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* ── FIX-R11: Locale dropdown — constrain on small screens ── */
+@media (max-width: 480px) {
+  .locale-dropdown {
+    min-width: 0 !important;
+    width: calc(100vw - 32px) !important;
+    right: 0;
+    left: auto;
+  }
+}
+
+/* ── FIX-R12: Stats grid — responsive columns ── */
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+/* ── FIX-A07: SVG icons — ensure decorative icons are properly hidden ── */
+.foot-social svg,
+.ca-footer-social svg,
+.mqi svg {
+  pointer-events: none;
+}
+
+/* ── FIX-R13: Cookie banner — responsive on small screens ── */
+@media (max-width: 480px) {
+  .cookie-text {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .btn-cookie-primary,
+  .btn-cookie-outline {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── END WP-RESP-FIX ─────────────────────────────────────────────────── */
