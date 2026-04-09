@@ -7,6 +7,18 @@
   var AUTO_OPEN_DELAY = 30000; // 30 seconds
   var LS_KEY = 'ca_chatbot_opened';
 
+  // System prompt for the chatbot API — WP-QA-001 CHATBOT FIX A
+  var SYSTEM_PROMPT = 'IMPORTANT BEHAVIOUR RULES: ' +
+    '1. If the user sends a greeting (hello, hi, hey, good morning, etc.) respond ONLY with a brief friendly reply (1-2 sentences max). Do NOT include product information unless they ask. ' +
+    '2. Read the user\'s actual question carefully and answer ONLY what they asked. Do not default to a generic CrowAgent product overview. ' +
+    '3. Complete your full answer — never cut off mid-sentence. ' +
+    'CONTEXT: You are the CrowAgent website assistant. CrowAgent is a UK sustainability compliance SaaS platform offering MEES intelligence (CrowAgent Core), PPN 002 social value automation (CrowMark), and a free CSRD checker. ' +
+    'Answer the specific question the user has asked. ' +
+    'When discussing MEES Band C 2028, always note it is a proposed target, not yet enacted law. ' +
+    'Penalties use the rateable value formula from SI 2015/962 reg 39 — never cite a flat £30,000 figure.';
+
+  var GREETING_RE = /^(hi|hello|hey|howdy|morning|afternoon|evening|yo|sup|hiya|hola)\b/i;
+
   var SUGGESTED_QUESTIONS = [
     'What is MEES 2028?',
     'How does CrowMark work?',
@@ -225,6 +237,106 @@
     return { container: container, btn: btn, panel: panel, closeBtn: closeBtn, messagesEl: messagesEl, input: input, sendBtn: sendBtn };
   }
 
+  // ── Markdown parsing ────────────────────────────────────────────────
+  function parseMarkdown(text) {
+    // Convert **bold** to <strong>
+    var html = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    // Convert lines starting with "- " to list items
+    var lines = html.split('\n');
+    var result = [];
+    var inList = false;
+    for (var i = 0; i < lines.length; i++) {
+      var line = lines[i];
+      if (/^\s*-\s+/.test(line)) {
+        if (!inList) { result.push('<ul>'); inList = true; }
+        result.push('<li>' + line.replace(/^\s*-\s+/, '') + '</li>');
+      } else {
+        if (inList) { result.push('</ul>'); inList = false; }
+        result.push(line);
+      }
+    }
+    if (inList) result.push('</ul>');
+    return result.join('\n');
+  }
+
+  // ── Typewriter effect ──────────────────────────────────────────────
+  function renderWithTypewriter(html, container, onDone) {
+    // Strip tags for typewriter, then set full HTML at end
+    var plainText = html.replace(/<[^>]+>/g, '');
+    container.textContent = '';
+    var idx = 0;
+    var interval = setInterval(function () {
+      if (idx < plainText.length) {
+        container.textContent += plainText.charAt(idx);
+        idx++;
+        container.parentElement && (container.parentElement.scrollTop = container.parentElement.scrollHeight);
+      } else {
+        clearInterval(interval);
+        // Set full HTML with formatting once typewriter completes
+        container.innerHTML = html;
+        if (onDone) onDone();
+      }
+    }, 30);
+  }
+
+  // ── Subscription recommender ───────────────────────────────────────
+  var recommenderState = null; // null | { step: 1|2|3, role: string, volume: string }
+  var PLAN_TRIGGERS = /which plan|what subscription|recommend|pricing|best for me|what plan|which tier/i;
+
+  function getRecommendation(role, volume, budget) {
+    var vol = parseInt(volume) || 0;
+    var bud = parseInt(budget) || 0;
+    if (role === 'landlord') {
+      if (vol <= 5 || bud < 200) return { plan: 'Starter', price: '£149/mo', link: 'https://app.crowagent.ai/signup?plan=starter' };
+      if (vol <= 25 || bud < 400) return { plan: 'Pro', price: '£299/mo', link: 'https://app.crowagent.ai/signup?plan=pro' };
+      return { plan: 'Portfolio', price: '£599/mo', link: 'https://app.crowagent.ai/signup?plan=portfolio' };
+    }
+    if (role === 'supplier') {
+      if (vol <= 5 || bud < 100) return { plan: 'CrowMark Solo', price: '£99/mo', link: 'https://app.crowagent.ai/signup?plan=crowmark_solo' };
+      if (vol <= 20 || bud < 200) return { plan: 'CrowMark Team', price: '£149/mo', link: 'https://app.crowagent.ai/signup?plan=crowmark_team' };
+      return { plan: 'CrowMark Agency', price: '£399/mo', link: 'https://app.crowagent.ai/signup?plan=crowmark_agency' };
+    }
+    // "both"
+    if (bud < 300) return { plan: 'Starter + CrowMark Solo', price: '£248/mo', link: 'https://app.crowagent.ai/signup' };
+    return { plan: 'Pro + CrowMark Team', price: '£448/mo', link: 'https://app.crowagent.ai/signup' };
+  }
+
+  function handleRecommenderInput(text, els) {
+    if (!recommenderState) return false;
+    var s = recommenderState;
+    if (s.step === 1) {
+      var t = text.toLowerCase();
+      if (t.includes('landlord')) s.role = 'landlord';
+      else if (t.includes('supplier') || t.includes('procurement') || t.includes('bid')) s.role = 'supplier';
+      else s.role = 'both';
+      messages.push({ role: 'user', content: text });
+      s.step = 2;
+      var q2 = s.role === 'supplier'
+        ? 'How many bids do you submit per year?'
+        : 'How many properties do you manage?';
+      messages.push({ role: 'assistant', content: q2 });
+      renderMessages(els);
+      return true;
+    }
+    if (s.step === 2) {
+      s.volume = text;
+      messages.push({ role: 'user', content: text });
+      s.step = 3;
+      messages.push({ role: 'assistant', content: 'What\'s your budget range per month? (e.g. £100, £300, £500+)' });
+      renderMessages(els);
+      return true;
+    }
+    if (s.step === 3) {
+      messages.push({ role: 'user', content: text });
+      var rec = getRecommendation(s.role, s.volume, text.replace(/[^0-9]/g, ''));
+      messages.push({ role: 'assistant', content: '**Recommended plan: ' + rec.plan + '** (' + rec.price + ')\n\nBased on your answers, this plan gives you the best value. Start your 14-day free trial:\n- ' + rec.link });
+      recommenderState = null;
+      renderMessages(els);
+      return true;
+    }
+    return false;
+  }
+
   // ── Rendering ───────────────────────────────────────────────────────
   function renderMessages(els) {
     var messagesEl = els.messagesEl;
@@ -257,7 +369,8 @@
       return;
     }
 
-    messages.forEach(function (msg) {
+    var lastAssistantBubble = null;
+    messages.forEach(function (msg, idx) {
       if (msg.type === 'loading') {
         var loadEl = document.createElement('div');
         loadEl.className = 'ca-msg ca-msg-loading';
@@ -276,7 +389,6 @@
         retryBtn.setAttribute('aria-label', 'Retry sending message');
         retryBtn.addEventListener('click', function () {
           if (lastUserMessage) {
-            // Remove error message
             messages = messages.filter(function (m) { return m.type !== 'error'; });
             sendMessage(lastUserMessage, els);
           }
@@ -288,7 +400,15 @@
       } else {
         var bubble = document.createElement('div');
         bubble.className = 'ca-msg ca-msg-' + msg.role;
-        bubble.textContent = msg.content;
+        var parsed = parseMarkdown(msg.content);
+        // Use typewriter only for the latest assistant message
+        if (msg.role === 'assistant' && idx === messages.length - 1 && !msg._rendered) {
+          msg._rendered = true;
+          lastAssistantBubble = bubble;
+          renderWithTypewriter(parsed, bubble);
+        } else {
+          bubble.innerHTML = parsed;
+        }
         messagesEl.appendChild(bubble);
       }
     });
@@ -319,6 +439,35 @@
     var trimmed = text.trim();
     lastUserMessage = trimmed;
 
+    // Handle recommender flow if active
+    if (recommenderState) {
+      handleRecommenderInput(trimmed, els);
+      els.input.value = '';
+      els.sendBtn.disabled = true;
+      return;
+    }
+
+    // Handle simple greetings client-side — CHATBOT FIX A
+    if (GREETING_RE.test(trimmed) && trimmed.split(/\s+/).length <= 3) {
+      messages.push({ role: 'user', content: trimmed });
+      messages.push({ role: 'assistant', content: 'Hi there! How can I help you today? I can answer questions about MEES compliance, PPN 002 social value, CSRD reporting, pricing, or anything else about CrowAgent.' });
+      renderMessages(els);
+      els.input.value = '';
+      els.sendBtn.disabled = true;
+      return;
+    }
+
+    // Check for plan recommendation trigger
+    if (PLAN_TRIGGERS.test(trimmed)) {
+      recommenderState = { step: 1, role: '', volume: '' };
+      messages.push({ role: 'user', content: trimmed });
+      messages.push({ role: 'assistant', content: 'I can help you find the right plan! Let me ask a few quick questions.\n\n**Are you a commercial landlord, a procurement supplier, or both?**' });
+      renderMessages(els);
+      els.input.value = '';
+      els.sendBtn.disabled = true;
+      return;
+    }
+
     messages.push({ role: 'user', content: trimmed });
     messages.push({ type: 'loading' });
     renderMessages(els);
@@ -336,6 +485,8 @@
       body: JSON.stringify({
         message: apiMessages[apiMessages.length - 1].content,
         context: 'marketing_website',
+        system_prompt: SYSTEM_PROMPT,
+        max_tokens: 800,
       }),
     })
       .then(function (res) {

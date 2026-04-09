@@ -1,4 +1,4 @@
-var APP_VERSION = '43';
+var APP_VERSION = '49';
 
 // ── SCROLL LOCK SAFETY RESET — WP-WEB-HOTFIX-002 ──
 // Clears any stale scroll-lock state on every page load
@@ -108,7 +108,7 @@ var APP_VERSION = '43';
       localStorage.setItem('ca_lang', currentLang);
       localStorage.setItem('ca_currency', currentCurrency);
       localStorage.setItem('ca_theme', currentTheme);
-      localStorage.setItem('ca-theme', currentTheme);
+      // C-04: removed duplicate ca-theme key write
     } catch(e) {}
   }
 
@@ -117,10 +117,17 @@ var APP_VERSION = '43';
     document.documentElement.setAttribute('data-theme', currentTheme);
   }
 
+  function updateLang() {
+    // M-07: keep html[lang] in sync with selected language
+    document.documentElement.setAttribute('lang', currentLang);
+  }
+
   function updateThemeButtons() {
     document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
       btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === currentTheme);
     });
+    // Sync body class for any CSS that relies on it
+    document.body.classList.toggle('light-mode', currentTheme === 'light');
   }
 
   function updateTriggerDisplay() {
@@ -207,12 +214,6 @@ var APP_VERSION = '43';
       }
     });
 
-    // Update nav price hint — uses first .pv element's monthly price (Starter base price)
-    var hint = document.querySelector('.nav-price-hint');
-    if (hint) {
-      var basePrice = Math.round(MIN_PLAN_PRICE_GBP * rate);
-      hint.textContent = 'From ' + symbol + basePrice + '/mo';
-    }
   }
 
   function resetPricesToGBP() {
@@ -227,6 +228,7 @@ var APP_VERSION = '43';
 
   function applyLocale() {
     setTheme(currentTheme);
+    updateLang();
     updateTriggerDisplay();
     resetPricesToGBP();
     convertPrices();
@@ -234,13 +236,18 @@ var APP_VERSION = '43';
     savePrefs();
   }
 
+  var _localeBound = false; // WP-WEB-012: prevent double-bind when initLocale called twice
+
   function initLocale() {
     loadPrefs();
     window.caUpdatePlanLinks = updatePlanLinks;
 
+    if (_localeBound) { applyLocale(); return; } // Skip re-binding, just refresh display
+
     var trigger = document.getElementById('locale-trigger');
     var dropdown = document.getElementById('locale-dropdown');
     if (trigger && dropdown) {
+      _localeBound = true;
       trigger.addEventListener('click', function(e) {
         e.stopPropagation();
         var isOpen = dropdown.classList.contains('open');
@@ -332,6 +339,73 @@ var APP_VERSION = '43';
   } else {
     initLocale();
   }
+  // Rebind locale/theme after nav-inject.js injects nav HTML
+  function onNavReady() {
+    initLocale();
+
+    // NAV GLASSMORPHISM — solid bg on scroll (WP-WEB-TRANSFORM-001)
+    (function() {
+      var nav = document.querySelector('nav');
+      if (!nav) return;
+      window.addEventListener('scroll', function() {
+        nav.classList.toggle('nav-solid', window.scrollY > 30);
+      }, { passive: true });
+    })();
+
+    // MOB-MENU CLOSE-ON-CLICK — moved here (fix: ran before nav-inject injected nav)
+    document.querySelectorAll('.mob-menu a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        closeMob();
+      });
+    });
+
+    // WP-RESP-FIX-001: Bind hamburger click here (after nav-inject has injected .ham)
+    // Inline onclick removed from nav-inject.js to prevent double-fire on Android
+    (function() {
+      var ham = document.querySelector('.ham');
+      if (ham) {
+        ham.addEventListener('click', function(e) {
+          e.stopPropagation();
+          toggleMob();
+        });
+      }
+    })();
+
+    // STATUS CHECK — moved here from raw IIFE (fix: ran before nav-inject injected footer)
+    (function() {
+      var dot = document.getElementById('status-dot');
+      var label = document.getElementById('status-label');
+      if (!dot || !label) return;
+      fetch('https://crowagent-platform-production.up.railway.app/api/v1/health', {
+        method: 'GET',
+        signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined
+      })
+      .then(function(r) {
+        if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
+        else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
+      })
+      .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
+    })();
+
+    // BACK-TO-TOP BUTTON — WP-WEB-TRANSFORM-001
+    (function() {
+      var btn = document.getElementById('back-to-top');
+      if (!btn) return;
+      window.addEventListener('scroll', function() {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  }
+  /* Fire immediately if nav already injected (race condition guard) */
+  var navEl = document.querySelector('nav[role="navigation"]');
+  if (navEl && navEl.hasChildNodes()) {
+    onNavReady();
+  } else {
+    document.addEventListener('ca-nav-ready', onNavReady, { once: true });
+  }
 })();
 
 // ── TOUCH SWIPE: Close mobile menu on swipe-left ──
@@ -353,6 +427,12 @@ function dismissBar() {
   var bar = document.getElementById('announce-bar');
   if (bar) bar.style.display = 'none';
   try { localStorage.setItem('ca_bar_dismissed', '1'); } catch(e) {}
+  // Recalculate mob-menu top if open (announce bar height changed)
+  var menu = document.querySelector('.mob-menu');
+  var nav = document.querySelector('nav');
+  if (menu && nav && menu.classList.contains('open')) {
+    menu.style.top = nav.getBoundingClientRect().bottom + 'px';
+  }
 }
 (function() {
   try { if (localStorage.getItem('ca_bar_dismissed')) {
@@ -366,6 +446,11 @@ var _mobScrollY = 0;
 function openMob() {
   var menu = document.querySelector('.mob-menu');
   if (!menu) return;
+  // Dynamically position mob-menu below nav + announce bar
+  var nav = document.querySelector('nav');
+  if (nav) {
+    menu.style.top = nav.getBoundingClientRect().bottom + 'px';
+  }
   _mobScrollY = window.pageYOffset || document.documentElement.scrollTop;
   document.body.classList.add('no-scroll');
   document.body.style.top = '-' + _mobScrollY + 'px';
@@ -390,18 +475,55 @@ function toggleMob() {
   if (menu && menu.classList.contains('open')) { closeMob(); } else { openMob(); }
 }
 // Auto-close mobile menu on internal link click
-document.querySelectorAll('.mob-menu a').forEach(function(a) {
-  a.addEventListener('click', function() {
-    closeMob();
-  });
+// (Moved into onNavReady to ensure .mob-menu exists after nav-inject)
+
+// ── WP-RESP-FIX-001: (Moved into onNavReady — see above) ──
+// Inline onclick removed from nav-inject.js; single programmatic listener
+// now lives inside onNavReady() to prevent double-fire on Android.
+
+// ── WP-RESP-FIX-002: Escape key closes mobile menu ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var menu = document.querySelector('.mob-menu');
+    if (menu && menu.classList.contains('open')) {
+      closeMob();
+      var ham = document.querySelector('.ham');
+      if (ham) ham.focus();
+    }
+  }
 });
+
+// ── WP-RESP-FIX-003: Focus trap inside mobile menu ──
+(function() {
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    var menu = document.querySelector('.mob-menu');
+    if (!menu || !menu.classList.contains('open')) return;
+    var focusable = menu.querySelectorAll('a[href], button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+    if (focusable.length === 0) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
+  });
+})();
 
 // ── PRICING PRODUCT TAB SWITCHER ──
 function switchPTab(product, btn) {
   document.querySelectorAll('.ptab').forEach(function(t) { t.classList.remove('on'); });
   btn.classList.add('on');
-  document.getElementById('core-p').style.display = product === 'core' ? 'block' : 'none';
-  document.getElementById('mark-p').style.display = product === 'mark' ? 'block' : 'none';
+  document.getElementById('core-p').style.display = product === 'core' ? 'grid' : 'none';
+  document.getElementById('mark-p').style.display = product === 'mark' ? 'grid' : 'none';
+  // Toggle comparison tables with tabs
+  var coreCompare = document.getElementById('core-compare');
+  var markCompare = document.getElementById('mark-compare');
+  if (coreCompare) coreCompare.style.display = (product === 'core') ? '' : 'none';
+  if (markCompare) markCompare.style.display = (product === 'mark') ? '' : 'none';
 }
 
 // ── BILLING TOGGLE (monthly/annual) ──
@@ -420,15 +542,8 @@ function toggleBilling() {
   if (typeof window.caUpdatePlanLinks === 'function') window.caUpdatePlanLinks();
 }
 
-// ── MEES COUNTDOWN ──
-(function() {
-  var el = document.getElementById('days-counter');
-  if (!el) return;
-  var deadline = new Date('2028-04-01T00:00:00Z');
-  var now = new Date();
-  var days = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
-  el.textContent = days.toLocaleString('en-GB');
-})();
+// ── MEES COUNTDOWN — removed dead days-counter IIFE (WP-WEB-TRANSFORM-001) ──
+// Live countdown uses #mees-days (below) and inline script in index.html
 
 // ── MEES 2028 COUNTDOWN — WP-WEB-003 (hero countdown pill) ──
 (function() {
@@ -649,38 +764,7 @@ document.addEventListener('click', function(e) {
   }
 });
 
-// ── CSRD INLINE FORM (homepage) ──
-function submitCSRDInline() {
-  var email = document.getElementById('csrd-i-email');
-  var err = document.getElementById('csrd-email-err');
-  if (!email) return;
-  var val = email.value.trim();
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-    if (err) err.style.display = 'block';
-    return;
-  }
-  if (err) err.style.display = 'none';
-  var employees = document.getElementById('csrd-i-employees');
-  var turnover = document.getElementById('csrd-i-turnover');
-  var btn = document.querySelector('#csrd-inline-form .btn-form');
-  if (btn) { btn.disabled = true; btn.textContent = 'Sending...'; }
-  fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({
-      company_name: 'Website visitor (homepage)',
-      email: val,
-      employee_count: csrdMapEmployees(employees ? employees.value : '<250'),
-      annual_turnover_eur: csrdMapTurnover(turnover ? turnover.value : '<150m'),
-      is_listed: false
-    })
-  }).catch(function(){}).finally(function(){
-    var form = document.getElementById('csrd-inline-form');
-    var success = document.getElementById('csrd-inline-success');
-    if (form) form.style.display = 'none';
-    if (success) success.style.display = 'block';
-  });
-}
+// ── CSRD INLINE FORM — removed (WP-WEB-TRANSFORM-001: IDs never existed in HTML) ──
 
 // ── PHASE 2 NOTIFY-ME ──
 function caToggleNotify(btn) {
@@ -719,24 +803,7 @@ async function caSubmitNotify(btn) {
   if (successEl) successEl.style.display = 'block';
 }
 
-// ── CSRD INLINE EMAIL BLUR VALIDATION ──
-(function() {
-  var el = document.getElementById('csrd-i-email');
-  if (!el) return;
-  el.addEventListener('blur', function() {
-    var err = document.getElementById('csrd-email-err');
-    var val = el.value.trim();
-    if (val && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      if (err) err.style.display = 'block';
-    } else {
-      if (err) err.style.display = 'none';
-    }
-  });
-  el.addEventListener('input', function() {
-    var err = document.getElementById('csrd-email-err');
-    if (err) err.style.display = 'none';
-  });
-})();
+// ── CSRD INLINE EMAIL BLUR VALIDATION — removed (WP-WEB-TRANSFORM-001: csrd-i-email never existed) ──
 
 // ── CSRD WIZARD EMAIL BLUR VALIDATION (Task 2.5) ──
 (function() {
@@ -801,6 +868,8 @@ function csrdShowStep(n) {
   csrdState.step = n;
   if (n === 1) { csrdState.employees = null; }
   if (n <= 2) { csrdState.turnover = null; }
+  // WP-QA-001 BUG #10/11: Show verdict immediately on step 3 (no email gate)
+  if (n === 3) { csrdRenderVerdict(); }
 }
 function csrdMapEmployees(val) {
   if (val === '1000+') return 1001;
@@ -817,14 +886,29 @@ function csrdGetResult() {
   var watchlist = csrdState.employees === '1000+' || csrdState.turnover === '450m+';
   return mandatory ? 'mandatory' : watchlist ? 'watchlist' : 'not_required';
 }
+// WP-QA-001 BUG #10/11: Render verdict immediately (no email gate)
+function csrdRenderVerdict() {
+  var resultDiv = document.getElementById('csrd-result');
+  if (!resultDiv) return;
+  var scope = csrdGetResult();
+  var html = '';
+  if (scope === 'mandatory') {
+    html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
+  } else if (scope === 'watchlist') {
+    html = '<div style="background:rgba(245,158,11,.1);border:1px solid var(--warn);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--warn);font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
+  } else {
+    html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
+  }
+  resultDiv.innerHTML = html;
+  if (typeof window.showCsrdShare === 'function') window.showCsrdShare();
+}
 async function csrdSubmit() {
   var email = document.getElementById('csrd-email');
   if (!email) return;
   var val = email.value.trim();
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) return;
-  var resultDiv = document.getElementById('csrd-result');
-  var submitBtn = document.querySelector('[data-csrd-step="3"] .btn-teal-sm[type="submit"]');
-  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Checking...'; }
+  var submitBtn = document.querySelector('#csrd-email-form .btn-ghost-sm[type="submit"]');
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending...'; }
   try {
     var res = await fetch('https://crowagent-platform-production.up.railway.app/api/v1/csrd/check', {
       method: 'POST',
@@ -838,113 +922,40 @@ async function csrdSubmit() {
       })
     });
     if (!res.ok) throw new Error('API error ' + res.status);
-    var data = await res.json();
-    var scope = csrdGetResult();
-    var html = '';
-    if (scope === 'mandatory') {
-      html = '<div style="background:rgba(12,201,168,.1);border:1px solid var(--teal);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--teal);font-size:16px">Your organisation is likely IN SCOPE for CSRD</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Both thresholds exceeded: &gt;1,000 employees and &gt;&euro;450M turnover. Per Directive (EU) 2026/470.</p></div>';
-    } else if (scope === 'watchlist') {
-      html = '<div style="background:rgba(245,158,11,.1);border:1px solid var(--warn);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--warn);font-size:16px">Watch list &mdash; thresholds may change</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">One threshold exceeded. Monitor regulatory updates as scope criteria may evolve.</p></div>';
-    } else {
-      html = '<div style="background:rgba(138,157,184,.08);border:1px solid var(--steel);border-radius:10px;padding:20px;text-align:center"><strong style="color:var(--cloud);font-size:16px">Your organisation is likely OUT OF SCOPE</strong><p style="color:var(--steel);font-size:13px;margin:8px 0 0">Neither threshold exceeded under current Omnibus I criteria.</p></div>';
-    }
-    if (resultDiv) resultDiv.innerHTML = html;
-    if (submitBtn) { submitBtn.textContent = 'Result ready'; submitBtn.style.background = 'var(--teal)'; }
+    if (submitBtn) { submitBtn.textContent = 'Sent \u2713'; submitBtn.style.color = 'var(--teal)'; }
   } catch(e) {
-    console.error('CSRD form error:', e);
-    if (resultDiv) resultDiv.innerHTML = '<div style="background:rgba(240,68,56,.1);border:1px solid var(--err);border-radius:10px;padding:16px;text-align:center;color:var(--err)">Unable to get result. Please try again.</div>';
-    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Get my result'; }
+    console.error('CSRD email error:', e);
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to my email'; }
   }
 }
 
-// ── CONTACT FORM SUBMISSION ──
+// ── CONTACT FORM SUBMISSION — removed (WP-WEB-TRANSFORM-001: contactForm ID never existed, contact.html uses contactPageForm) ──
+
+// ── CSRD SHARE MECHANIC — WP-WEB-TRANSFORM-001 ──
 (function() {
-  var form = document.getElementById('contactForm');
-  if (!form) return;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    var submitBtn = document.getElementById('contactSubmit');
-    var successMsg = document.getElementById('formSuccess');
-    var errorMsg = document.getElementById('formError');
-
-    var name = document.getElementById('contact-name').value.trim();
-    var email = document.getElementById('contact-email').value.trim();
-
-    if (!name || !email || !email.includes('@')) {
-      document.getElementById('contact-name').classList.toggle('input-error', !name);
-      document.getElementById('contact-email').classList.toggle('input-error', !email.includes('@'));
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    successMsg.style.display = 'none';
-    errorMsg.style.display = 'none';
-
-    var formData = new FormData(form);
-    var FORMSPREE_ENDPOINT = 'https://formspree.io/f/xbdpkaol';
-
-    if (FORMSPREE_ENDPOINT.includes('REPLACE_WITH_FORM_ID')) {
-      var subject = encodeURIComponent('CrowAgent enquiry from ' + name);
-      var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nOrg: ' + formData.get('organisation') + '\nProduct: ' + formData.get('product') + '\nMessage: ' + formData.get('message'));
-      window.location.href = 'mailto:hello@crowagent.ai?subject=' + subject + '&body=' + body;
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
-      return;
-    }
-
-    fetch(FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    })
-    .then(function(response) {
-      if (response.ok) {
-        form.reset();
-        successMsg.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Send message';
-      } else {
-        throw new Error('Form submission failed');
-      }
-    })
-    .catch(function() {
-      errorMsg.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Send message';
+  window.showCsrdShare = function() {
+    var panel = document.getElementById('csrdShare');
+    if (panel) panel.style.display = 'block';
+  };
+  var liBtn = document.getElementById('csrdLinkedInShare');
+  if (liBtn) {
+    liBtn.addEventListener('click', function() {
+      var text = encodeURIComponent('I just checked our CSRD reporting eligibility with CrowAgent. Find out if your organisation qualifies: ');
+      var url = encodeURIComponent('https://crowagent.ai/csrd');
+      window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url + '&summary=' + text, '_blank', 'noopener,width=600,height=500');
     });
-  });
-})();
-
-// ── CSRD SHARE MECHANIC ──
-(function() {
-  window.showCsrdShare = function(isInScope, companyName) {
-    var shareDiv = document.getElementById('csrdShare');
-    var linkedinLink = document.getElementById('csrdLinkedInShare');
-    var copyBtn = document.getElementById('csrdCopyLink');
-
-    if (!shareDiv) return;
-
-    var shareText = isInScope
-      ? (companyName || 'This company') + ' is in scope of CSRD Omnibus I reporting requirements. Check your company at crowagent.ai'
-      : (companyName || 'This company') + ' is currently out of scope of CSRD Omnibus I. Check your company at crowagent.ai';
-
-    var linkedinUrl = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent('https://crowagent.ai/#csrd') + '&summary=' + encodeURIComponent(shareText);
-
-    linkedinLink.href = linkedinUrl;
-    shareDiv.style.display = 'block';
-
+  }
+  var copyBtn = document.getElementById('csrdCopyLink');
+  if (copyBtn) {
     copyBtn.addEventListener('click', function() {
-      navigator.clipboard.writeText('https://crowagent.ai/#csrd').then(function() {
-        copyBtn.textContent = 'Copied!';
+      navigator.clipboard.writeText('https://crowagent.ai/csrd').then(function() {
+        copyBtn.textContent = '\u2713 Copied';
         setTimeout(function() { copyBtn.textContent = 'Copy link'; }, 2000);
       }).catch(function() {
-        copyBtn.textContent = 'crowagent.ai/#csrd';
+        copyBtn.textContent = 'crowagent.ai/csrd';
       });
     });
-  };
+  }
 })();
 
 // ── ANIMATED NUMBER COUNTERS (Task 11A) ──
@@ -1184,21 +1195,7 @@ async function csrdSubmit() {
   });
 })();
 
-// ── FOOTER SYSTEM STATUS — WP-WEB-003-SUP ──
-(function() {
-  var dot = document.getElementById('status-dot');
-  var label = document.getElementById('status-label');
-  if (!dot || !label) return;
-  fetch('https://crowagent-platform-production.up.railway.app/api/v1/health', {
-    method: 'GET',
-    signal: AbortSignal.timeout ? AbortSignal.timeout(5000) : undefined
-  })
-  .then(function(r) {
-    if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
-    else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
-  })
-  .catch(function() { dot.className = 'footer-status-dot offline'; label.textContent = 'Status unavailable'; });
-})();
+// ── FOOTER SYSTEM STATUS — moved into ca-nav-ready listener (WP-WEB-FIX-001) ──
 
 // ── PRICING CARD ENTRANCE — WP-WEB-003-SUP ──
 (function() {
@@ -1240,6 +1237,53 @@ async function csrdSubmit() {
   milestones.forEach(function(m) { obs.observe(m); });
 })();
 
+// ── TOOLTIP DISMISS ON CLICK/ESCAPE — WP-QA-001 BUG #3 ──
+(function() {
+  document.addEventListener('click', function(e) {
+    var term = e.target.closest('.term');
+    document.querySelectorAll('.term.active').forEach(function(el) {
+      if (el !== term) el.classList.remove('active');
+    });
+    if (term) term.classList.toggle('active');
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.term.active').forEach(function(el) {
+        el.classList.remove('active');
+      });
+    }
+  });
+})();
+
+// ── CONTACT PAGE FORM BLUR VALIDATION — WP-QA-001 BUG #29 ──
+(function() {
+  var form = document.getElementById('contactPageForm');
+  if (!form) return;
+  form.querySelectorAll('.form-input[required]').forEach(function(input) {
+    input.setAttribute('data-touched', 'false');
+    input.addEventListener('blur', function() {
+      this.setAttribute('data-touched', 'true');
+      var errId = this.id + '-err';
+      var errEl = document.getElementById(errId);
+      if (!errEl) return;
+      if (this.type === 'email') {
+        var val = this.value.trim();
+        if (!val || !val.includes('@') || !val.includes('.')) {
+          errEl.style.display = 'block';
+        } else {
+          errEl.style.display = 'none';
+        }
+      } else {
+        if (!this.value.trim()) {
+          errEl.style.display = 'block';
+        } else {
+          errEl.style.display = 'none';
+        }
+      }
+    });
+  });
+})();
+
 // ── Module exports (for testing) ─────────────────────────────────────────────
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
@@ -1248,7 +1292,6 @@ if (typeof module !== 'undefined' && module.exports) {
     switchPTab: switchPTab,
     toggleBilling: toggleBilling,
     submitCSRD: submitCSRD,
-    submitCSRDInline: submitCSRDInline,
     caToggleNotify: caToggleNotify,
     caSubmitNotify: caSubmitNotify,
     csrdSelect: csrdSelect,
@@ -1325,10 +1368,106 @@ if (typeof module !== 'undefined' && module.exports) {
   }
   if ('IntersectionObserver' in window) {
     var obs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) { if (e.isIntersecting) { animateCounters(); obs.disconnect(); } });
+      entries.forEach(function(e) { if (e.isIntersecting) { setTimeout(animateCounters, 1000); obs.disconnect(); } });
     }, { threshold: 0.3 });
     counters.forEach(function(c) { obs.observe(c); });
   } else {
-    animateCounters();
+    setTimeout(animateCounters, 1000);
   }
+})();
+
+// ── SCROLL-TO-TOP ──────────────────────────────────────────────
+(function() {
+  var btn = document.createElement('button');
+  btn.id = 'back-to-top';
+  btn.setAttribute('aria-label', 'Back to top');
+  btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>';
+  document.body.appendChild(btn);
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 400) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+  btn.addEventListener('click', function() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+})();
+
+// ── PLATFORM CAROUSEL — WP-WEB-003 ──
+(function() {
+  var screens = document.querySelectorAll('.pc-screen');
+  var dots = document.querySelectorAll('button.pc-dot');
+  var current = 0;
+  var timer;
+  if (!screens.length) return;
+  window.pcSwitch = function(idx) {
+    screens[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = idx;
+    screens[current].classList.add('active');
+    dots[current].classList.add('active');
+    clearInterval(timer);
+    timer = setInterval(function() {
+      window.pcSwitch((current + 1) % screens.length);
+    }, 4000);
+  };
+  timer = setInterval(function() {
+    window.pcSwitch((current + 1) % screens.length);
+  }, 4000);
+})();
+
+// ── PARTICLE CANVAS — WP-WEB-003 ──
+(function() {
+  var cv = document.getElementById('ca-particles');
+  if (!cv) return;
+  var ctx = cv.getContext('2d');
+  var W, H, pts = [];
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    cv.width = W; cv.height = H;
+  }
+  resize();
+  window.addEventListener('resize', resize, { passive: true });
+  for (var i = 0; i < 60; i++) {
+    pts.push({
+      x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25
+    });
+  }
+  var running = false;
+  function draw() {
+    if (!running) return;
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < pts.length; i++) {
+      pts[i].x += pts[i].vx; pts[i].y += pts[i].vy;
+      if (pts[i].x < 0 || pts[i].x > W) pts[i].vx *= -1;
+      if (pts[i].y < 0 || pts[i].y > H) pts[i].vy *= -1;
+      for (var j = i + 1; j < pts.length; j++) {
+        var dx = pts[i].x - pts[j].x, dy = pts[i].y - pts[j].y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = 'rgba(12,201,168,' + (0.1 * (1 - d / 120)) + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+      ctx.beginPath();
+      ctx.arc(pts[i].x, pts[i].y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(12,201,168,0.3)';
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  function start() { if (!running) { running = true; draw(); } }
+  function stop() { running = false; }
+  if (document.visibilityState === 'visible') start();
+  document.addEventListener('visibilitychange', function() {
+    if (document.visibilityState === 'visible') { start(); } else { stop(); }
+  });
 })();
