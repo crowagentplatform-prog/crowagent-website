@@ -87,16 +87,20 @@
         <p>All data is encrypted at rest using AES-256 and in transit using TLS 1.3. Encryption keys are managed at the infrastructure level and rotated automatically.</p>
       </div>
       <div class="sec-card">
-        <h3>UK data residency</h3>
-        <p>All customer data is stored and processed in the United Kingdom. We do not transfer personal data outside the UK without explicit contractual safeguards. Our primary infrastructure is Supabase (UK region) and Vercel (EU/UK edge).</p>
+        <h3>Data storage (EU, AWS EU-West-1)</h3>
+        <p>All customer data is stored in AWS EU-West-1 (Ireland) via Supabase. We do not transfer personal data outside the EU without explicit contractual safeguards. Frontend is served from Vercel (EU/UK edge) and protected by Cloudflare.</p>
       </div>
       <div class="sec-card">
         <h3>GDPR compliant</h3>
-        <p>CrowAgent is registered with the Information Commissioner's Office (ICO). We maintain a full Data Processing Agreement (DPA). Rights supported: right to erasure, data portability, restriction of processing, and access. Contact <a href="mailto:hello@crowagent.ai" style="color:var(--teal)">hello@crowagent.ai</a> for data requests.</p>
+        <p>CrowAgent is GDPR compliant. ICO registration: [PENDING]. We maintain a full Data Processing Agreement (DPA). Rights supported: right to erasure, data portability, restriction of processing, and access. Contact <a href="mailto:hello@crowagent.ai" style="color:var(--teal)">hello@crowagent.ai</a> for data requests.</p>
       </div>
       <div class="sec-card">
         <h3>Role-based access control</h3>
-        <p>Platform access is controlled by organisation-scoped roles (Owner, Admin, Member). Row-Level Security (RLS) is enforced at the database level — users can only access data belonging to their organisation. MFA is available for all accounts.</p>
+        <p>Platform access is controlled by organisation-scoped roles (Owner, Admin, Member). Row-Level Security (RLS) is enforced at the database level — users can only access data belonging to their organisation.</p>
+      </div>
+      <div class="sec-card">
+        <h3>Multi-factor authentication (MFA)</h3>
+        <p>TOTP-based MFA is available for all accounts and mandatory for Owner and Admin roles. MFA enrolment is enforced on first login for privileged roles. No SMS-based MFA — TOTP only.</p>
       </div>
       <div class="sec-card">
         <h3>ISO 27001 aligned</h3>
@@ -113,7 +117,7 @@
 
     <!-- Vulnerability disclosure -->
     <h3 class="sec-card-title">Vulnerability disclosure</h3>
-    <p class="sec-card-body">If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:hello@crowagent.ai?subject=Security%20Disclosure">hello@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
+    <p class="sec-card-body">If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:security@crowagent.ai?subject=Security%20Disclosure" style="color:var(--teal)">security@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
 
     <!-- Uptime commitment -->
     <h3 class="sec-card-title">Uptime commitment</h3>
@@ -123,7 +127,7 @@
     <h3 class="sec-card-title">Company &amp; regulatory details</h3>
     <div class="security-details-grid">
       <span class="security-details-label">ICO registration</span>
-      <span class="security-details-value">Registered with Information Commissioner's Office</span>
+      <span class="security-details-value">[PENDING]</span>
       <span class="security-details-label">Company</span>
       <span class="security-details-value">CrowAgent Ltd &middot; Company No. 17076461</span>
       <span class="security-details-label">Registered</span>
@@ -132,6 +136,23 @@
       <span class="security-details-value">CrowAgent Ltd</span>
       <span class="security-details-label">Contact</span>
       <span class="security-details-value"><a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a></span>
+    </div>
+
+    <!-- Sub-processors -->
+    <div class="divider" style="margin:32px 0;"></div>
+    <h3 class="sec-card-title">Sub-processors</h3>
+    <p class="sec-card-body">CrowAgent uses the following third-party sub-processors to deliver its services. All sub-processors are bound by data processing agreements.</p>
+    <div class="security-details-grid">
+      <span class="security-details-label">Supabase</span>
+      <span class="security-details-value">Database, authentication, and storage (EU-West-1)</span>
+      <span class="security-details-label">Railway</span>
+      <span class="security-details-value">API hosting and backend compute</span>
+      <span class="security-details-label">Resend</span>
+      <span class="security-details-value">Transactional email delivery</span>
+      <span class="security-details-label">Stripe</span>
+      <span class="security-details-value">Payment processing and subscription management</span>
+      <span class="security-details-label">PostHog</span>
+      <span class="security-details-value">Product analytics (EU instance)</span>
     </div>
 
   </section>
@@ -147,7 +168,7 @@
       </div>
       <div class="security-item">
         <h3>Data residency</h3>
-        <p>All data stored in EU-West-1 (Ireland) region. No data processed outside UK/EU. Supabase PostgreSQL with row-level security enforced on all tables.</p>
+        <p>All data stored in AWS EU-West-1 (Ireland) region. No data processed outside UK/EU. Supabase PostgreSQL with row-level security enforced on all tables.</p>
       </div>
       <div class="security-item">
         <h3>Access controls</h3>
@@ -159,7 +180,7 @@
       </div>
       <div class="security-item">
         <h3>ICO registration</h3>
-        <p>CrowAgent Ltd is registered with the Information Commissioner's Office (ICO) as a data controller. GDPR compliant. Data protection impact assessments conducted for high-risk processing.</p>
+        <p>CrowAgent Ltd ICO registration: [PENDING]. GDPR compliant. Data protection impact assessments conducted for high-risk processing.</p>
       </div>
       <div class="security-item">
         <h3>ISO 27001 alignment</h3>

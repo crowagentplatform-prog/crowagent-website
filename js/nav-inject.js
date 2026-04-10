@@ -184,6 +184,7 @@
     '        <h4 class="footer-col-title">Company</h4>',
     '        <div class="footer-links">',
     '          <a href="/about">About</a>',
+    '          <a href="/partners">Partners</a>',
     '          <a href="/demo">Book a demo</a>',
     '          <a href="/roadmap">Roadmap</a>',
     '          <a href="/contact">Contact</a>',
