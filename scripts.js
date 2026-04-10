@@ -542,6 +542,52 @@ function toggleBilling() {
   if (typeof window.caUpdatePlanLinks === 'function') window.caUpdatePlanLinks();
 }
 
+// ── LIVE PRICING FROM STRIPE via platform API — WP-STRIPE-PRICES-LIVE-001 ──
+(function loadLivePrices() {
+  try {
+    var p = window.fetch('https://app.crowagent.ai/api/stripe/prices');
+    if (!p || typeof p.then !== 'function') return;
+    p.then(function(res) { return res.ok ? res.json() : Promise.reject(); })
+      .then(function(prices) {
+        var map = {};
+        prices.forEach(function(pr) { map[pr.lookup_key] = pr.amount; });
+
+        // Update .pv elements on pricing page (have data-m/data-a attributes)
+        document.querySelectorAll('.pv[data-price-key]').forEach(function(el) {
+          var key = el.getAttribute('data-price-key');
+          var monthlyPence = map[key + '_monthly'];
+          var annualPence = map[key + '_annual'];
+          if (monthlyPence != null) {
+            var m = Math.round(monthlyPence / 100);
+            el.setAttribute('data-m', String(m));
+            el.textContent = String(m);
+          }
+          if (annualPence != null) {
+            var a = Math.round(annualPence / 1200);
+            el.setAttribute('data-a', String(a));
+          }
+          // Re-apply billing toggle state
+          if (typeof isAnn !== 'undefined' && isAnn) {
+            el.textContent = el.getAttribute('data-a');
+          }
+        });
+
+        // Update standalone [data-price-key] elements (product pages, index.html)
+        document.querySelectorAll('[data-price-key]:not(.pv)').forEach(function(el) {
+          var key = el.getAttribute('data-price-key');
+          var fmt = el.getAttribute('data-price-format');
+          var pence = map[key + '_monthly'];
+          if (pence != null && fmt) {
+            el.textContent = fmt.replace('{0}', String(Math.round(pence / 100)));
+          } else if (pence != null) {
+            el.textContent = '£' + Math.round(pence / 100);
+          }
+        });
+      })
+      .catch(function() { /* Prices stay as HTML defaults — no hardcoded fallback */ });
+  } catch (e) { /* Not in a browser environment */ }
+})();
+
 // ── MEES COUNTDOWN — removed dead days-counter IIFE (WP-WEB-TRANSFORM-001) ──
 // Live countdown uses #mees-days (below) and inline script in index.html
 

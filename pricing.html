@@ -101,7 +101,7 @@
       </div>
       <span class="nav-price-hint">From £99/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
-      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
+      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?plan=core_starter">Get started</a>
     </div>
     <button class="ham" onclick="toggleMob()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -117,7 +117,7 @@
   <a href="/csrd">CSRD Checker</a>
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Log in →</a>
-  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
+  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?plan=core_starter">Get started</a>
   <div class="mob-locale">
     <div class="mob-locale-label">Language</div>
     <div class="mob-locale-row" id="mob-lang-row">
@@ -168,7 +168,7 @@
 <div id="core-p" class="pgrid">
   <div class="pgc">
     <div class="pgc-name">Starter</div>
-    <div class="pgc-price">£<span class="pv" data-m="149" data-a="134">149</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="149" data-a="134" data-price-key="crowagent_core_starter">149</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Less than one RICS energy assessment. One property analysis every week of the year.</p>
     <div class="pgc-scope">5 properties</div>
     <ul class="pgc-features">
@@ -176,12 +176,12 @@
       <li>PDF reports</li>
       <li>Email support</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" data-plan-tier="starter" href="https://app.crowagent.ai/signup?plan=starter">Start Starter trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="starter" href="https://app.crowagent.ai/signup?plan=core_starter">Start Starter trial →</a>
   </div>
   <div class="pgc pgc-pop">
     <div class="pgc-badge">Most popular</div>
     <div class="pgc-name">Pro</div>
-    <div class="pgc-price">£<span class="pv" data-m="299" data-a="269">299</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="299" data-a="269" data-price-key="crowagent_core_pro">299</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Less than a single solicitor hour on an EPC dispute. Covers 25 properties continuously.</p>
     <div class="pgc-scope">6–25 properties</div>
     <ul class="pgc-features">
@@ -192,11 +192,11 @@
       <li>Command Centre</li>
       <li>Priority support</li>
     </ul>
-    <a class="pgc-cta" data-plan-tier="pro" href="https://app.crowagent.ai/signup?plan=pro">Start Pro trial →</a>
+    <a class="pgc-cta" data-plan-tier="pro" href="https://app.crowagent.ai/signup?plan=core_pro">Start Pro trial →</a>
   </div>
   <div class="pgc">
     <div class="pgc-name">Portfolio</div>
-    <div class="pgc-price">£<span class="pv" data-m="599" data-a="539">599</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="599" data-a="539" data-price-key="crowagent_core_portfolio">599</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Less than one day of specialist consultancy. Unlimited properties. White-label PDF reports.</p>
     <div class="pgc-scope">100 properties</div>
     <ul class="pgc-features">
@@ -206,7 +206,7 @@
       <li>Custom integrations</li>
       <li>Command Centre</li>
     </ul>
-    <a class="pgc-cta pgc-cta-out" data-plan-tier="portfolio" href="https://app.crowagent.ai/signup?plan=portfolio">Start Portfolio trial →</a>
+    <a class="pgc-cta pgc-cta-out" data-plan-tier="portfolio" href="https://app.crowagent.ai/signup?plan=core_portfolio">Start Portfolio trial →</a>
   </div>
 </div>
 
@@ -214,7 +214,7 @@
 <div id="mark-p" class="pgrid" style="display:none">
   <div class="pgc">
     <div class="pgc-name">Solo</div>
-    <div class="pgc-price">£<span class="pv" data-m="99" data-a="89">99</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="99" data-a="89" data-price-key="crowmark_solo">99</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Less than one hour of a bid management consultant. One complete PPN 002 submission covered.</p>
     <div class="pgc-scope">1 user</div>
     <ul class="pgc-features">
@@ -228,7 +228,7 @@
   <div class="pgc pgc-pop">
     <div class="pgc-badge">Most popular</div>
     <div class="pgc-name">Team</div>
-    <div class="pgc-price">£<span class="pv" data-m="149" data-a="134">149</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="149" data-a="134" data-price-key="crowmark_team">149</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Less than the cost of a single social value audit. Up to 5 users, unlimited bids.</p>
     <div class="pgc-scope">Up to 5 users</div>
     <ul class="pgc-features">
@@ -242,7 +242,7 @@
   </div>
   <div class="pgc">
     <div class="pgc-name">Agency</div>
-    <div class="pgc-price">£<span class="pv" data-m="399" data-a="359">399</span><span class="pp">/mo</span></div>
+    <div class="pgc-price">£<span class="pv" data-m="399" data-a="359" data-price-key="crowmark_agency">399</span><span class="pp">/mo</span></div>
     <p class="price-anchor">Replaces a part-time social value consultant. Unlimited users, white-label outputs, API access.</p>
     <div class="pgc-scope">Unlimited users</div>
     <ul class="pgc-features">
@@ -433,7 +433,7 @@
     <h2>Start with the workflow you need now</h2>
     <p class="cta-band-sub">Choose CrowAgent Core for property compliance or CrowMark for social value work. If you are still assessing scope, start with the free CSRD checker first.</p>
     <div class="hero-btns">
-      <a class="btn-hero" href="https://app.crowagent.ai/signup">Start trial</a>
+      <a class="btn-hero" href="https://app.crowagent.ai/signup?plan=core_starter">Start trial</a>
       <a class="btn-hero-out" href="/contact">Enterprise enquiry</a>
     </div>
     <!-- G-Cloud badge — uncomment when listed on G-Cloud 16 -->
@@ -483,7 +483,7 @@
           <a href="/products/crowmark">CrowMark</a>
           <a href="/csrd">CSRD Checker</a>
           <a href="/pricing">Pricing</a>
-          <a href="https://app.crowagent.ai/signup">Start free trial</a>
+          <a href="https://app.crowagent.ai/signup?plan=core_starter">Start free trial</a>
           <a href="https://app.crowagent.ai/login">Log in</a>
         </div>
       </div>
@@ -526,7 +526,7 @@
   </div>
 </footer>
 
-<script src="/cookie-banner.js" defer></script>
+<script src="/js/cookie-consent.js" defer></script>
 
 <script src="scripts.min.js?v=43" defer></script>
 <script src="chatbot.js" defer></script>

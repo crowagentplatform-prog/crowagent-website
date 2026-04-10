@@ -86,7 +86,7 @@
       </div>
       <span class="nav-price-hint">From £99/mo</span>
       <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
-      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
+      <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?plan=core_starter">Get started</a>
     </div>
     <button class="ham" onclick="toggleMob()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -102,7 +102,7 @@
   <a href="/csrd">CSRD Checker</a>
   <a href="/blog">Blog</a>
   <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>
-  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>
+  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup?plan=core_starter">Get started</a>
   <div class="mob-locale">
     <div class="mob-locale-label">Language</div>
     <div class="mob-locale-row" id="mob-lang-row">
@@ -266,7 +266,7 @@
       <!-- Solo -->
       <div class="cm-pricing-card pricing-card">
         <div class="pricing-card-tier">Solo</div>
-        <div class="product-price-hint">£99<span class="product-price-unit">/mo</span></div>
+        <div class="product-price-hint"><span data-price-key="crowmark_solo" data-price-format="£{0}">£99</span><span class="product-price-unit">/mo</span></div>
         <div class="pricing-card-desc">1 user · 3 bids/month</div>
         <ul class="pricing-card-list">
           <li><span class="check">&#10003;</span>PPN 002 mission mapping</li>
@@ -282,7 +282,7 @@
       <div class="cm-pricing-card pricing-card pricing-card--popular">
         <div class="pricing-card-badge">MOST POPULAR</div>
         <div class="pricing-card-tier">Team</div>
-        <div class="product-price-hint">£149<span class="product-price-unit">/mo</span></div>
+        <div class="product-price-hint"><span data-price-key="crowmark_team" data-price-format="£{0}">£149</span><span class="product-price-unit">/mo</span></div>
         <div class="pricing-card-desc">Up to 5 users · Unlimited bids</div>
         <ul class="pricing-card-list">
           <li><span class="check">&#10003;</span>Everything in Solo</li>
@@ -296,7 +296,7 @@
       <!-- Agency -->
       <div class="cm-pricing-card pricing-card">
         <div class="pricing-card-tier">Agency</div>
-        <div class="product-price-hint">£399<span class="product-price-unit">/mo</span></div>
+        <div class="product-price-hint"><span data-price-key="crowmark_agency" data-price-format="£{0}">£399</span><span class="product-price-unit">/mo</span></div>
         <div class="pricing-card-desc">Unlimited users · Unlimited bids</div>
         <ul class="pricing-card-list">
           <li><span class="check">&#10003;</span>Everything in Team</li>
@@ -405,7 +405,7 @@
           <a href="/products/crowmark">CrowMark</a>
           <a href="/csrd">CSRD Checker</a>
           <a href="/pricing">Pricing</a>
-          <a href="https://app.crowagent.ai/signup">Start free trial</a>
+          <a href="https://app.crowagent.ai/signup?plan=core_starter">Start free trial</a>
           <a href="https://app.crowagent.ai/login">Log in</a>
         </div>
       </div>
@@ -450,7 +450,7 @@
 
 <script src="/scripts.min.js?v=43" defer></script>
 
-<script src="/cookie-banner.js" defer></script>
+<script src="/js/cookie-consent.js" defer></script>
 </body>
 </html>
 
