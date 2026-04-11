@@ -1311,12 +1311,11 @@ textarea.form-control{resize:vertical;min-height:100px}
 /* ── PRODUCT FULL-WIDTH BLOCKS ── */
 .product-full-block{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:3rem 0;border-bottom:1px solid var(--border)}
 .product-full-inner{padding:1rem 0}
-.product-full-block-alt{direction:rtl;background-image:url('Assets/bg-crowmark.svg');background-size:cover;background-position:center;background-repeat:no-repeat}
-.product-full-block-alt>*{direction:ltr}
+.product-full-block-alt .product-full-visual{order:-1}
 .product-full-features{list-style:none;padding:0;margin:0 0 1.75rem}
 .product-full-features li{font-family:var(--font-body);font-size:14px;color:var(--steel);padding:6px 0 6px 24px;position:relative;line-height:1.6}
 .product-full-features li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
-@media(max-width:900px){.product-full-block{grid-template-columns:1fr;gap:2rem}.product-full-block-alt{direction:ltr}}
+@media(max-width:900px){.product-full-block{grid-template-columns:1fr;gap:2rem}}
 
 .vision-quote{font-family:'Inter',sans-serif;font-size:clamp(1rem,2.5vw,1.2rem);color:var(--cloud);line-height:1.7;font-style:italic;border-left:3px solid var(--teal);padding-left:1.25rem;margin:1.5rem 0 .5rem;text-align:left}
 .vision-source{font-family:'Inter',sans-serif;font-size:12px;color:var(--mist);padding-left:1.25rem;text-align:left}
@@ -1466,18 +1465,19 @@ textarea.form-control{resize:vertical;min-height:100px}
 
 /* ── DEMO PAGE (WP-SUPP-002 Task 2.1) ── */
 .demo-hero{padding:4rem 0}
-.demo-hero-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start}
+.demo-hero-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:3rem;align-items:start}
 .demo-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--cloud);margin-bottom:1rem;line-height:1.15}
 .demo-sub{font-size:1.05rem;color:var(--steel);line-height:1.7;margin-bottom:1.5rem}
 .demo-promises{list-style:none;padding:0;margin:0 0 2rem}
 .demo-promises li{font-size:14px;color:var(--steel);padding:6px 0 6px 22px;position:relative;line-height:1.5}
-.demo-promises li::before{content:'';position:absolute;left:0;top:12px;width:8px;height:8px;border-radius:50%;background:var(--teal)}
+.demo-promises li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
 .demo-alt{padding:1.25rem;background:var(--surf);border:1px solid rgba(12,201,168,.15);border-radius:10px}
 .demo-alt p{font-size:13px;color:var(--mist);margin-bottom:.75rem}
+.demo-booking{min-height:700px}
 .demo-booking-label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:.75rem}
-.calendly-inline-widget{border-radius:12px;overflow:hidden;border:1px solid rgba(12,201,168,.15)}
-@media(max-width:900px){.demo-hero-grid{grid-template-columns:1fr}.calendly-inline-widget{height:580px!important}}
-@media(max-width:480px){.calendly-inline-widget{height:720px!important}}
+.calendly-inline-widget{border-radius:12px;overflow:hidden;border:1px solid rgba(12,201,168,.15);min-height:680px}
+@media(max-width:900px){.demo-hero-grid{grid-template-columns:1fr}.demo-booking{min-height:600px}.calendly-inline-widget{min-height:580px}}
+@media(max-width:480px){.demo-booking{min-height:720px}.calendly-inline-widget{min-height:700px}}
 
 /* ── CONTACT PAGE (WP-SUPP-002 Task 2.2) ── */
 .contact-page-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:4rem;align-items:start;margin-top:2rem}
@@ -2330,7 +2330,7 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
   .btn-primary:hover .btn-arrow,
   .btn-hero:hover .btn-arrow,
   .btn-teal-sm:hover .btn-arrow { transform: none; }
-  .hero,.products,.cta-band,.product-full-block-alt,.ca-footer { background-image: none; }
+  .hero,.products,.cta-band,.ca-footer { background-image: none; }
   .reveal { transition: none; opacity: 1; transform: none; }
   /* FIX-2/3/5 reduced motion overrides */
   .uc, .hw, .sector, .pc, .tc, .pgc, .resource-card,
@@ -3994,6 +3994,140 @@ nav .btn-teal-sm,
   margin-left: auto !important;
   margin-right: auto !important;
   padding: 0 20px !important;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PARTNERS PAGE — trust-grid, trust-card, partner-form
+   ═══════════════════════════════════════════════════════════════ */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-top: 32px;
+  margin-bottom: 48px;
+}
+.trust-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 32px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+.trust-card:hover {
+  border-color: var(--border2);
+  transform: translateY(-2px);
+}
+.trust-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--teal-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.trust-icon::after {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: var(--teal);
+  border-radius: 4px;
+  opacity: 0.8;
+}
+.trust-icon[data-icon="building"]::after { border-radius: 3px; }
+.trust-icon[data-icon="clipboard"]::after { border-radius: 3px; }
+.trust-icon[data-icon="lock"]::after { border-radius: 50%; }
+.trust-icon[data-icon="layers"]::after { border-radius: 3px; transform: rotate(45deg); width: 14px; height: 14px; }
+.trust-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--cloud);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.trust-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--steel);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+.partner-card-highlight {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--teal);
+  margin-top: 12px;
+  margin-bottom: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.partner-form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+.partner-form-wrap .form-group {
+  margin-bottom: 0;
+}
+.section-sub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--steel);
+  line-height: 1.7;
+  max-width: 600px;
+  margin-bottom: 8px;
+}
+.section-sub.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.justify-center {
+  justify-content: center;
+}
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  border: 1.5px solid var(--border2);
+  border-radius: 8px;
+  color: var(--steel);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  min-height: 44px;
+}
+.btn-ghost:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-dim);
+}
+.btn-full-width {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* ── Triple CTA section — ensure CTA band background applies ── */
