@@ -16,6 +16,7 @@ var APP_VERSION = '49';
 (function() {
   if (!('IntersectionObserver' in window)) {
     document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
+    document.querySelectorAll('.fade-in').forEach(function(el) { el.classList.add('visible'); });
     return;
   }
   var observer = new IntersectionObserver(function(entries) {
@@ -27,6 +28,7 @@ var APP_VERSION = '49';
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 })();
 
 // ── NAV SCROLL — WP-WEB-006 Fix 4: shrinking nav at 20px ──
