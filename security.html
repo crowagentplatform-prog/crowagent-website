@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<script>(function(){var t=localStorage.getItem("ca_theme")||localStorage.getItem("ca-theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Security & Data Protection — CrowAgent | UK Data Residency · GDPR · ISO 27001</title>
 <meta name="description" content="CrowAgent's security architecture: AES-256 encryption, UK data residency, GDPR compliance, ICO registration, ISO 27001 alignment, and AI model usage policy.">
@@ -25,7 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.min.css?v=49">
+<link rel="stylesheet" href="styles.min.css?v=51">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
@@ -35,7 +34,8 @@
 <div id="ca-nav"></div>
 
 <main id="main-content" role="main">
-  <section class="product-section product-section--hero section-padding">
+  <section class="section-padding">
+    <div class="container container-standard">
 
     <!-- Eyebrow -->
     <p class="section-label">SECURITY &amp; TRUST</p>
@@ -44,7 +44,7 @@
     <h1 class="page-title">Enterprise-grade security from day one</h1>
 
     <!-- Subheading -->
-    <p class="hero-sub">CrowAgent is built on UK infrastructure with data protection, encryption, and access controls designed for regulated industry use.</p>
+    <p class="hero-sub" style="max-width:680px;">CrowAgent is built on UK infrastructure with data protection, encryption, and access controls designed for regulated industry use.</p>
 
     <!-- Security cards grid -->
     <style>
@@ -58,17 +58,17 @@
         background: var(--surf);
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: 24px 28px;
+        padding: 28px 32px;
       }
       .security-grid .sec-card h3 {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: var(--font-display);
         font-weight: 700;
         font-size: 16px;
         color: var(--cloud);
-        margin: 0 0 8px;
+        margin: 0 0 10px;
       }
       .security-grid .sec-card p {
-        font-family: 'Inter', sans-serif;
+        font-family: var(--font-body);
         font-size: 14px;
         color: var(--steel);
         line-height: 1.7;
@@ -109,66 +109,41 @@
     </div>
 
     <!-- Separator -->
-    <div class="divider"></div>
+    <div style="height:48px;"></div>
 
-    <!-- Vulnerability disclosure -->
-    <h3 class="sec-card-title">Vulnerability disclosure</h3>
-    <p class="sec-card-body">If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:hello@crowagent.ai?subject=Security%20Disclosure">hello@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
-
-    <!-- Uptime commitment -->
-    <h3 class="sec-card-title">Uptime commitment</h3>
-    <p class="sec-card-body">CrowAgent targets 99.9% monthly uptime. For current system status, contact <a href="mailto:hello@crowagent.ai?subject=Status%20Enquiry">hello@crowagent.ai</a> with subject 'Status Enquiry'. We will publish a status page at status.crowagent.ai in Q2 2026.</p>
-
-    <!-- Company & regulatory details -->
-    <h3 class="sec-card-title">Company &amp; regulatory details</h3>
-    <div class="security-details-grid">
-      <span class="security-details-label">ICO registration</span>
-      <span class="security-details-value">Registered with Information Commissioner's Office</span>
-      <span class="security-details-label">Company</span>
-      <span class="security-details-value">CrowAgent Ltd &middot; Company No. 17076461</span>
-      <span class="security-details-label">Registered</span>
-      <span class="security-details-value">England and Wales</span>
-      <span class="security-details-label">Data controller</span>
-      <span class="security-details-value">CrowAgent Ltd</span>
-      <span class="security-details-label">Contact</span>
-      <span class="security-details-value"><a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a></span>
-    </div>
-
-  </section>
-
-<section class="security-practices section">
-  <div class="container container-standard">
-    <div class="page-label">Technical security</div>
-    <h2 class="u-h2-display">How we protect your data</h2>
+    <!-- Additional security details in cards -->
     <div class="security-grid">
-      <div class="security-item">
-        <h3>Encryption</h3>
-        <p>AES-256 encryption at rest. TLS 1.3 in transit. No plaintext storage of any personal data. Database connections use SSL/TLS with certificate pinning.</p>
+      <div class="sec-card">
+        <h3>Vulnerability disclosure</h3>
+        <p>If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:admin@crowagent.ai?subject=Security%20Disclosure" style="color:var(--teal)">admin@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
       </div>
-      <div class="security-item">
-        <h3>Data residency</h3>
-        <p>All data stored in EU-West-1 (Ireland) region. No data processed outside UK/EU. Supabase PostgreSQL with row-level security enforced on all tables.</p>
-      </div>
-      <div class="security-item">
-        <h3>Access controls</h3>
-        <p>Multi-factor authentication available for all accounts. Role-based access control (Owner, Admin, Member). Principle of least privilege throughout.</p>
-      </div>
-      <div class="security-item">
-        <h3>Infrastructure</h3>
-        <p>Hosted on Railway (API), Vercel (frontend), and Cloudflare (WAF, DDoS mitigation, DNS). No single-point-of-failure architecture. Automated failover.</p>
-      </div>
-      <div class="security-item">
-        <h3>ICO registration</h3>
-        <p>CrowAgent Ltd is registered with the Information Commissioner's Office (ICO) as a data controller. GDPR compliant. Data protection impact assessments conducted for high-risk processing.</p>
-      </div>
-      <div class="security-item">
-        <h3>ISO 27001 alignment</h3>
-        <p>We follow ISO 27001:2022 information security controls. Formal certification is on our roadmap for Phase 2. Current alignment covers access management, incident response, and business continuity.</p>
+      <div class="sec-card">
+        <h3>Uptime commitment</h3>
+        <p>CrowAgent targets 99.9% monthly uptime. For current system status, contact <a href="mailto:support@crowagent.ai?subject=Status%20Enquiry" style="color:var(--teal)">support@crowagent.ai</a> with subject 'Status Enquiry'. We will publish a status page at status.crowagent.ai in Q2 2026.</p>
       </div>
     </div>
-  </div>
-</section>
 
+    <!-- Company & regulatory details in a card -->
+    <div style="margin-top:16px;">
+      <div class="sec-card">
+        <h3>Company and regulatory details</h3>
+        <div style="display:grid;grid-template-columns:160px 1fr;gap:8px 16px;margin-top:12px;">
+          <span style="font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--mist);">ICO registration</span>
+          <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);">Registered with Information Commissioner's Office</span>
+          <span style="font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--mist);">Company</span>
+          <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);">CrowAgent Ltd · Company No. 17076461</span>
+          <span style="font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--mist);">Registered</span>
+          <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);">England and Wales</span>
+          <span style="font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--mist);">Data controller</span>
+          <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);">CrowAgent Ltd</span>
+          <span style="font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--mist);">Contact</span>
+          <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);"><a href="mailto:hello@crowagent.ai" style="color:var(--teal)">hello@crowagent.ai</a></span>
+        </div>
+      </div>
+    </div>
+
+    </div><!-- /.container -->
+  </section>
 </main>
 
 <!-- FOOTER — injected by js/nav-inject.js (single source of truth) -->
@@ -177,7 +152,7 @@
 <script src="/cookie-banner.js" defer></script>
 
 <script src="/js/nav-inject.js" defer></script>
-<script src="scripts.min.js?v=49" defer></script>
+<script src="scripts.min.js?v=51" defer></script>
 <script src="chatbot.js" defer></script>
 </body>
 </html>

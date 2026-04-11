@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<script>(function(){var t=localStorage.getItem("ca_theme")||localStorage.getItem("ca-theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Partner with CrowAgent — Channel Partner Programme</title>
   <meta name="description" content="CrowAgent's channel partner programme. White-label compliance tools for consultants, agencies, law firms, and public sector advisors.">
@@ -24,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.min.css?v=49">
+  <link rel="stylesheet" href="styles.min.css?v=51">
 <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
@@ -61,7 +60,7 @@
     <div class="fade-in">
       <div class="section-label">Partner Types</div>
       <h2 class="mx-auto">Who We Partner With</h2>
-      <p class="section-sub mx-auto">Whether you advise landlords, write bids, handle lease transactions, or guide public sector clients — we have a partnership model for you.</p>
+      <p class="section-sub mx-auto">Whether you advise landlords, write bids, handle lease transactions, or guide public sector clients, we have a partnership model for you.</p>
     </div>
     <div class="trust-grid fade-in">
       <div class="trust-card">
@@ -100,7 +99,7 @@
     <div class="fade-in">
       <div class="section-label">Partner Benefits</div>
       <h2 class="mx-auto">What Partners Get</h2>
-      <p class="section-sub mx-auto">Everything you need to deliver compliance intelligence to your clients — under your brand, at scale.</p>
+      <p class="section-sub mx-auto">Everything you need to deliver compliance intelligence to your clients, under your brand, at scale.</p>
     </div>
     <div class="trust-grid fade-in">
       <div class="trust-card">
@@ -152,37 +151,37 @@
 <div class="divider"></div>
 
 <!-- ══ PARTNER ENQUIRY FORM ══════════════════════════════════════════ -->
-<section id="partner-form-section">
+<section id="partner-form-section" style="padding-bottom:80px;">
   <div class="container container-standard">
     <div class="fade-in">
       <div class="section-label">Get Started</div>
       <h2 class="mx-auto">Express Your Interest</h2>
       <p class="section-sub mx-auto">Tell us about your practice and we'll get back to you within 2 business days.</p>
     </div>
-    <div class="fade-in partner-form-wrap">
-      <form id="partner-form" novalidate>
+    <div class="fade-in partner-form-wrap" style="max-width:640px;margin:0 auto;">
+      <form id="partner-form" novalidate style="display:flex;flex-direction:column;gap:20px;">
         <div class="form-group">
-          <label for="partner-name">Name *</label>
+          <label for="partner-name" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Name *</label>
           <input type="text" id="partner-name" name="name" class="form-control" placeholder="Your full name" required aria-required="true">
         </div>
         <div class="form-group">
-          <label for="partner-company">Company *</label>
+          <label for="partner-company" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Company *</label>
           <input type="text" id="partner-company" name="company" class="form-control" placeholder="Company name" required aria-required="true">
         </div>
         <div class="form-group">
-          <label for="partner-role">Role *</label>
+          <label for="partner-role" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Role *</label>
           <input type="text" id="partner-role" name="role" class="form-control" placeholder="Your role" required aria-required="true">
         </div>
         <div class="form-group">
-          <label for="partner-email">Email *</label>
+          <label for="partner-email" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Email *</label>
           <input type="email" id="partner-email" name="email" class="form-control" placeholder="you@company.com" required aria-required="true">
         </div>
         <div class="form-group">
-          <label for="partner-phone">Phone</label>
+          <label for="partner-phone" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Phone</label>
           <input type="tel" id="partner-phone" name="phone" class="form-control" placeholder="+44 (optional)">
         </div>
         <div class="form-group">
-          <label for="partner-type">Partner type *</label>
+          <label for="partner-type" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">Partner type *</label>
           <select id="partner-type" name="partner_type" class="form-control" required aria-required="true">
             <option value="" disabled selected>Select...</option>
             <option value="Property Consultant">Property Consultant</option>
@@ -193,10 +192,10 @@
           </select>
         </div>
         <div class="form-group">
-          <label for="partner-description">About your client base</label>
+          <label for="partner-description" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">About your client base</label>
           <textarea id="partner-description" name="description" class="form-control" rows="3" maxlength="200" placeholder="Tell us about your client base"></textarea>
         </div>
-        <div id="partner-form-error" role="alert" style="display:none;color:#ff6b6b;font-size:var(--font-size-sm);margin-bottom:var(--space-4);font-family:var(--font-body);"></div>
+        <div id="partner-form-error" role="alert" style="display:none;color:var(--err);font-size:var(--font-size-sm);margin-bottom:var(--space-4);font-family:var(--font-body);"></div>
         <button type="submit" class="btn-primary btn-full-width">Submit enquiry →</button>
       </form>
       <div id="partner-form-success" class="form-success" role="alert" aria-live="polite" style="display:none;color:var(--teal);padding:1.5rem;border:1px solid var(--teal);border-radius:8px;">
@@ -216,7 +215,7 @@
 <script src="/cookie-banner.js" defer></script>
 
 <script src="/js/nav-inject.js" defer></script>
-<script src="scripts.min.js?v=49" defer></script>
+<script src="scripts.min.js?v=51" defer></script>
 <script src="chatbot.js" defer></script>
 
 <script>

@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-<script>(function(){var t=localStorage.getItem("ca_theme")||localStorage.getItem("ca-theme");if(t==="light")document.documentElement.setAttribute("data-theme","light");})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CrowAgent Products — Sustainability Compliance Intelligence</title>
   <meta name="description" content="Explore CrowAgent's suite of sustainability compliance products: MEES intelligence, PPN 002 automation, CSRD checking, and more. Built for UK organisations.">
@@ -13,7 +12,7 @@
   <meta property="og:image" content="https://crowagent.ai/Assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://crowagent.ai/Assets/og-image.png">
-  <meta name="theme-color" content="#0A1F3A">
+  <meta name="theme-color" content="#040E1A">
   <link rel="canonical" href="https://crowagent.ai/products">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
@@ -21,8 +20,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.min.css?v=49">
-<link rel="stylesheet" href="print.css" media="print">
+  <link rel="stylesheet" href="/styles.min.css?v=51">
+<link rel="stylesheet" href="/print.css" media="print">
   <style>
     .product-hub-grid {
       display: grid;
@@ -31,7 +30,7 @@
       margin-top: 40px;
     }
     .product-hub-card {
-      background: var(--navy2, #0D2847);
+      background: var(--surf);
       border: 1px solid rgba(92, 200, 255, 0.1);
       border-radius: 12px;
       padding: 28px 24px;
@@ -53,7 +52,7 @@
       transform: none;
     }
     .product-hub-card h3 {
-      font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+      font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
       font-size: 1.2rem;
       font-weight: 700;
       color: var(--cloud, #E4ECF7);
@@ -123,7 +122,7 @@
       margin-bottom: 0;
     }
     .phase-header h3 {
-      font-family: var(--font-heading, 'Plus Jakarta Sans', sans-serif);
+      font-family: var(--font-display, 'Plus Jakarta Sans', sans-serif);
       font-size: 1.4rem;
       font-weight: 700;
       color: var(--cloud, #E4ECF7);
@@ -177,6 +176,7 @@
         <span class="product-hub-badge product-hub-badge--active">Active Pilot</span>
         <h3>CrowAgent Core</h3>
         <p>MEES workflow software for commercial property teams. Review EPC gaps, exposure, and remediation options in one place.</p>
+        <img src="/Assets/screenshots/epc-check.png" alt="CrowAgent Core EPC analysis" style="width:100%;border-radius:8px;border:1px solid var(--border);margin:8px 0;" loading="lazy">
         <a href="/products/crowagent-core" class="product-hub-card-link" aria-label="Learn more about CrowAgent Core">Learn more →</a>
       </div>
 
@@ -184,6 +184,7 @@
         <span class="product-hub-badge product-hub-badge--active">Active Pilot</span>
         <h3>CrowMark</h3>
         <p>Social value workflow software for public sector bids. Map missions, choose measures, and build a submission draft your team can review.</p>
+        <img src="/Assets/screenshots/crowmark.png" alt="CrowMark social value scoring" style="width:100%;border-radius:8px;border:1px solid var(--border);margin:8px 0;" loading="lazy">
         <a href="/products/crowmark" class="product-hub-card-link" aria-label="Learn more about CrowMark">Learn more →</a>
       </div>
 
@@ -191,6 +192,7 @@
         <span class="product-hub-badge product-hub-badge--active">Free Tool</span>
         <h3>CSRD Checker</h3>
         <p>Free CSRD applicability checker updated for Omnibus I. A fast way to see whether your group appears to meet the new thresholds.</p>
+        <img src="/Assets/screenshots/csrd-checker.png" alt="CSRD applicability checker" style="width:100%;border-radius:8px;border:1px solid var(--border);margin:8px 0;" loading="lazy">
         <a href="/csrd" class="product-hub-card-link">Try free →</a>
       </div>
 
@@ -198,6 +200,7 @@
         <span class="product-hub-badge product-hub-badge--pro">Pro+ Only</span>
         <h3>Command Centre</h3>
         <p>Unified compliance dashboard across all CrowAgent products. Monitor MEES, social value, and ESG status in one view.</p>
+        <img src="/Assets/screenshots/analytics.png" alt="CrowAgent analytics dashboard" style="width:100%;border-radius:8px;border:1px solid var(--border);margin:8px 0;" loading="lazy">
         <a href="https://app.crowagent.ai/signup" target="_blank" rel="noopener noreferrer" class="product-hub-card-link">Get access →</a>
       </div>
 
@@ -313,8 +316,9 @@
 <div id="ca-footer"></div>
 
 <script src="/js/nav-inject.js" defer></script>
-<script src="/scripts.min.js?v=49" defer></script>
+<script src="/scripts.min.js?v=51" defer></script>
 
+<script src="/chatbot.js" defer></script>
 <script src="/cookie-banner.js" defer></script>
 </body>
 </html>
