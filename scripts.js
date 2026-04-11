@@ -384,7 +384,7 @@ var APP_VERSION = '49';
         if (r.ok) { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; }
         else { dot.className = 'footer-status-dot degraded'; label.textContent = 'Degraded performance'; }
       })
-      .catch(function() { dot.className = 'footer-status-dot online'; label.textContent = 'All systems operational'; });
+      .catch(function() { dot.className = 'footer-status-dot degraded'; label.textContent = 'Unable to check status'; });
     })();
 
     // BACK-TO-TOP BUTTON — WP-WEB-TRANSFORM-001
@@ -817,7 +817,7 @@ async function caSubmitNotify(btn) {
         err = document.createElement('span');
         err.id = 'csrd-email-err';
         err.setAttribute('role', 'alert');
-        err.style.cssText = 'display:block;font-size:12px;color:#EF4444;margin-top:4px;';
+        err.style.cssText = 'display:block;font-size:12px;color:var(--err);margin-top:4px;';
         el.parentNode.appendChild(err);
       }
       err.textContent = 'Please enter a valid email address.';
