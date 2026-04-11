@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Book a Demo — CrowAgent">
-<meta name="twitter:description" content="Book a 20-minute live demo of CrowAgent. MEES, PPN 002, CSRD — tailored to your organisation.">
+<meta name="twitter:description" content="Book a 20-minute live demo of CrowAgent. MEES, PPN 002, CSRD, tailored to your organisation.">
 <meta name="twitter:site" content="@crowagent_ai" />
 <meta name="robots" content="index,follow">
 <meta name="twitter:image" content="https://crowagent.ai/Assets/og-image.png">
@@ -31,55 +31,52 @@
 </head>
 <body>
 <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
-
-<!-- NAV — injected by js/nav-inject.js (single source of truth) -->
 <div id="ca-nav"></div>
 
 <main id="main-content" role="main">
-  <section class="demo-hero section">
-    <div class="container container-wide">
-      <div class="demo-hero-grid">
-        <div class="demo-hero-copy">
-          <div class="page-label">Book a demo</div>
-          <h1 class="demo-title">See CrowAgent in 20 minutes</h1>
-          <p class="demo-sub">A live walkthrough of MEES compliance analysis, PPN 002 social value scoring, or CSRD applicability, tailored to your organisation. No sales pitch. Just the product.</p>
-          <ul class="demo-promises">
-            <li>Live EPC gap analysis run on a UK commercial postcode</li>
-            <li>See the retrofit scenario modelling and NPV output</li>
-            <li>Your questions, your pace, no script</li>
-            <li>14-day free trial access immediately after the call</li>
-          </ul>
-          <div class="demo-alt">
-            <p>Prefer to start now?</p>
-            <a href="https://app.crowagent.ai/signup" class="btn-teal-sm">Start free trial, no card required</a>
-          </div>
-        </div>
-        <div class="demo-booking">
-          <div class="demo-booking-label">Choose a time that works for you</div>
-          <div class="calendly-inline-widget"
-               data-url="https://calendly.com/crowagent-platform/30min?hide_gdpr_banner=1&background_color=040E1A&text_color=E8F0FA&primary_color=0CC9A8"
-               style="min-width:320px;width:100%;height:900px;">
-          </div>
-          <!-- Calendly widget script - loaded without async to ensure widget initialises -->
-          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
-          <noscript>
-            <p style="color:var(--steel);font-size:14px;">
-              <a href="https://calendly.com/crowagent-platform/30min" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">
-                Click here to book a time on Calendly
-              </a>
-            </p>
-          </noscript>
-        </div>
+
+  <!-- Hero copy — centred -->
+  <section style="padding:clamp(48px,6vw,80px) 0 clamp(32px,4vw,48px);">
+    <div class="container container-standard" style="text-align:center;">
+      <div class="section-label">Book a demo</div>
+      <h1 style="font-family:var(--font-display);font-weight:700;font-size:clamp(1.75rem,4vw,2.75rem);color:var(--cloud);margin-bottom:1rem;line-height:1.15;">See CrowAgent in 20 minutes</h1>
+      <p style="font-family:var(--font-body);font-size:1.05rem;color:var(--steel);line-height:1.7;max-width:600px;margin:0 auto 2rem;">A live walkthrough of MEES compliance analysis, PPN 002 social value scoring, or CSRD applicability, tailored to your organisation. No sales pitch. Just the product.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:2rem;">
+        <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Live EPC gap analysis</span>
+        <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Retrofit scenario modelling</span>
+        <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Your questions, your pace</span>
+        <span style="font-family:var(--font-body);font-size:14px;color:var(--steel);display:flex;align-items:center;gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>14-day trial after the call</span>
       </div>
     </div>
   </section>
+
+  <!-- Calendly — full width -->
+  <section style="padding:0 0 clamp(48px,6vw,80px);">
+    <div class="container container-standard">
+      <div style="background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:24px;overflow:hidden;">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/crowagent-platform/30min?hide_gdpr_banner=1&background_color=0A1F3A&text_color=E8F0FA&primary_color=0CC9A8"
+             style="width:100%;height:700px;">
+        </div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js"></script>
+        <noscript>
+          <p style="color:var(--steel);font-size:14px;text-align:center;padding:40px 0;">
+            <a href="https://calendly.com/crowagent-platform/30min" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">
+              Click here to book a time on Calendly
+            </a>
+          </p>
+        </noscript>
+      </div>
+      <p style="text-align:center;margin-top:24px;font-family:var(--font-body);font-size:14px;color:var(--mist);">
+        Prefer to start now? <a href="https://app.crowagent.ai/signup" style="color:var(--teal);font-weight:600;">Start free trial, no card required</a>
+      </p>
+    </div>
+  </section>
+
 </main>
 
-<!-- FOOTER — injected by js/nav-inject.js (single source of truth) -->
 <div id="ca-footer"></div>
-
 <script src="/cookie-banner.js" defer></script>
-
 <script src="/js/nav-inject.js" defer></script>
 <script src="scripts.min.js?v=50" defer></script>
 <script src="chatbot.js" defer></script>

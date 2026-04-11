@@ -1309,8 +1309,7 @@ textarea.form-control{resize:vertical;min-height:100px}
 .btn-share-copy{background:var(--surf2);color:var(--cloud);border:1px solid var(--border2)}
 
 /* ── PRODUCT FULL-WIDTH BLOCKS ── */
-.product-full-block{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:3rem 0;border-bottom:1px solid var(--border);overflow:visible}
-.product-full-block.pc--featured{overflow:visible;border:none;background:transparent}
+.product-full-block{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;padding:3rem 0;border-bottom:1px solid var(--border)}
 .product-full-inner{padding:1rem 0}
 .product-full-block-alt .product-full-visual{order:-1}
 .product-full-features{list-style:none;padding:0;margin:0 0 1.75rem}
@@ -2084,39 +2083,9 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 /* WP-WEB-006 Fix 16: Animated beam border on featured card */
 .pc--featured {
   position: relative;
-  overflow: hidden;
   background: var(--surf);
-  border: none;
+  border: 1px solid var(--border);
   border-radius: var(--r2);
-  z-index: 1;
-}
-@media (pointer: fine) {
-  .pc--featured::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: calc(var(--r2) + 2px);
-    background: conic-gradient(
-      from 0deg,
-      transparent 65%,
-      rgba(12,201,168,0.6) 80%,
-      rgba(91,200,255,0.4) 100%
-    );
-    z-index: -1;
-    animation: beam-rotate 5s linear infinite;
-  }
-  .pc--featured::after {
-    content: '';
-    position: absolute;
-    inset: 1px;
-    border-radius: var(--r2);
-    background: var(--surf);
-    z-index: -1;
-  }
-}
-@keyframes beam-rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 /* WP-WEB-006 Fix 8 + WP-WEB-008 FIX-H: Spotlight card hover */
@@ -2326,7 +2295,6 @@ a,button,[role="button"],.btn-primary,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn
 /* WP-WEB-006: Reduced motion additions for Fixes 8, 16, 17 */
 @media (prefers-reduced-motion: reduce) {
   .uc::before,.hw::before,.sector::before,.tc::before,.pc::before { display: none; }
-  .pc--featured::before { animation: none; }
   .btn-arrow { transition: none; }
   .btn-primary:hover .btn-arrow,
   .btn-hero:hover .btn-arrow,
@@ -4247,11 +4215,9 @@ nav.nav-solid {
   background-clip: text;
 }
 
-/* ── 7f: Product card depth ── */
+/* ── 7f: Product card depth — clean, no glow ── */
 .pc--featured {
-  box-shadow: 0 40px 80px rgba(0,0,0,0.5),
-              inset 0 1px 0 rgba(12,201,168,0.12),
-              0 0 40px rgba(12,201,168,0.04);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
 }
 
 /* ── 7g: Methodology left-edge borders ── */
@@ -4515,9 +4481,7 @@ button.pc-dot.active { background: var(--teal); width: 18px; border-radius: 3px;
   opacity: 1;
 }
 .pc--featured, .pgc--featured {
-  box-shadow: 0 0 60px rgba(12,201,168,0.08),
-              inset 0 1px 0 rgba(12,201,168,0.2);
-  border-color: rgba(12,201,168,0.3);
+  border-color: var(--border2);
 }
 .hero h1 {
   color: #FFFFFF;
