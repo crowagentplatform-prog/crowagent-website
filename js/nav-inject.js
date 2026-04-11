@@ -70,33 +70,6 @@
     '      <a href="/about"' + (isActive('/about') ? ' aria-current="page"' : '') + '>About</a>',
     '    </div>',
     '    <div class="nav-actions">',
-    '      <div class="locale-selector" id="locale-selector">',
-    '        <button class="locale-trigger" id="locale-trigger" aria-haspopup="true" aria-expanded="false">',
-    '          <span id="locale-flag">&#x1F1EC;&#x1F1E7;</span>',
-    '          <span id="locale-lang">EN</span>',
-    '          <span class="locale-sep">|</span>',
-    '          <span id="locale-curr">&pound; GBP</span>',
-    '          <span class="locale-chevron">&#x25BE;</span>',
-    '        </button>',
-    '        <div class="locale-dropdown" id="locale-dropdown" role="menu">',
-    '          <div class="locale-section-label">Language</div>',
-    '          <button class="locale-opt" role="menuitem" data-lang="en" data-flag="&#x1F1EC;&#x1F1E7;">&#x1F1EC;&#x1F1E7; English</button>',
-    '          <button class="locale-opt" role="menuitem" data-lang="fr" data-flag="&#x1F1EB;&#x1F1F7;">&#x1F1EB;&#x1F1F7; Fran&ccedil;ais</button>',
-    '          <button class="locale-opt" role="menuitem" data-lang="de" data-flag="&#x1F1E9;&#x1F1EA;">&#x1F1E9;&#x1F1EA; Deutsch</button>',
-    '          <button class="locale-opt" role="menuitem" data-lang="es" data-flag="&#x1F1EA;&#x1F1F8;">&#x1F1EA;&#x1F1F8; Espa&ntilde;ol</button>',
-    '          <button class="locale-opt" role="menuitem" data-lang="cy" data-flag="&#x1F3F4;">&#x1F3F4; Cymraeg</button>',
-    '          <div class="locale-section-label" style="margin-top:6px">Currency</div>',
-    '          <button class="locale-opt" role="menuitem" data-currency="GBP" data-symbol="&pound;">&pound; GBP</button>',
-    '          <button class="locale-opt" role="menuitem" data-currency="EUR" data-symbol="&euro;">&euro; EUR</button>',
-    '          <button class="locale-opt" role="menuitem" data-currency="USD" data-symbol="$">$ USD</button>',
-    '          <div id="lang-tooltip" style="display:none;" role="status" aria-live="polite"></div>',
-    '          <div class="locale-section-label" style="margin-top:6px">Theme</div>',
-    '          <div class="theme-toggle-row">',
-    '            <button class="theme-opt active" type="button" data-theme-choice="dark">Dark</button>',
-    '            <button class="theme-opt" type="button" data-theme-choice="light">Light</button>',
-    '          </div>',
-    '        </div>',
-    '      </div>',
     '      <a class="btn-ghost-sm nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
     '      <a class="btn-teal-sm nav-cta" href="https://app.crowagent.ai/signup" style="flex-shrink:0;white-space:nowrap;">Get started</a>',
     '    </div>',
@@ -117,27 +90,6 @@
     '  <a href="/about">About</a>',
     '  <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
     '  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>',
-    '  <div class="mob-locale">',
-    '    <div class="mob-locale-label">Language</div>',
-    '    <div class="mob-locale-row" id="mob-lang-row">',
-    '      <button class="mob-locale-btn active" data-lang="en">&#x1F1EC;&#x1F1E7; EN</button>',
-    '      <button class="mob-locale-btn" data-lang="fr">&#x1F1EB;&#x1F1F7; FR</button>',
-    '      <button class="mob-locale-btn" data-lang="de">&#x1F1E9;&#x1F1EA; DE</button>',
-    '      <button class="mob-locale-btn" data-lang="es">&#x1F1EA;&#x1F1F8; ES</button>',
-    '      <button class="mob-locale-btn" data-lang="cy">&#x1F3F4; CY</button>',
-    '    </div>',
-    '    <div class="mob-locale-label" style="margin-top:10px">Currency</div>',
-    '    <div class="mob-locale-row" id="mob-curr-row">',
-    '      <button class="mob-locale-btn active" data-currency="GBP">&pound; GBP</button>',
-    '      <button class="mob-locale-btn" data-currency="EUR">&euro; EUR</button>',
-    '      <button class="mob-locale-btn" data-currency="USD">$ USD</button>',
-    '    </div>',
-    '    <div class="mob-locale-label" style="margin-top:10px">Theme</div>',
-    '    <div class="mob-theme-row">',
-    '      <button class="mob-theme-btn active" type="button" data-theme-choice="dark">Dark</button>',
-    '      <button class="mob-theme-btn" type="button" data-theme-choice="light">Light</button>',
-    '    </div>',
-    '  </div>',
     '</div>'
   ].join('\n');
 
@@ -219,7 +171,7 @@
   function run() {
     inject('ca-nav', NAV_HTML);
     inject('ca-footer', FOOTER_HTML);
-    // Signal nav injection complete so scripts.js can rebind locale/theme handlers
+    // Signal nav injection complete so scripts.js can rebind handlers
     // setTimeout(0) defers dispatch to next tick — ensures all defer scripts have registered listeners
     setTimeout(function() {
       document.dispatchEvent(new CustomEvent('ca-nav-ready'));

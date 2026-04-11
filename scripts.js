@@ -69,280 +69,9 @@ var APP_VERSION = '49';
   sections.forEach(function(s) { spy.observe(s); });
 })();
 
-// ── LOCALE SELECTOR (Language & Currency) ──
+// ── NAV READY HANDLER ──
 (function() {
-  var RATES = { GBP: 1, EUR: 1.16, USD: 1.27 };
-  var SYMBOLS = { GBP: '\u00A3', EUR: '\u20AC', USD: '$' };
-  var LANG_LABELS = { en: 'EN', fr: 'FR', de: 'DE', es: 'ES', cy: 'CY' };
-  var MIN_PLAN_PRICE_GBP = 49;
-  var PLAN_LINKS = {
-    starter: { monthly: 'starter', annual: 'starter_annual' },
-    pro: { monthly: 'pro', annual: 'pro_annual' },
-    portfolio: { monthly: 'portfolio', annual: 'portfolio_annual' },
-    solo: { monthly: 'crowmark_solo', annual: 'crowmark_solo_annual' },
-    team: { monthly: 'crowmark_team', annual: 'crowmark_team_annual' },
-    agency: { monthly: 'crowmark_agency', annual: 'crowmark_agency_annual' }
-  };
-
-  var currentLang = 'en';
-  var currentCurrency = 'GBP';
-  var currentTheme = 'dark';
-
-  function loadPrefs() {
-    try {
-      var lang = localStorage.getItem('ca_lang');
-      var curr = localStorage.getItem('ca_currency');
-      var theme = localStorage.getItem('ca_theme') || localStorage.getItem('ca-theme');
-      if (lang && LANG_LABELS[lang]) currentLang = lang;
-      if (curr && RATES[curr] !== undefined) currentCurrency = curr;
-      if (theme === 'light' || theme === 'dark') {
-        currentTheme = theme;
-      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-        currentTheme = 'light';
-      }
-    } catch(e) {}
-  }
-
-  function savePrefs() {
-    try {
-      localStorage.setItem('ca_lang', currentLang);
-      localStorage.setItem('ca_currency', currentCurrency);
-      localStorage.setItem('ca_theme', currentTheme);
-      // C-04: removed duplicate ca-theme key write
-    } catch(e) {}
-  }
-
-  function setTheme(theme) {
-    currentTheme = theme === 'light' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', currentTheme);
-  }
-
-  function updateLang() {
-    // M-07: keep html[lang] in sync with selected language
-    document.documentElement.setAttribute('lang', currentLang);
-  }
-
-  function updateThemeButtons() {
-    document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === currentTheme);
-    });
-    // Sync body class for any CSS that relies on it
-    document.body.classList.toggle('light-mode', currentTheme === 'light');
-  }
-
-  function updateTriggerDisplay() {
-    var flagEl = document.getElementById('locale-flag');
-    var langEl = document.getElementById('locale-lang');
-    var currEl = document.getElementById('locale-curr');
-    if (!flagEl || !langEl || !currEl) return;
-
-    // Find the active language option to get the flag
-    var langOpts = document.querySelectorAll('.locale-opt[data-lang]');
-    langOpts.forEach(function(opt) {
-      if (opt.getAttribute('data-lang') === currentLang) {
-        flagEl.textContent = opt.getAttribute('data-flag');
-      }
-      opt.classList.toggle('active', opt.getAttribute('data-lang') === currentLang);
-    });
-    langEl.textContent = LANG_LABELS[currentLang] || 'EN';
-
-    var currOpts = document.querySelectorAll('.locale-opt[data-currency]');
-    currOpts.forEach(function(opt) {
-      opt.classList.toggle('active', opt.getAttribute('data-currency') === currentCurrency);
-    });
-    currEl.textContent = SYMBOLS[currentCurrency] + ' ' + currentCurrency;
-
-    // Show language notification for non-English selections
-    var tooltip = document.getElementById('lang-tooltip');
-    if (tooltip) {
-      if (currentLang !== 'en') {
-        var langNames = { fr: 'French', de: 'German', es: 'Spanish', cy: 'Welsh' };
-        tooltip.textContent = '\u2713 ' + (langNames[currentLang] || '') + ' selected. Full translation coming Q3 2026.';
-        // Position as floating toast above the nav
-        tooltip.style.cssText = 'display:block;position:fixed;top:80px;right:24px;background:var(--surf2,#0D2847);color:var(--cloud,#E8F0FA);font-size:12px;padding:8px 16px;border-radius:8px;border:1px solid rgba(12,201,168,.3);z-index:9999;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:opacity 0.3s;';
-        setTimeout(function() {
-          tooltip.style.opacity = '0';
-          setTimeout(function() { tooltip.style.display = 'none'; tooltip.style.opacity = '1'; }, 300);
-        }, 3000);
-      } else {
-        tooltip.style.display = 'none';
-      }
-    }
-    updateThemeButtons();
-  }
-
-  function updatePlanLinks() {
-    var isAnnual = !!(document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann'));
-    document.querySelectorAll('[data-plan-tier]').forEach(function(el) {
-      var tier = el.getAttribute('data-plan-tier');
-      var config = PLAN_LINKS[tier];
-      if (!config || !el.href) return;
-      var url = new URL(el.href, window.location.origin);
-      url.searchParams.set('plan', isAnnual ? config.annual : config.monthly);
-      el.href = url.toString();
-    });
-  }
-
-  function convertPrices() {
-    var rate = RATES[currentCurrency] || 1;
-    var symbol = SYMBOLS[currentCurrency] || '\u00A3';
-
-    // Convert .pv elements (pricing page price values with data-m and data-a)
-    document.querySelectorAll('.pv').forEach(function(el) {
-      var baseM = parseFloat(el.getAttribute('data-m'));
-      var baseA = parseFloat(el.getAttribute('data-a'));
-      if (isNaN(baseM)) return;
-      var convertedM = Math.round(baseM * rate);
-      var convertedA = Math.round(baseA * rate);
-      // Store original GBP values if not already stored
-      if (!el.getAttribute('data-m-gbp')) {
-        el.setAttribute('data-m-gbp', baseM);
-        el.setAttribute('data-a-gbp', baseA);
-      }
-      el.setAttribute('data-m', convertedM);
-      el.setAttribute('data-a', convertedA);
-      // Update displayed value based on billing toggle state
-      var isAnnual = document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann');
-      el.textContent = isAnnual ? convertedA : convertedM;
-    });
-
-    // Update currency symbol before price
-    document.querySelectorAll('.pgc-price').forEach(function(el) {
-      var first = el.firstChild;
-      if (first && first.nodeType === 3) {
-        first.textContent = symbol;
-      }
-    });
-
-  }
-
-  function resetPricesToGBP() {
-    // Restore original GBP values before converting
-    document.querySelectorAll('.pv').forEach(function(el) {
-      var gbpM = el.getAttribute('data-m-gbp');
-      var gbpA = el.getAttribute('data-a-gbp');
-      if (gbpM) el.setAttribute('data-m', gbpM);
-      if (gbpA) el.setAttribute('data-a', gbpA);
-    });
-  }
-
-  function applyLocale() {
-    setTheme(currentTheme);
-    updateLang();
-    updateTriggerDisplay();
-    resetPricesToGBP();
-    convertPrices();
-    updatePlanLinks();
-    savePrefs();
-  }
-
-  var _localeBound = false; // WP-WEB-012: prevent double-bind when initLocale called twice
-
-  function initLocale() {
-    loadPrefs();
-    window.caUpdatePlanLinks = updatePlanLinks;
-
-    if (_localeBound) { applyLocale(); return; } // Skip re-binding, just refresh display
-
-    var trigger = document.getElementById('locale-trigger');
-    var dropdown = document.getElementById('locale-dropdown');
-    if (trigger && dropdown) {
-      _localeBound = true;
-      trigger.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var isOpen = dropdown.classList.contains('open');
-        dropdown.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', !isOpen);
-      });
-
-      document.addEventListener('click', function(e) {
-        var selector = document.getElementById('locale-selector');
-        if (selector && !selector.contains(e.target)) {
-          dropdown.classList.remove('open');
-          trigger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // Language options
-    document.querySelectorAll('.locale-opt[data-lang]').forEach(function(opt) {
-      opt.addEventListener('click', function() {
-        currentLang = opt.getAttribute('data-lang');
-        applyLocale();
-        // Close dropdown after language selection
-        if (dropdown) {
-          dropdown.classList.remove('open');
-          trigger.setAttribute('aria-expanded', 'false');
-        }
-      });
-    });
-
-    // Currency options
-    document.querySelectorAll('.locale-opt[data-currency]').forEach(function(opt) {
-      opt.addEventListener('click', function() {
-        currentCurrency = opt.getAttribute('data-currency');
-        applyLocale();
-        dropdown.classList.remove('open');
-        trigger.setAttribute('aria-expanded', 'false');
-      });
-    });
-
-    // Keyboard navigation for locale dropdown
-    if (dropdown && trigger) {
-      dropdown.addEventListener('keydown', function(e) {
-        var opts = Array.from(dropdown.querySelectorAll('.locale-opt'));
-        var idx = opts.indexOf(document.activeElement);
-        if (e.key === 'ArrowDown') {
-          e.preventDefault();
-          opts[(idx + 1) % opts.length].focus();
-        } else if (e.key === 'ArrowUp') {
-          e.preventDefault();
-          opts[(idx - 1 + opts.length) % opts.length].focus();
-        } else if (e.key === 'Escape') {
-          dropdown.classList.remove('open');
-          trigger.setAttribute('aria-expanded', 'false');
-          trigger.focus();
-        }
-      });
-    }
-
-    // Mobile locale picker (inside mob-menu)
-    document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        currentLang = btn.getAttribute('data-lang');
-        document.querySelectorAll('#mob-lang-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        applyLocale();
-      });
-    });
-    document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        currentCurrency = btn.getAttribute('data-currency');
-        document.querySelectorAll('#mob-curr-row .mob-locale-btn').forEach(function(b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        applyLocale();
-      });
-    });
-
-    document.querySelectorAll('[data-theme-choice]').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        currentTheme = btn.getAttribute('data-theme-choice') === 'light' ? 'light' : 'dark';
-        applyLocale();
-      });
-    });
-
-    applyLocale();
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLocale);
-  } else {
-    initLocale();
-  }
-  // Rebind locale/theme after nav-inject.js injects nav HTML
   function onNavReady() {
-    initLocale();
-
     // NAV GLASSMORPHISM — solid bg on scroll (WP-WEB-TRANSFORM-001)
     (function() {
       var nav = document.querySelector('nav');
@@ -525,6 +254,28 @@ function switchPTab(product, btn) {
   if (coreCompare) coreCompare.style.display = (product === 'core') ? '' : 'none';
   if (markCompare) markCompare.style.display = (product === 'mark') ? '' : 'none';
 }
+
+// ── PLAN LINK UPDATER (monthly/annual URL params) ──
+var PLAN_LINKS = {
+  starter: { monthly: 'starter', annual: 'starter_annual' },
+  pro: { monthly: 'pro', annual: 'pro_annual' },
+  portfolio: { monthly: 'portfolio', annual: 'portfolio_annual' },
+  solo: { monthly: 'crowmark_solo', annual: 'crowmark_solo_annual' },
+  team: { monthly: 'crowmark_team', annual: 'crowmark_team_annual' },
+  agency: { monthly: 'crowmark_agency', annual: 'crowmark_agency_annual' }
+};
+function updatePlanLinks() {
+  var isAnnual = !!(document.getElementById('ttoggle') && document.getElementById('ttoggle').classList.contains('ann'));
+  document.querySelectorAll('[data-plan-tier]').forEach(function(el) {
+    var tier = el.getAttribute('data-plan-tier');
+    var config = PLAN_LINKS[tier];
+    if (!config || !el.href) return;
+    var url = new URL(el.href, window.location.origin);
+    url.searchParams.set('plan', isAnnual ? config.annual : config.monthly);
+    el.href = url.toString();
+  });
+}
+window.caUpdatePlanLinks = updatePlanLinks;
 
 // ── BILLING TOGGLE (monthly/annual) ──
 var isAnn = false;
