@@ -70,8 +70,8 @@
     '      <a href="/about"' + (isActive('/about') ? ' aria-current="page"' : '') + '>About</a>',
     '    </div>',
     '    <div class="nav-actions">',
-    '      <a class="btn-ghost-sm nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
-    '      <a class="btn-teal-sm nav-cta" href="https://app.crowagent.ai/signup" style="flex-shrink:0;white-space:nowrap;">Get started</a>',
+    '      <a class="btn btn-sm btn-ghost-v2 nav-login" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
+    '      <a class="btn btn-sm btn-primary-v2 nav-cta" href="https://app.crowagent.ai/signup">Start free trial</a>',
     '    </div>',
     '    <button class="ham" aria-label="Toggle menu" aria-expanded="false">',
     '      <span></span><span></span><span></span>',
@@ -88,8 +88,8 @@
     '  <a href="/pricing">Pricing</a>',
     '  <a href="/blog">Blog</a>',
     '  <a href="/about">About</a>',
-    '  <a class="btn-ghost-sm" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
-    '  <a class="btn-teal-sm" href="https://app.crowagent.ai/signup">Get started</a>',
+    '  <a class="btn btn-md btn-ghost-v2" href="https://app.crowagent.ai/login" target="_blank" rel="noopener noreferrer">Sign in</a>',
+    '  <a class="btn btn-md btn-primary-v2" href="https://app.crowagent.ai/signup">Start free trial</a>',
     '</div>'
   ].join('\n');
 
