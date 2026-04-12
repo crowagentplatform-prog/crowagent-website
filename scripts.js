@@ -31,15 +31,34 @@ var APP_VERSION = '49';
   document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
 })();
 
-// ── NAV SCROLL — WP-WEB-006 Fix 4: shrinking nav at 20px ──
+// ── NAV SCROLL — Smart Sticky: hide on scroll-down, show on scroll-up with frosted glass ──
 (function() {
   var nav = document.querySelector('nav');
   if (!nav) return;
-  function onScroll() {
-    nav.classList.toggle('scrolled', window.scrollY > 20);
+  var lastY = 0;
+  var ticking = false;
+  function update() {
+    var y = window.scrollY;
+    // Don't hide nav when mobile menu is open
+    var mobOpen = document.querySelector('.mob-menu.open');
+    if (y > 60) {
+      nav.classList.add('nav-frosted');
+      if (y > lastY && y > 120 && !mobOpen) {
+        nav.classList.add('nav-hidden');
+      } else {
+        nav.classList.remove('nav-hidden');
+      }
+    } else {
+      nav.classList.remove('nav-frosted');
+      nav.classList.remove('nav-hidden');
+    }
+    lastY = y;
+    ticking = false;
   }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', function() {
+    if (!ticking) { requestAnimationFrame(update); ticking = true; }
+  }, { passive: true });
+  update();
 })();
 
 // ── CLOSE MOBILE NAV ON SCROLL ──
@@ -74,13 +93,25 @@ var APP_VERSION = '49';
 // ── NAV READY HANDLER ──
 (function() {
   function onNavReady() {
-    // NAV GLASSMORPHISM — solid bg on scroll (WP-WEB-TRANSFORM-001)
+    // NAV GLASSMORPHISM — handled by Smart Sticky scroll handler above
+
+    // PRODUCTS MEGA MENU — hover + click toggle
     (function() {
-      var nav = document.querySelector('nav');
-      if (!nav) return;
-      window.addEventListener('scroll', function() {
-        nav.classList.toggle('nav-solid', window.scrollY > 30);
-      }, { passive: true });
+      var dropdown = document.querySelector('.nav-dropdown');
+      if (!dropdown) return;
+      var trigger = dropdown.querySelector('.nav-dropdown-trigger');
+      var mega = dropdown.querySelector('.nav-mega');
+      var closeTimer = null;
+      function open() { clearTimeout(closeTimer); dropdown.setAttribute('data-open', 'true'); trigger.setAttribute('aria-expanded', 'true'); }
+      function close() { dropdown.setAttribute('data-open', 'false'); trigger.setAttribute('aria-expanded', 'false'); }
+      function delayClose() { closeTimer = setTimeout(close, 200); }
+      dropdown.addEventListener('mouseenter', open);
+      dropdown.addEventListener('mouseleave', delayClose);
+      trigger.addEventListener('click', function(e) { e.preventDefault(); dropdown.getAttribute('data-open') === 'true' ? close() : open(); });
+      // Close on Escape
+      dropdown.addEventListener('keydown', function(e) { if (e.key === 'Escape') { close(); trigger.focus(); } });
+      // Close when clicking outside
+      document.addEventListener('click', function(e) { if (!dropdown.contains(e.target)) close(); });
     })();
 
     // MOB-MENU CLOSE-ON-CLICK — moved here (fix: ran before nav-inject injected nav)

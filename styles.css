@@ -204,31 +204,43 @@ code,pre,kbd{overflow-x:auto;word-break:normal;white-space:pre}
 .ab-close:hover{color:var(--cloud)}
 @media(max-width:640px){.ab-text{display:none}.announce-bar{justify-content:center}}
 
-/* NAV — WP-WEB-006 Fix 4: Shrinking frosted glass nav */
+/* NAV — Smart Sticky Glassmorphism */
 nav {
   position: sticky;
   top: 0;
   z-index: 200;
-  height: 72px;
-  background: rgba(4,14,26,0);
-  backdrop-filter: blur(0px);
-  -webkit-backdrop-filter: blur(0px);
+  height: 64px;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid transparent;
   overflow: visible;
   max-width: 100%;
   transition:
-    height 0.4s cubic-bezier(0.16,1,0.3,1),
+    transform 0.4s cubic-bezier(0.16,1,0.3,1),
     background 0.35s ease,
     backdrop-filter 0.35s ease,
-    border-color 0.35s ease;
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
+nav.nav-frosted {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid rgba(12, 201, 168, 0.12);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(12, 201, 168, 0.06);
+}
+nav.nav-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+/* Legacy class compat — map .scrolled to .nav-frosted */
 nav.scrolled {
-  height: 60px;
-  background: rgba(4, 14, 26, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(12, 201, 168, 0.18);
-  box-shadow: 0 1px 12px rgba(12, 201, 168, 0.06);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid rgba(12, 201, 168, 0.12);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.4);
 }
 nav .wrap {
   height: 100%;
@@ -247,10 +259,25 @@ nav .wrap {
 .logo-tag{font-family:var(--font-display);font-size:8.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mist);line-height:1}
 
 .nav-links{display:flex;align-items:center;gap:28px;margin-right:16px}
-.nav-links a{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--steel);transition:color .2s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.active{color:var(--teal)}
+.nav-links a,.nav-dropdown-trigger{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--steel);transition:color .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active,.nav-dropdown-trigger:hover{color:var(--teal)}
+
+/* Products Mega Menu */
+.nav-dropdown{position:relative}
+.nav-dropdown-trigger{background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:0}
+.nav-dropdown-trigger svg{transition:transform 0.2s ease}
+.nav-dropdown[data-open="true"] .nav-dropdown-trigger svg{transform:rotate(180deg)}
+.nav-mega{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(8px);opacity:0;visibility:hidden;pointer-events:none;display:grid;grid-template-columns:1fr 1fr;gap:2px;background:color-mix(in srgb, var(--surf) 95%, transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border2);border-radius:var(--radius-xl,16px);padding:20px;min-width:420px;box-shadow:0 16px 40px -8px rgba(0,0,0,0.6),0 0 0 1px rgba(12,201,168,0.06);transition:opacity 0.25s ease,transform 0.25s ease,visibility 0.25s ease;z-index:300}
+.nav-dropdown[data-open="true"] .nav-mega{opacity:1;visibility:visible;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-mega-label{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--mist);margin-bottom:12px;display:block}
+.nav-mega-item{display:flex;align-items:flex-start;gap:10px;padding:10px 12px;border-radius:var(--radius-md,8px);text-decoration:none;color:var(--cloud);transition:background 0.15s ease}
+.nav-mega-item:hover{background:rgba(12,201,168,0.06)}
+.nav-mega-item strong{display:block;font-family:var(--font-display);font-size:13px;font-weight:700;color:var(--cloud);margin-bottom:2px}
+.nav-mega-desc{display:block;font-family:var(--font-body);font-size:11px;color:var(--mist);line-height:1.4}
+.nav-mega-icon{font-size:10px;margin-top:3px;flex-shrink:0}
+.nav-mega-item--soon{opacity:0.5;cursor:default}
 @media(max-width:1280px){.nav-links{gap:18px}}
-@media(max-width:1150px){.nav-links{gap:12px}.nav-links a{font-size:12px}}
+@media(max-width:1150px){.nav-links{gap:12px}.nav-links a,.nav-dropdown-trigger{font-size:12px}}
 
 .nav-actions{display:flex;align-items:center;gap:12px;margin-left:auto;flex-shrink:0}
 .nav-price-hint{font-family:var(--font-display);font-size:11px;font-weight:500;color:var(--mist);white-space:nowrap}
@@ -307,7 +334,7 @@ nav .wrap {
 
 /* MOBILE MENU */
 /* ── SMOOTH MOBILE MENU — WP-WEB-011 ── */
-.mob-menu{position:fixed;top:72px;left:0;right:0;bottom:0;background:var(--bg);z-index:202;display:flex;flex-direction:column;padding:32px clamp(20px,4vw,56px);gap:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity 0.3s cubic-bezier(0.16,1,0.3,1),visibility 0.3s cubic-bezier(0.16,1,0.3,1),transform 0.3s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
+.mob-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:var(--bg);z-index:202;display:flex;flex-direction:column;padding:32px clamp(20px,4vw,56px);gap:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;opacity:0;visibility:hidden;transform:translateY(-10px);transition:opacity 0.3s cubic-bezier(0.16,1,0.3,1),visibility 0.3s cubic-bezier(0.16,1,0.3,1),transform 0.3s cubic-bezier(0.16,1,0.3,1);pointer-events:none}
 .mob-menu.open{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto}
 .mob-menu a{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--steel);padding:12px 0;border-bottom:1px solid var(--border)}
 .mob-menu a:hover{color:var(--teal)}
