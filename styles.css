@@ -5326,3 +5326,15 @@ section.section-divider{border-top:1px solid var(--border);height:auto}
    ═══════════════════════════════════════════════════════════════ */
 .btn-crowmark{background:linear-gradient(180deg,var(--mark,#A78BFA) 0%,#8B6FD9 100%) !important;box-shadow:0 2px 4px rgba(0,0,0,0.2),0 0 0 1px rgba(139,111,217,0.8),inset 0 1px 0 rgba(255,255,255,0.25)}
 .btn-crowmark:hover{background:linear-gradient(180deg,#B89EFC 0%,#8B6FD9 100%) !important;box-shadow:0 8px 20px rgba(167,139,250,0.3),0 0 0 1px #8B6FD9,inset 0 1px 0 rgba(255,255,255,0.35)}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOSSARY — Programmatic SEO hub + term pages
+   ═══════════════════════════════════════════════════════════════ */
+.glossary-letter{font-family:var(--font-display);font-size:var(--font-size-xl,24px);font-weight:800;color:var(--teal);margin:var(--space-8) 0 var(--space-4);padding-bottom:var(--space-2);border-bottom:1px solid var(--border)}
+.glossary-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--grid-gap-md)}
+.glossary-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r2);padding:24px;text-decoration:none;color:var(--cloud);transition:border-color 0.2s ease,transform 0.2s ease;display:flex;flex-direction:column;gap:8px}
+.glossary-card:hover{border-color:var(--teal);transform:translateY(-2px)}
+.glossary-card h3{font-family:var(--font-display);font-size:15px;font-weight:700;color:var(--cloud);margin:0}
+.glossary-card p{font-family:var(--font-body);font-size:13px;color:var(--steel);line-height:1.6;margin:0}
+.glossary-card-badge{display:inline-block;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:4px;background:rgba(12,201,168,0.12);color:var(--teal);width:fit-content}
+.glossary-card-badge--live{background:rgba(12,201,168,0.15);color:var(--teal)}

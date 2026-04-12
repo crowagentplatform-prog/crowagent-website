@@ -31,6 +31,8 @@
     { "source": "/blog/mees-exemptions-guide", "destination": "/blog/mees-exemptions-guide.html" },
     { "source": "/blog/regulatory-updates-2026", "destination": "/blog/regulatory-updates-2026.html" },
     { "source": "/faq", "destination": "/faq.html" },
+    { "source": "/glossary", "destination": "/glossary/index.html" },
+    { "source": "/glossary/mees-compliance", "destination": "/glossary/mees-compliance.html" },
     { "source": "/blog/ppn-002-social-value-guide", "destination": "/blog/ppn-002-social-value-guide.html" },
     { "source": "/blog/mees-commercial-property-guide", "destination": "/blog/mees-commercial-property-guide.html" },
     { "source": "/blog/retrofit-cost-calculator-guide", "destination": "/blog/retrofit-cost-calculator-guide.html" },

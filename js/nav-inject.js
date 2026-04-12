@@ -140,6 +140,7 @@
     '        <div class="footer-links">',
     '          <a href="/blog">All articles</a>',
     '          <a href="/faq">FAQ</a>',
+    '          <a href="/glossary">Compliance Glossary</a>',
     '          <a href="/blog/mees-band-c-2028">MEES guides</a>',
     '          <a href="/blog">PPN 002 guides</a>',
     '          <a href="/blog/csrd-omnibus-i-2026">CSRD guides</a>',
