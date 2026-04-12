@@ -920,7 +920,7 @@ nav .wrap {
 
 /* 4-COL FOOTER */
 /* WP-WEB-006 Fix 10: Footer horizon glow */
-.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:0;position:relative;overflow:hidden;background-image:url('Assets/bg-footer.svg');background-size:100% auto;background-position:top center;background-repeat:no-repeat}
+.ca-footer{background:var(--surf);border-top:1px solid var(--border);padding:48px 0 24px;margin-top:var(--section-pad-secondary,64px);position:relative;overflow:hidden;background-image:url('Assets/bg-footer.svg');background-size:100% auto;background-position:top center;background-repeat:no-repeat}
 .ca-footer::before {
   content: '';
   position: absolute;
@@ -1030,7 +1030,7 @@ nav .wrap {
 
 /* A11Y — inline link distinction (WCAG 1.4.1) */
 main a,.content a,p a{text-decoration:underline}
-nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primary,.pgc-cta,.foot-col a,.ca-footer-col a,.ab-cta,.logo,.pc-cta,.ds-download,.related-card,.resource-card a,.roadmap-item-link{text-decoration:none}
+nav a,.nav a,.btn,.btn-primary-v2,.btn-secondary,.btn-ghost-v2,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primary,.pgc-cta,.foot-col a,.ca-footer-col a,.ab-cta,.logo,.pc-cta,.ds-download,.related-card,.resource-card a,.roadmap-item-link{text-decoration:none}
 /* A11Y — focus-visible rules moved to single block below */
 
 /* COMPARISON TABLE */
@@ -1161,8 +1161,8 @@ nav a,.nav a,.btn,.btn-hero,.btn-hero-out,.btn-ghost-sm,.btn-teal-sm,.btn-primar
 }
 .section-padding p,.section-padding li{font-family:var(--font-body);font-size:15px;color:var(--steel);line-height:1.75}
 .section-padding ul{padding-left:20px;margin-bottom:16px}
-.section-padding a:not(.btn-primary):not(.btn-teal-sm):not(.btn-ghost-sm):not(.btn-hero):not(.btn-hero-out){color:var(--teal);text-decoration:underline;text-underline-offset:2px}
-.section-padding a:not(.btn-primary):not(.btn-teal-sm):not(.btn-ghost-sm):not(.btn-hero):not(.btn-hero-out):hover{color:var(--cloud)}
+.section-padding a:not(.btn-primary):not(.btn-primary-v2):not(.btn-teal-sm):not(.btn-ghost-sm):not(.btn-ghost-v2):not(.btn-hero):not(.btn-hero-out):not(.btn){color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.section-padding a:not(.btn-primary):not(.btn-primary-v2):not(.btn-teal-sm):not(.btn-ghost-sm):not(.btn-ghost-v2):not(.btn-hero):not(.btn-hero-out):not(.btn):hover{color:var(--cloud)}
 
 /* ── SCROLL-TRIGGERED REVEAL ANIMATIONS — WP-WEB-006 Fix 3 ── */
 /* Reveal animation — spring physics */
@@ -5338,3 +5338,26 @@ section.section-divider{border-top:1px solid var(--border);height:auto}
 .glossary-card p{font-family:var(--font-body);font-size:13px;color:var(--steel);line-height:1.6;margin:0}
 .glossary-card-badge{display:inline-block;font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;padding:3px 10px;border-radius:4px;background:rgba(12,201,168,0.12);color:var(--teal);width:fit-content}
 .glossary-card-badge--live{background:rgba(12,201,168,0.15);color:var(--teal)}
+
+/* ═══════════════════════════════════════════════════════════════
+   FIX: Footer spacing — consistent gap from last content to footer
+   CTA bands that sit directly before footer need no extra gap
+   ═══════════════════════════════════════════════════════════════ */
+.cta-band + .ca-footer,
+.cta-band + div > .ca-footer,
+.cta-band ~ footer.ca-footer{margin-top:0}
+
+/* FIX: Contact cards — equal height with buttons at bottom */
+.methodology-grid .contact-card{display:flex;flex-direction:column}
+.methodology-grid .contact-card .btn{margin-top:auto}
+
+/* FIX: Methodology grid — ensure equal columns */
+.methodology-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:var(--grid-gap-lg);align-items:stretch}
+
+/* FIX: Ensure primary button text is always dark on teal — prevent link color overrides */
+a.btn.btn-primary-v2,
+a.btn-primary-v2,
+button.btn-primary-v2,
+.btn-primary-v2{color:var(--bg) !important}
+a.btn.btn-crowmark,
+a.btn-crowmark{color:var(--bg) !important}
