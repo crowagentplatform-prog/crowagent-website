@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="96" fill="#FFFFFF"/>
+  <!-- 4 ascending bars: navy → teal gradient -->
+  <rect x="96"  y="320" width="64" height="96"  rx="12" fill="#0A1F3A"/>
+  <rect x="184" y="240" width="64" height="176" rx="12" fill="#0D3558"/>
+  <rect x="272" y="168" width="64" height="248" rx="12" fill="#0AA88C"/>
+  <rect x="360" y="96"  width="64" height="320" rx="12" fill="#0CC9A8"/>
+  <!-- Teal baseline -->
+  <rect x="88" y="432" width="344" height="8" rx="4" fill="#0CC9A8"/>
+</svg>
