@@ -917,6 +917,11 @@ function runLiveDemo() {
 
   // Shadow Onboarding — capture intent globally
   if (typeof window.caSaveIntent === 'function') window.caSaveIntent(postcode);
+  // PostHog: track demo postcode submission
+  if (typeof posthog !== 'undefined') posthog.capture('demo_postcode_submitted', { postcode: postcode });
+
+  // PostHog event tracking
+  if (typeof posthog !== 'undefined') posthog.capture('demo_postcode_submitted');
 
   fetch('https://app.crowagent.ai/api/chat/public', {
     method: 'POST',
