@@ -160,6 +160,11 @@ var APP_VERSION = '49';
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
     })();
+
+    // SHADOW ONBOARDING — decorate signup links after nav/footer injection
+    if (typeof window.caDecorateSignupLinks === 'function') {
+      window.caDecorateSignupLinks();
+    }
   }
   /* Fire immediately if nav already injected (race condition guard) */
   var navEl = document.querySelector('nav[role="navigation"]');
@@ -1315,4 +1320,49 @@ if (typeof module !== 'undefined' && module.exports) {
       }, { once: true, passive: true });
     }
   });
+})();
+
+
+// ═══════════════════════════════════════════════════════════════
+// PHASE 5: SHADOW ONBOARDING — Global Intent Capture
+// Captures demo postcode and decorates ALL signup links site-wide
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  'use strict';
+  var STORAGE_KEY = 'ca_intent_postcode';
+
+  // Save intent — called from inline runLiveDemo() in index.html
+  window.caSaveIntent = function(postcode) {
+    if (postcode && typeof postcode === 'string' && postcode.trim()) {
+      try { sessionStorage.setItem(STORAGE_KEY, postcode.trim().toUpperCase()); } catch(e) {}
+      window.caDecorateSignupLinks();
+    }
+  };
+
+  // Decorate all signup links with the captured postcode
+  window.caDecorateSignupLinks = function() {
+    var postcode;
+    try { postcode = sessionStorage.getItem(STORAGE_KEY); } catch(e) { return; }
+    if (!postcode) return;
+
+    var links = document.querySelectorAll('a[href*="app.crowagent.ai/signup"]');
+    links.forEach(function(link) {
+      try {
+        var url = new URL(link.href);
+        if (!url.searchParams.has('postcode')) {
+          url.searchParams.set('postcode', postcode);
+          link.href = url.toString();
+        }
+      } catch(e) {}
+    });
+  };
+
+  // Run on page load if intent already exists (cross-page persistence)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      window.caDecorateSignupLinks();
+    });
+  } else {
+    window.caDecorateSignupLinks();
+  }
 })();

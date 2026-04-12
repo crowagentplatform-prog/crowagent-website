@@ -838,6 +838,9 @@ function runLiveDemo() {
   document.getElementById('demo-error').style.display = 'none';
   document.getElementById('demo-submit').disabled = true;
 
+  // Shadow Onboarding — capture intent globally
+  if (typeof window.caSaveIntent === 'function') window.caSaveIntent(postcode);
+
   fetch('https://app.crowagent.ai/api/chat/public', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
