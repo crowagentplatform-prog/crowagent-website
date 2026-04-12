@@ -1366,3 +1366,74 @@ if (typeof module !== 'undefined' && module.exports) {
     window.caDecorateSignupLinks();
   }
 })();
+
+
+// ═══════════════════════════════════════════════════════════════
+// HOW IT WORKS — Tabbed product workflow selector
+// Generic handler: works with data-hw-tab attributes + .hw-panel
+// ═══════════════════════════════════════════════════════════════
+(function() {
+  'use strict';
+  var tabs = document.querySelectorAll('.how-tab[data-hw-tab]');
+  var panels = document.querySelectorAll('.hw-panel');
+  var pill = document.querySelector('.how-tab-pill');
+  if (!tabs.length || !panels.length) return;
+
+  function positionPill(tab) {
+    if (!pill) return;
+    pill.style.left = tab.offsetLeft + 'px';
+    pill.style.width = tab.offsetWidth + 'px';
+  }
+
+  function activate(tabKey) {
+    tabs.forEach(function(t) {
+      var isActive = t.getAttribute('data-hw-tab') === tabKey;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      if (isActive) positionPill(t);
+    });
+    panels.forEach(function(p) {
+      var isActive = p.id === 'hw-panel-' + tabKey;
+      p.classList.toggle('active', isActive);
+      p.hidden = !isActive;
+    });
+  }
+
+  // Click handler
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      activate(tab.getAttribute('data-hw-tab'));
+    });
+  });
+
+  // Keyboard: arrow keys to switch tabs (WAI-ARIA pattern)
+  var tabList = document.querySelector('.how-tabs');
+  if (tabList) {
+    tabList.addEventListener('keydown', function(e) {
+      var tabArr = Array.from(tabs);
+      var idx = tabArr.indexOf(document.activeElement);
+      if (idx < 0) return;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        var next = tabArr[(idx + 1) % tabArr.length];
+        next.focus();
+        activate(next.getAttribute('data-hw-tab'));
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        var prev = tabArr[(idx - 1 + tabArr.length) % tabArr.length];
+        prev.focus();
+        activate(prev.getAttribute('data-hw-tab'));
+      }
+    });
+  }
+
+  // Position pill on load
+  var activeTab = document.querySelector('.how-tab.active');
+  if (activeTab) positionPill(activeTab);
+
+  // Reposition pill on resize
+  window.addEventListener('resize', function() {
+    var active = document.querySelector('.how-tab.active');
+    if (active) positionPill(active);
+  }, { passive: true });
+})();

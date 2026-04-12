@@ -5361,3 +5361,17 @@ button.btn-primary-v2,
 .btn-primary-v2{color:var(--bg) !important}
 a.btn.btn-crowmark,
 a.btn-crowmark{color:var(--bg) !important}
+
+/* ═══════════════════════════════════════════════════════════════
+   HOW IT WORKS — Tabbed product workflow selector
+   ═══════════════════════════════════════════════════════════════ */
+.how-tabs{display:inline-flex;align-items:center;position:relative;background:var(--surf);border:1px solid var(--border);border-radius:var(--radius-full,9999px);padding:4px;gap:4px;margin-top:var(--space-6)}
+.how-tab{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--steel);background:transparent;border:none;border-radius:var(--radius-full,9999px);padding:10px 20px;cursor:pointer;position:relative;z-index:1;transition:color 0.2s ease;white-space:nowrap}
+.how-tab:hover{color:var(--cloud)}
+.how-tab.active{color:var(--bg)}
+.how-tab-pill{position:absolute;background:var(--teal);border-radius:var(--radius-full,9999px);transition:left 0.3s cubic-bezier(0.16,1,0.3,1),width 0.3s cubic-bezier(0.16,1,0.3,1);z-index:0;top:4px;bottom:4px}
+.hw-panel{display:none;animation:hw-fade-in 0.4s ease}
+.hw-panel.active{display:block}
+@keyframes hw-fade-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:480px){.how-tab{font-size:12px;padding:8px 14px}}
+@media(prefers-reduced-motion:reduce){.hw-panel{animation:none}.how-tab-pill{transition:none}}

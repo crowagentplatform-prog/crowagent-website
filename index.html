@@ -495,39 +495,116 @@
   <div class="container-standard">
     <div class="sh force-center">
       <div class="sh-label">How it works</div>
-      <h2>From messy compliance data to a clear action plan</h2>
-      <p class="steps-sub">Four steps. Under 10 minutes. No consultants required.</p>
-      <a href="https://app.crowagent.ai/signup" class="btn btn-md btn-primary-v2" style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;width:fit-content;margin-left:auto;margin-right:auto;white-space:nowrap;" target="_blank" rel="noopener">
-        Start your trial
-        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </a>
+      <h2>From complex regulations to clear action plans</h2>
+      <p class="steps-sub">Select a compliance engine to see how it works.</p>
+
+      <div class="how-tabs" role="tablist" aria-label="Product workflow selector">
+        <div class="how-tab-pill" aria-hidden="true"></div>
+        <button class="how-tab active" role="tab" aria-selected="true" aria-controls="hw-panel-core" id="hw-tab-core" data-hw-tab="core">CrowAgent Core</button>
+        <button class="how-tab" role="tab" aria-selected="false" aria-controls="hw-panel-mark" id="hw-tab-mark" data-hw-tab="mark">CrowMark</button>
+        <button class="how-tab" role="tab" aria-selected="false" aria-controls="hw-panel-csrd" id="hw-tab-csrd" data-hw-tab="csrd">CSRD Checker</button>
+      </div>
     </div>
-    <div class="hw-grid hw-grid-2col">
-        <div class="hw reveal reveal-delay-1">
+
+    <!-- CORE PANEL -->
+    <div class="hw-panel active" id="hw-panel-core" role="tabpanel" aria-labelledby="hw-tab-core">
+      <div class="hw-grid hw-grid-2col">
+        <div class="hw">
           <div class="hw-num">01</div>
           <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
           <h3>Enter your postcode</h3>
           <p>We look up your property's live EPC certificate from the MHCLG register in seconds. No manual data entry.</p>
         </div>
-        <div class="hw reveal reveal-delay-2">
+        <div class="hw">
           <div class="hw-num">02</div>
           <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
           <h3>See your compliance gap</h3>
           <p>Instant analysis of your current EPC band vs the 2028 Band C requirement. Fine exposure calculated to the penny, per the statute.</p>
         </div>
-        <div class="hw reveal reveal-delay-3">
+        <div class="hw">
           <div class="hw-num">03</div>
           <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
           <h3>Model your retrofit options</h3>
           <p>Three costed retrofit pathways (low, medium, and deep) with NPV, payback period, and CO₂ reduction per scenario.</p>
         </div>
-        <div class="hw reveal reveal-delay-4">
+        <div class="hw">
           <div class="hw-num">04</div>
           <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
           <h3>Download your compliance report</h3>
           <p>Branded PDF ready in under 10 minutes. Send to your board, your lender, or your planning consultant.</p>
         </div>
+      </div>
+      <div style="text-align:center;margin-top:var(--space-8);">
+        <a href="https://app.crowagent.ai/signup" class="btn btn-md btn-primary-v2" target="_blank" rel="noopener">Start Core trial →</a>
+      </div>
     </div>
+
+    <!-- CROWMARK PANEL -->
+    <div class="hw-panel" id="hw-panel-mark" role="tabpanel" aria-labelledby="hw-tab-mark" hidden>
+      <div class="hw-grid hw-grid-2col">
+        <div class="hw">
+          <div class="hw-num">01</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <h3>Profile your contract</h3>
+          <p>Input your contract value, sector, and geography. CrowMark automatically maps it to the most relevant PPN 002 themes.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">02</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
+          <h3>Select your measures</h3>
+          <p>Choose from the built-in TOMs framework library with Oxford SVB 2023-24 proxy values. Your social value score updates instantly.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">03</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>Generate AI narrative</h3>
+          <p>Google Gemini drafts a bid response based on your selected measures, tailored to the specific contract and sector.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">04</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--mark)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>Track your evidence</h3>
+          <p>After you win the bid, use the evidence tracker to manage commitments and generate monthly compliance reports.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:var(--space-8);">
+        <a href="https://app.crowagent.ai/signup?product=crowmark" class="btn btn-md btn-primary-v2 btn-crowmark" target="_blank" rel="noopener">Start CrowMark trial →</a>
+      </div>
+    </div>
+
+    <!-- CSRD PANEL -->
+    <div class="hw-panel" id="hw-panel-csrd" role="tabpanel" aria-labelledby="hw-tab-csrd" hidden>
+      <div class="hw-grid hw-grid-2col">
+        <div class="hw">
+          <div class="hw-num">01</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h3>Enter your headcount</h3>
+          <p>Input your organisation's full-time equivalent employee count across the group.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">02</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3>Enter your turnover</h3>
+          <p>Provide your consolidated group revenue. The checker tests against the Omnibus I threshold of &gt;&euro;450M.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">03</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h3>Get your verdict</h3>
+          <p>See immediately if your organisation is in scope, on the watch list, or out of scope under Directive (EU) 2026/470.</p>
+        </div>
+        <div class="hw">
+          <div class="hw-num">04</div>
+          <div class="hw-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--sky)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
+          <h3>Share or email your result</h3>
+          <p>Download a summary, share on LinkedIn, or email the result to your compliance team. Free, no account required.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:var(--space-8);">
+        <a href="/csrd" class="btn btn-md btn-primary-v2">Open CSRD Checker — free →</a>
+      </div>
+    </div>
+
   </div>
 </section>
 <section class="products reveal" id="products">
