@@ -998,19 +998,47 @@ async function csrdSubmit() {
   obs.observe(featured);
 })();
 
-// ── HERO SEGMENT SELECTOR — WP-WEB-004 ──
+// ── HERO SEGMENT SELECTOR — WP-WEB-004 + Phase 8: UTM Personalization ──
 (function() {
   var btns = document.querySelectorAll('.seg-btn');
   if (!btns.length) return;
+
+  function activateSegment(seg) {
+    var targetBtn = document.querySelector('.seg-btn[data-seg="' + seg + '"]');
+    if (!targetBtn) return;
+    btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+    targetBtn.classList.add('active');
+    targetBtn.setAttribute('aria-pressed','true');
+    document.querySelectorAll('.seg-text').forEach(function(el) { el.hidden = (el.dataset.for !== seg); });
+    // Sync "How it works" tab to match the active segment
+    var hwMap = { 'landlord': 'core', 'supplier': 'mark', 'csrd': 'csrd' };
+    var hwTarget = hwMap[seg];
+    if (hwTarget) {
+      var hwBtn = document.querySelector('.how-tab[data-hw-tab="' + hwTarget + '"]');
+      if (hwBtn) hwBtn.click();
+    }
+  }
+
   btns.forEach(function(btn) {
     btn.addEventListener('click', function() {
-      var seg = btn.dataset.seg;
-      btns.forEach(function(b) { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
-      btn.classList.add('active');
-      btn.setAttribute('aria-pressed','true');
-      document.querySelectorAll('.seg-text').forEach(function(el) { el.hidden = (el.dataset.for !== seg); });
+      activateSegment(btn.dataset.seg);
     });
   });
+
+  // Phase 8: Dynamic Personalization based on UTM or query params
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var campaign = (params.get('utm_campaign') || '').toLowerCase();
+    var segmentParam = (params.get('segment') || '').toLowerCase();
+
+    if (segmentParam === 'supplier' || campaign.includes('ppn') || campaign.includes('social-value') || campaign.includes('crowmark')) {
+      activateSegment('supplier');
+    } else if (segmentParam === 'csrd' || campaign.includes('csrd') || campaign.includes('esrs') || campaign.includes('omnibus')) {
+      activateSegment('csrd');
+    } else if (segmentParam === 'landlord' || campaign.includes('mees') || campaign.includes('epc') || campaign.includes('core')) {
+      activateSegment('landlord');
+    }
+  } catch(e) {}
 })();
 
 
@@ -1339,21 +1367,36 @@ if (typeof module !== 'undefined' && module.exports) {
     }
   };
 
-  // Decorate all signup links with the captured postcode
+  // Decorate all signup links with the captured postcode + PostHog tracking
   window.caDecorateSignupLinks = function() {
     var postcode;
     try { postcode = sessionStorage.getItem(STORAGE_KEY); } catch(e) { return; }
-    if (!postcode) return;
 
     var links = document.querySelectorAll('a[href*="app.crowagent.ai/signup"]');
     links.forEach(function(link) {
-      try {
-        var url = new URL(link.href);
-        if (!url.searchParams.has('postcode')) {
-          url.searchParams.set('postcode', postcode);
-          link.href = url.toString();
-        }
-      } catch(e) {}
+      // Append postcode if available
+      if (postcode) {
+        try {
+          var url = new URL(link.href);
+          if (!url.searchParams.has('postcode')) {
+            url.searchParams.set('postcode', postcode);
+            link.href = url.toString();
+          }
+        } catch(e) {}
+      }
+      // PostHog: track signup link clicks (bind once)
+      if (!link.dataset.phBound) {
+        link.addEventListener('click', function() {
+          if (typeof posthog !== 'undefined') {
+            posthog.capture('cta_signup_clicked', {
+              postcode: postcode || '',
+              href: link.href,
+              page: window.location.pathname
+            });
+          }
+        });
+        link.dataset.phBound = 'true';
+      }
     });
   };
 
