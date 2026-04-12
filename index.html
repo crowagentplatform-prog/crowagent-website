@@ -25,7 +25,7 @@
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="apple-touch-icon" href="/favicon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://app.crowagent.ai">
+<link rel="preconnect" href="https://app.crowagent.ai" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.min.css?v=51">
 <link rel="stylesheet" href="print.css" media="print">
@@ -202,15 +202,15 @@
           <div class="pc-body">
             <!-- Screen 1: Dashboard -->
             <div class="pc-screen active" id="pc-s1">
-              <img src="/Assets/screenshots/dashboard.png" alt="CrowAgent portfolio dashboard" style="width:100%;border-radius:0;display:block;" loading="eager">
+              <img src="/Assets/screenshots/dashboard.png" alt="CrowAgent portfolio dashboard" width="1200" height="800" style="width:100%;border-radius:0;display:block;" loading="eager" fetchpriority="high">
             </div>
             <!-- Screen 2: EPC Check -->
             <div class="pc-screen" id="pc-s2">
-              <img src="/Assets/screenshots/epc-check.png" alt="CrowAgent EPC compliance analysis" style="width:100%;border-radius:0;display:block;" loading="lazy">
+              <img src="/Assets/screenshots/epc-check.png" alt="CrowAgent EPC compliance analysis" width="1200" height="800" style="width:100%;border-radius:0;display:block;" loading="lazy" decoding="async">
             </div>
             <!-- Screen 3: CrowMark -->
             <div class="pc-screen" id="pc-s3">
-              <img src="/Assets/screenshots/crowmark.png" alt="CrowMark social value scoring" style="width:100%;border-radius:0;display:block;" loading="lazy">
+              <img src="/Assets/screenshots/crowmark.png" alt="CrowMark social value scoring" width="1200" height="800" style="width:100%;border-radius:0;display:block;" loading="lazy" decoding="async">
             </div>
           </div>
           <div class="pc-nav">
@@ -561,14 +561,14 @@
         </div>
       </div>
       <div class="product-full-visual">
-        <img src="/Assets/screenshots/epc-check.png" alt="CrowAgent Core MEES compliance dashboard showing EPC gap analysis" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+        <img src="/Assets/screenshots/epc-check.png" alt="CrowAgent Core MEES compliance dashboard showing EPC gap analysis" width="1200" height="800" style="width:100%;border-radius:12px;border:1px solid var(--border);" loading="lazy" decoding="async">
       </div>
     </div>
 
     <!-- CrowMark — full width block (reversed) -->
     <div class="product-full-block product-full-block-alt fade-in-up delay-2">
       <div class="product-full-visual">
-        <img src="/Assets/screenshots/crowmark.png" alt="CrowMark PPN 002 social value scoring dashboard" style="width:100%;border-radius:12px;border:1px solid var(--border);">
+        <img src="/Assets/screenshots/crowmark.png" alt="CrowMark PPN 002 social value scoring dashboard" width="1200" height="800" style="width:100%;border-radius:12px;border:1px solid var(--border);" loading="lazy" decoding="async">
       </div>
       <div class="product-full-inner">
         <div class="u-label" style="color:var(--mark);">For public sector suppliers</div>
