@@ -1,0 +1,27 @@
+# Cloudflare Pages headers file
+# Replaces the "headers" block from vercel.json
+# Rules are matched top-down; later rules override earlier ones for shared headers.
+
+# --- Global security headers (apply to every request) ---
+/*
+  Content-Security-Policy: default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://assets.calendly.com https://eu.posthog.com; connect-src 'self' https://app.crowagent.ai https://crowagent-platform-production.up.railway.app https://crowagent-platform-staging-production.up.railway.app https://formspree.io https://eu.posthog.com; frame-src https://calendly.com; frame-ancestors 'none';
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+
+# --- HTML pages: short cache, revalidate on edge ---
+/*.html
+  Cache-Control: public, max-age=0, s-maxage=300, stale-while-revalidate=60
+  CDN-Cache-Control: no-store
+
+# --- Versioned/minified assets: immutable, 1 year ---
+/styles.min.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/scripts.min.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/Assets/*
+  Cache-Control: public, max-age=31536000, immutable

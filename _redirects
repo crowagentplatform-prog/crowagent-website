@@ -1,0 +1,10 @@
+# Cloudflare Pages redirects file
+# Replaces the "redirects" block from vercel.json
+# Format: source  destination  status_code
+# Cloudflare Pages natively handles clean URLs and .html stripping,
+# so the vercel.json "rewrites" block is not needed here.
+
+# Legacy product URL redirects (301 permanent)
+/products/crowagent-core   /crowagent-core   301
+/products/crowmark         /crowmark         301
+/legal                     /privacy          301
