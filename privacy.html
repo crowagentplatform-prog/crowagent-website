@@ -70,7 +70,7 @@
 
       <h2>5. Data Retention</h2>
       <ul>
-        <li><strong>Account data:</strong> retained until account deletion, then 7 years for financial records.</li>
+        <li><strong>Account data:</strong> on account deletion, personal data is purged within 30 days. Certain anonymised records (invoices, financial, and compliance-report audit trails) may be retained for up to 7 years for legal, tax, and audit purposes, in line with UK HMRC requirements.</li>
         <li><strong>Usage events:</strong> 13 months.</li>
         <li><strong>EPC lookup cache:</strong> 30 days.</li>
         <li><strong>Error logs (Sentry):</strong> 90 days.</li>
@@ -96,9 +96,23 @@
         <li><strong>Stripe:</strong> billing session cookies (essential).</li>
       </ul>
 
-      <h2>8. Contact</h2>
+      <h2>8. Sub-processors we use</h2>
+      <p>We engage the following categories of third-party sub-processors to operate the service. A Data Processing Agreement (DPA) is available on request from <a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a>.</p>
+      <ul>
+        <li><strong>Supabase</strong> &mdash; database, authentication, and object storage (EU region).</li>
+        <li><strong>Railway</strong> &mdash; application hosting for the CrowAgent backend (EU region).</li>
+        <li><strong>Vercel</strong> &mdash; frontend hosting for <code>app.crowagent.ai</code> (global edge; UK/EU primary).</li>
+        <li><strong>Cloudflare</strong> &mdash; DNS, CDN, and DDoS protection for <code>crowagent.ai</code> (global edge).</li>
+        <li><strong>Stripe</strong> &mdash; payment processing (US/EU; UK-GDPR Standard Contractual Clauses in place).</li>
+        <li><strong>PostHog</strong> &mdash; product analytics (EU Cloud).</li>
+        <li><strong>Sentry</strong> &mdash; error monitoring (US; Standard Contractual Clauses; 90-day retention).</li>
+        <li><strong>Resend</strong> &mdash; transactional email delivery (US; Standard Contractual Clauses).</li>
+        <li><strong>Google Gemini</strong> &mdash; AI narrative generation for CrowMark (server-side only, US; enterprise terms &mdash; inputs and outputs not used for model training).</li>
+      </ul>
+
+      <h2>9. Contact</h2>
       <p>CrowAgent Ltd, Reading, England, United Kingdom<br>
-      Email: <a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a></p>
+      Email: <a href="mailto:hello@crowagent.ai">hello@crowagent.ai</a> (general) &middot; <a href="mailto:support@crowagent.ai">support@crowagent.ai</a> (data requests) &middot; <a href="mailto:security@crowagent.ai">security@crowagent.ai</a> (security)</p>
     </div>
   </main>
 
