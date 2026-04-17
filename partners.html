@@ -194,6 +194,10 @@
           <label for="partner-description" style="display:block;font-family:var(--font-body);font-size:13px;font-weight:600;color:var(--steel);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em;">About your client base</label>
           <textarea id="partner-description" name="description" class="form-control" rows="3" maxlength="200" placeholder="Tell us about your client base"></textarea>
         </div>
+        <label class="form-consent" style="display:flex;align-items:flex-start;gap:8px;margin:0;font-size:13px;color:var(--mist);line-height:1.5;">
+          <input type="checkbox" required name="gdpr_consent" id="partner-consent" style="margin-top:4px;flex-shrink:0;">
+          <span>I agree that CrowAgent Ltd may process my data to evaluate this partner enquiry and respond, in line with the <a href="/privacy" style="color:var(--teal);">Privacy Policy</a>.</span>
+        </label>
         <div id="partner-form-error" role="alert" style="display:none;color:var(--err);font-size:var(--font-size-sm);margin-bottom:var(--space-4);font-family:var(--font-body);"></div>
         <button type="submit" class="btn-primary btn-full-width">Submit enquiry →</button>
       </form>
@@ -286,8 +290,22 @@
       successEl.style.display = 'block';
     })
     .catch(function (err) {
-      console.error('[Partners form] Submission failed:', err);
-      errorEl.textContent = 'Something went wrong. Please email us directly at sales@crowagent.ai';
+      // Only log in local/dev; keep production console clean
+      if (window.location.hostname === 'localhost' || window.__CA_DEBUG__) {
+        console.error('[Partners form] Submission failed:', err);
+      }
+      var subject = encodeURIComponent('Partner Enquiry — ' + company);
+      var mailBody = encodeURIComponent(
+        'Name: ' + name + '\n' +
+        'Role: ' + role + '\n' +
+        'Company: ' + company + '\n' +
+        'Email: ' + email + '\n' +
+        'Phone: ' + phone + '\n' +
+        'Partner type: ' + partnerType + '\n\n' +
+        'About client base:\n' + description
+      );
+      var mailtoLink = 'mailto:sales@crowagent.ai?subject=' + subject + '&body=' + mailBody;
+      errorEl.innerHTML = 'Something went wrong submitting the form. Please <a href="' + mailtoLink + '" style="color:var(--teal);text-decoration:underline;">email us directly at sales@crowagent.ai</a> and we\'ll pick it up from there.';
       errorEl.style.display = 'block';
       submitBtn.disabled = false;
       submitBtn.textContent = 'Submit enquiry →';

@@ -3,5 +3,6 @@ coverage/
 
 .vercel/*
 !.vercel/project.json
+.wrangler/
 .claude/
 .env*.local

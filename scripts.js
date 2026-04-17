@@ -459,7 +459,7 @@ async function submitCSRD(e) {
     btn.innerHTML = orig;
     btn.disabled = false;
     btn.style.borderColor = 'var(--err)';
-    console.error('CSRD form error:', err);
+    if (window.location.hostname === 'localhost' || window.__CA_DEBUG__) { console.error('CSRD form error:', err); }
     var errBox = form.querySelector('.csrd-form-error');
     if (!errBox) {
       errBox = document.createElement('div');
@@ -713,7 +713,7 @@ async function csrdSubmit() {
     if (!res.ok) throw new Error('API error ' + res.status);
     if (submitBtn) { submitBtn.textContent = 'Sent \u2713'; submitBtn.style.color = 'var(--teal)'; }
   } catch(e) {
-    console.error('CSRD email error:', e);
+    if (window.location.hostname === 'localhost' || window.__CA_DEBUG__) { console.error('CSRD email error:', e); }
     if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send to my email'; }
   }
 }

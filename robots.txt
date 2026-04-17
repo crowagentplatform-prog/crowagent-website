@@ -20,4 +20,4 @@ Disallow: /
 User-agent: PerplexityBot
 Disallow: /
 
-Sitemap: https://www.crowagent.ai/sitemap.xml
+Sitemap: https://crowagent.ai/sitemap.xml

@@ -86,8 +86,8 @@
         <p>All data is encrypted at rest using AES-256 and in transit using TLS 1.3. Encryption keys are managed at the infrastructure level and rotated automatically.</p>
       </div>
       <div class="sec-card">
-        <h3>UK data residency</h3>
-        <p>All customer data is stored and processed in the United Kingdom. We do not transfer personal data outside the UK without explicit contractual safeguards. Our primary infrastructure is Supabase (UK region) and Vercel (EU/UK edge).</p>
+        <h3>UK &amp; EU data residency</h3>
+        <p>Primary customer data is stored in Supabase&rsquo;s UK region. Supporting services may process metadata in the EU (PostHog EU Cloud) or under Standard Contractual Clauses (Sentry, Resend). No personal data is sent to AI providers for training. See our <a href="/privacy" style="color:var(--teal);">Privacy Policy</a> for the full sub-processor list.</p>
       </div>
       <div class="sec-card">
         <h3>GDPR compliant</h3>
@@ -99,7 +99,7 @@
       </div>
       <div class="sec-card">
         <h3>ISO 27001 aligned</h3>
-        <p>Our security controls programme is aligned with ISO 27001 principles. Formal certification is in progress. We conduct regular internal security reviews and apply OWASP best practices to all application development.</p>
+        <p>Our security controls programme is aligned with ISO 27001 principles. We plan to pursue formal certification as the business scales. We conduct regular internal security reviews and apply OWASP best practices to all application development.</p>
       </div>
       <div class="sec-card">
         <h3>AI model data handling</h3>
@@ -111,11 +111,11 @@
     <div class="security-grid" style="margin-top:var(--grid-gap-lg,24px);">
       <div class="sec-card">
         <h3>Vulnerability disclosure</h3>
-        <p>If you discover a security vulnerability in CrowAgent, please report it responsibly to <a href="mailto:admin@crowagent.ai?subject=Security%20Disclosure" style="color:var(--teal)">admin@crowagent.ai</a> with the subject 'Security Disclosure'. We will acknowledge within 2 business days and aim to resolve confirmed vulnerabilities within 30 days.</p>
+        <p>Report security vulnerabilities responsibly to <a href="mailto:security@crowagent.ai?subject=Security%20Disclosure" style="color:var(--teal)">security@crowagent.ai</a> with the subject &lsquo;Security Disclosure&rsquo;. We acknowledge within 2 business days. Resolution targets by severity: <strong>Critical</strong> (RCE, auth bypass, data exfiltration) within 5 days; <strong>High</strong> (privilege escalation, sensitive-data exposure) within 14 days; <strong>Medium</strong> within 30 days; <strong>Low / informational</strong> on a best-effort basis.</p>
       </div>
       <div class="sec-card">
         <h3>Uptime commitment</h3>
-        <p>CrowAgent targets 99.9% monthly uptime. For current system status, contact <a href="mailto:support@crowagent.ai?subject=Status%20Enquiry" style="color:var(--teal)">support@crowagent.ai</a> with subject 'Status Enquiry'. We will publish a status page at status.crowagent.ai in Q2 2026.</p>
+        <p>CrowAgent targets 99.5% monthly uptime. Independent monitoring is live at <a href="https://status.crowagent.ai" target="_blank" rel="noopener noreferrer" style="color:var(--teal);">status.crowagent.ai</a>. For security disclosures contact <a href="mailto:security@crowagent.ai" style="color:var(--teal);">security@crowagent.ai</a>; for general support use <a href="mailto:support@crowagent.ai" style="color:var(--teal);">support@crowagent.ai</a>.</p>
       </div>
     </div>
 
